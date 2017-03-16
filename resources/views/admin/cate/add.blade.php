@@ -18,11 +18,12 @@
         <input type="hidden" name="_token" value="{!!csrf_token()!!}"/>
         <div class="form-group">
             <label>Category Chính</label>
-            <select class="form-control">
+            <select class="form-control" name="sltParent">
                 <option value="0">Chọn Category</option>
-                <option value="1">Điện thoại</option>
-                <option value="2">Máy tính</option>
-                <option value="3">Sách</option>
+                <?php cate_parent(); ?>
+                @foreach($parent as $item)
+                <option value="{!!!!}">{!! $item["name"] !!}</option>
+                @endforeach
             </select>
         </div>
         <div class="form-group">
