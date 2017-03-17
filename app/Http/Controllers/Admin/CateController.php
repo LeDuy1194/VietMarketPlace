@@ -20,7 +20,7 @@ class CateController extends Controller
     public function postAdd (CateRequest $request) {
     	$cate = new Cate;
     	$cate->name = $request->txtCateName;
-    	$cate->alias = $request->txtCateName;
+    	$cate->alias = changeTitle($request->txtCateName);
     	$cate->order = $request->txtOrder;
     	$cate->parent_id = 1;
     	$cate->save();
