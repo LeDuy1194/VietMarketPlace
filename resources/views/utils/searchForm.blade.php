@@ -6,43 +6,43 @@ Date: 17/02/2017
   <form class="form-inline">
   	<input type="hidden" name="_token" value="{!!csrf_token()!!}"/>
 	<div class="form-group">
-	  <input type="text" class="form-control" id="search-keyword" placeholder="Search Keywords"/>
+	  <input type="text" class="form-control" id="search-keyword" placeholder="Từ khóa tìm kiếm..."/>
 	</div>
 	
 	<div class="form-group">
 	  <select class="form-control" id="search-category">
-		<option disabled selected>Categories</option>
+		<option value="all" selected>Categories</option>
 		<option disabled>──────────</option>
-		<option value="computer">Computer</option>
-		<option value="cellphone">CellPhone</option>
-		<option value="book">Book</option>
+		<option value="computer">Máy tính</option>
+		<option value="cellphone">Điện thoại</option>
+		<option value="book">Sách</option>
 	  </select>
 	</div>
 		
 	<div class="form-group">
 	  <select class="form-control" id="search-status">
-		<option disabled selected>Status</option>
+		<option value="all" selected>Trạng thái</option>
 		<option disabled>──────────</option>
-		<option value="new">New</option>
-		<option value="secondhand">Second-hand</option>
+		<option value="new">Mới</option>
+		<option value="secondhand">Đồ cũ</option>
 	  </select>
 	</div>
 	
     <div class="form-group">
 	  <select class="form-control" id="search-rate">
-		<option disabled selected>Rate</option>
+		<option value="all" selected>Đánh giá</option>
 		<option disabled>──────</option>
-		<option value="1">1 star</option>
-		<option value="2">2 star</option>
-		<option value="3">3 star</option>
-		<option value="4">4 star</option>
-		<option value="5">5 star</option>
+		<option value="1">1 sao</option>
+		<option value="2">2 sao</option>
+		<option value="3">3 sao</option>
+		<option value="4">4 sao</option>
+		<option value="5">5 sao</option>
 	  </select>
 	</div>
 	
 	<div class="form-group">
 	  <select class="form-control" id="search-city">
-		<option disabled selected>City</option>
+		<option value="all" selected>Thành phố</option>
 		<option disabled>──────────</option>
 		<option value="hcm">Ho Chi Minh</option>
 		<option value="hn">Ha Noi</option>
@@ -53,7 +53,7 @@ Date: 17/02/2017
 	</div>
 	
 	<div class="form-group">
-	  <input type="submit" class="form-control" id="search-submit" value="Search"/>
+	  <input type="submit" class="form-control" id="search-submit" value="Tìm kiếm"/>
 	</div>
   </form>
 </div>

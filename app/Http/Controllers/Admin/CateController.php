@@ -10,7 +10,8 @@ use App\Models\Cate;
 class CateController extends Controller
 {
     public function getList () {
-    	return view('admin.cate.list');
+        $data = Cate::select('id','name','parent_id')->orderBy('id','DESC')->get()->toArray();
+    	return view('admin.cate.list',compact('data'));
     }
     public function getAdd () {
     	$parent = Cate::select('id','name','parent_id')->get()->toArray();
@@ -22,10 +23,47 @@ class CateController extends Controller
     	$cate->name = $request->txtCateName;
     	$cate->alias = changeTitle($request->txtCateName);
     	$cate->order = $request->txtOrder;
-    	$cate->parent_id = 1;
+    	$cate->parent_id = $request->sltParent;
     	$cate->save();
     	return redirect()->route('admin.cate.list')
-    		->with(['flash_level'=>'success','flash_mesage'=>'Thành công thêm Category']);
+    		->with(['flash_level'=>'success','flash_message'=>'Thành công thêm Category']);
     }
 
+    public function getDelete ($id) {
+        $parent = Cate::where('parent_id',$id)->count();
+        if ($parent == 0) {
+            $cate = Cate::find($id);
+            $cate->delete();
+            return redirect()->route('admin.cate.list')->with(['flash_level'=>'warning','flash_message'=>'Thành công xóa Category']);
+        }
+        else {
+            echo "<script type='text/javascript'>
+                alert('Xin lỗi! bạn không thể xóa category này.');
+                window.location = '";
+                    echo route('admin.cate.list');
+            echo"'
+            </script>";
+        }
+    }
+
+    public function getEdit ($id) {
+        $data = Cate::findOrFail($id)->toArray();
+        $parent = Cate::select('id','name','parent_id')->get()->toArray();
+        return view('admin.cate.edit',compact('parent','data'));
+    }
+
+    public function postEdit (Request $request,$id) {
+        $this->validate($request,
+            ["txtCateName"=>"required"],
+            ['txtCateName.required' => 'Vui lòng nhập tên Category']
+        );
+        $cate = Cate::find($id);
+        $cate->name = $request->txtCateName;
+        $cate->alias = changeTitle($request->txtCateName);
+        $cate->order = $request->txtOrder;
+        $cate->parent_id = $request->sltParent;
+        $cate->save();
+        return redirect()->route('admin.cate.list')
+            ->with(['flash_level'=>'success','flash_message'=>'Thành công sửa Category']);
+    }
 }

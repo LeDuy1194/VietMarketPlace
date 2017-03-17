@@ -24,8 +24,8 @@
                             Category<span class="fa arrow"></span>
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Danh sách Category</a>
-                            <a class="dropdown-item" href="#">Thêm Category</a>
+                            <a class="dropdown-item" href="{{route('admin.cate.list')}}">Danh sách Category</a>
+                            <a class="dropdown-item" href="{{route('admin.cate.getAdd')}}">Thêm Category</a>
                         </div>
                     </li>
 
@@ -72,7 +72,7 @@
                         </h1>
                     </div>
                     <div class="col-lg-12 mb-2">
-                        @if (Session::has('flash_mesage'))
+                        @if (Session::has('flash_message'))
                             <div class="alert alert-{!! Session::get('flash_level') !!}">
                                 {!! Session::get('flash_message') !!}
                             </div>
@@ -92,6 +92,8 @@
     <script src="{{asset('public/libs/tether/tether.min.js')}}"></script>
     <script src="{{asset('public/libs/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('public/libs/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('public/js/admin/admin.js')}}"></script>
+    
 </body>
 
 </html>

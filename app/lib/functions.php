@@ -21,7 +21,7 @@ function stripUnicode($str) {
 			'Y' => 'Ý|Ỳ|Ỷ|Ỹ|Ỵ'
 		);
 		foreach($unicode as $khongdau=>$codau) {
-			$arr = explore("|",$codau);
+			$arr = explode("|",$codau);
 			$str = str_replace($arr,$khongdau,$str);
 		}
 		return $str;
@@ -37,10 +37,27 @@ function changeTitle($str) {
 		$str = str_replace('"','',$str);
 		$str = str_replace("'",'',$str);
 		$str = stripUnicode($str);
-		$str = mb_convert_case($str,MB_CASE_UPPER,'utf-8');
+		$str = mb_convert_case($str,MB_CASE_LOWER,'utf-8');
 		$str = str_replace(' ','-',$str);
 	}
 	return $str;
+}
+
+function cate_parent ($data,$parent = 0,$str="--",$select=0) {
+	foreach ($data as $key => $val) {
+		$id = $val["id"];
+		$name = $val["name"];
+		if ($val["parent_id"] == $parent) {
+			if (($select != 0)&&($id == $select)) {
+				echo "<option value='$id' selected='selected'>$str $name</option>";
+			}
+			else {
+				echo "<option value='$id'>$str $name</option>";
+			}
+			cate_parent($data,$id,$str."--");
+		}
+		
+	}
 }
 
 ?>

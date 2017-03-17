@@ -12,7 +12,7 @@ Date: 17/02/2017
 	
 	<div class="carousel-inner" role="listbox">
 		<div class="carousel-item active">
-			<img class="d-block img-fluid" alt="Carousel Bootstrap First" src="http://lorempixel.com/output/sports-q-c-1600-500-1.jpg">
+			<img class="d-block img-fluid mx-auto" alt="Carousel Bootstrap First" src="{{url('public/img/1.png')}}">
 			<div class="carousel-caption d-none d-md-block">
 				<h4>First Thumbnail label</h4>
 				<p>
@@ -20,7 +20,7 @@ Date: 17/02/2017
 			</div>
 		</div>
 		<div class="carousel-item">
-			<img class="d-block img-fluid" alt="Carousel Bootstrap Second" src="http://lorempixel.com/output/sports-q-c-1600-500-2.jpg">
+			<img class="d-block img-fluid mx-auto" alt="Carousel Bootstrap Second" src="{{url('public/img/2.jpg')}}">
 			<div class="carousel-caption d-none d-md-block">
 				<h4>Second Thumbnail label</h4>
 				<p>
@@ -28,7 +28,7 @@ Date: 17/02/2017
 			</div>
 		</div>
 		<div class="carousel-item">
-			<img class="d-block img-fluid" alt="Carousel Bootstrap Third" src="http://lorempixel.com/output/sports-q-c-1600-500-3.jpg">
+			<img class="d-block img-fluid mx-auto" alt="Carousel Bootstrap Third" src="{{url('public/img/3.jpg')}}">
 			<div class="carousel-caption d-none d-md-block">
 				<h4>Third Thumbnail label</h4>
 				<p>

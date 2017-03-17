@@ -8,31 +8,34 @@
 <table class="table table-hover" id="dataTables">
     <thead class="thead-inverse">
         <tr align="center">
-            <th>ID</th>
-            <th>Name</th>
-            <th>Category Parent</th>
-            <th>Status</th>
-            <th>Delete</th>
-            <th>Edit</th>
+            <th>Stt</th>
+            <th>Tên</th>
+            <th>Category chính</th>
+            <th>Xóa</th>
+            <th>Sửa</th>
         </tr>
     </thead>
     <tbody>
+        <?php $stt = 0 ?>
+        @foreach($data as $item)
+        <?php $stt = $stt + 1 ?>
         <tr>
-            <th>1</th>
-            <td>Máy tính</td>
-            <td>None</td>
-            <td>Hiện</td>
-            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
+            <th>{!! $stt !!}</th>
+            <td>{!! $item["name"] !!}</td>
+            <td>
+                @if ($item["parent_id"]==0)
+                    {!! "None" !!}
+                @else
+                    <?php
+                        $parent = DB::table('cates')->where('id',$item["parent_id"])->first();
+                        echo $parent->name;
+                    ?>
+                @endif
+            </td>
+            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a onclick="return confirmation('Có xóa category {!! $item['name'] !!} không?')" href="{!! URL::route('admin.cate.getDelete',$item['id']) !!}"> Xóa</a></td>
+            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{!! URL::route('admin.cate.getEdit',$item['id']) !!}">Sửa</a></td>
         </tr>
-        <tr>
-            <th>2</th>
-            <td>Điện thoại</td>
-            <td>None</td>
-            <td>Ẩn</td>
-            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-        </tr>
+        @endforeach
     </tbody>
 </table>
 @endsection()
