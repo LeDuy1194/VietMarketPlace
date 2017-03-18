@@ -2,7 +2,7 @@
 @section('content')
 <div class="col-md-4">
 	<form role="form">
-
+		<input type="hidden" name="_token" value="{!!csrf_token()!!}">
 		<h1>Tạo Tài khoản Mới</h1>
 		<h3>Cam kết miễn phí trọn đời</h3>
 		<div class="form-group">
@@ -29,7 +29,7 @@
 		<div>
 			<center>
 				Bạn đã có tài khoản?
-				<a style="color: #000; font-weight: bold;" href="login.html">Đăng nhập</a>
+				<a style="color: #000; font-weight: bold;" href="{{url('login')}}">Đăng nhập</a>
 			</center>
 		</div>
 	</form>

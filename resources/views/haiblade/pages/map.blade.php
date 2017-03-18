@@ -32,20 +32,12 @@
 	</div>
 </div>
 <!-- MAP -->
-<div style='overflow:hidden;height:550px;width:auto; padding-top: auto;'>
+<div style='overflow:hidden;height:auto;width:auto; padding-top: auto;'>
 	<div id='gmap_canvas' style='height:600px;width:auto;'></div>
-	<div>
-		<small><a href="http://embedgooglemaps.com">embed google maps</a></small>
-	</div>
-	<div>
-		<small>
-			<a href="http://phplinkdir.com/">free high pr web directory</a>
-		</small>
-	</div>
 	<style>#gmap_canvas img{max-width:none!important;background:none!important}</style>
 </div>
 
-<script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
+<script src="{{url('https://maps.googleapis.com/maps/api/js?v=3.exp')}}"></script>
 
 <script type='text/javascript'>
 	function init_map() {

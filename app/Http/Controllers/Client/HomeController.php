@@ -37,4 +37,18 @@ class HomeController extends Controller
     {
         return view('haiblade.pages.map');
     }
+    public function showLogin()
+    {
+        return view('account.pages.login');
+    }
+
+    public function showReset()
+    {
+        return view('account.pages.reset');
+    }
+
+    public function showRegister()
+    {
+        return view('account.pages.register');
+    }
 }

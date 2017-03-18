@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
+use App\Http\Controllers\Controller\LoginController;
 use Validator;
 use Auth;
 use Illuminate\Support\MessageBag;
@@ -11,11 +13,11 @@ use Illuminate\Support\MessageBag;
 class AuthController extends Controller
 {
     public function getLogin() {
-        return view('auth.login');
+        return view('account.pages.login');
     }
 
-    public function authLogin(Request $request) {
-    
+    public function postLogin(LoginRequest $request) {
+        /*
     	$rules = [
     		'email' => 'required|email',
     		'password' => 'required|min:6'
@@ -45,6 +47,17 @@ class AuthController extends Controller
     			return redirect()->back()->withInput()->withErrors($errors);
     		}
     		
-    	}
+    	}*/
+        $login = array(
+            'email' => $request->email,
+            'password' => $request->password
+            );
+        if (Auth::attempt($login)) {
+                return redirect()->Route('Home');
+            }
+            else {
+                $errors = new MessageBag(['errorLogin' => 'Email hoặc mật khẩu không đúng']);
+                return redirect()->back()->withInput()->withErrors($errors);
+            }
     }
 }
