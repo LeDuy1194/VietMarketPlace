@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CateRequest extends FormRequest
+class StockRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,14 +22,18 @@ class CateRequest extends FormRequest
      */
     public function rules() {
         return [
-            'txtCateName' => 'required|unique:cates,name'
+            'sltParent'=>'required',
+            'txtName'=>'required',
+            'fImages'=>'required|image'
         ];
     }
 
     public function messages () {
         return [
-            'txtCateName.required' => 'Vui lòng nhập tên Category',
-            'txtCateName.unique' => 'Category này đã tồn tại'
+            'sltParent.required'=>'Vui lòng chọn category',
+            'txtName.required'=>'Vui lòng nhập tên sản phẩm',
+            'fImages.required'=>'Vui lòng chọn ảnh sản phẩm',
+            'fImages.image'=>'Đây không phải là hình ảnh'
         ];
     }
 }

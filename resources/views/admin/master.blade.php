@@ -66,7 +66,7 @@
         <div class="col-lg-10 col-md-12">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12 col-sm-12">
+                    <div class="col-lg-12">
                         <h1>@yield('controller')
                             <small>@yield('action')</small>
                         </h1>

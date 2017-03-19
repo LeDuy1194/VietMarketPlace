@@ -25,6 +25,6 @@
         </div>
         <button type="submit" class="btn btn-default">Sửa Category</button>
         <button type="reset" class="btn btn-default">Reset</button>
-    <form>
+    </form>
 </div>
 @endsection()

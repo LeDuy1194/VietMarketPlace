@@ -12,19 +12,19 @@
             <label>Category Chính</label>
             <select class="form-control" name="sltParent">
                 <option value="0">Chọn Category</option>
-                <?php cate_parent($parent); ?>
+                <?php cate_parent($parent,0,"--",old('sltParent')); ?>
             </select>
         </div>
         <div class="form-group">
             <label>Tên Category</label>
-            <input class="form-control" name="txtCateName" placeholder="Xin nhập tên Category" />
+            <input class="form-control" name="txtCateName" placeholder="Xin nhập tên Category" value="{!! old('txtCateName') !!}"/>
         </div>
         <div class="form-group">
             <label>Thứ tự Category</label>
-            <input class="form-control" name="txtOrder" placeholder="Xin nhập thứ tự Category" />
+            <input class="form-control" name="txtOrder" placeholder="Xin nhập thứ tự Category"  value="{!! old('txtOrder') !!}"/>
         </div>
         <button type="submit" class="btn btn-default">Thêm Category</button>
         <button type="reset" class="btn btn-default">Reset</button>
-    <form>
+    </form>
 </div>
 @endsection()
