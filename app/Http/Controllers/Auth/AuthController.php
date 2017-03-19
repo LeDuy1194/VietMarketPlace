@@ -48,16 +48,23 @@ class AuthController extends Controller
     		}
     		
     	}*/
+        $rules = [
+            'email' => 'required|email',
+            'password' => 'required|min:6'
+        ];
+        $email = $request->input('email');
+        $password = $request->input('password');
         $login = array(
             'email' => $request->email,
             'password' => $request->password
             );
         if (Auth::attempt($login)) {
-                return redirect()->Route('Home');
+                return redirect()->Route('homepage');
+                //return view('pages.myStore');
             }
             else {
-                $errors = new MessageBag(['errorLogin' => 'Email hoặc mật khẩu không đúng']);
-                return redirect()->back()->withInput()->withErrors($errors);
+                //return view('pages.myStore');
+                return redirect()->back();
             }
     }
 }
