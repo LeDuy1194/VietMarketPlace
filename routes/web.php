@@ -11,13 +11,10 @@
 |
 */
 
-Route::get('','Cus\HomeController@index');
+Route::get('','Client\HomeController@showHome');
 
-Route::get('logout','Cus\HomeController@getLogout');
-
-
-Route::get('login',['as'=>'login','uses'=>'Client\HomeController@showLogin']);
-Route::post('login',['as'=>'login','uses'=>'Client\HomeController@showLogin']);
+Route::get('login',['as'=>'login','uses'=>'Auth\AuthController@getLogin']);
+Route::post('login',['as'=>'login','uses'=>'Auth\AuthController@postLogin']);
 
 Route::get('reset',['as'=>'Reset','uses'=>'Client\HomeController@showReset']);
 
