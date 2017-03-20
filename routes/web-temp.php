@@ -13,13 +13,17 @@
 
 Route::get('','Client\HomeController@showHome');
 
-Route::get('login',['as'=>'getLogin','uses'=>'Auth\AuthController@getLogin']);
-Route::post('login',['as'=>'postLogin','uses'=>'Auth\AuthController@postLogin']);
+Route::get('login',['as'=>'getLogin','uses'=>'Auth\LoginController@getLogin']);
+Route::post('login',['as'=>'postLogin','uses'=>'Auth\LoginController@postLogin']);
 
 Route::get('register',['as'=>'getRegister','uses'=>'Auth\RegisterController@getRegister']);
 Route::post('register',['as'=>'postRegister','uses'=>'Auth\RegisterController@postRegister']);
 
-Route::get('reset',['as'=>'Reset','uses'=>'Client\HomeController@showReset']);
+Route::get('forgot',['as'=>'getForgot','uses'=>'Client\ForgotPasswordController@getForgot']);
+Route::post('forgot',['as'=>'postForgot','uses'=>'Auth\ForgotPasswordController@postForgot']);
+
+Route::get('reset',['as'=>'getReset','uses'=>'Client\ResetPasswordController@getReset']);
+Route::post('reset',['as'=>'postReset','uses'=>'Auth\ResetPasswordController@postReset']);
 
 Route::get('homepage',['as'=>'Home','uses'=>'Client\HomeController@showHome']);
 
@@ -32,10 +36,6 @@ Route::get('profile',['as'=>'Profile','uses'=>'Client\HomeController@showProfile
 Route::get('upload',['as'=>'Upload','uses'=>'Client\HomeController@showUpload']);
 
 Route::get('map',['as'=>'Map','uses'=>'Client\HomeController@showMap']);
-
-Route::get('test',function() {
-	return view('admin.cate.add');
-});
 
 Route::group(['prefix'=>'admin'],function () {
 	Route::group(['prefix'=>'cate'],function () {
