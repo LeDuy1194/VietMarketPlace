@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
-
+use App\Http\Requests\ResetRequest;
 class ResetPasswordController extends Controller
 {
     /*
@@ -35,5 +35,12 @@ class ResetPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+    public function getReset() {
+        return view('account.pages.reset');
+    }
+
+    public function postReset(ResetRequest $request) {
+        return redirect()->Route('postReset');
     }
 }
