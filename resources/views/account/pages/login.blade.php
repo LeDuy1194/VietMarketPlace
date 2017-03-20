@@ -1,7 +1,7 @@
 @extends('account.master')
 @section('content')
 <div class="col-md-4">
-	<form role="form" action="{!!route('login')!!}" method="POST">
+	<form role="form" action="{!!route('postLogin')!!}" method="POST">
 		<input type="hidden" name="_token" value="{!!csrf_token()!!}">
 		<h1>Đăng nhập vào VietMarketPlace</h1>
 		<h3>Kho hàng Trực tuyến Khổng lồ</h3>

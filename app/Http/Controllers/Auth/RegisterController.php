@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use App\Http\Requests\RegisterRequest;
 use App\User;
+use Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -67,5 +68,17 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+    public function getRegister() {
+        return view('account.pages.register');
+    }
+
+    public function postRegister(RegisterRequest $request) {
+        $account = new User;
+        $account->username = $request->username;
+        $account->email = $request->email;
+        $account->password = Hash::make($request->password);
+        $account->remember_token = $request->_token;
+        $account->save();
     }
 }

@@ -48,12 +48,6 @@ class AuthController extends Controller
     		}
     		
     	}*/
-        $rules = [
-            'email' => 'required|email',
-            'password' => 'required|min:6'
-        ];
-        $email = $request->input('email');
-        $password = $request->input('password');
         $login = array(
             'email' => $request->email,
             'password' => $request->password
