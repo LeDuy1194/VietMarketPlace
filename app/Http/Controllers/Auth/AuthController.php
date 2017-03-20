@@ -52,13 +52,13 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => $request->password
             );
-        if (Auth::attempt($login)) {
-                return redirect()->Route('homepage');
+        if (!Auth::attempt($login)) {
+                return redirect()->back();
                 //return view('pages.myStore');
             }
             else {
                 //return view('pages.myStore');
-                return redirect()->back();
+                return redirect()->Route('Home');
             }
     }
 }

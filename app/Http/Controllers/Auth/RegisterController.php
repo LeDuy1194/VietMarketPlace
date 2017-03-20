@@ -80,5 +80,6 @@ class RegisterController extends Controller
         $account->password = Hash::make($request->password);
         $account->remember_token = $request->_token;
         $account->save();
+        return redirect()->Route('postLogin');
     }
 }
