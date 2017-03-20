@@ -20,12 +20,6 @@
         <li class="nav-item sign-in">
           <a class="nav-link" href="{{route('Map')}}">Bản đồ</a>
         </li>
-        <li class="nav-item sign-in">
-          <a class="nav-link" href="#">Matching</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Về chúng tôi</a>
-        </li>
       </ul>
       <ul class="navbar-nav my-2 my-lg-0">
         <li class="nav-item sign-out">

@@ -7,7 +7,6 @@ Date: 17/02/2017
 
 @section('content')
 	@include('utils.advertise')
-	@include('utils.searchForm')
 	<div class="container-fluid">
 		<div class="row mt-2">
 			<div class="col-lg-2">

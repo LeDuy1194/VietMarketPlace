@@ -33,10 +33,6 @@ Route::get('upload',['as'=>'Upload','uses'=>'Client\HomeController@showUpload'])
 
 Route::get('map',['as'=>'Map','uses'=>'Client\HomeController@showMap']);
 
-Route::get('test',function() {
-	return view('admin.cate.add');
-});
-
 Route::group(['prefix'=>'admin'],function () {
 	Route::group(['prefix'=>'cate'],function () {
 		Route::get('list',['as'=>'admin.cate.list','uses'=>'Admin\CateController@getList']);
