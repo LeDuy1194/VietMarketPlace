@@ -13,8 +13,8 @@
 
 Route::get('','Client\HomeController@showHome');
 
-Route::get('login',['as'=>'getLogin','uses'=>'Auth\AuthController@getLogin']);
-Route::post('login',['as'=>'postLogin','uses'=>'Auth\AuthController@postLogin']);
+Route::get('login',['as'=>'getLogin','uses'=>'Auth\LoginController@getLogin']);
+Route::post('login',['as'=>'postLogin','uses'=>'Auth\LoginController@postLogin']);
 
 Route::get('register',['as'=>'getRegister','uses'=>'Auth\RegisterController@getRegister']);
 Route::post('register',['as'=>'postRegister','uses'=>'Auth\RegisterController@postRegister']);
