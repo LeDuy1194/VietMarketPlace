@@ -47,3 +47,5 @@ Route::group(['prefix'=>'admin'],function () {
 		Route::post('add',['as'=>'admin.stock.postAdd','uses'=>'Admin\StockController@postAdd']);
 	});
 });
+
+Route::get('{cate}--{id}',['as'=>'listByCate','uses'=>'Client\HomeController@listByCate']);

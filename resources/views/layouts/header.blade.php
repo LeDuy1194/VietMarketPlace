@@ -11,23 +11,29 @@
         <li class="nav-item active">
           <a class="nav-link" href="{{route('Home')}}">Trang Chủ <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item sign-in">
-          <a class="nav-link" href="{{route('Profile')}}">Username</a>
+        @if (Auth::check())
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('Profile')}}">{{Auth::user()->name}}</a>
         </li>
-        <li class="nav-item sign-in">
+        <li class="nav-item">
           <a class="nav-link" href="{{route('MyStore')}}">Giỏ hàng</a>
         </li>
-        <li class="nav-item sign-in">
+        <li class="nav-item">
           <a class="nav-link" href="{{route('Map')}}">Bản đồ</a>
         </li>
+        @endif
       </ul>
       <ul class="navbar-nav my-2 my-lg-0">
-        <li class="nav-item sign-out">
-          <a class="nav-link" href="login">Đăng nhập</a>
-        </li>
-        <li class="nav-item sign-in">
+        
+        @if (Auth::check())
+        <li class="nav-item">
           <a class="nav-link" href="logout">Đăng xuất</a>
         </li>
+        @else
+        <li class="nav-item">
+          <a class="nav-link" href="login">Đăng nhập</a>
+        </li>
+        @endif
       </ul>
     </div>
   </nav>

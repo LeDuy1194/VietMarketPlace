@@ -17,7 +17,7 @@
         </div>
         <div class="form-group">
             <label>Hình ảnh</label>
-            <input type="file" name="fImages"  value="{!! old('txtCateName') !!}"/>
+            <input type="file" name="fImages"  value="{!! old('fImages') !!}"/>
         </div>
         <div class="form-group">
             <label>Trạng thái</label>
