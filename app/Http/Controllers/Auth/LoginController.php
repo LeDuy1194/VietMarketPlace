@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use App\Http\Requests\LoginRequest;
+use App\User;
+use Validator;
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -35,5 +38,23 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
+    }
+    public function getLogin() {
+        return view('account.pages.login');
+    }
+
+    public function postLogin(LoginRequest $request) {
+        $login = array(
+            'email' => $request->email,
+            'password' => $request->password
+            );
+        if (!Auth::attempt($login)) {
+                return redirect()->back();
+                //return view('pages.myStore');
+            }
+            else {
+                //return view('pages.myStore');
+                return redirect()->Route('Home');
+            }
     }
 }
