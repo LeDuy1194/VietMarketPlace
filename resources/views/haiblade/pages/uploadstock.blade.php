@@ -16,15 +16,6 @@
 				</li>
 			</ul>
 		</div>
-		@if (count($errors) > 0)
-		<div class="alert alert-danger">
-			<ul>
-				@foreach($errors->all() as$error)
-				<li>{!! $error !!}</li>
-				@endforeach
-			</ul>
-		</div>
-		@endif	
 	</div>
 	<div class="row">
 		<div class="col-md-8">
@@ -35,7 +26,7 @@
 					</h3>
 					<hr>
 
-					<form role="form" action="{!!route('user.stock.getupload')!!}" method="POST">
+					<form role="form" action="{!!route('user.stock.getupload')!!}" method="POST" enctype="multipart/form-data">
 						<input type="hidden" name="_token" value="{!!csrf_token()!!}">
 						<div class="form-group">
 
@@ -71,11 +62,10 @@
 									<label>
 										Chọn Danh mục *
 									</label>
-									<select class="form-control">
-										<option selected>Sách</option>
-										<option>Quần Áo</option>
-										<option>Máy Tính</option>
-										<option>Điện Thoại</option>
+									<select class="form-control" name="cate">
+										@foreach($cate as $item)
+										<option value="">{!! $item["name"] !!}</option>
+										@endforeach
 									</select>
 								</div>
 							</div>
@@ -95,18 +85,16 @@
 						<br>
 						<div class="form-group">
 							<label>
-								Đăng Hình Ảnh (Ít nhất 3 hình)
+								Đăng Hình Ảnh
 							</label>
 							<br>
-							<input type="file" name="image">
-							<br>
-							<input type="file" name="image">
-							<br>
-							<input type="file" name="image">
-							<br>
-							<input type="file" name="image">
-							<br>
-							<input type="file" name="image">
+							<label>Hình 1</label>
+							<input type="file" name="imagemain">
+							@for ($i = 2; $i <= 5; $i++)
+								<br>
+								<label>Hình {!! $i !!}</label>
+								<input type="file" name="image[]">
+							@endfor
 						</div>
 						<hr>
 						<div class="checkbox">

@@ -25,6 +25,13 @@ class ClientUpStockRequest extends FormRequest
     {
         return [
             'itemname' => 'required:stocks,name'
+            'price' => ''
+            'status' => ''
+            'discription' => ''
+            'address' => ''
+            'img' => ''
+            'user_id' => ''
+            'cate_id' => ''
         ];
     }
     public function messages()
