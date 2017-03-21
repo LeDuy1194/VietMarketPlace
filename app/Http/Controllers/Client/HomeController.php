@@ -40,21 +40,27 @@ class HomeController extends Controller {
 
 
     public function showHome() {
-        $stock = Stock::all()->toArray();
-        $order = Order::where('finished',1)->get()->toArray();
+        $stock = Stock::orderBy('id','desc')->take(5)->get();
+        $order = Order::where('finished',0)->orderBy('id','desc')->take(5)->get();
         return view('pages.home',compact('stock','order'));
     }
 
-    public function showMyStore() {
-        $stock = Stock::where('user_id',Auth::user()->id)->get()->toArray();
-        $order = Order::where('user_id',Auth::user()->id)->get()->toArray();
-        return view('pages.myStore',compact('stock','order'));
+    public function showMyStore($state) {
+        $stock = Stock::where('user_id',Auth::user()->id)->get();
+        $order = Order::where('user_id',Auth::user()->id)->get();
+        return view('pages.myStore',compact('stock','order','state'));
     }
 
     public function showOrderDetail($id) {
-        $data = Order::find($id)->toArray();
-        $cate = Cate::find($data['cate_id'])->toArray();
+        $data = Order::find($id);
+        $cate = Cate::find($data['cate_id']);
         return view('pages.listOrder',compact('data','cate'));
+    }
+
+    public function showStockDetail($id) {
+        $data = Stock::find($id);
+        $cate = Cate::find($data['cate_id']);
+        return view('pages.listStock',compact('data','cate'));
     }
 
     public function showProfile() {
@@ -86,8 +92,8 @@ class HomeController extends Controller {
 
     public function listByCate($cate,$id,Request $request) {
         $cate_id = Cate::where('name',$cate)->get()->id;
-        $stock = Stock::where('cate_id',$cate_id)->orderBy('id','desc')->get()->toArray();
-        $order = Order::where('cate_id',$cate_id)->orderBy('id','desc')->get()->toArray();
-        return ;
+        $stock = Stock::where('cate_id',$cate_id)->orderBy('id','desc')->get();
+        $order = Order::where('cate_id',$cate_id)->orderBy('id','desc')->get();
+        return view('pages.home',compact('stock','order'));
     }
 }

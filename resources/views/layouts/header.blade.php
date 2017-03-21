@@ -13,7 +13,7 @@
         </li>
         @if (Auth::check())
         <li class="nav-item">
-          <a class="nav-link" href="{{route('Profile')}}">{{Auth::user()->name}}</a>
+          <a class="nav-link" href="{{route('Profile')}}">{{Auth::user()->username}}</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{route('MyStore')}}">Giỏ hàng</a>

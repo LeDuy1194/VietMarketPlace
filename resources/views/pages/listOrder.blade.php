@@ -12,8 +12,8 @@ Date: 21/02/2017
 			<div class="col-lg-12">
 				<ol class="breadcrumb" id="path">
 					<li class="breadcrumb-item"><a href="{{route('Home')}}">Trang Chủ</a></li>
-					<li class="breadcrumb-item"><a href="#">{!! $cate['name'] !!}</a></li>
-					<li class="breadcrumb-item active">{!!  $data['name'] !!}</li>
+					<li class="breadcrumb-item"><a href="#">{!! $cate->name !!}</a></li>
+					<li class="breadcrumb-item active">{!!  $data->name !!}</li>
 				</ol>
 			</div>
 		</div>
@@ -22,14 +22,14 @@ Date: 21/02/2017
 			<div class="col-lg-1 hidden-sm-down"></div>
 			<div class="col-lg-7 col-sm-12">
 				<div class="card card-block">
-					<img src="resources/upload/{{$data['img']}}"/>
+					<img src="resources/upload/{{$data->img}}"/>
 				</div>
 				<a class="card card-block fontItem" data-toggle="collapse" href="#collapseInfo" aria-expanded="true" aria-controls="collapseInfo"><h5>Thông tin sản phẩm</h5></a>
 				<div class="collapse show" id="collapseInfo">
 					<div class="card card-block" id="productInfo">
-						<h5>Địa điểm: {!! $data['place'] !!}</h5>
-						<h5>Tình trạng:{!! ($data['status']=="new")?"Mới":"Đồ cũ" !!}</h5>
-						<h5>Giá: {!! number_format($data['priceMin'],0,",",".")." - ".number_format($data['priceMax'],0,",",".")." VNĐ" !!}</h5>
+						<h5>Địa điểm: {!! $data->place !!}</h5>
+						<h5>Tình trạng: {!! ($data->status=="new")?"Mới":"Đồ cũ" !!}</h5>
+						<h5>Giá: {!! number_format($data->priceMin,0,",",".")." - ".number_format($data->priceMax,0,",",".")." VNĐ" !!}</h5>
 						<h5>Thời gian: </h5>
 					</div>
 				</div>
@@ -37,7 +37,7 @@ Date: 21/02/2017
 				<div class="collapse" id="collapseDesc">
 					<div class="card card-block" id="productDesc">
 						<p>
-							{!! $data['id'] !!}
+							{!! $data->description !!}
 						</p>
 					</div>
 				</div>

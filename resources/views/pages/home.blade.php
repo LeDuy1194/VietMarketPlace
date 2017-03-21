@@ -17,18 +17,18 @@ Date: 17/02/2017
 						<div class="col-lg-4 col-sm-12">
 							<div class="media">
 								<div class="media-left">
-									<img src="resources/upload/{{$item['img']}}" class="media-object img-thumbnail avatar"/>
+									<img src="resources/upload/{{$item->img}}" class="media-object img-thumbnail avatar"/>
 								</div>
 								<div class="media-body">
-									<h4 class="media-heading">{!! $item['name'] !!}</h4>
-									<a href="{{route('OrderDetail',$item['id'])}}">Chi tiết sản phẩm</a>
+									<h4 class="media-heading">{!! $item->name !!}</h4>
+									<a href="{{route('StockDetail',$item->id)}}">Chi tiết sản phẩm</a>
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-3 col-sm-12">
+						<div class="col-lg-2 col-sm-12">
 							<div class="row">
 							<div class="media col-lg-12 col-sm-8">
-								<?php $user = DB::table('users')->where('id',$item['user_id'])->first(); ?>
+								<?php $user = DB::table('users')->where('id',$item->user_id)->first(); ?>
 								<div class="media-left">
 									<img src="resources/upload/user/{{$user->avatar}}" class="media-object rounded-circle user-avatar"/>
 								</div>
@@ -57,11 +57,11 @@ Date: 17/02/2017
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-1 col-sm-2">
+						<div class="col-lg-1 col-sm-2 text-right">
 							<button type="button" class="btn btn-warning"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
 						</div>
-						<div class="col-lg-2 col-sm-4">
-							<h3>{!! $item['price'] !!}</h3>
+						<div class="col-lg-3 col-sm-4 text-right">
+							<h3>{!! number_format($item->price,0,",",".")." VNĐ" !!}</h3>
 						</div>
 					</div>
 				</div>
@@ -75,18 +75,18 @@ Date: 17/02/2017
 						<div class="col-lg-4 col-sm-12">
 							<div class="media">
 								<div class="media-left">
-									<img src="resources/upload/{{$item['img']}}" class="media-object img-thumbnail avatar"/>
+									<img src="resources/upload/{{$item->img}}" class="media-object img-thumbnail avatar"/>
 								</div>
 								<div class="media-body">
-									<h4 class="media-heading">{!! $item['name'] !!}</h4>
-									<a href="{{route('OrderDetail',$item['id'])}}">Chi tiết sản phẩm</a>
+									<h4 class="media-heading">{!! $item->name !!}</h4>
+									<a href="{{route('OrderDetail',$item->id)}}">Chi tiết sản phẩm</a>
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-3 col-sm-12">
+						<div class="col-lg-2 col-sm-12">
 							<div class="row">
 							<div class="media col-lg-12 col-sm-8">
-								<?php $user = DB::table('users')->where('id',$item['user_id'])->first(); ?>
+								<?php $user = DB::table('users')->where('id',$item->user_id)->first(); ?>
 								<div class="media-left">
 									<img src="resources/upload/user/{{$user->avatar}}" class="media-object rounded-circle user-avatar"/>
 								</div>
@@ -115,17 +115,17 @@ Date: 17/02/2017
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-1 col-sm-2">
+						<div class="col-lg-1 col-sm-2 text-right">
 							<button type="button" class="btn btn-warning"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
 						</div>
-						<div class="col-lg-2 col-sm-4">
-							<h3>{!! $item['priceMin']." - ".$item['priceMax'] !!}</h3>
+						<div class="col-lg-3 col-sm-4 text-right">
+							<h3>{!! number_format($item->priceMin,0,",",".")." - ".number_format($item->priceMax,0,",",".")." VNĐ" !!}</h3>
 						</div>
 					</div>
 				</div>
 				@endforeach
 			</div>
-			<div class="col-lg-10">
+			<!-- <div class="col-lg-10">
 				<nav aria-label="Page navigation example">
 					<ul class="pagination">
 						<li class="page-item active"><a class="page-link" href="#">1</a></li>
@@ -133,7 +133,7 @@ Date: 17/02/2017
 						<li class="page-item"><a class="page-link" href="#">3</a></li>
 					</ul>
 				</nav>
-			</div>
+			</div> -->
 		</div>
 	</div>
 @endsection

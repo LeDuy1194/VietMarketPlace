@@ -27,9 +27,10 @@ Route::post('reset',['as'=>'postReset','uses'=>'Auth\ResetPasswordController@pos
 
 Route::get('homepage',['as'=>'Home','uses'=>'Client\HomeController@showHome']);
 
-Route::get('mystore',['as'=>'MyStore','uses'=>'Client\HomeController@showMyStore']);
+Route::get('mystore/{state}',['as'=>'MyStore','uses'=>'Client\HomeController@showMyStore']);
 
 Route::get('listorder/{id}',['as'=>'OrderDetail','uses'=>'Client\HomeController@showOrderDetail']);
+Route::get('liststock/{id}',['as'=>'StockDetail','uses'=>'Client\HomeController@showStockDetail']);
 
 Route::get('profile',['as'=>'Profile','uses'=>'Client\HomeController@showProfile']);
 
