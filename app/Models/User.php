@@ -14,7 +14,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password', 'level', 'fullname', 'adress', 'phone', 'dob', 'avatar'
+        'username', 'email', 'password', 'level', 'fullname', 'address', 'city', 'district', 'phone', 'dob', 'avatar'
     ];
 
     /**
@@ -32,5 +32,15 @@ class User extends Authenticatable
 
     public function order() {
         return $this->hasMany('App\Models\Order');
+    }
+
+    //Get data detail user by username---- Anh Pham
+    public function getDetailUserByUserName($username) {
+        return $this->where('username', $username)->first();
+    }
+
+    //Get data detail user by user_id---- Anh Pham
+    public function getDetailUserByUserID($user_id) {
+        return $this->where('id', $user_id)->first();
     }
 }

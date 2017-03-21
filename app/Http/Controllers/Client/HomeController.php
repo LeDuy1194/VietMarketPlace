@@ -60,7 +60,9 @@ class HomeController extends Controller {
     public function showStockDetail($id) {
         $data = Stock::find($id);
         $cate = Cate::find($data['cate_id']);
-        return view('pages.listStock',compact('data','cate'));
+        $userModel = new User();
+        $author = $userModel->getDetailUserByUserID($data['user_id']);
+        return view('pages.listStock',compact('data','cate', 'author'));
     }
 
     public function showProfile() {

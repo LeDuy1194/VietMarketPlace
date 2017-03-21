@@ -184,3 +184,13 @@ label.error {
 form#form-login {
 	margin-bottom: 10px;
 }
+
+/*Stock detail ---- Anh Pham*/
+h2.title-post {
+	text-transform: capitalize;
+}
+
+img.author-avatar {
+	width: 50px;
+	height: 50px;
+}

@@ -32,7 +32,7 @@ Route::get('mystore/{state}',['as'=>'MyStore','uses'=>'Client\HomeController@sho
 Route::get('listorder/{id}',['as'=>'OrderDetail','uses'=>'Client\HomeController@showOrderDetail']);
 Route::get('liststock/{id}',['as'=>'StockDetail','uses'=>'Client\HomeController@showStockDetail']);
 
-Route::get('profile',['as'=>'Profile','uses'=>'Client\HomeController@showProfile']);
+Route::get('profile/{user_name}', ['as' => 'profile', 'uses' => 'Client\ClientController@profileDetail']);
 
 Route::get('map',['as'=>'Map','uses'=>'Client\HomeController@showMap']);
 

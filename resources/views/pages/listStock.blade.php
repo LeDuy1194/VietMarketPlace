@@ -21,17 +21,9 @@ Date: 21/02/2017
 		<div class="row">
 			<div class="col-lg-1 hidden-sm-down"></div>
 			<div class="col-lg-7 col-sm-12">
+				<h2 class="title-post">{!!  $data->name !!}</h2>
 				<div class="card card-block">
-					<img src="resources/upload/{{$data->img}}"/>
-				</div>
-				<a class="card card-block fontItem" data-toggle="collapse" href="#collapseInfo" aria-expanded="true" aria-controls="collapseInfo"><h5>Thông tin sản phẩm</h5></a>
-				<div class="collapse show" id="collapseInfo">
-					<div class="card card-block" id="productInfo">
-						<h5>Địa điểm: {!! $data->place !!}</h5>
-						<h5>Tình trạng: {!! ($data->status=="new")?"Mới":"Đồ cũ" !!}</h5>
-						<h5>Giá: {!! number_format($data->price,0,",",".")." VNĐ" !!}</h5>
-						<h5>Thời gian: </h5>
-					</div>
+					<img src="../resources/upload/{{$data->img}}"/>
 				</div>
 				<a class="card card-block fontItem" data-toggle="collapse" href="#collapseDesc" aria-expanded="false" aria-controls="collapseDesc"><h5>Miêu tả</h5></a>
 				<div class="collapse" id="collapseDesc">
@@ -56,6 +48,29 @@ Date: 21/02/2017
 				</div> -->
 			</div>
 			<div class="col-lg-3 col-sm-12">
+				<a class="card card-block fontItem" data-toggle="collapse" href="#collapseInfo" aria-expanded="true" aria-controls="collapseInfo"><h5>Thông tin sản phẩm</h5></a>
+				<div class="collapse show" id="collapseInfo">
+					<div class="card card-block" id="productInfo">
+						<h5>Địa điểm: {!! $data->place !!}</h5>
+						<h5>Tình trạng: {!! ($data->status=="new")?"Mới":"Đồ cũ" !!}</h5>
+						<h5>Giá: {!! number_format($data->price,0,",",".")." VNĐ" !!}</h5>
+						<h5>Thời gian: </h5>
+					</div>
+				</div>
+				<a class="card card-block fontItem" data-toggle="collapse" href="#authorInfomation" aria-expanded="true" aria-controls="collapseInfo"><h5>Thông tin người đăng</h5></a>
+				<div class="collapse show" id="authorInfomation">
+					<div class="card author-info">
+						<div class="card-body">
+							<center>
+								<img src="{!! ($author->avatar == NULL) ? url('public/img/anh.png') : $author->avatar !!}" class="rounded-circle author-avatar">
+								<!--<input type="file" value="upload avatar" name="avatarUploadImg" id="avatarUploadImg">-->
+								<h3 class="text-center author-name">
+									{!! $author->username !!}
+								</h3>
+							</center>
+						</div>
+					</div>
+				</div>
 				<div class="card card-block">
 					@include('utils.userProfile')
 					<div class="btn-group">

@@ -9,6 +9,7 @@ use App\Models\Stock;
 use App\Models\Cate;
 use App\Models\StockImage;
 use Input;
+use App\Models\User;
 class ClientController extends Controller
 {
     public function getUploadStock() {
@@ -41,5 +42,13 @@ class ClientController extends Controller
     		}
     	}
     	return redirect()->route('Home');
+    }
+
+    //Show detail profile ---- Anh Pham
+    public function profileDetail($user_name) {
+        $userModel = new User();
+        $data = $userModel->getDetailUserByUserName($user_name);
+//        dd($data);
+        return view('haiblade.pages.profile', compact('data'));
     }
 }
