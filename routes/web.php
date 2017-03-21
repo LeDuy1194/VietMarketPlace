@@ -33,8 +33,6 @@ Route::get('listorder',['as'=>'OrderDetail','uses'=>'Client\HomeController@showO
 
 Route::get('profile',['as'=>'Profile','uses'=>'Client\HomeController@showProfile']);
 
-Route::get('upload',['as'=>'Upload','uses'=>'Client\HomeController@showUpload']);
-
 Route::get('map',['as'=>'Map','uses'=>'Client\HomeController@showMap']);
 
 Route::group(['prefix'=>'admin'],function () {
@@ -53,3 +51,11 @@ Route::group(['prefix'=>'admin'],function () {
 });
 
 Route::get('{cate}--{id}',['as'=>'listByCate','uses'=>'Client\HomeController@listByCate']);
+
+//user upload
+Route::group(['prefix'=>'user'],function () {
+	Route::group(['prefix'=>'stock'], function() {
+		Route::get('upload',['as'=>'user.stock.getupload','uses'=>'Client\ClientController@getUploadStock']);
+		Route::post('upload',['as'=>'user.stock.postupload','uses'=>'Client\ClientController@postUploadStock']);
+	});
+});

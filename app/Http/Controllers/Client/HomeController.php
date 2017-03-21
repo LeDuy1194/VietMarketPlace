@@ -31,8 +31,12 @@ class HomeController extends Controller {
         return view('haiblade.pages.profile');
     }
 
-    public function showUpload() {
-        return view('haiblade.pages.upload');
+    public function showUploadStock() {
+        return view('haiblade.pages.uploadstock');
+    }
+
+    public function showUploadOrder() {
+        return view('haiblade.pages.uploadorder');
     }
 
     public function showMap() {

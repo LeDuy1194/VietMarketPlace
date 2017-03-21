@@ -105,8 +105,16 @@
 						<br>
 						<div class="form-group">
 							<label>
-								Đăng Hình Ảnh (Tối Đa 5 Hình)
+								Đăng Hình Ảnh (Ít nhất 3 hình)
 							</label>
+							<br>
+							<input type="file" name="image">
+							<br>
+							<input type="file" name="image">
+							<br>
+							<input type="file" name="image">
+							<br>
+							<input type="file" name="image">
 							<br>
 							<input type="file" name="image">
 						</div>
