@@ -29,7 +29,7 @@ Route::get('homepage',['as'=>'Home','uses'=>'Client\HomeController@showHome']);
 
 Route::get('mystore',['as'=>'MyStore','uses'=>'Client\HomeController@showMyStore']);
 
-Route::get('listorder',['as'=>'OrderDetail','uses'=>'Client\HomeController@showOrderDetail']);
+Route::get('listorder/{id}',['as'=>'OrderDetail','uses'=>'Client\HomeController@showOrderDetail']);
 
 Route::get('profile',['as'=>'Profile','uses'=>'Client\HomeController@showProfile']);
 
@@ -59,3 +59,5 @@ Route::group(['prefix'=>'user'],function () {
 		Route::post('upload',['as'=>'user.stock.postupload','uses'=>'Client\ClientController@postUploadStock']);
 	});
 });
+
+Route::get('init_db',['uses'=>'Client\HomeController@init_db']);

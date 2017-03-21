@@ -11,7 +11,7 @@ Date: 23/02/2017
 				<div class="media-body">
 					<h4 class="media-heading">Tên sản phẩm</h4>
 					<p>Tóm tắt miêu tả sản phẩm...</p>
-					<a href="{{route('OrderDetail')}}">Chi tiết sản phẩm</a>
+					<a href="{{}}">Chi tiết sản phẩm</a>
 				</div>
 			</div>
 		</div>

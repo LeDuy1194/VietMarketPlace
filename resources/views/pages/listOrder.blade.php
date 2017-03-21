@@ -12,8 +12,8 @@ Date: 21/02/2017
 			<div class="col-lg-12">
 				<ol class="breadcrumb" id="path">
 					<li class="breadcrumb-item"><a href="{{route('Home')}}">Trang Chủ</a></li>
-					<li class="breadcrumb-item"><a href="#">Điện thoại</a></li>
-					<li class="breadcrumb-item active">Iphone7</li>
+					<li class="breadcrumb-item"><a href="#">{!! $cate['name'] !!}</a></li>
+					<li class="breadcrumb-item active">{!!  $data['name'] !!}</li>
 				</ol>
 			</div>
 		</div>
@@ -37,7 +37,7 @@ Date: 21/02/2017
 				<div class="collapse" id="collapseDesc">
 					<div class="card card-block" id="productDesc">
 						<p>
-							Miêu tả sản phẩm......................
+							{!! $data['id'] !!}
 						</p>
 					</div>
 				</div>

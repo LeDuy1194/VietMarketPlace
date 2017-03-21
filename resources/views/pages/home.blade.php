@@ -7,45 +7,125 @@ Date: 17/02/2017
 
 @section('content')
 	@include('utils.advertise')
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row mt-2">
-			<div class="col-lg-2">
-				<div class="row">
-					<div class="col-lg-6 col-sm-6 p-0 m-0">
-						<button id="btnStock" type="button" onclick="" class="btn btn-primary btn-block active">Kho hàng</button>
+			<div class="col-lg-12 p-0 m-0">
+				<a class="btn" href="#"><h1>Kho hàng</h1></a>
+				@foreach($stock as $item)
+				<div class="card card-block listV-item">
+					<div class="row">
+						<div class="col-lg-4 col-sm-12">
+							<div class="media">
+								<div class="media-left">
+									<img src="public/img/avartar1.jpg" class="media-object img-thumbnail avatar"/>
+								</div>
+								<div class="media-body">
+									<h4 class="media-heading">{!! $item['name'] !!}</h4>
+									<a href="{{route('OrderDetail',$item['id'])}}">Chi tiết sản phẩm</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-sm-12">
+							<div class="row">
+							<div class="media col-lg-12 col-sm-8">
+								<?php $user = DB::table('users')->where('id',$item['user_id'])->first(); ?>
+								<div class="media-left">
+									<img src="public/img/avartar2.jpg" class="media-object rounded-circle user-avatar"/>
+								</div>
+								<div class="media-body">
+									<h5 class="media-heading">
+									<?php echo $user->username; ?>
+									</h5>
+								</div>
+							</div>
+							<div class="btn-group col-lg-12 col-sm-4">
+								<button type="button" class="btn"><i class="fa fa-comments-o" aria-hidden="true"></i> 100</button>
+							</div>
+							</div>
+						</div>
+						<div class="col-lg-2 col-sm-6">
+							<div class="media">
+								<div class="media-body">
+									<h4 class="media-heading">Đánh giá</h4>
+									<ul class="list-inline" name="rating">
+										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-1 col-sm-2">
+							<button type="button" class="btn btn-warning"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+						</div>
+						<div class="col-lg-2 col-sm-4">
+							<h3>{!! $item['price'] !!}</h3>
+						</div>
 					</div>
-					<div class="col-lg-6 col-sm-6 p-0 m-0">
-						<button id="btnOrder" type="button" onclick="" class="btn btn-primary btn-block">Đơn hàng</button>
+				</div>
+				@endforeach
+			</div>
+			<div class="col-lg-12 p-0 m-0">
+				<a class="btn" href="#"><h1>Đơn hàng</h1></a>
+				@foreach($order as $item)
+				<div class="card card-block listV-item">
+					<div class="row">
+						<div class="col-lg-4 col-sm-12">
+							<div class="media">
+								<div class="media-left">
+									<img src="public/img/avartar1.jpg" class="media-object img-thumbnail avatar"/>
+								</div>
+								<div class="media-body">
+									<h4 class="media-heading">{!! $item['name'] !!}</h4>
+									<a href="{{route('OrderDetail',$item['id'])}}">Chi tiết sản phẩm</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-sm-12">
+							<div class="row">
+							<div class="media col-lg-12 col-sm-8">
+								<?php $user = DB::table('users')->where('id',$item['user_id'])->first(); ?>
+								<div class="media-left">
+									<img src="public/img/avartar2.jpg" class="media-object rounded-circle user-avatar"/>
+								</div>
+								<div class="media-body">
+									<h5 class="media-heading">
+									<?php echo $user->username; ?>
+									</h5>
+								</div>
+							</div>
+							<div class="btn-group col-lg-12 col-sm-4">
+								<button type="button" class="btn"><i class="fa fa-comments-o" aria-hidden="true"></i> 100</button>
+							</div>
+							</div>
+						</div>
+						<div class="col-lg-2 col-sm-6">
+							<div class="media">
+								<div class="media-body">
+									<h4 class="media-heading">Đánh giá</h4>
+									<ul class="list-inline" name="rating">
+										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-1 col-sm-2">
+							<button type="button" class="btn btn-warning"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+						</div>
+						<div class="col-lg-2 col-sm-4">
+							<h3>{!! $item['priceMin']." - ".$item['priceMax'] !!}</h3>
+						</div>
 					</div>
 				</div>
-				<a class="btn btn-secondary btn-lg btn-block mt-2" data-toggle="collapse" href="#collapseSidebar" aria-expanded="true" aria-controls="collapseSidebar"><h5>Catagories</h5></a>
-				<div class="collapse show" id="collapseSidebar">
-					<ul class="nav flex-column">
-						<li class="nav-item">
-							<a class="nav-link" href="#" focus>Máy tính</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Điện thoại</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Sách</a>
-						</li>
-					</ul>
-				</div>
-				<div class="col-lg-12 col-sm-12 m-0 p-0">
-				</div>
-				
+				@endforeach
 			</div>
 			<div class="col-lg-10">
-
-				<!--Updated by: Duy
-				Date: 23/02/2017
-				Chỉnh lại bảng chứa dữ liệu.
-				-->
-				@for($i = 0; $i < 10; $i++)
-				@include('utils.contentTable')
-				@endfor
-
 				<nav aria-label="Page navigation example">
 					<ul class="pagination">
 						<li class="page-item active"><a class="page-link" href="#">1</a></li>
