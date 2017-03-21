@@ -12,36 +12,36 @@ use Auth;
 class HomeController extends Controller {
     //
     public function init_db() {
-        // for ($i = 1; $i <= 20; $i++) {
-        //     // $stock = new Stock;
-        //     // $stock->name = "Item ".$i;
-        //     // $stock->price = $i * 1000;
-        //     // $stock->status = "new";
-        //     // //$stock->description = "describe ".$i;
-        //     // $stock->place = "place ".$i;
-        //     // $stock->img = "images.jpg";
-        //     // $stock->user_id = 1;
-        //     // $stock->cate_id = mt_rand(1,5);
-        //     // $stock->save();
+        for ($i = 1; $i <= 20; $i++) {
+            $stock = new Stock;
+            $stock->name = "Item ".$i;
+            $stock->price = $i * 1000;
+            $stock->status = "new";
+            $stock->description = "describe ".$i;
+            $stock->place = "place ".$i;
+            $stock->img = "stock_image.png";
+            $stock->user_id = 1;
+            $stock->cate_id = mt_rand(1,6);
+            $stock->save();
 
-        //     $order = new Order;
-        //     $order->name = "Đơn hàng ".$i;
-        //     $order->priceMax = $i * 1000;
-        //     $order->priceMin = 1000;
-        //     $order->status = "new";
-        //     $order->place = "place ".$i;
-        //     $order->img = "images.jpg";
-        //     $order->user_id = 1;
-        //     $order->cate_id = mt_rand(1,5);
-        //     $order->save();
-        // }
+            $order = new Order;
+            $order->name = "Đơn hàng ".$i;
+            $order->priceMax = $i * 1000;
+            $order->status = "new";
+            $order->description = "describe ".$i;
+            $order->place = "place ".$i;
+            $order->img = "order_image.jpg";
+            $order->user_id = 1;
+            $order->cate_id = mt_rand(1,6);
+            $order->save();
+        }
         echo "Đã tạo";
     }
 
 
     public function showHome() {
         $stock = Stock::all()->toArray();
-        $order = Order::all()->toArray();
+        $order = Order::where('finished',1)->get()->toArray();
         return view('pages.home',compact('stock','order'));
     }
 

@@ -18,7 +18,7 @@ class CreateStocksTable extends Migration
             $table->string('name');
             $table->integer('price');
             $table->string('status');
-            $table->string('desciption');
+            $table->string('description');
             $table->string('place');
             $table->string('img');
             $table->integer('user_id')->unsigned();

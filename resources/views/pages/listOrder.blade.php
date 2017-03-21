@@ -22,14 +22,14 @@ Date: 21/02/2017
 			<div class="col-lg-1 hidden-sm-down"></div>
 			<div class="col-lg-7 col-sm-12">
 				<div class="card card-block">
-					<img src="#"/>
+					<img src="resources/upload/{{$data['img']}}"/>
 				</div>
 				<a class="card card-block fontItem" data-toggle="collapse" href="#collapseInfo" aria-expanded="true" aria-controls="collapseInfo"><h5>Thông tin sản phẩm</h5></a>
 				<div class="collapse show" id="collapseInfo">
 					<div class="card card-block" id="productInfo">
-						<h5>Thương hiệu: </h5>
-						<h5>Tình trạng: </h5>
-						<h5>Giá: </h5>
+						<h5>Địa điểm: {!! $data['place'] !!}</h5>
+						<h5>Tình trạng:{!! ($data['status']=="new")?"Mới":"Đồ cũ" !!}</h5>
+						<h5>Giá: {!! number_format($data['priceMin'],0,",",".")." - ".number_format($data['priceMax'],0,",",".")." VNĐ" !!}</h5>
 						<h5>Thời gian: </h5>
 					</div>
 				</div>
@@ -41,7 +41,7 @@ Date: 21/02/2017
 						</p>
 					</div>
 				</div>
-				<a class="card card-block fontItem" data-toggle="collapse" href="#collapseRate" aria-expanded="false" aria-controls="collapseRate"><h5>Nhận xét, đánh giá</h5></a>
+				<!-- <a class="card card-block fontItem" data-toggle="collapse" href="#collapseRate" aria-expanded="false" aria-controls="collapseRate"><h5>Nhận xét, đánh giá</h5></a>
 				<div class="collapse" id="collapseRate">
 					<div class="card card-block" id="productRate">
 						@include('utils.rate')
@@ -53,7 +53,7 @@ Date: 21/02/2017
 							<input type="submit" name="" value="Nhận xét"/>
 						</form>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<div class="col-lg-3 col-sm-12">
 				<div class="card card-block">

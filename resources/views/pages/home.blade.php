@@ -17,7 +17,7 @@ Date: 17/02/2017
 						<div class="col-lg-4 col-sm-12">
 							<div class="media">
 								<div class="media-left">
-									<img src="public/img/avartar1.jpg" class="media-object img-thumbnail avatar"/>
+									<img src="resources/upload/{{$item['img']}}" class="media-object img-thumbnail avatar"/>
 								</div>
 								<div class="media-body">
 									<h4 class="media-heading">{!! $item['name'] !!}</h4>
@@ -30,7 +30,7 @@ Date: 17/02/2017
 							<div class="media col-lg-12 col-sm-8">
 								<?php $user = DB::table('users')->where('id',$item['user_id'])->first(); ?>
 								<div class="media-left">
-									<img src="public/img/avartar2.jpg" class="media-object rounded-circle user-avatar"/>
+									<img src="resources/upload/user/{{$user->avatar}}" class="media-object rounded-circle user-avatar"/>
 								</div>
 								<div class="media-body">
 									<h5 class="media-heading">
@@ -75,7 +75,7 @@ Date: 17/02/2017
 						<div class="col-lg-4 col-sm-12">
 							<div class="media">
 								<div class="media-left">
-									<img src="public/img/avartar1.jpg" class="media-object img-thumbnail avatar"/>
+									<img src="resources/upload/{{$item['img']}}" class="media-object img-thumbnail avatar"/>
 								</div>
 								<div class="media-body">
 									<h4 class="media-heading">{!! $item['name'] !!}</h4>
@@ -88,7 +88,7 @@ Date: 17/02/2017
 							<div class="media col-lg-12 col-sm-8">
 								<?php $user = DB::table('users')->where('id',$item['user_id'])->first(); ?>
 								<div class="media-left">
-									<img src="public/img/avartar2.jpg" class="media-object rounded-circle user-avatar"/>
+									<img src="resources/upload/user/{{$user->avatar}}" class="media-object rounded-circle user-avatar"/>
 								</div>
 								<div class="media-body">
 									<h5 class="media-heading">
