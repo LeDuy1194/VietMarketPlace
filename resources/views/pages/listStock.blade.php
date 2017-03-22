@@ -95,7 +95,7 @@ Date: 21/02/2017
 					</div>
 					<div class="card-body collapse show" id="authorInfomation">
 						<center>
-							<img src="{!! ($author->avatar == NULL) ? url('public/img/anh.png') : $author->avatar !!}" class="rounded-circle author-avatar">
+							<img src="../resources/upload/user/{!! $author->avatar !!}" class="rounded-circle author-avatar">
 							<!--<input type="file" value="upload avatar" name="avatarUploadImg" id="avatarUploadImg">-->
 							<h3 class="text-center author-name">
 								<a href="{!! url('profile', [$author->username]) !!}" >{!! $author->username !!}</a>
