@@ -7,21 +7,18 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto mt-2 mt-md-0">
+        @if(Auth::check())
+          <li class="nav-item">
+            <a class="nav-link" href="#">Đăng tin</a>
+          </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="#">Đăng tin</a>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('MyStore','stock')}}">Giỏ hàng</a>
+          </li>
         </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">Giỏ hàng</a>
-        </li>
-
+        @endif
         <li class="nav-item sign-in">
           <a class="nav-link" href="{{route('Map')}}">Bản đồ</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">Matching</a>
         </li>
 
         <li class="nav-item">

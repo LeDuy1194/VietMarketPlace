@@ -10,6 +10,7 @@ Date: 17/02/2017
 	@include('utils.searchForm')
 	<div class="container">
 		<div class="row mt-2">
+			@if($state == 'stock')
 			<div class="col-lg-12 p-0 m-0">
 				@foreach($stock as $item)
 				<div class="card card-block listV-item">
@@ -67,6 +68,7 @@ Date: 17/02/2017
 				</div>
 				@endforeach
 			</div>
+			@elseif($state == 'order')
 			<div class="col-lg-12 p-0 m-0">
 				@foreach($order as $item)
 				<div class="card card-block listV-item">
@@ -124,21 +126,14 @@ Date: 17/02/2017
 				</div>
 				@endforeach
 			</div>
-			<!-- <div class="col-lg-10">
-				<nav aria-label="Page navigation example">
-					<ul class="pagination">
-						<li class="page-item active"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-					</ul>
-				</nav>
-			</div> -->
+			@else
+			<h1>Lỗi</h1>
+			@endif
 		</div>
 		<div class="btn-group">
-				<button id="btnStock" type="button" onclick="" class="btn btn-primary">Kho hàng</button>
-				<button id="btnOrder" type="button" onclick="" class="btn btn-primary">Đơn hàng</button>
-				<button id="btnFavorite" type="button" onclick="" class="btn btn-primary">Yêu thích</button>
-			</div>
+			<a class="btn btn-primary active" href="{{route('MyStore','stock')}}">Kho hàng</a>
+			<a class="btn btn-primary active" href="{{route('MyStore','order')}}">Đơn hàng</a>
+			<a class="btn btn-primary active" href="{{route('MyStore','favorite')}}">Yêu thích</a>
 		</div>
 	</div><br>
 @endsection
