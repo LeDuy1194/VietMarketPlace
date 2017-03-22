@@ -29,7 +29,7 @@ class StockController extends Controller
     	$stock->img = $file_name;
     	$stock->user_id = 1;
     	$stock->cate_id = $stock_request->sltParent;
-    	$stock_request->file('fImages')->move('resources/upload/',$file_name);
+    	$stock_request->file('fImages')->move('resources/upload/stock',$file_name);
     	$stock->save();
     	$stock_id = $stock->id;
     	if (Input::hasFile('fStockDetail')) {
@@ -38,7 +38,7 @@ class StockController extends Controller
     			if (isset($file)) {
     				$stock_img->image = $file->getClientOriginalName();
     				$stock_img->stock_id = $stock_id;
-    				$file->move('resources/upload/detail/',$file->getClientOriginalName());
+    				$file->move('resources/upload/stock/detail',$file->getClientOriginalName());
     				$stock_img->save();
     			}
     		}
