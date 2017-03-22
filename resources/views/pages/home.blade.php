@@ -129,6 +129,7 @@ Date: 17/02/2017
 				</div>
 				@endforeach
 			</div>
+			
 			<!-- <div class="col-lg-10">
 				<nav aria-label="Page navigation example">
 					<ul class="pagination">
