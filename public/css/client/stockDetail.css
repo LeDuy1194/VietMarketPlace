@@ -49,3 +49,8 @@ ul#detailInfoAuthor li i {
 .content-product-detail {
     margin-bottom: 30px;
 }
+
+.card.description-product {
+    float: left;
+    width: 100%
+}

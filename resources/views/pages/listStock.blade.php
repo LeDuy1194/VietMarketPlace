@@ -55,10 +55,10 @@ Date: 21/02/2017
 					<div class="card-header header-description-product">
 						<a class="fontItem" data-toggle="collapse" href="#collapseProductDesc" aria-expanded="true" aria-controls="collapseProductDesc"><h5>Miêu tả</h5></a>
 					</div>
-					<div class="card-block collapse" id="collapseProductDesc">
-						<p>
+					<div class="card-block show collapse" id="collapseProductDesc">
+						<div>
 							{!! $data->description !!}
-						</p>
+						</div>
 					</div>
 				</div>
 
@@ -136,8 +136,9 @@ Date: 21/02/2017
             $(".royalSlider").royalSlider({
                 // options go here
                 // as an example, enable keyboard arrows nav
-//                autoScaleSlider: true,
+                autoScaleSlider: true,
                 imageAlignCenter: true,
+                autoScaleSliderHeight: 500,
                 keyboardNavEnabled: true,
 				// general options go gere
                 fullscreen: {
