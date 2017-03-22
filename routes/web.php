@@ -62,3 +62,4 @@ Route::group(['prefix'=>'user'],function () {
 });
 
 Route::get('init_db',['uses'=>'Client\HomeController@init_db']);
+Route::get('test',['uses'=>'Client\HomeController@test']);

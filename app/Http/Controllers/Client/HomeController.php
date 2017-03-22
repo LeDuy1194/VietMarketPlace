@@ -38,23 +38,35 @@ class HomeController extends Controller {
         echo "Đã tạo";
     }
 
+    public function test() {
+        $userModel = new User();
+        $user = $userModel->getDetailUserByUserID(Auth::id());
+        $stock = $user->stock->toArray();
+        var_dump($stock);
+    }
+
 
     public function showHome() {
+        $userModel = new User();
         $stock = Stock::orderBy('id','desc')->take(5)->get();
         $order = Order::where('finished',0)->orderBy('id','desc')->take(5)->get();
-        return view('pages.home',compact('stock','order'));
+        return view('pages.home',compact('stock','order','userModel'));
     }
 
     public function showMyStore($state) {
-        $stock = Stock::where('user_id',Auth::user()->id)->get();
-        $order = Order::where('user_id',Auth::user()->id)->get();
-        return view('pages.myStore',compact('stock','order','state'));
+        $userModel = new User();
+        $author = $userModel->getDetailUserByUserID(Auth::id());
+        $stock = $author->stock;
+        $order = $author->order;
+        return view('pages.myStore',compact('stock','order','state','author'));
     }
 
     public function showOrderDetail($id) {
         $data = Order::find($id);
         $cate = Cate::find($data['cate_id']);
-        return view('pages.listOrder',compact('data','cate'));
+        $userModel = new User();
+        $author = $userModel->getDetailUserByUserID($data['user_id']);
+        return view('pages.listOrder',compact('data','cate','author'));
     }
 
     public function showStockDetail($id) {

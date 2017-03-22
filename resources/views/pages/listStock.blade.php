@@ -35,20 +35,6 @@ Date: 21/02/2017
 						</p>
 					</div>
 				</div>
-
-				<!-- <a class="card card-block fontItem" data-toggle="collapse" href="#collapseRate" aria-expanded="false" aria-controls="collapseRate"><h5>Nhận xét, đánh giá</h5></a>
-				<div class="collapse" id="collapseRate">
-					<div class="card card-block" id="productRate">
-						@include('utils.rate')
-					</div>
-					<div class="card card-block">
-						<form action="" method="">
-							<textarea class="form-control" name="comment" rows="5" cols="50" style="resize: none;">
-							</textarea>
-							<input type="submit" name="" value="Nhận xét"/>
-						</form>
-					</div>
-				</div> -->
 			</div>
 			<div class="col-lg-3 col-sm-12">
 				<div class="card author-info">
@@ -83,7 +69,6 @@ Date: 21/02/2017
 					</div>
 				</div>
 				<div class="card card-block">
-					@include('utils.userProfile')
 					<div class="btn-group">
 						<button id="btnFav" class="btn btn-primary" type="button" onclick="">Thích</button>
 						<button id="btnReport" class="btn btn-block btn-lg">Báo cáo tin ảo</button>

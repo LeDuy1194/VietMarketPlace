@@ -28,7 +28,9 @@ Date: 17/02/2017
 						<div class="col-lg-2 col-sm-12">
 							<div class="row">
 							<div class="media col-lg-12 col-sm-8">
-								<?php $user = DB::table('users')->where('id',$item->user_id)->first(); ?>
+								<?php
+        							$user = $userModel->getDetailUserByUserID($item->user_id);
+        						?>
 								<div class="media-left">
 									<img src="resources/upload/user/{{$user->avatar}}" class="media-object rounded-circle user-avatar"/>
 								</div>
@@ -86,7 +88,9 @@ Date: 17/02/2017
 						<div class="col-lg-2 col-sm-12">
 							<div class="row">
 							<div class="media col-lg-12 col-sm-8">
-								<?php $user = DB::table('users')->where('id',$item->user_id)->first(); ?>
+								<?php 
+									$user = $userModel->getDetailUserByUserID($item->user_id);
+        						?>
 								<div class="media-left">
 									<img src="resources/upload/user/{{$user->avatar}}" class="media-object rounded-circle user-avatar"/>
 								</div>
