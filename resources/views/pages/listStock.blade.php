@@ -25,14 +25,17 @@ Date: 21/02/2017
 				<div class="card card-block">
 					<img src="../resources/upload/{{$data->img}}"/>
 				</div>
-				<a class="card card-block fontItem" data-toggle="collapse" href="#collapseDesc" aria-expanded="false" aria-controls="collapseDesc"><h5>Miêu tả</h5></a>
-				<div class="collapse" id="collapseDesc">
-					<div class="card card-block" id="productDesc">
+				<div class="card description-product">
+					<div class="card-header header-description-product">
+						<a class="fontItem" data-toggle="collapse" href="#collapseProductDesc" aria-expanded="false" aria-controls="collapseProductDesc"><h5>Miêu tả</h5></a>
+					</div>
+					<div class="card-block collapse" id="collapseProductDesc">
 						<p>
 							{!! $data->description !!}
 						</p>
 					</div>
 				</div>
+
 				<!-- <a class="card card-block fontItem" data-toggle="collapse" href="#collapseRate" aria-expanded="false" aria-controls="collapseRate"><h5>Nhận xét, đánh giá</h5></a>
 				<div class="collapse" id="collapseRate">
 					<div class="card card-block" id="productRate">
@@ -48,27 +51,35 @@ Date: 21/02/2017
 				</div> -->
 			</div>
 			<div class="col-lg-3 col-sm-12">
-				<a class="card card-block fontItem" data-toggle="collapse" href="#collapseInfo" aria-expanded="true" aria-controls="collapseInfo"><h5>Thông tin sản phẩm</h5></a>
-				<div class="collapse show" id="collapseInfo">
-					<div class="card card-block" id="productInfo">
-						<h5>Địa điểm: {!! $data->place !!}</h5>
-						<h5>Tình trạng: {!! ($data->status=="new")?"Mới":"Đồ cũ" !!}</h5>
-						<h5>Giá: {!! number_format($data->price,0,",",".")." VNĐ" !!}</h5>
-						<h5>Thời gian: </h5>
+				<div class="card author-info">
+					<div class="card-header header-author-info">
+						<a class="fontItem" data-toggle="collapse" href="#collapseProductInfo" aria-expanded="true" aria-controls="collapseProductInfo"><h5>Thông tin sản phẩm</h5></a>
+					</div>
+					<div class="collapse show card-block" id="collapseProductInfo">
+						<ul class="product-info" id="productInfo">
+							<li class="price-product"><i class="fa fa-money" aria-hidden="true"></i> {!! number_format($data->price,0,",",".")." VNĐ" !!}</li>
+							<li><span class="badge badge-default new-old-product"> {!! ($data->status=="new")?"Mới":"Đồ cũ" !!}</span></li>
+							<li><i class="fa fa-street-view" aria-hidden="true"></i> {!! $data->place !!}</li>
+						</ul>
 					</div>
 				</div>
-				<a class="card card-block fontItem" data-toggle="collapse" href="#authorInfomation" aria-expanded="true" aria-controls="collapseInfo"><h5>Thông tin người đăng</h5></a>
-				<div class="collapse show" id="authorInfomation">
-					<div class="card author-info">
-						<div class="card-body">
-							<center>
-								<img src="{!! ($author->avatar == NULL) ? url('public/img/anh.png') : $author->avatar !!}" class="rounded-circle author-avatar">
-								<!--<input type="file" value="upload avatar" name="avatarUploadImg" id="avatarUploadImg">-->
-								<h3 class="text-center author-name">
-									{!! $author->username !!}
-								</h3>
-							</center>
-						</div>
+				<div class="card author-info">
+					<div class="card-header header-author-info">
+						<a class="fontItem" data-toggle="collapse" href="#authorInfomation" aria-expanded="true" aria-controls="collapseInfo"><h5>Thông tin người đăng</h5></a>
+					</div>
+					<div class="card-body collapse show" id="authorInfomation">
+						<center>
+							<img src="{!! ($author->avatar == NULL) ? url('public/img/anh.png') : $author->avatar !!}" class="rounded-circle author-avatar">
+							<!--<input type="file" value="upload avatar" name="avatarUploadImg" id="avatarUploadImg">-->
+							<h3 class="text-center author-name">
+								{!! $author->username !!}
+							</h3>
+						</center>
+						<ul class="detail-info-author" id="detailInfoAuthor">
+							<li><i class="fa fa-map-marker" aria-hidden="true"></i> {!! $author->address !!}</li>
+							<li><i class="fa fa-phone" aria-hidden="true"></i> {!! $author->phone !!}</li>
+							<li><i class="fa fa-envelope" aria-hidden="true"></i> {!! $author->email !!}</li>
+						</ul>
 					</div>
 				</div>
 				<div class="card card-block">
