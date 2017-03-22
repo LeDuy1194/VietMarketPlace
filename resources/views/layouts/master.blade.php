@@ -13,6 +13,7 @@ Version: 01
 	<link rel="stylesheet" href="{{asset('public/libs/font-awesome/css/font-awesome.min.css')}}"/>
 	<link rel="stylesheet" href="{{asset('public/css/client/mystyle.css')}}"/>
 	<link rel="stylesheet" href="{{asset('public/css/client/homepage.css')}}"/>
+	@yield('css')
 </head>
 <body>
 	@include('layouts.header')
@@ -21,7 +22,6 @@ Version: 01
 
 		@yield('content')
 
-		@yield('scripts')
 	</div>
 
 	@include('layouts.footer')
@@ -29,5 +29,6 @@ Version: 01
 	<script src="{{asset('public/libs/tether/tether.min.js')}}"></script>
 	<script src="{{asset('public/libs/jquery/jquery.min.js')}}"></script>
 	<script src="{{asset('public/libs/bootstrap/js/bootstrap.min.js')}}"></script>
+	@yield('scripts')
 </body>
 </html>

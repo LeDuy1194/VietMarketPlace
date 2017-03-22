@@ -184,39 +184,3 @@ label.error {
 form#form-login {
 	margin-bottom: 10px;
 }
-
-/*Stock detail ---- Anh Pham*/
-h2.title-post {
-	text-transform: capitalize;
-}
-
-img.author-avatar {
-	width: 50px;
-	height: 50px;
-}
-
-.card.author-info #authorInfomation ul.detailInfoAuthor {
-	list-style: none;
-}
-
-ul#productInfo {
-	list-style: none;
-	font-size: 18px;
-	margin-bottom: 0px;
-}
-
-ul#productInfo li.price-product {
-	font-size: 25px;
-}
-
-ul#productInfo li .new-old-product {
-	background: red;
-}
-
-ul#detailInfoAuthor {
-	list-style: none;
-}
-
-ul#detailInfoAuthor li i {
-	color: #014CA3;
-}

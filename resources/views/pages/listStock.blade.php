@@ -5,9 +5,21 @@ Date: 21/02/2017
 
 @extends('layouts.master')
 
+@section('css')
+
+	<!-- basic stylesheet -->
+	<link rel="stylesheet"  href="{{asset('public/libs/royalslider/royalslider.css')}}">
+
+	<!-- skin stylesheet (change it if you use another) -->
+	<link rel="stylesheet" href="{{asset('public/libs/royalslider/skins/default/rs-default.css')}}">
+
+	<link rel="stylesheet" href="{{asset('public/css/client/stockDetail.css')}}">
+
+@endsection
+
 @section('content')
 
-	<div class="container-fluid">
+	<div class="container-fluid content-product-detail">
 		<div class="row">
 			<div class="col-lg-12">
 				<ol class="breadcrumb" id="path">
@@ -22,12 +34,26 @@ Date: 21/02/2017
 			<div class="col-lg-1 hidden-sm-down"></div>
 			<div class="col-lg-7 col-sm-12">
 				<h2 class="title-post">{!!  $data->name !!}</h2>
-				<div class="card card-block">
-					<img src="../resources/upload/{{$data->img}}"/>
+				{{--<div class="card card-block">--}}
+					{{--<img src="../resources/upload/{{$data->img}}"/>--}}
+				{{--</div>--}}
+				<div class="slider-product-detail">
+					<center>
+						<div id="product-detail-gallery" class="royalSlider rsDefault">
+							@if($stockImages && count($stockImages)>0)
+								@foreach($stockImages as $stockImage)
+									<a id="product-detail-gallery-id" class="rsImg bugaga" data-rsbigimg="../resources/upload/products/{{$stockImage}}" href="../resources/upload/products/{{$stockImage}}">
+										<img class="rsTmb" src="../resources/upload/products/{{$stockImage}}" >
+									</a>
+								@endforeach
+							@endif
+						</div>
+					</center>
 				</div>
+
 				<div class="card description-product">
 					<div class="card-header header-description-product">
-						<a class="fontItem" data-toggle="collapse" href="#collapseProductDesc" aria-expanded="false" aria-controls="collapseProductDesc"><h5>Miêu tả</h5></a>
+						<a class="fontItem" data-toggle="collapse" href="#collapseProductDesc" aria-expanded="true" aria-controls="collapseProductDesc"><h5>Miêu tả</h5></a>
 					</div>
 					<div class="card-block collapse" id="collapseProductDesc">
 						<p>
@@ -96,5 +122,38 @@ Date: 21/02/2017
 @endsection
 
 @section('scripts')
+
+	<!-- Plugin requires jQuery 1.8+  -->
+	<!-- If you already have jQuery on your page, you shouldn't include it second time. -->
+	<script src="{{asset('public/libs/royalslider/jquery-1.8.3.min.js')}}"></script>
+
+	<!-- Main slider JS script file -->
+	<!-- Create it with slider online build tool for better performance. -->
+	<script src="{{asset('public/libs/royalslider/jquery.royalslider.min.js')}}"></script>
+
+	<script>
+        jQuery(document).ready(function($) {
+            $(".royalSlider").royalSlider({
+                // options go here
+                // as an example, enable keyboard arrows nav
+//                autoScaleSlider: true,
+                imageAlignCenter: true,
+                keyboardNavEnabled: true,
+				// general options go gere
+                fullscreen: {
+                    // fullscreen options go gere
+                    enabled: true,
+                    nativeFS: false
+                },
+                controlNavigation: 'thumbnails',
+					thumbs: {
+                        autoCenter:	true,
+					// thumbnails options go gere
+						spacing: 10,
+						arrowsAutoHide: true
+				}
+            });
+        });
+	</script>
 
 @endsection

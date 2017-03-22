@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Stock;
+use App\Models\StockImage;
 use App\Models\Order;
 use App\Models\Cate;
 use App\Models\User;
@@ -62,7 +63,10 @@ class HomeController extends Controller {
         $cate = Cate::find($data['cate_id']);
         $userModel = new User();
         $author = $userModel->getDetailUserByUserID($data['user_id']);
-        return view('pages.listStock',compact('data','cate', 'author'));
+        $stockImageModel = new StockImage();
+        $stockImages = $stockImageModel->getImages($id);
+//        dd($stockImages);
+        return view('pages.listStock',compact('data','cate', 'author', 'stockImages'));
     }
 
     public function showProfile() {
