@@ -6,13 +6,10 @@
 		<div class="col-md-12">
 			<ul class="breadcrumb">
 				<li class="breadcrumb-item">
-					<a href="#">Giỏ hàng</a>
-				</li>
-				<li  class="breadcrumb-item">
-					<a href="#">Kho hàng</a>
+					<a href="{{url('/')}}">Trang Chủ</a>
 				</li>
 				<li class="breadcrumb-item active">
-					Đăng Vật Phẩm
+					Đăng Tin
 				</li>
 			</ul>
 		</div>
@@ -25,10 +22,47 @@
 						Thông Tin Vật Phẩm
 					</h3>
 					<hr>
-
-					<form role="form">
+					<form role="form" action="{!!route('user.stock.getupload')!!}" method="POST" enctype="multipart/form-data">
+						<input type="hidden" name="_token" value="{!!csrf_token()!!}">
+						<br>
 						<div class="form-group">
-
+							<label>
+								Chọn Phần Mục *
+							</label>
+							<select class="form-control" id="hang" name="hang" >
+								<option selected value="khohang">Kho Hàng</option>
+								<option value="donhang">Đơn Hàng</option>
+							</select>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>
+										Chọn Danh mục *
+									</label>
+									<select class="form-control" name="cate">
+										@foreach($cate as $item)
+											<option value="">{!! $item["name"] !!}</option>
+										@endforeach
+									</select>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>
+										Chọn Tình Trạng *
+									</label>
+									<select class="form-control" id="status" name="status" >
+										<option selected value="moi">Mới</option>
+										<option value="cu">Cũ</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<br>
+						<hr>
+						<br>
+						<div class="form-group">
 							<label>
 								Tên Vật Phẩm*
 							</label>
@@ -54,71 +88,25 @@
 							</label>
 							<input type="text" name="address" class="form-control" placeholder="Địa Chỉ" required>
 						</div>
+						<br>
 						<hr>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>
-										Chọn Danh mục *
-									</label>
-									<select class="form-control">
-										<option selected>Sách</option>
-										<option>Quần Áo</option>
-										<option>Máy Tính</option>
-										<option>Điện Thoại</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<label>
-										Chọn Tình Trạng *
-									</label>
-									<select class="form-control">
-										<option selected>Mới</option>
-										<option>Cũ</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>
-										Tỉnh/ Thành Phố *
-									</label>
-									<select class="form-control">
-										<option selected>Ho Chi Minh</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<label>
-										Quận/ Huyện *
-									</label>
-									<select class="form-control">
-										<option selected>1</option>
-										<option>3</option>
-										<option>5</option>
-										<option>10</option>
-										<option>Tan Binh</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						
 						<br>
 						<div class="form-group">
 							<label>
-								Đăng Hình Ảnh (Ít nhất 3 hình)
+								Đăng Hình Ảnh
 							</label>
 							<br>
-							<input type="file" name="image">
-							<br>
-							<input type="file" name="image">
-							<br>
-							<input type="file" name="image">
-							<br>
-							<input type="file" name="image">
-							<br>
-							<input type="file" name="image">
+							<label>Hình Đại Diện Sản Phẩm</label>
+							<input type="file" name="imagemain">
+							@for ($i = 2; $i <= 5; $i++)
+								<br>
+								<label>Hình Chi tiết {!! $i !!}</label>
+								<input type="file" name="image[]">
+							@endfor
 						</div>
+						<br>
 						<hr>
+						<br>
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" required> Tôi đã đọc các điều lệ
