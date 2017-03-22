@@ -29,6 +29,10 @@ a.navbar-brand:active, a.navbar-brand:hover{
   color: dark blue;
 }
 
+ul.navbar-nav li.nav-item a:hover {
+	background-color: white;
+}
+
 .row.align-items-center {
 	margin: 0 auto;
     margin-top: 50px;
