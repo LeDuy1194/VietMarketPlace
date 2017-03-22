@@ -24,13 +24,13 @@ class ClientUpStockRequest extends FormRequest
     public function rules()
     {
         return [
-            'itemname' => 'required:stocks,name'
-            'price' => ''
-            'status' => ''
-            'discription' => ''
-            'address' => ''
-            'img' => ''
-            'user_id' => ''
+            'itemname' => 'required:stocks,name',
+            'price' => '',
+            'status' => '',
+            'discription' => '',
+            'address' => '',
+            'img' => '',
+            'user_id' => '',
             'cate_id' => ''
         ];
     }

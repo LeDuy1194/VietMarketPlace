@@ -9,7 +9,7 @@
 						<div class="card">
 							<div class="card-block">
 								<center>
-									<img alt="{!! $data->username !!}" src="{!! $data->avatar !!}" class="img-circle">
+									<img alt="{!! $data->username !!}" src="../resources/upload/user/{!! $data->avatar !!}" class="img-circle">
 									<h3 class="text-center">
 										{!! $data->usernname !!}
 									</h3>
