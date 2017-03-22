@@ -55,10 +55,8 @@ Route::get('{cate}--{id}',['as'=>'listByCate','uses'=>'Client\HomeController@lis
 
 //user upload
 Route::group(['prefix'=>'user'],function () {
-	Route::group(['prefix'=>'stock'], function() {
-		Route::get('upload',['as'=>'user.stock.getupload','uses'=>'Client\ClientController@getUploadStock']);
-		Route::post('upload',['as'=>'user.stock.postupload','uses'=>'Client\ClientController@postUploadStock']);
-	});
+    Route::get('upload',['as'=>'user.stock.getupload','uses'=>'Client\ClientController@getUpload']);
+    Route::post('upload',['as'=>'user.stock.postupload','uses'=>'Client\ClientController@postUpload']);
 });
 
 Route::get('init_db',['uses'=>'Client\HomeController@init_db']);

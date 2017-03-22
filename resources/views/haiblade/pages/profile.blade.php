@@ -103,24 +103,6 @@
 													<input type="text" class="form-control" value="{!! $data->address !!}" id="address" aria-describedby="addon-address">
 												</div>
 												<br />
-												<div class="input-group">
-													<button type="button" class="btn btn-block btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-														Tỉnh/Thành phố <span class="caret"></span>
-													</button>
-													<ul class="dropdown-menu">
-														<li><a href="#">Ho Chi Minh</a></li>
-														<li><a href="#">Ha Noi</a></li>
-													</ul>
-
-													<button type="button" class="btn btn-block btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-														Quận/Huyện <span class="caret"></span>
-													</button>
-													<ul class="dropdown-menu">
-														<li><a href="#">Q1</a></li>
-														<li><a href="#">Tan Binh</a></li>
-													</ul>
-
-												</div>
 
 
 
