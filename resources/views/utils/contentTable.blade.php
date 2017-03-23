@@ -11,7 +11,7 @@ Date: 23/03/2017
 				<div class="media-body ml-1">
 					<a href="{{route($state.'Detail',$item->id)}}"><h5 class="media-heading">{!! $item->name !!}</h5></a>
 					<p>
-						Category: 
+						Danh Mục:
 						<a href="{{route('listByCate',$cate->id)}}">{!! $cate->name !!}</a>
 					</p>
 				</div>
@@ -24,7 +24,7 @@ Date: 23/03/2017
 					<img src="{{ asset('resources/upload/user/'.$user->avatar) }}" class="media-object rounded-circle user-avatar"/>
 				</div>
 				<div class="media-body">
-					<h5 class="media-heading">{!! $user->username!!}</h5>
+					<h5 class="media-heading"> {!! $user->username!!}</h5>
 				</div>
 			</div>
 			<div class="btn-group col-lg-12 col-sm-6">

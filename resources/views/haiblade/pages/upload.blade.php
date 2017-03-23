@@ -30,8 +30,8 @@
 								Chọn Phần Mục *
 							</label>
 							<select class="form-control" id="hang" name="hang" >
-								<option selected value="khohang">Kho Hàng</option>
-								<option value="donhang">Đơn Hàng</option>
+								<option selected value="Kho Hàng">Kho Hàng</option>
+								<option value="Đơn Hàng">Đơn Hàng</option>
 							</select>
 						</div>
 						<div class="row">
@@ -41,9 +41,9 @@
 										Chọn Danh mục *
 									</label>
 									<select class="form-control" name="cate">
-										@foreach($cate as $item)
-											<option value="">{!! $item["name"] !!}</option>
-										@endforeach
+										<option value="1">Điện thoại</option>
+                                        <option value="2">Máy tính</option>
+                                        <option value="3">Sách</option>
 									</select>
 								</div>
 							</div>
@@ -98,11 +98,15 @@
 							<br>
 							<label>Hình Đại Diện Sản Phẩm</label>
 							<input type="file" name="imagemain" required>
-							@for ($i = 1; $i <= 3; $i++)
-								<br>
-								<label>Hình Chi tiết {!! $i !!}</label>
-								<input type="file" name="image[]">
-							@endfor
+                            <br>
+                            <label>Hình Chi tiết 1</label>
+                            <input type="file" name="imagedetail1">
+                            <br>
+                            <label>Hình Chi tiết 2</label>
+                            <input type="file" name="imagedetail2">
+                            <br>
+                            <label>Hình Chi tiết 3</label>
+                            <input type="file" name="imagedetail3">
 						</div>
 						<br>
 						<hr>
@@ -111,8 +115,7 @@
 							<label>
 								<input type="checkbox" required> Tôi đã đọc các điều lệ
 							</label>
-						</div> 
-
+						</div>
 						<button type="submit" class="btn btn-block btn-pf">
 							Gửi
 						</button>

@@ -8,7 +8,6 @@
     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mặt Hàng</a>
     <div class="dropdown-menu">
     <a class="dropdown-item" href="#">Sách</a>
-      <a class="dropdown-item" href="#">Quần Áo</a>
       <a class="dropdown-item" href="#">Máy tính</a>
       <a class="dropdown-item" href="#">Điện thoại</a>
     </div>

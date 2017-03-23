@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Client;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
@@ -12,12 +11,11 @@ use App\Models\Cate;
 use App\Models\StockImage;
 use App\Models\OrderImage;
 use Illuminate\Support\Facades\Auth;
-
 use App\Models\User;
 class ClientController extends Controller
 {
     public function getUpload() {
-    	$cate = Cate::select('name','parent_id')->get()->toArray();
+    	$cate = Cate::select('name','id')->get()->toArray();
     	return view('haiblade.pages.upload',compact('cate'));
     }
 
@@ -27,23 +25,41 @@ class ClientController extends Controller
      */
     public function postUpload(ClientUpRequest $request) {
         $user_id = Auth::id();
-        $file_name = $request->file('imagemain')->getClientOriginalName();
+        $imgmain = $request->file('imagemain')->getClientOriginalName();
         $stock = new Stock();
+        $stock_img = new StockImage();
         // Stock
     	$stock->name = $request->itemname;
     	$stock->price = $request->price;
     	$stock->status = $_POST['status'];
     	$stock->description = $request->discription;
     	$stock->place = $request->address;
-    	$stock->img = $file_name;
+    	$stock->img = $imgmain;
     	$stock->user_id = $user_id;
-    	$stock->cate_id = 1;
-    	$request->file('imagemain')->move('resources/upload/stock',$file_name);
+    	$stock->cate_id = $_POST['cate'];
+    	$request->file('imagemain')->move('resources/upload',$imgmain);
     	$stock->save();
-    	$stock_id = $stock->id;
-    	/*if(Input::hasFile('image')) {
-    		foreach (Input::file('image') as $file) {
-    			$stock_img = new StockImage();
+        $stockid = $stock->id;
+
+        $stock_img->stock_id = $stockid;
+        $imgdetail1 = $request->file('imagedetail1')->getClientOriginalName();
+        $stock_img->image = $imgdetail1;
+        $request->file('imagedetail1')->move('resources/upload/products',$imgdetail1);
+        $stock_img->save();
+
+        $stock_img->stock_id = $stockid;
+        $imgdetail2 = $request->file('imagedetail2')->getClientOriginalName();
+        $stock_img->image = $imgdetail2;
+        $request->file('imagedetail2')->move('resources/upload/products',$imgdetail2);
+        $stock_img->save();
+
+        $stock_img->stock_id = $stockid;
+        $imgdetail3 = $request->file('imagedetail3')->getClientOriginalName();
+        $stock_img->image = $imgdetail3;
+        $request->file('imagedetail3')->move('resources/upload/products',$imgdetail3);
+        $stock_img->save();
+    	/*if(Input::hasFile('imagedetail')) {
+    		foreach (Input::file('imagedetail') as $file) {
     			if (isset($file)) {
     				$stock_img->image = $file->getClientOriginalName();
     				$stock_img->stock_id = $stock_id;

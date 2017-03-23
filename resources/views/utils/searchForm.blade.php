@@ -11,7 +11,7 @@ Date: 17/02/2017
 	
 	<div class="form-group">
 	  <select class="form-control" id="search-category">
-		<option value="all" selected>Categories</option>
+		<option value="all" selected>Danh Mục</option>
 		<option disabled>──────────</option>
 		<option value="computer">Máy tính</option>
 		<option value="cellphone">Điện thoại</option>
@@ -21,10 +21,10 @@ Date: 17/02/2017
 		
 	<div class="form-group">
 	  <select class="form-control" id="search-status">
-		<option value="all" selected>Trạng thái</option>
+		<option value="all" selected>Tình Trạng</option>
 		<option disabled>──────────</option>
 		<option value="new">Mới</option>
-		<option value="secondhand">Đồ cũ</option>
+		<option value="secondhand">Cũ</option>
 	  </select>
 	</div>
 	
@@ -32,11 +32,11 @@ Date: 17/02/2017
 	  <select class="form-control" id="search-rate">
 		<option value="all" selected>Đánh giá</option>
 		<option disabled>──────</option>
-		<option value="1">1 sao</option>
-		<option value="2">2 sao</option>
-		<option value="3">3 sao</option>
-		<option value="4">4 sao</option>
-		<option value="5">5 sao</option>
+		<option value="1">*</option>
+		<option value="2">**</option>
+		<option value="3">***</option>
+		<option value="4">****</option>
+		<option value="5">*****</option>
 	  </select>
 	</div>
 	
