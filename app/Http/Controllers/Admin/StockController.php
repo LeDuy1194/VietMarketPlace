@@ -24,7 +24,7 @@ class StockController extends Controller
     	$stock->name = $stock_request->txtName;
     	$stock->price = $stock_request->txtPrice;
     	$stock->status = $stock_request->rdoStatus;
-    	$stock->description = $stock_request->description;
+    	$stock->description = $stock_request->txtDescription;
     	$stock->place = $stock_request->txtPlace;
     	$stock->img = $file_name;
     	$stock->user_id = 1;

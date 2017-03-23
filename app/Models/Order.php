@@ -18,4 +18,14 @@ class Order extends Model
     public function cate() {
     	return $this->belongTo('App\Models\Cate');
     }
+
+    //Get the newest $number unfinished order.
+    public function getNewest($number) {
+        return $this->where('finished',0)->orderBy('updated_at','desc')->take($number)->get();
+    }
+
+    //Get order by cate.
+    public function getOrderByCateId($cate_id) {
+        return $this->where('finished',0)->where('cate_id',$cate_id)->orderBy('id','desc')->get();
+    }
 }

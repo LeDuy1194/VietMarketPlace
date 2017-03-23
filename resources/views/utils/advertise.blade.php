@@ -14,25 +14,19 @@ Date: 17/02/2017
 		<div class="carousel-item active">
 			<img class="d-block img-fluid mx-auto" alt="Carousel Bootstrap First" src="{{url('public/img/1.png')}}">
 			<div class="carousel-caption d-none d-md-block">
-				<h4>First Thumbnail label</h4>
-				<p>
-				</p>
+				<h4 class="sr-only">First Thumbnail label</h4>
 			</div>
 		</div>
 		<div class="carousel-item">
 			<img class="d-block img-fluid mx-auto" alt="Carousel Bootstrap Second" src="{{url('public/img/2.jpg')}}">
 			<div class="carousel-caption d-none d-md-block">
-				<h4>Second Thumbnail label</h4>
-				<p>
-				</p>
+				<h4 class="sr-only">Second Thumbnail label</h4>
 			</div>
 		</div>
 		<div class="carousel-item">
 			<img class="d-block img-fluid mx-auto" alt="Carousel Bootstrap Third" src="{{url('public/img/3.jpg')}}">
 			<div class="carousel-caption d-none d-md-block">
-				<h4>Third Thumbnail label</h4>
-				<p>
-				</p>
+				<h4 class="sr-only">Third Thumbnail label</h4>
 			</div>
 		</div>
 	</div>

@@ -22,4 +22,14 @@ class Stock extends Model
     public function simage() {
     	return $this->hasMany('App\Models\StockImage');
     }
+
+    //Get the newest $number stock.
+    public function getNewest($number) {
+        return $this->orderBy('updated_at','desc')->take($number)->get();
+    }
+
+    //Get stock by cate.
+    public function getStockByCateId($cate_id) {
+        return $this->where('cate_id',$cate_id)->orderBy('id','desc')->get();
+    }
 }

@@ -51,7 +51,7 @@ Route::group(['prefix'=>'admin'],function () {
 	});
 });
 
-Route::get('{cate}--{id}',['as'=>'listByCate','uses'=>'Client\HomeController@listByCate']);
+Route::get('listbycate/{id}',['as'=>'listByCate','uses'=>'Client\HomeController@listByCate']);
 
 //user upload
 Route::group(['prefix'=>'user'],function () {

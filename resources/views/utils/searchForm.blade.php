@@ -3,7 +3,7 @@ Date: 17/02/2017
 -->
 
 <div class="container-fluid search mt-2">
-  <form class="form-inline">
+  <form class="form-inline justify-content-center">
   	<input type="hidden" name="_token" value="{!!csrf_token()!!}"/>
 	<div class="form-group">
 	  <input type="text" class="form-control" id="search-keyword" placeholder="Từ khóa tìm kiếm..."/>

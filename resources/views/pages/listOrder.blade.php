@@ -12,7 +12,7 @@ Date: 21/02/2017
 			<div class="col-lg-12">
 				<ol class="breadcrumb" id="path">
 					<li class="breadcrumb-item"><a href="{{route('Home')}}">Trang Chủ</a></li>
-					<li class="breadcrumb-item"><a href="#">{!! $cate->name !!}</a></li>
+					<li class="breadcrumb-item"><a href="{{route('listByCate',$cate->id)}}">{!! $cate->name !!}</a></li>
 					<li class="breadcrumb-item active">{!!  $data->name !!}</li>
 				</ol>
 			</div>
@@ -55,7 +55,7 @@ Date: 21/02/2017
 					</div>
 					<div class="card-body collapse show" id="authorInfomation">
 						<center>
-							<img src="{!! ($author->avatar == NULL) ? url('public/img/anh.png') : $author->avatar !!}" class="rounded-circle author-avatar">
+							<img src="../resources/upload/user/{!! $author->avatar !!}" class="rounded-circle author-avatar">
 							<!--<input type="file" value="upload avatar" name="avatarUploadImg" id="avatarUploadImg">-->
 							<h3 class="text-center author-name">
 								{!! $author->username !!}

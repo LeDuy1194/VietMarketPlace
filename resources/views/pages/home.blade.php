@@ -7,10 +7,11 @@ Date: 17/02/2017
 
 @section('content')
 	@include('utils.advertise')
+	@include('utils.searchForm')
 	<div class="container">
 		<div class="row mt-2">
 			<div class="col-lg-12 p-0 m-0">
-				<a class="btn" href="#"><h1>Kho hàng</h1></a>
+				<h1>Kho hàng</h1>
 				@foreach($stock as $item)
 				<div class="card card-block listV-item">
 					<div class="row">
@@ -41,23 +42,17 @@ Date: 17/02/2017
 								</div>
 							</div>
 							<div class="btn-group col-lg-12 col-sm-4">
-								<button type="button" class="btn"><i class="fa fa-comments-o" aria-hidden="true"></i> 100</button>
+								<ul class="list-inline" name="rating">
+									<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+									<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+									<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+									<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+									<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+								</ul>
 							</div>
 							</div>
 						</div>
 						<div class="col-lg-2 col-sm-6">
-							<div class="media">
-								<div class="media-body">
-									<h4 class="media-heading">Đánh giá</h4>
-									<ul class="list-inline" name="rating">
-										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-									</ul>
-								</div>
-							</div>
 						</div>
 						<div class="col-lg-1 col-sm-2 text-right">
 							<button type="button" class="btn btn-warning"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
@@ -70,7 +65,7 @@ Date: 17/02/2017
 				@endforeach
 			</div>
 			<div class="col-lg-12 p-0 m-0">
-				<a class="btn" href="#"><h1>Đơn hàng</h1></a>
+				<h1>Đơn hàng</h1>
 				@foreach($order as $item)
 				<div class="card card-block listV-item">
 					<div class="row">
@@ -101,23 +96,17 @@ Date: 17/02/2017
 								</div>
 							</div>
 							<div class="btn-group col-lg-12 col-sm-4">
-								<button type="button" class="btn"><i class="fa fa-comments-o" aria-hidden="true"></i> 100</button>
+								<ul class="list-inline" name="rating">
+									<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+									<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+									<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+									<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+									<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+								</ul>
 							</div>
 							</div>
 						</div>
 						<div class="col-lg-2 col-sm-6">
-							<div class="media">
-								<div class="media-body">
-									<h4 class="media-heading">Đánh giá</h4>
-									<ul class="list-inline" name="rating">
-										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-									</ul>
-								</div>
-							</div>
 						</div>
 						<div class="col-lg-1 col-sm-2 text-right">
 							<button type="button" class="btn btn-warning"><i class="fa fa-heart-o" aria-hidden="true"></i></button>

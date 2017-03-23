@@ -18,4 +18,8 @@ class Cate extends Model
     public function order() {
     	return $this->hasMany('App\Models\Order');
     }
+
+    public function getCateByAlias($name) {
+        return $this->where('alias',$name)->first();
+    }
 }

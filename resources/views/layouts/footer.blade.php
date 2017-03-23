@@ -7,49 +7,29 @@ Date: 23/02/2017
 	<div class="footer" id="footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
-                    <h3> Lorem Ipsum </h3>
+                <div class="col-lg-4 col-xs-6">
+                    <h3> Thông tin đề tài </h3>
                     <ul>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                        <li> Đại học Bách Khoa TpHCM </li>
+                        <li> Khoa Khoa học và Kỹ thuật Máy tính </li>
+                        <li> GVHD: Th.S Lê Thị Kim Tuyến </li>
                     </ul>
                 </div>
-                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
-                    <h3> Lorem Ipsum </h3>
+                <div class="col-lg-4 col-xs-6">
+                    <h3> Thông tin nhóm </h3>
                     <ul>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                        <li> Phạm Tuấn Anh </li>
+                        <li> Nguyễn Lê Duy </li>
+                        <li> Trương Triệu Hải </li>
                     </ul>
                 </div>
-                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
-                    <h3> Lorem Ipsum </h3>
-                    <ul>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                    </ul>
-                </div>
-                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
-                    <h3> Lorem Ipsum </h3>
-                    <ul>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                    </ul>
-                </div>
-                <div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 ">
-                    <h3> Lorem Ipsum </h3>
+                <div class="col-lg-4 col-xs-12 ">
+                    <h3> Subcribe </h3>
                     <ul>
                         <li>
                             <div class="input-append newsletter-box text-center">
                                 <input type="text" class="full text-center" placeholder="Email ">
-                                <button class="btn btn-success btn-send-mail" type="button"> Lorem ipsum <i class="fa fa-long-arrow-right"> </i> </button>
+                                <button class="btn btn-success btn-send-mail" type="button"> Gửi <i class="fa fa-long-arrow-right"> </i> </button>
                             </div>
                         </li>
                     </ul>

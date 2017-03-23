@@ -40,17 +40,16 @@ class HomeController extends Controller {
     }
 
     public function test() {
-        $userModel = new User();
-        $user = $userModel->getDetailUserByUserID(Auth::id());
-        $stock = $user->stock->toArray();
-        var_dump($stock);
+        echo "<h1>Testing</h1>";
     }
 
 
     public function showHome() {
         $userModel = new User();
-        $stock = Stock::orderBy('id','desc')->take(5)->get();
-        $order = Order::where('finished',0)->orderBy('id','desc')->take(5)->get();
+        $stockModel = new Stock();
+        $stock = $stockModel->getNewest(5);
+        $orderModel = new Order();
+        $order = $orderModel->getNewest(5);
         return view('pages.home',compact('stock','order','userModel'));
     }
 
@@ -81,10 +80,6 @@ class HomeController extends Controller {
         return view('pages.listStock',compact('data','cate', 'author', 'stockImages'));
     }
 
-    public function showProfile() {
-        return view('haiblade.pages.profile');
-    }
-
     public function showUploadStock() {
         return view('haiblade.pages.uploadstock');
     }
@@ -96,22 +91,21 @@ class HomeController extends Controller {
     public function showMap() {
         return view('haiblade.pages.map');
     }
-    public function showLogin() {
-        return view('account.pages.login');
-    }
 
-    public function showReset() {
-        return view('account.pages.reset');
-    }
-
-    public function showRegister() {
-        return view('account.pages.register');
-    }
-
-    public function listByCate($cate,$id,Request $request) {
-        $cate_id = Cate::where('name',$cate)->get()->id;
-        $stock = Stock::where('cate_id',$cate_id)->orderBy('id','desc')->get();
-        $order = Order::where('cate_id',$cate_id)->orderBy('id','desc')->get();
-        return view('pages.home',compact('stock','order'));
+    public function listByCate($id) {
+        $userModel = new User();
+        $stockModel = new Stock();
+        $orderModel = new Order();
+        if ($id != 0) {
+            $cate = Cate::find($id);
+            $stock = $stockModel->getStockByCateId($id);
+            $order = $orderModel->getOrderByCateId($id);
+        }
+        else {
+            $cate = new Cate();
+            $stock = Stock::all();
+            $order = Order::all();
+        }
+        return view('pages.listProduct',compact('stock','order','cate','state','userModel'));
     }
 }
