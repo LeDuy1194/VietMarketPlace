@@ -25,6 +25,7 @@ class CreateStocksTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('cate_id')->unsigned();
             $table->foreign('cate_id')->references('id')->on('cates')->onDelete('cascade');
+            $table->boolean('finished')->default(0);
             $table->timestamps();
         });
     }

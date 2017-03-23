@@ -3,14 +3,16 @@
 namespace App\Http\Controllers\Client;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientUpRequest;
 use App\Models\Stock;
 use App\Models\Order;
 use App\Models\Cate;
 use App\Models\StockImage;
+use App\Models\OrderImage;
 use Illuminate\Support\Facades\Auth;
-use Input;
+
 use App\Models\User;
 class ClientController extends Controller
 {
@@ -18,11 +20,16 @@ class ClientController extends Controller
     	$cate = Cate::select('name','parent_id')->get()->toArray();
     	return view('haiblade.pages.upload',compact('cate'));
     }
+
+    /**
+     * @param ClientUpRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postUpload(ClientUpRequest $request) {
         $user_id = Auth::id();
         $file_name = $request->file('imagemain')->getClientOriginalName();
+        $stock = new Stock();
         // Stock
-    	$stock = new Stock;
     	$stock->name = $request->itemname;
     	$stock->price = $request->price;
     	$stock->status = $_POST['status'];
@@ -30,11 +37,11 @@ class ClientController extends Controller
     	$stock->place = $request->address;
     	$stock->img = $file_name;
     	$stock->user_id = $user_id;
-    	$stock->cate_id = $request->cate;
+    	$stock->cate_id = 1;
     	$request->file('imagemain')->move('resources/upload/stock',$file_name);
     	$stock->save();
     	$stock_id = $stock->id;
-    	if(Input::hasFile('image')) {
+    	/*if(Input::hasFile('image')) {
     		foreach (Input::file('image') as $file) {
     			$stock_img = new StockImage();
     			if (isset($file)) {
@@ -44,9 +51,8 @@ class ClientController extends Controller
     				$stock_img->save();
     			}
     		}
-    	}
-    	// Order
-        $order = new Order;
+    	}*/
+    	// After
     	return redirect()->route('Home');
     }
 

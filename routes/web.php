@@ -54,10 +54,8 @@ Route::group(['prefix'=>'admin'],function () {
 Route::get('{cate}--{id}',['as'=>'listByCate','uses'=>'Client\HomeController@listByCate']);
 
 //user upload
-Route::group(['prefix'=>'user'],function () {
-    Route::get('upload',['as'=>'user.stock.getupload','uses'=>'Client\ClientController@getUpload']);
-    Route::post('upload',['as'=>'user.stock.postupload','uses'=>'Client\ClientController@postUpload']);
-});
+Route::get('upload',['as'=>'getupload','uses'=>'Client\ClientController@getUpload']);
+Route::post('upload',['as'=>'postupload','uses'=>'Client\ClientController@postUpload']);
 
 Route::get('init_db',['uses'=>'Client\HomeController@init_db']);
 Route::get('test',['uses'=>'Client\HomeController@test']);

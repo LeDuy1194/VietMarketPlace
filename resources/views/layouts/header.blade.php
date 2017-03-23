@@ -9,7 +9,7 @@
       <ul class="navbar-nav mr-auto mt-2 mt-md-0">
         @if(Auth::check())
           <li class="nav-item">
-            <a class="nav-link" href="#">Đăng tin</a>
+            <a class="nav-link" href="{{route('getupload')}}">Đăng tin</a>
           </li>
 
           <li class="nav-item">
@@ -33,7 +33,7 @@
             </button>
             <div class="dropdown-menu profile-dropdown" aria-labelledby="dropdownMenu1">
               <a class="dropdown-item" href="{!! url('profile', [Auth::user()->username]) !!}">Hồ sơ</a>
-              <a class="dropdown-item" href="'logout">Đăng xuất</a>
+              <a class="dropdown-item" href="logout">Đăng xuất</a>
             </div>
           </li>
         @else

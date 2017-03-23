@@ -22,7 +22,7 @@
 						Thông Tin Vật Phẩm
 					</h3>
 					<hr>
-					<form role="form" action="{!!route('user.stock.getupload')!!}" method="POST" enctype="multipart/form-data">
+					<form role="form" action="{!!route('getupload')!!}" method="POST" enctype="multipart/form-data">
 						<input type="hidden" name="_token" value="{!!csrf_token()!!}">
 						<br>
 						<div class="form-group">
@@ -53,8 +53,8 @@
 										Chọn Tình Trạng *
 									</label>
 									<select class="form-control" id="status" name="status" >
-										<option selected value="moi">Mới</option>
-										<option value="cu">Cũ</option>
+										<option selected value="Mới">Mới</option>
+										<option value="Cũ">Cũ</option>
 									</select>
 								</div>
 							</div>
@@ -97,8 +97,8 @@
 							</label>
 							<br>
 							<label>Hình Đại Diện Sản Phẩm</label>
-							<input type="file" name="imagemain">
-							@for ($i = 2; $i <= 5; $i++)
+							<input type="file" name="imagemain" required>
+							@for ($i = 1; $i <= 3; $i++)
 								<br>
 								<label>Hình Chi tiết {!! $i !!}</label>
 								<input type="file" name="image[]">
