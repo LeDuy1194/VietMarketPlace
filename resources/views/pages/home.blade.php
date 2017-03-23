@@ -18,7 +18,7 @@ Date: 17/02/2017
 						<div class="col-lg-4 col-sm-12">
 							<div class="media">
 								<div class="media-left">
-									<img src="resources/upload/{{$item->img}}" class="media-object img-thumbnail avatar"/>
+									<img src="resources/upload/stock/{{$item->img}}" class="media-object img-thumbnail avatar"/>
 								</div>
 								<div class="media-body">
 									<h4 class="media-heading">{!! $item->name !!}</h4>
@@ -72,7 +72,7 @@ Date: 17/02/2017
 						<div class="col-lg-4 col-sm-12">
 							<div class="media">
 								<div class="media-left">
-									<img src="resources/upload/{{$item->img}}" class="media-object img-thumbnail avatar"/>
+									<img src="resources/upload/order/{{$item->img}}" class="media-object img-thumbnail avatar"/>
 								</div>
 								<div class="media-body">
 									<h4 class="media-heading">{!! $item->name !!}</h4>
