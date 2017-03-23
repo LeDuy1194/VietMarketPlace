@@ -22,4 +22,8 @@ class Cate extends Model
     public function getCateByAlias($name) {
         return $this->where('alias',$name)->first();
     }
+
+    public function getCateById($id) {
+        return $this->where('id',$id)->first();
+    }
 }

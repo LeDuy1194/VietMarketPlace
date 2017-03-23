@@ -27,7 +27,7 @@ class HomeController extends Controller {
 
             $order = new Order;
             $order->name = "Đơn hàng ".$i;
-            $order->priceMax = $i * 1000;
+            $order->price = $i * 1000;
             $order->status = "new";
             $order->description = "describe ".$i;
             $order->place = "place ".$i;
@@ -41,24 +41,28 @@ class HomeController extends Controller {
 
     public function test() {
         echo "<h1>Testing</h1>";
+        $test = json_decode(Stock::all());
+        var_dump($test);
     }
 
 
     public function showHome() {
         $userModel = new User();
+        $cateModel = new Cate();
         $stockModel = new Stock();
         $stock = $stockModel->getNewest(5);
         $orderModel = new Order();
         $order = $orderModel->getNewest(5);
-        return view('pages.home',compact('stock','order','userModel'));
+        return view('pages.home',compact('stock','order','userModel','cateModel'));
     }
 
     public function showMyStore($state) {
         $userModel = new User();
+        $cateModel = new Cate();
         $author = $userModel->getDetailUserByUserID(Auth::id());
         $stock = $author->stock;
         $order = $author->order;
-        return view('pages.myStore',compact('stock','order','state','author'));
+        return view('pages.myStore',compact('stock','order','state','cateModel'));
     }
 
     public function showOrderDetail($id) {
@@ -93,19 +97,18 @@ class HomeController extends Controller {
     }
 
     public function listByCate($id) {
+        $cateModel = new Cate();
         $userModel = new User();
         $stockModel = new Stock();
         $orderModel = new Order();
         if ($id != 0) {
-            $cate = Cate::find($id);
             $stock = $stockModel->getStockByCateId($id);
             $order = $orderModel->getOrderByCateId($id);
         }
         else {
-            $cate = new Cate();
             $stock = Stock::all();
             $order = Order::all();
         }
-        return view('pages.listProduct',compact('stock','order','cate','state','userModel'));
+        return view('pages.listProduct',compact('stock','order','id','userModel','cateModel'));
     }
 }

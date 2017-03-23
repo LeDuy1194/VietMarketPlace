@@ -22,36 +22,31 @@ Date: 17/02/2017
 						<div class="col-lg-4 col-sm-12">
 							<div class="media">
 								<div class="media-left">
-									<img src="../resources/upload/{{$item->img}}" class="media-object img-thumbnail avatar"/>
+									<img src="{{ asset('resources/upload/'.$item->img) }}" class="media-object img-thumbnail avatar"/>
 								</div>
-								<div class="media-body">
-									<h4 class="media-heading">{!! $item->name !!}</h4>
-									<a href="{{route('StockDetail',$item->id)}}">Chi tiết sản phẩm</a>
+								<div class="media-body ml-2">
+									<a href="{{route('StockDetail',$item->id)}}">
+										<h5 class="media-heading">
+											{!! $item->name !!}<span class="badge badge-default new-old-product"> {!! ($item->status=="new")?"Mới":"Đồ cũ" !!}
+											</span>
+										</h5>
+									</a>
+									<?php $cate = $cateModel->getCateById($item->cate_id); ?>
+									<p>Category: {!! $cate->name !!}</p>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-2 col-sm-6">
-							<div class="media">
-								<div class="media-body">
-									<h4 class="media-heading">Đánh giá</h4>
-									<ul class="list-inline" name="rating">
-										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-									</ul>
-								</div>
-							</div>
+						<!-- temporary -->
 						</div>
 						<div class="col-lg-4 col-sm-4 text-right">
 							<h3>{!! number_format($item->price,0,",",".")." VNĐ" !!}</h3>
 						</div>
 						<div class="col-lg-1 text-right">
-							<a class="btn" href="{{route('Home')}}" name="">Sửa</a>
+							<a class="btn btn-warning" href="{{route('Home')}}" name=""><h3>Sửa</h3></a>
 						</div>
 						<div class="col-lg-1 text-right">
-							<a class="btn" href="{{route('Home')}}" name="">Xóa</a>
+							<a class="btn btn-danger" href="{{route('Home')}}" name=""><h3>Xóa</h3></a>
 						</div>
 					</div>
 				</div>
@@ -70,36 +65,31 @@ Date: 17/02/2017
 						<div class="col-lg-4 col-sm-12">
 							<div class="media">
 								<div class="media-left">
-									<img src="../resources/upload/{{$item->img}}" class="media-object img-thumbnail avatar"/>
+									<img src="{{ asset('resources/upload/'.$item->img) }}" class="media-object img-thumbnail avatar"/>
 								</div>
-								<div class="media-body">
-									<h4 class="media-heading">{!! $item->name !!}</h4>
-									<a href="{{route('OrderDetail',$item->id)}}">Chi tiết sản phẩm</a>
+								<div class="media-body ml-2">
+									<a href="{{route('OrderDetail',$item->id)}}">
+										<h5 class="media-heading">
+											{!! $item->name !!}<span class="badge badge-default new-old-product"> {!! ($item->status=="new")?"Mới":"Đồ cũ" !!}
+											</span>
+										</h5>
+									</a>
+									<?php $cate = $cateModel->getCateById($item->cate_id); ?>
+									<p>Category: {!! $cate->name !!}</p>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-2 col-sm-6">
-							<div class="media">
-								<div class="media-body">
-									<h4 class="media-heading">Đánh giá</h4>
-									<ul class="list-inline" name="rating">
-										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-										<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-									</ul>
-								</div>
-							</div>
+						<!-- temporary -->
 						</div>
 						<div class="col-lg-4 col-sm-4 text-right">
-							<h3>{!! number_format($item->priceMin,0,",",".")." - ".number_format($item->priceMax,0,",",".")." VNĐ" !!}</h3>
+							<h3>{!! number_format($item->price,0,",",".")." VNĐ" !!}</h3>
 						</div>
 						<div class="col-lg-1 text-right">
-							<a class="btn" href="{{route('Home')}}" name="">Sửa</a>
+							<a class="btn btn-warning" href="{{route('Home')}}" name=""><h3>Sửa</h3></a>
 						</div>
 						<div class="col-lg-1 text-right">
-							<a class="btn" href="{{route('Home')}}" name="">Xóa</a>
+							<a class="btn btn-danger" href="{{route('Home')}}" name=""><h3>Xóa</h3></a>
 						</div>
 					</div>
 				</div>
@@ -111,7 +101,9 @@ Date: 17/02/2017
 				<a class="btn btn-primary" href="{{route('MyStore','order')}}" name="btnOrder">Đơn hàng</a>
 				<a class="btn btn-primary active" href="{{route('MyStore','favorite')}}" name="btnFav">Yêu thích</a>
 			</div>
-			<h1>Lỗi</h1>
+			<div class="col-lg-12 p-0 m-0">
+				<h1>Lỗi</h1>
+			</div>
 			@endif
 		</div>
 	</div><br>
