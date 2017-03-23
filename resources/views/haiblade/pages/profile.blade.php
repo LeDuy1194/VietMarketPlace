@@ -59,11 +59,9 @@
 											</dd>
 										</dl>
 									</div>
-
 								</div>
-
+								@if(Auth::id()==$data->id)
 								<a href="#" class="btn btn-block btn-pf" type="button" data-toggle="modal" data-target="#editProfile">Sửa thông tin</a>
-
 								<!-- Modal -->
 								<div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="editProfile" aria-hidden="true">
 									<div class="modal-dialog" role="document">
@@ -116,7 +114,6 @@
 								</div>
 
 								<a href="#" class="btn btn-block btn-pf" type="button" data-toggle="modal" data-target="#editpw">Đổi Mật Khẩu</a>
-
 								<!-- Modal -->
 								<div id="editpw" class="modal fade" role="dialog">
 									<div class="modal-dialog">
@@ -146,6 +143,7 @@
 
 									</div>
 								</div>
+									@endif
 							</div>
 						</div>
 						<br>
