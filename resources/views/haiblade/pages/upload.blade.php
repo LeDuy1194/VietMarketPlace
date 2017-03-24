@@ -100,13 +100,13 @@
 							<input type="file" name="imagemain" required>
                             <br>
                             <label>Hình Chi tiết 1</label>
-                            <input type="file" name="imagedetail1">
+                            <input type="file" name="imagedetail1" required>
                             <br>
                             <label>Hình Chi tiết 2</label>
-                            <input type="file" name="imagedetail2">
+                            <input type="file" name="imagedetail2" required>
                             <br>
                             <label>Hình Chi tiết 3</label>
-                            <input type="file" name="imagedetail3">
+                            <input type="file" name="imagedetail3" required>
 						</div>
 						<br>
 						<hr>
