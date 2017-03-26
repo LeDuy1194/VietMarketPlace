@@ -12,6 +12,8 @@ use App\Models\StockImage;
 use App\Models\OrderImage;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
+//use Illuminate\Http\File;
 class ClientController extends Controller
 {
     public function getUpload() {
@@ -25,49 +27,47 @@ class ClientController extends Controller
      */
     public function postUpload(ClientUpRequest $request) {
         $user_id = Auth::id();
-        $imgmain = $request->file('imagemain')->getClientOriginalName();
+        $img_main = $request->file('image-main')->getClientOriginalName();
+        $img_main = 'main-' . $img_main;
         $stock = new Stock();
-        $stock_img = new StockImage();
+
         // Stock
     	$stock->name = $request->itemname;
     	$stock->price = $request->price;
     	$stock->status = $_POST['status'];
     	$stock->description = $request->discription;
     	$stock->place = $request->address;
-    	$stock->img = $imgmain;
+    	$stock->img = $img_main;
     	$stock->user_id = $user_id;
     	$stock->cate_id = $_POST['cate'];
-    	$request->file('imagemain')->move('resources/upload',$imgmain);
     	$stock->save();
-        $stockid = $stock->id;
 
-        $stock_img->stock_id = $stockid;
-        $imgdetail1 = $request->file('imagedetail1')->getClientOriginalName();
-        $stock_img->image = $imgdetail1;
-        $request->file('imagedetail1')->move('resources/upload/products',$imgdetail1);
-        $stock_img->save();
+        $stock_id = $stock->id;
+        $root_dir = base_path() . '/resources/upload/stocks/stock-' . $stock_id;
+        if(!File::exists($root_dir)) {
+            // path does not exist
+            File::makeDirectory($root_dir, 0777, true, true);
+        }
+        $request->file('image-main')->move($root_dir, $img_main);
 
-        $stock_img->stock_id = $stockid;
-        $imgdetail2 = $request->file('imagedetail2')->getClientOriginalName();
-        $stock_img->image = $imgdetail2;
-        $request->file('imagedetail2')->move('resources/upload/products',$imgdetail2);
-        $stock_img->save();
+        //Stock_image
+        $img_details = [];
+        $img_detail_1 = $request->file('image-detail-1')->getClientOriginalName();
+        $img_detail_2 = $request->file('image-detail-2')->getClientOriginalName();
+        $img_detail_3 = $request->file('image-detail-3')->getClientOriginalName();
+        $img_details['image-detail-1'] =  'detail-' . $img_detail_1;
+        $img_details['image-detail-2'] =  'detail-' . $img_detail_2;
+        $img_details['image-detail-3'] =  'detail-' . $img_detail_3;
 
-        $stock_img->stock_id = $stockid;
-        $imgdetail3 = $request->file('imagedetail3')->getClientOriginalName();
-        $stock_img->image = $imgdetail3;
-        $request->file('imagedetail3')->move('resources/upload/products',$imgdetail3);
-        $stock_img->save();
-    	/*if(Input::hasFile('imagedetail')) {
-    		foreach (Input::file('imagedetail') as $file) {
-    			if (isset($file)) {
-    				$stock_img->image = $file->getClientOriginalName();
-    				$stock_img->stock_id = $stock_id;
-    				$file->move('resources/upload/stock/detail',$file->getClientOriginalName());
-    				$stock_img->save();
-    			}
-    		}
-    	}*/
+        foreach ($img_details as $key => $img_detail) {
+            $stock_img = new StockImage();
+            $stock_img->stock_id = $stock_id;
+            $stock_img->image = $img_detail;
+            $request->file($key)->move($root_dir, $img_detail);
+            $stock_img->save();
+            $stock_img->save();
+        }
+
     	// After
     	return redirect()->route('Home');
     }

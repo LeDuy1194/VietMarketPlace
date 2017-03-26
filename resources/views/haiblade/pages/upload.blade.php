@@ -97,16 +97,16 @@
 							</label>
 							<br>
 							<label>Hình Đại Diện Sản Phẩm</label>
-							<input type="file" name="imagemain" required>
+							<input type="file" name="image-main" required>
                             <br>
                             <label>Hình Chi tiết 1</label>
-                            <input type="file" name="imagedetail1" required>
+                            <input type="file" name="image-detail-1" required>
                             <br>
                             <label>Hình Chi tiết 2</label>
-                            <input type="file" name="imagedetail2" required>
+                            <input type="file" name="image-detail-2" required>
                             <br>
                             <label>Hình Chi tiết 3</label>
-                            <input type="file" name="imagedetail3" required>
+                            <input type="file" name="image-detail-3" required>
 						</div>
 						<br>
 						<hr>

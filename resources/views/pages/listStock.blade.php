@@ -42,8 +42,8 @@ Date: 21/02/2017
 						<div id="product-detail-gallery" class="royalSlider rsDefault">
 							@if($stockImages && count($stockImages)>0)
 								@foreach($stockImages as $stockImage)
-									<a id="product-detail-gallery-id" class="rsImg bugaga" data-rsbigimg="../resources/upload/products/{{$stockImage}}" href="../resources/upload/products/{{$stockImage}}">
-										<img class="rsTmb" src="../resources/upload/products/{{$stockImage}}" >
+									<a id="product-detail-gallery-id" class="rsImg bugaga" data-rsbigimg="../resources/upload/stocks/stock-{!!  $data->id !!}/{{$stockImage}}" href="../resources/upload/stocks/stock-{!!  $data->id !!}/{{$stockImage}}">
+										<img class="rsTmb" src="../resources/upload/stocks/stock-{!!  $data->id !!}/{{$stockImage}}" >
 									</a>
 								@endforeach
 							@endif

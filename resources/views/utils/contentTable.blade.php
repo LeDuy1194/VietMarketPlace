@@ -6,7 +6,7 @@ Date: 23/03/2017
 		<div class="col-lg-4 col-sm-12">
 			<div class="media">
 				<div class="media-left">
-					<img src="{{ asset('resources/upload/'.$item->img) }}" class="media-object img-thumbnail avatar"/>
+					<img src="{{ asset('resources/upload/'.$type.'s/'.$type.'-'.$item->id.'/'.$item->img) }}" class="media-object img-thumbnail avatar"/>
 				</div>
 				<div class="media-body ml-1">
 					<a href="{{route($state.'Detail',$item->id)}}"><h5 class="media-heading">{!! $item->name !!}</h5></a>
