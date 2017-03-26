@@ -9,10 +9,14 @@ Date: 17/02/2017
 	@include('utils.advertise')
 	<div class="container">
 		<div class="row mt-2">
-			@if($state == 'stock')
+		@if($state == 'stock')
 			<div class="btn-group-justified m-auto">
-				<a class="btn btn-primary active" href="{{route('MyStore','stock')}}" name="btnStock">Kho hàng</a>
-				<a class="btn btn-primary" href="{{route('MyStore','order')}}" name="btnOrder">Đơn hàng</a>
+				<a class="btn btn-primary active" href="{{route('MyStore','stock')}}" name="btnStock">Kho hàng 
+				<span class="badge badge-danger">{!! $stock->count() !!}</span>
+				</a>
+				<a class="btn btn-primary" href="{{route('MyStore','order')}}" name="btnOrder">Đơn hàng 
+				<span class="badge badge-danger">{!! $order->count() !!}</span>
+				</a>
 				<a class="btn btn-primary" href="{{route('MyStore','favorite')}}" name="btnFav">Yêu thích</a>
 			</div>
 			<div class="col-lg-12 p-0 m-0">
@@ -27,7 +31,7 @@ Date: 17/02/2017
 								<div class="media-body ml-2">
 									<a href="{{route('StockDetail',$item->id)}}">
 										<h5 class="media-heading">
-											{!! $item->name !!}<span class="badge badge-default new-old-product"> {!! ($item->status=="new")?"Mới":"Đồ cũ" !!}
+											{!! $item->name !!}<span class="badge badge-default new-old-product"> {!! ($item->status=="new")?"Mới":"Cũ" !!}
 											</span>
 										</h5>
 									</a>
@@ -52,10 +56,14 @@ Date: 17/02/2017
 				</div>
 				@endforeach
 			</div>
-			@elseif($state == 'order')
+		@elseif($state == 'order')
 			<div class="btn-group-justified m-auto">
-				<a class="btn btn-primary" href="{{route('MyStore','stock')}}" name="btnStock">Kho hàng</a>
-				<a class="btn btn-primary active" href="{{route('MyStore','order')}}" name="btnOrder">Đơn hàng</a>
+				<a class="btn btn-primary" href="{{route('MyStore','stock')}}" name="btnStock">Kho hàng 
+				<span class="badge badge-danger">{!! $stock->count() !!}</span>
+				</a>
+				<a class="btn btn-primary active" href="{{route('MyStore','order')}}" name="btnOrder">Đơn hàng 
+				<span class="badge badge-danger">{!! $order->count() !!}</span>
+				</a>
 				<a class="btn btn-primary" href="{{route('MyStore','favorite')}}" name="btnFav">Yêu thích</a>
 			</div>
 			<div class="col-lg-12 p-0 m-0">
@@ -95,16 +103,20 @@ Date: 17/02/2017
 				</div>
 				@endforeach
 			</div>
-			@else
+		@else
 			<div class="btn-group-justified m-auto">
-				<a class="btn btn-primary" href="{{route('MyStore','stock')}}" name="btnStock">Kho hàng</a>
-				<a class="btn btn-primary" href="{{route('MyStore','order')}}" name="btnOrder">Đơn hàng</a>
+				<a class="btn btn-primary" href="{{route('MyStore','stock')}}" name="btnStock">Kho hàng 
+				<span class="badge badge-danger">{!! $stock->count() !!}</span>
+				</a>
+				<a class="btn btn-primary" href="{{route('MyStore','order')}}" name="btnOrder">Đơn hàng 
+				<span class="badge badge-danger">{!! $order->count() !!}</span>
+				</a>
 				<a class="btn btn-primary active" href="{{route('MyStore','favorite')}}" name="btnFav">Yêu thích</a>
 			</div>
 			<div class="col-lg-12 p-0 m-0">
 				<h1>Lỗi</h1>
 			</div>
-			@endif
+		@endif
 		</div>
 	</div><br>
 @endsection

@@ -13,7 +13,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="{{route('MyStore','stock')}}">Giỏ hàng</a>
+            <a class="nav-link" href="{{route('MyStore','stock')}}">Cửa hàng của tôi</a>
           </li>
         </li>
         @endif

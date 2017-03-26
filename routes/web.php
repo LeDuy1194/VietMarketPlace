@@ -51,11 +51,10 @@ Route::group(['prefix'=>'admin'],function () {
 	});
 });
 
-Route::get('listbycate/{id}',['as'=>'listByCate','uses'=>'Client\HomeController@listByCate']);
+Route::get('listbycate/{id}/{state}',['as'=>'listByCate','uses'=>'Client\HomeController@listByCate']);
 
 //user upload
 Route::get('upload',['as'=>'getupload','uses'=>'Client\ClientController@getUpload']);
 Route::post('upload',['as'=>'postupload','uses'=>'Client\ClientController@postUpload']);
 
 Route::get('init_db',['uses'=>'Client\HomeController@init_db']);
-Route::get('test',['uses'=>'Client\HomeController@test']);

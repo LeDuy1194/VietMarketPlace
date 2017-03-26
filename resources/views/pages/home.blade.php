@@ -12,7 +12,7 @@ Update_at: 23/03/2017
 	<div class="container">
 		<div class="row mt-2">
 			<div class="col-lg-12 p-0 m-0">
-				<h1>Kho hàng</h1>
+				<h2>Kho hàng</h2>
 				@foreach($stock as $item)
 				<?php
 					$user = $userModel->getDetailUserByUserID($item->user_id);
@@ -20,9 +20,10 @@ Update_at: 23/03/2017
 				?>
 				@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'state' => "Stock", 'type' => 'stock'])
 				@endforeach
+				<a href="{{route('listByCate',[0,'stock'])}}" class="text-center"><h3>Xem thêm...</h3></a>
 			</div>
 			<div class="col-lg-12 p-0 m-0">
-				<h1>Đơn hàng</h1>
+				<h2>Đơn hàng</h2>
 				@foreach($order as $item)
 				<?php
 					$user = $userModel->getDetailUserByUserID($item->user_id);
@@ -30,6 +31,7 @@ Update_at: 23/03/2017
 				?>
 				@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'state' => "Order", 'type' => 'order'])
 				@endforeach
+				<a href="{{route('listByCate',[0,'order'])}}" class="text-center"><h3>Xem thêm...</h3></a>
 			</div>
 			
 			<!-- <div class="col-lg-10">

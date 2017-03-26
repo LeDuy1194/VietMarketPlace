@@ -1,4 +1,4 @@
-@extends('haiblade.master')
+@extends('layouts.master')
 @section('content')
 <div class="container-fluid">
 	<div class="row">
