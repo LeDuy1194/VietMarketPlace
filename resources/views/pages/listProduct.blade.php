@@ -31,7 +31,7 @@ Date: 23/03/2017
 						$user = $userModel->getDetailUserByUserID($item->user_id);
 						$cate = $cateModel->getCateById($item->cate_id);
 					?>
-					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'state' => "Stock"])
+					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'state' => "Stock",'type' => 'stock'])
 					@endforeach
 				</div>
 			@elseif ($state == 'order')
@@ -42,7 +42,7 @@ Date: 23/03/2017
 						$user = $userModel->getDetailUserByUserID($item->user_id);
 						$cate = $cateModel->getCateById($item->cate_id);
 					?>
-					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'state' => "Order"])
+					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'state' => "Order",'type' => 'order'])
 					@endforeach
 				</div>
 			@else
@@ -53,7 +53,7 @@ Date: 23/03/2017
 						$user = $userModel->getDetailUserByUserID($item->user_id);
 						$cate = $cateModel->getCateById($item->cate_id);
 					?>
-					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'state' => "Stock"])
+					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'state' => "Stock",'type' => 'stock'])
 					@endforeach
 				</div>
 				<h1>Đơn hàng</h1>
@@ -63,7 +63,7 @@ Date: 23/03/2017
 						$user = $userModel->getDetailUserByUserID($item->user_id);
 						$cate = $cateModel->getCateById($item->cate_id);
 					?>
-					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'state' => "Order"])
+					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'state' => "Order",'type' => 'order'])
 					@endforeach
 				</div>
 			@endif
