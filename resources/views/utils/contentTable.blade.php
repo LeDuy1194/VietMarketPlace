@@ -12,7 +12,7 @@ Date: 23/03/2017
 					<a href="{{route($state.'Detail',$item->id)}}"><h5 class="media-heading">{!! $item->name !!}</h5></a>
 					<p>
 						Danh Mục:
-						<a href="{{route('listByCate',$cate->id)}}">{!! $cate->name !!}</a>
+						<a href="{{route('listByCate',[$cate->id,'all'])}}">{!! $cate->name !!}</a>
 					</p>
 				</div>
 			</div>
@@ -42,7 +42,9 @@ Date: 23/03/2017
 			<p><i class="fa fa-street-view" aria-hidden="true"></i> {!! $item->place !!}</p>
 		</div>
 		<div class="col-lg-1 col-sm-2 text-right">
-			<button type="button" class="btn btn-warning" alt="Thêm vào danh sách yêu thích."><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+		@if (($state == 'stock')||($state == 'Stock'))
+			<button type="button" class="btn btn-warning" title="Thêm vào danh sách yêu thích."><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+		@endif
 		</div>
 		<div class="col-lg-2 col-sm-4 text-right pl-0">
 			<h3>{!! number_format($item->price,0,",",".")." VNĐ" !!}</h3>

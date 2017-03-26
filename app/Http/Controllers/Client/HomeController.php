@@ -62,7 +62,7 @@ class HomeController extends Controller {
         $author = $userModel->getDetailUserByUserID(Auth::id());
         $stock = $author->stock;
         $order = $author->order;
-        return view('pages.myStore',compact('stock','order','state','cateModel'));
+        return view('pages.myStore',compact('stock','order','state','cateModel','author'));
     }
 
     public function showOrderDetail($id) {
@@ -96,7 +96,7 @@ class HomeController extends Controller {
         return view('haiblade.pages.map');
     }
 
-    public function listByCate($id) {
+    public function listByCate($id,$state) {
         $cateModel = new Cate();
         $userModel = new User();
         $stockModel = new Stock();
@@ -109,6 +109,6 @@ class HomeController extends Controller {
             $stock = Stock::all();
             $order = Order::all();
         }
-        return view('pages.listProduct',compact('stock','order','id','userModel','cateModel'));
+        return view('pages.listProduct',compact('stock','order','id','state','userModel','cateModel'));
     }
 }
