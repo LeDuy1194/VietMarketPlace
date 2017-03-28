@@ -24,8 +24,13 @@ class Order extends Model
         return $this->where('finished',0)->orderBy('updated_at','desc')->take($number)->get();
     }
 
+    //Get paginate
+    public function getPage($number) {
+        return $this->where('finished',0)->orderBy('updated_at','desc')->paginate($number);
+    }
+
     //Get order by cate.
-    public function getOrderByCateId($cate_id) {
-        return $this->where('finished',0)->where('cate_id',$cate_id)->orderBy('id','desc')->get();
+    public function getOrderByCateId($cate_id,$number) {
+        return $this->where('finished',0)->where('cate_id',$cate_id)->orderBy('id','desc')->paginate($number);
     }
 }

@@ -25,11 +25,16 @@ class Stock extends Model
 
     //Get the newest $number stock.
     public function getNewest($number) {
-        return $this->orderBy('updated_at','desc')->take($number)->get();
+        return $this->where('finished',0)->orderBy('updated_at','desc')->take($number)->get();
+    }
+
+    //Get paginate
+    public function getPage($number) {
+        return $this->where('finished',0)->orderBy('updated_at','desc')->paginate($number);
     }
 
     //Get stock by cate.
-    public function getStockByCateId($cate_id) {
-        return $this->where('cate_id',$cate_id)->orderBy('id','desc')->get();
+    public function getStockByCateId($cate_id,$number) {
+        return $this->where('finished',0)->where('cate_id',$cate_id)->orderBy('id','desc')->paginate($number);
     }
 }

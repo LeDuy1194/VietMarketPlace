@@ -22,7 +22,7 @@ Date: 17/02/2017
 				</a>
 			</div>
 			<div class="col-lg-12 p-0 m-0">
-				@foreach($stock as $item)
+			@foreach($stock as $item)
 				<div class="card card-block listV-item">
 					<div class="row">
 						<div class="col-lg-4 col-sm-12">
@@ -42,10 +42,10 @@ Date: 17/02/2017
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-2 col-sm-6">
-						<!-- temporary -->
+						<div class="col-lg-3 col-sm-6">
+							<p><i class="fa fa-street-view" aria-hidden="true"></i> {!! $item->place !!}</p>
 						</div>
-						<div class="col-lg-4 col-sm-4 text-right">
+						<div class="col-lg-3 col-sm-4 text-right">
 							<h3>{!! number_format($item->price,0,",",".")." VNĐ" !!}</h3>
 						</div>
 						<div class="col-lg-1 text-right">
@@ -56,7 +56,7 @@ Date: 17/02/2017
 						</div>
 					</div>
 				</div>
-				@endforeach
+			@endforeach
 			</div>
 		@elseif($state == 'order')
 			<div class="btn-group-justified m-auto">
@@ -71,7 +71,7 @@ Date: 17/02/2017
 				</a>
 			</div>
 			<div class="col-lg-12 p-0 m-0">
-				@foreach($order as $item)
+			@foreach($order as $item)
 				<div class="card card-block listV-item">
 					<div class="row">
 						<div class="col-lg-4 col-sm-12">
@@ -91,10 +91,10 @@ Date: 17/02/2017
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-2 col-sm-6">
-						<!-- temporary -->
+						<div class="col-lg-3 col-sm-6">
+							<p><i class="fa fa-street-view" aria-hidden="true"></i> {!! $item->place !!}</p>
 						</div>
-						<div class="col-lg-4 col-sm-4 text-right">
+						<div class="col-lg-3 col-sm-4 text-right">
 							<h3>{!! number_format($item->price,0,",",".")." VNĐ" !!}</h3>
 						</div>
 						<div class="col-lg-1 text-right">
@@ -105,7 +105,7 @@ Date: 17/02/2017
 						</div>
 					</div>
 				</div>
-				@endforeach
+			@endforeach
 			</div>
 		@else
 			<div class="btn-group-justified m-auto">
@@ -128,6 +128,22 @@ Date: 17/02/2017
 					?>
 					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'state' => "Stock",'type' => 'stock'])
 				@endforeach
+				<?php $page = $fav; ?>
+				<nav aria-label="Page navigation">
+				<ul class="pagination">
+					@if ($page->currentPage() != 1)
+					<li class="page-item"><a class="page-link" href="{!! $page->url($page->currentPage() - 1) !!}">Trước</a></li>
+					@endif
+					@for ($i = 1; $i <= $page->lastPage(); $i = $i + 1)
+					<li class="page-item {!! ($page->currentPage() == $i)?'active':'' !!}">
+						<a class="page-link" href="{!! $page->url($i) !!}">{!! $i !!}</a>
+					</li>
+					@endfor
+					@if ($page->currentPage() != $page->lastPage())
+					<li class="page-item"><a class="page-link" href="{!! $page->url($page->currentPage() + 1) !!}">Sau</a></li>
+					@endif
+				</ul>
+			</nav>
 			</div>
 		@endif
 		</div>

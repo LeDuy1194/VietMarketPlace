@@ -70,7 +70,7 @@ Date: 21/02/2017
 					<div class="collapse show card-block" id="collapseProductInfo">
 						<ul class="product-info" id="productInfo">
 							<li class="price-product"><i class="fa fa-money" aria-hidden="true"></i> {!! number_format($data->price,0,",",".")." VNĐ" !!}</li>
-							<li><span class="badge badge-default new-old-product"> {!! ($data->status=="new")?"Mới":"Đồ cũ" !!}</span></li>
+							<li><span class="badge badge-default new-old-product"> {!! ($data->status=="new")?"Mới":"Cũ" !!}</span></li>
 							<li><i class="fa fa-street-view" aria-hidden="true"></i> {!! $data->place !!}</li>
 						</ul>
 					</div>
@@ -88,9 +88,9 @@ Date: 21/02/2017
 							</h3>
 						</center>
 						<ul class="detail-info-author" id="detailInfoAuthor">
-							<li><i class="fa fa-map-marker" aria-hidden="true"></i> {!! $author->address !!}</li>
-							<li><i class="fa fa-phone" aria-hidden="true"></i> {!! $author->phone !!}</li>
-							<li><i class="fa fa-envelope" aria-hidden="true"></i> {!! $author->email !!}</li>
+							<!-- <li><i class="fa fa-map-marker" aria-hidden="true"></i> {!! $author->address !!}</li> -->
+							<li><h4><i class="fa fa-phone" aria-hidden="true"></i> {!! $author->phone !!}</h4></li>
+							<!-- <li><i class="fa fa-envelope" aria-hidden="true"></i> {!! $author->email !!}</li> -->
 						</ul>
 					</div>
 				</div>

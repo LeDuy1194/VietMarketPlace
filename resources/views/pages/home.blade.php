@@ -33,16 +33,6 @@ Update_at: 23/03/2017
 				@endforeach
 				<a href="{{route('listByCate',[0,'order'])}}" class="text-center"><h3>Xem thêm...</h3></a>
 			</div>
-			
-			<!-- <div class="col-lg-10">
-				<nav aria-label="Page navigation example">
-					<ul class="pagination">
-						<li class="page-item active"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-					</ul>
-				</nav>
-			</div> -->
 		</div>
 	</div>
 @endsection

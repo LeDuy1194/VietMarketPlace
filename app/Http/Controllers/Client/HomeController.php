@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Stock;
 use App\Models\StockImage;
 use App\Models\Order;
+use App\Models\OrderImage;
 use App\Models\Cate;
 use App\Models\User;
 use App\Models\Fav;
@@ -40,13 +41,6 @@ class HomeController extends Controller {
         echo "Đã tạo";
     }
 
-    //to test and learn
-    public function test() {
-        echo "<h1>Testing</h1>";
-        var_dump($test);
-    }
-
-
     public function showHome() {
         $userModel = new User();
         $cateModel = new Cate();
@@ -58,12 +52,14 @@ class HomeController extends Controller {
     }
 
     public function showMyStore($state) {
+        $number = 5;
         $userModel = new User();
         $cateModel = new Cate();
+        $favModel = new Fav();
         $author = $userModel->getDetailUserByUserID(Auth::id());
         $stock = $author->stock;
         $order = $author->order;
-        $fav = $author->fav;
+        $fav = $favModel->getFavByUser($author->id,$number);
         return view('pages.myStore',compact('stock','order','fav','state','author','cateModel','userModel'));
     }
 
@@ -72,7 +68,9 @@ class HomeController extends Controller {
         $cate = Cate::find($data['cate_id']);
         $userModel = new User();
         $author = $userModel->getDetailUserByUserID($data['user_id']);
-        return view('pages.listOrder',compact('data','cate','author'));
+        $orderImageModel = new OrderImage();
+        $orderImages = $orderImageModel->getImages($id);
+        return view('pages.listOrder',compact('data','cate','author','orderImages'));
     }
 
     public function showStockDetail($id) {
@@ -98,17 +96,18 @@ class HomeController extends Controller {
     }
 
     public function listByCate($id,$state) {
+        $number = 5;
         $cateModel = new Cate();
         $userModel = new User();
         $stockModel = new Stock();
         $orderModel = new Order();
         if ($id != 0) {
-            $stock = $stockModel->getStockByCateId($id);
-            $order = $orderModel->getOrderByCateId($id);
+            $stock = $stockModel->getStockByCateId($id,$number);
+            $order = $orderModel->getOrderByCateId($id,$number);
         }
         else {
-            $stock = Stock::all();
-            $order = Order::all();
+            $stock = $stockModel->getPage($number);
+            $order = $orderModel->getPage($number);
         }
         return view('pages.listProduct',compact('stock','order','id','state','userModel','cateModel'));
     }

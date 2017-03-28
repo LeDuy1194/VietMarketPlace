@@ -24,8 +24,9 @@ Date: 23/03/2017
 		</div>
 		<div class="row mt-2">
 			@if ($state == 'stock')
-				<h1>Kho hàng</h1>
+				<?php $page = $stock; ?>
 				<div class="col-lg-12 p-0 m-0">
+					<h1>Kho hàng</h1>
 					@foreach($stock as $item)
 					<?php
 						$user = $userModel->getDetailUserByUserID($item->user_id);
@@ -35,8 +36,9 @@ Date: 23/03/2017
 					@endforeach
 				</div>
 			@elseif ($state == 'order')
-				<h1>Đơn hàng</h1>
+				<?php $page = $order; ?>
 				<div class="col-lg-12 p-0 m-0">
+					<h1>Đơn hàng</h1>
 					@foreach($order as $item)
 					<?php
 						$user = $userModel->getDetailUserByUserID($item->user_id);
@@ -46,8 +48,16 @@ Date: 23/03/2017
 					@endforeach
 				</div>
 			@else
-				<h1>Kho hàng</h1>
+				<?php
+					if ($stock->lastPage() > $order->lastPage()) {
+						$page = $stock;
+					}
+					else {
+						$page = $order;
+					}
+				?>
 				<div class="col-lg-12 p-0 m-0">
+					<h1>Kho hàng</h1>
 					@foreach($stock as $item)
 					<?php
 						$user = $userModel->getDetailUserByUserID($item->user_id);
@@ -56,8 +66,8 @@ Date: 23/03/2017
 					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'state' => "Stock",'type' => 'stock'])
 					@endforeach
 				</div>
-				<h1>Đơn hàng</h1>
 				<div class="col-lg-12 p-0 m-0">
+					<h1>Đơn hàng</h1>
 					@foreach($order as $item)
 					<?php
 						$user = $userModel->getDetailUserByUserID($item->user_id);
@@ -67,6 +77,21 @@ Date: 23/03/2017
 					@endforeach
 				</div>
 			@endif
+			<nav aria-label="Page navigation">
+				<ul class="pagination">
+					@if ($page->currentPage() != 1)
+					<li class="page-item"><a class="page-link" href="{!! $page->url($page->currentPage() - 1) !!}">Trước</a></li>
+					@endif
+					@for ($i = 1; $i <= $page->lastPage(); $i = $i + 1)
+					<li class="page-item {!! ($page->currentPage() == $i)?'active':'' !!}">
+						<a class="page-link" href="{!! $page->url($i) !!}">{!! $i !!}</a>
+					</li>
+					@endfor
+					@if ($page->currentPage() != $page->lastPage())
+					<li class="page-item"><a class="page-link" href="{!! $page->url($page->currentPage() + 1) !!}">Sau</a></li>
+					@endif
+				</ul>
+			</nav>
 		</div>
 	</div><br>
 @endsection

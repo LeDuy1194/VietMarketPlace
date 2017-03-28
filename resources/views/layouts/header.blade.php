@@ -21,9 +21,9 @@
           <a class="nav-link" href="{{route('Map')}}">Bản đồ</a>
         </li>
 
-        <li class="nav-item">
+        {{--<li class="nav-item">
           <a class="nav-link" href="#">Về chúng tôi</a>
-        </li>
+        </li>--}}
       </ul>
       <ul class="navbar-nav my-2 my-lg-0">
         @if(Auth::check())
