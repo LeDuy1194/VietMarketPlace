@@ -29,8 +29,8 @@ Route::get('homepage',['as'=>'Home','uses'=>'Client\HomeController@showHome']);
 
 Route::get('mystore/{state}',['as'=>'MyStore','uses'=>'Client\HomeController@showMyStore']);
 
-Route::get('listorder/{id}',['as'=>'OrderDetail','uses'=>'Client\HomeController@showOrderDetail']);
-Route::get('liststock/{id}',['as'=>'StockDetail','uses'=>'Client\HomeController@showStockDetail']);
+Route::get('order-detail/{id}',['as'=>'OrderDetail','uses'=>'Client\HomeController@showOrderDetail']);
+Route::get('stock-detail/{id}',['as'=>'StockDetail','uses'=>'Client\HomeController@showStockDetail']);
 
 Route::get('profile/{user_name}', ['as' => 'profile', 'uses' => 'Client\ClientController@profileDetail']);
 
