@@ -17,7 +17,9 @@ Date: 17/02/2017
 				<a class="btn btn-primary" href="{{route('MyStore','order')}}" name="btnOrder">Đơn hàng 
 				<span class="badge badge-danger">{!! $order->count() !!}</span>
 				</a>
-				<a class="btn btn-primary" href="{{route('MyStore','favorite')}}" name="btnFav">Yêu thích</a>
+				<a class="btn btn-primary" href="{{route('MyStore','favorite')}}" name="btnFav">Yêu thích
+				<span class="badge badge-danger">{!! $fav->count() !!}</span>
+				</a>
 			</div>
 			<div class="col-lg-12 p-0 m-0">
 				@foreach($stock as $item)
@@ -26,12 +28,12 @@ Date: 17/02/2017
 						<div class="col-lg-4 col-sm-12">
 							<div class="media">
 								<div class="media-left">
-									<img src="{{ asset('resources/upload/'.$item->img) }}" class="media-object img-thumbnail avatar"/>
+									<img src="{{ asset('resources/upload/'.$state.'s/'.$state.'-'.$item->id.'/'.$item->img) }}" class="media-object img-thumbnail avatar"/>
 								</div>
 								<div class="media-body ml-2">
 									<a href="{{route('StockDetail',$item->id)}}">
 										<h5 class="media-heading">
-											{!! $item->name !!}<span class="badge badge-default new-old-product"> {!! ($item->status=="new")?"Mới":"Cũ" !!}
+											{!! $item->name !!}  <span class="badge badge-default new-old-product"> {!! ($item->status=="new")?"Mới":"Cũ" !!}
 											</span>
 										</h5>
 									</a>
@@ -64,7 +66,9 @@ Date: 17/02/2017
 				<a class="btn btn-primary active" href="{{route('MyStore','order')}}" name="btnOrder">Đơn hàng 
 				<span class="badge badge-danger">{!! $order->count() !!}</span>
 				</a>
-				<a class="btn btn-primary" href="{{route('MyStore','favorite')}}" name="btnFav">Yêu thích</a>
+				<a class="btn btn-primary" href="{{route('MyStore','favorite')}}" name="btnFav">Yêu thích
+				<span class="badge badge-danger">{!! $fav->count() !!}</span>
+				</a>
 			</div>
 			<div class="col-lg-12 p-0 m-0">
 				@foreach($order as $item)
@@ -73,12 +77,12 @@ Date: 17/02/2017
 						<div class="col-lg-4 col-sm-12">
 							<div class="media">
 								<div class="media-left">
-									<img src="{{ asset('resources/upload/'.$item->img) }}" class="media-object img-thumbnail avatar"/>
+									<img src="{{ asset('resources/upload/'.$state.'s/'.$state.'-'.$item->id.'/'.$item->img) }}" class="media-object img-thumbnail avatar"/>
 								</div>
 								<div class="media-body ml-2">
 									<a href="{{route('OrderDetail',$item->id)}}">
 										<h5 class="media-heading">
-											{!! $item->name !!}<span class="badge badge-default new-old-product"> {!! ($item->status=="new")?"Mới":"Đồ cũ" !!}
+											{!! $item->name !!}  <span class="badge badge-default new-old-product"> {!! ($item->status=="new")?"Mới":"Cũ" !!}
 											</span>
 										</h5>
 									</a>
@@ -111,10 +115,19 @@ Date: 17/02/2017
 				<a class="btn btn-primary" href="{{route('MyStore','order')}}" name="btnOrder">Đơn hàng 
 				<span class="badge badge-danger">{!! $order->count() !!}</span>
 				</a>
-				<a class="btn btn-primary active" href="{{route('MyStore','favorite')}}" name="btnFav">Yêu thích</a>
+				<a class="btn btn-primary active" href="{{route('MyStore','favorite')}}" name="btnFav">Yêu thích
+				<span class="badge badge-danger">{!! $fav->count() !!}</span>
+				</a>
 			</div>
 			<div class="col-lg-12 p-0 m-0">
-				<h1>Lỗi</h1>
+				@foreach($fav as $key)
+					<?php
+						$item = App\Models\Stock::find($key->stock_id);
+						$user = $userModel->getDetailUserByUserID($item->user_id);
+						$cate = $cateModel->getCateById($item->cate_id);
+					?>
+					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'state' => "Stock",'type' => 'stock'])
+				@endforeach
 			</div>
 		@endif
 		</div>

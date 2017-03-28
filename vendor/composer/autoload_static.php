@@ -278,6 +278,7 @@ class ComposerStaticInit4bd09316556cc30a317b14bc17b6e888
 
     public static $classMap = array (
         'CreateCatesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_13_040246_create_cates_table.php',
+        'CreateFavsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_28_015020_create_favs_table.php',
         'CreateMatchsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_13_090250_create_matchs_table.php',
         'CreateOrderimagesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_23_030738_create_orderimages_table.php',
         'CreateOrdersTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_13_085722_create_orders_table.php',

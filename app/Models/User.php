@@ -34,6 +34,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Order');
     }
 
+    public function fav() {
+        return $this->hasMany('App\Models\Fav');
+    }
+
     //Get data detail user by username---- Anh Pham
     public function getDetailUserByUserName($username) {
         return $this->where('username', $username)->first();
