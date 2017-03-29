@@ -3,46 +3,55 @@ Date: 17/02/2017
 -->
 
 <div class="container-fluid search mt-2">
-  <form class="form-inline justify-content-center">
+  <form class="form-inline justify-content-center" action="search" method="get">
   	<input type="hidden" name="_token" value="{!!csrf_token()!!}"/>
 	<div class="form-group">
-	  <input type="text" class="form-control" id="search-keyword" placeholder="Từ khóa tìm kiếm..."/>
+	  <input type="text" class="form-control" id="search-keyword" name="search_key" placeholder="Từ khóa tìm kiếm..."/>
 	</div>
-	
+
+      <div class="form-group">
+          <select class="form-control" id="search-type" name="search_type">
+              <option value="" selected>Loại hàng</option>
+              <option disabled>──────────</option>
+              <option value="stocks">Kho hàng</option>
+              <option value="orders">Đơn hàng</option>
+          </select>
+      </div>
+
 	<div class="form-group">
-	  <select class="form-control" id="search-category">
-		<option value="all" selected>Danh Mục</option>
+	  <select class="form-control" id="search-category" name="search_cate">
+		<option value="" selected>Danh Mục</option>
 		<option disabled>──────────</option>
-		<option value="computer">Máy tính</option>
-		<option value="cellphone">Điện thoại</option>
-		<option value="book">Sách</option>
+		<option value="2">Máy tính</option>
+		<option value="1">Điện thoại</option>
+		<option value="3">Sách</option>
 	  </select>
 	</div>
 		
 	<div class="form-group">
-	  <select class="form-control" id="search-status">
-		<option value="all" selected>Tình Trạng</option>
+	  <select class="form-control" id="search-status" name="search_status">
+		<option value="" selected>Tình Trạng</option>
 		<option disabled>──────────</option>
 		<option value="new">Mới</option>
-		<option value="secondhand">Cũ</option>
+		<option value="old">Cũ</option>
 	  </select>
 	</div>
 	
-    <div class="form-group">
-	  <select class="form-control" id="search-rate">
-		<option value="all" selected>Đánh giá</option>
-		<option disabled>──────</option>
-		<option value="1">*</option>
-		<option value="2">**</option>
-		<option value="3">***</option>
-		<option value="4">****</option>
-		<option value="5">*****</option>
-	  </select>
-	</div>
+    {{--<div class="form-group">--}}
+	  {{--<select class="form-control" id="search-rate" name="search_rate">--}}
+		{{--<option value="" selected>Đánh giá</option>--}}
+		{{--<option disabled>──────</option>--}}
+		{{--<option value="1">*</option>--}}
+		{{--<option value="2">**</option>--}}
+		{{--<option value="3">***</option>--}}
+		{{--<option value="4">****</option>--}}
+		{{--<option value="5">*****</option>--}}
+	  {{--</select>--}}
+	{{--</div>--}}
 	
 	<div class="form-group">
-	  <select class="form-control" id="search-city">
-		<option value="all" selected>Thành phố</option>
+	  <select class="form-control" id="search-city" name="search_city">
+		<option value="" selected>Thành phố</option>
 		<option disabled>──────────</option>
 		<option value="hcm">Ho Chi Minh</option>
 		<option value="hn">Ha Noi</option>

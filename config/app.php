@@ -166,6 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
+        'Collective\Html\HtmlServiceProvider',
 
         //
 
@@ -224,6 +225,8 @@ return [
         'Storage' => Illuminate\Support\Facades\Storage::class,
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
+        'Form' => 'Collective\Html\FormFacade',
+        'Html' => 'Collective\Html\HtmlFacade',
         'View' => Illuminate\Support\Facades\View::class
 
     ],
