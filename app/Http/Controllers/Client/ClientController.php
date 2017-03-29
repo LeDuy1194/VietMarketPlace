@@ -29,47 +29,91 @@ class ClientController extends Controller
         $user_id = Auth::id();
         $img_main = $request->file('image-main')->getClientOriginalName();
         $img_main = 'main-' . $img_main;
-        $stock = new Stock();
+        $cate_parent = $_POST['prtcate'];
+        if ($cate_parent == 'Kho Hàng') {
+            // Stock
+            $stock = new Stock();
+            $stock->name = $request->itemname;
+            $stock->price = $request->price;
+            $stock->status = $_POST['status'];
+            $stock->description = $request->discription;
+            $stock->place = $request->address;
+            $stock->img = $img_main;
+            $stock->user_id = $user_id;
+            $stock->cate_id = $_POST['cate'];
+            $stock->save();
 
-        // Stock
-    	$stock->name = $request->itemname;
-    	$stock->price = $request->price;
-    	$stock->status = $_POST['status'];
-    	$stock->description = $request->discription;
-    	$stock->place = $request->address;
-    	$stock->img = $img_main;
-    	$stock->user_id = $user_id;
-    	$stock->cate_id = $_POST['cate'];
-    	$stock->save();
+            $stock_id = $stock->id;
+            $root_dir = base_path() . '/resources/upload/stocks/stock-' . $stock_id;
+            if(!File::exists($root_dir)) {
+                // path does not exist
+                File::makeDirectory($root_dir, 0777, true, true);
+            }
+            $request->file('image-main')->move($root_dir, $img_main);
 
-        $stock_id = $stock->id;
-        $root_dir = base_path() . '/resources/upload/stocks/stock-' . $stock_id;
-        if(!File::exists($root_dir)) {
-            // path does not exist
-            File::makeDirectory($root_dir, 0777, true, true);
+            //Stock_image
+            $img_details = [];
+            $img_detail_1 = $request->file('image-detail-1')->getClientOriginalName();
+            $img_detail_2 = $request->file('image-detail-2')->getClientOriginalName();
+            $img_detail_3 = $request->file('image-detail-3')->getClientOriginalName();
+            $img_details['image-detail-1'] =  'detail-' . $img_detail_1;
+            $img_details['image-detail-2'] =  'detail-' . $img_detail_2;
+            $img_details['image-detail-3'] =  'detail-' . $img_detail_3;
+
+            foreach ($img_details as $key => $img_detail) {
+                $stock_img = new StockImage();
+                $stock_img->stock_id = $stock_id;
+                $stock_img->image = $img_detail;
+                $request->file($key)->move($root_dir, $img_detail);
+                $stock_img->save();
+                $stock_img->save();
+            }
+            // After
+            return redirect()->route('Home');
         }
-        $request->file('image-main')->move($root_dir, $img_main);
+        else {
+            // Stock
+            $order = new Order();
+            $order->name = $request->itemname;
+            $order->price = $request->price;
+            $order->status = $_POST['status'];
+            $order->description = $request->discription;
+            $order->place = $request->address;
+            $order->img = $img_main;
+            $order->user_id = $user_id;
+            $order->cate_id = $_POST['cate'];
+            $order->save();
 
-        //Stock_image
-        $img_details = [];
-        $img_detail_1 = $request->file('image-detail-1')->getClientOriginalName();
-        $img_detail_2 = $request->file('image-detail-2')->getClientOriginalName();
-        $img_detail_3 = $request->file('image-detail-3')->getClientOriginalName();
-        $img_details['image-detail-1'] =  'detail-' . $img_detail_1;
-        $img_details['image-detail-2'] =  'detail-' . $img_detail_2;
-        $img_details['image-detail-3'] =  'detail-' . $img_detail_3;
+            $order_id = $order->id;
+            $root_dir = base_path() . '/resources/upload/orders/order-' . $order_id;
+            if(!File::exists($root_dir)) {
+                // path does not exist
+                File::makeDirectory($root_dir, 0777, true, true);
+            }
+            $request->file('image-main')->move($root_dir, $img_main);
 
-        foreach ($img_details as $key => $img_detail) {
-            $stock_img = new StockImage();
-            $stock_img->stock_id = $stock_id;
-            $stock_img->image = $img_detail;
-            $request->file($key)->move($root_dir, $img_detail);
-            $stock_img->save();
-            $stock_img->save();
+            //Stock_image
+            $img_details = [];
+            $img_detail_1 = $request->file('image-detail-1')->getClientOriginalName();
+            $img_detail_2 = $request->file('image-detail-2')->getClientOriginalName();
+            $img_detail_3 = $request->file('image-detail-3')->getClientOriginalName();
+            $img_details['image-detail-1'] =  'detail-' . $img_detail_1;
+            $img_details['image-detail-2'] =  'detail-' . $img_detail_2;
+            $img_details['image-detail-3'] =  'detail-' . $img_detail_3;
+
+            foreach ($img_details as $key => $img_detail) {
+                $order_img = new OrderImage();
+                $order_img->order_id = $order_id;
+                $order_img->image = $img_detail;
+                $request->file($key)->move($root_dir, $img_detail);
+                $order_img->save();
+                $order_img->save();
+            }
+            // After
+            return redirect()->route('Home');
         }
 
-    	// After
-    	return redirect()->route('Home');
+
     }
 
     //Show detail profile ---- Anh Pham
