@@ -29,7 +29,7 @@
 							<label>
 								Chọn Phần Mục *
 							</label>
-							<select class="form-control" id="hang" name="hang" >
+							<select class="form-control" id="prtcate" name="prtcate" >
 								<option selected value="Kho Hàng">Kho Hàng</option>
 								<option value="Đơn Hàng">Đơn Hàng</option>
 							</select>
