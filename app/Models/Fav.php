@@ -17,4 +17,8 @@ class Fav extends Model
     public function getFavByStock($id) {
         return $this->where('stock_id',$id)->get();
     }
+
+    public function getFav($user_id,$stock_id) {
+    	return $this->where('user_id',$user_id)->where('stock_id',$stock_id)->first();
+    }
 }

@@ -60,11 +60,13 @@ Route::post('upload',['as'=>'postupload','uses'=>'Client\ClientController@postUp
 
 //user edit, delete
 Route::get('delete/{state}--{id}',['as'=>'getDeleteProduct','uses'=>'Client\ClientController@getDeleteProduct']);
-// Route::get('edit/{id}',['as'=>'getEditProduct','uses'=>'Client\ClientController@getEditProduct']);
-// Route::post('edit/{id}',['as'=>'postEditProduct','uses'=>'Client\ClientController@postEditProduct']);
+// Route::get('edit/{state}--{id}',['as'=>'getEditProduct','uses'=>'Client\ClientController@getEditProduct']);
+// Route::post('edit/{state}--{id}',['as'=>'postEditProduct','uses'=>'Client\ClientController@postEditProduct']);
 
 Route::get('init_db',['uses'=>'Client\HomeController@init_db']);
 
 Route::get('search',['uses' => 'SearchController@getSearch','as' => 'search']);
 
 //Route::resource('queries', 'QueryController');
+// Change favorite
+Route::get('favorite/{id}',['as' => 'favorite','uses' => 'Client\HomeController@changeFavorite']);

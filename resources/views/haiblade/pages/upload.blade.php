@@ -53,8 +53,8 @@
 										Chọn Tình Trạng *
 									</label>
 									<select class="form-control" id="status" name="status" >
-										<option selected value="Mới">Mới</option>
-										<option value="Cũ">Cũ</option>
+										<option selected value="0">Mới</option>
+										<option value="1">Cũ</option>
 									</select>
 								</div>
 							</div>
@@ -182,7 +182,7 @@
 @section('scripts')
 
 {{--http://jsbin.com/uboqu3/1/edit?html,js,output--}}
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+{{--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>--}}
 <!--[if IE]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->

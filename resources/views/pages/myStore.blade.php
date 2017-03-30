@@ -8,11 +8,7 @@ Date: 17/02/2017
 @section('content')
 	@include('utils.advertise')
 	<div class="container">
-		@if (Session::has('flash_message'))
-            <div class="alert alert-{!! Session::get('flash_level') !!}">
-                {!! Session::get('flash_message') !!}
-            </div>
-        @endif
+		@include('utils.message')
 		<div class="row mt-2">
 		@if($state == 'stock')
 			<div class="btn-group-justified m-auto">
@@ -38,7 +34,7 @@ Date: 17/02/2017
 								<div class="media-body ml-2">
 									<a href="{{route('StockDetail',$item->id)}}">
 										<h5 class="media-heading">
-											{!! $item->name !!}  <span class="badge badge-default new-old-product"> {!! ($item->status=="new")?"Mới":"Cũ" !!}
+											{!! $item->name !!}  <span class="badge badge-default new-old-product"> {!! ($item->status == 0)?"Mới":"Cũ" !!}
 											</span>
 										</h5>
 									</a>
@@ -87,7 +83,7 @@ Date: 17/02/2017
 								<div class="media-body ml-2">
 									<a href="{{route('OrderDetail',$item->id)}}">
 										<h5 class="media-heading">
-											{!! $item->name !!}  <span class="badge badge-default new-old-product"> {!! ($item->status=="new")?"Mới":"Cũ" !!}
+											{!! $item->name !!}  <span class="badge badge-default new-old-product"> {!! ($item->status == 0)?"Mới":"Cũ" !!}
 											</span>
 										</h5>
 									</a>

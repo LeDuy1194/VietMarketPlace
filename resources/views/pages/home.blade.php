@@ -10,6 +10,7 @@ Update_at: 23/03/2017
 	@include('utils.advertise')
 	@include('utils.searchForm')
 	<div class="container">
+		@include('utils.message')
 		<div class="row mt-2">
 			<div class="col-lg-12 p-0 m-0">
 				<h2>Kho hàng</h2>

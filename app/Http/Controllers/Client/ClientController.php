@@ -124,12 +124,18 @@ class ClientController extends Controller
         else {
             $product = Order::find($id);
         }
-        $directory = base_path() . '/resources/upload/'.$state.'s/'.$state.'-' .$id;
-        File::cleanDirectory($directory);
-        File::deleteDirectory($directory);
-        $productName = $product->name;
-        $product->delete();
-        return redirect()->route('MyStore',$state)->with(['flash_level'=>'success','flash_message'=>'Xóa '.$productName.' thành công.']);
+        if (Auth::id() == $product->user_id) {
+            $directory = base_path() . '/resources/upload/'.$state.'s/'.$state.'-' .$id;
+            File::cleanDirectory($directory);
+            File::deleteDirectory($directory);
+            $productName = $product->name;
+            $product->delete();
+            $message = ['flash_level'=>'success','flash_message'=>'Xóa '.$productName.' thành công.'];
+        }
+        else {
+            $message = ['flash_level'=>'danger','flash_message'=>'Bạn không phải là chủ tin này.'];
+        }
+        return redirect()->route('MyStore',$state)->with($message);
     }
 
     //Show detail profile ---- Anh Pham

@@ -73,7 +73,7 @@ Date: 21/02/2017
 					<div class="collapse show card-block" id="collapseProductInfo">
 						<ul class="product-info" id="productInfo">
 							<li class="price-product"><i class="fa fa-money" aria-hidden="true"></i> {!! number_format($data->price,0,",",".")." VNĐ" !!}</li>
-							<li><span class="badge badge-default new-old-product"> {!! ($data->status=="new")?"Mới":"Cũ" !!}</span></li>
+							<li><span class="badge badge-default new-old-product"> {!! ($data->status == 0)?"Mới":"Cũ" !!}</span></li>
 							<li><i class="fa fa-street-view" aria-hidden="true"></i> {!! $data->place !!}</li>
 						</ul>
 					</div>
