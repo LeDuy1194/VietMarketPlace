@@ -9,7 +9,7 @@ Date: 23/03/2017
 					<img src="{{ asset('resources/upload/'.$type.'s/'.$type.'-'.$item->id.'/'.$item->img) }}" class="media-object img-thumbnail avatar"/>
 				</div>
 				<div class="media-body ml-1">
-					<a href="{{route($state.'Detail',$item->id)}}"><h5 class="media-heading">{!! $item->name !!}</h5></a>
+					<a href="{{route($type.'Detail',$item->id)}}"><h5 class="media-heading">{!! $item->name !!}</h5></a>
 					<p>
 						Danh Mục:
 						<a href="{{route('listByCate',[$cate->id,'all'])}}">{!! $cate->name !!}</a>
@@ -42,7 +42,7 @@ Date: 23/03/2017
 			<p><i class="fa fa-street-view" aria-hidden="true"></i> {!! $item->place !!}</p>
 		</div>
 		<div class="col-lg-1 col-sm-2 text-right">
-			@if (($state == 'stock')||($state == 'Stock'))
+			@if ($type == 'stock')
 				<a class="btn btn-warning" title="Thêm vào danh sách yêu thích." href="{{route('favorite',$item->id)}}">
 					<i class="fa fa-heart-o" aria-hidden="true"></i>
 				</a>

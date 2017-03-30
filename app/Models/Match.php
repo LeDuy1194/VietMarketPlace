@@ -1,6 +1,7 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Match extends Model
 {
@@ -11,11 +12,15 @@ class Match extends Model
 
     public $timestamps = true;
 
-    public function stock() {
-    	return $this->belongToMany('App\Models\Stock', 'stock_id', 'id');
+    public function getStockByOrderId($id,$number) {
+    	$stock = $this->select('stock_id')->where('order_id',$id)->get();
+        $result = DB::table('stocks')->whereIn('id',$stock)->orderBy('updated_at','desc')->get();
+        return $result;
     }
 
-    public function order() {
-    	return $this->belongToMany('App\Models\Order', 'order_id', 'id');
+    public function getOrderByStockId($id,$number) {
+        $order = $this->select('order_id')->where('stock_id',$id)->get();
+        $result = DB::table('orders')->whereIn('id',$order)->orderBy('updated_at','desc')->get();
+        return $result;
     }
 }

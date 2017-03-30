@@ -1,7 +1,7 @@
-<!--
+{{--
 Created by: Nguyen Le Duy
 Date: 17/02/2017
--->
+--}}
 
 @extends('layouts.master')
 
@@ -32,7 +32,7 @@ Date: 17/02/2017
 									<img src="{{ asset('resources/upload/'.$state.'s/'.$state.'-'.$item->id.'/'.$item->img) }}" class="media-object img-thumbnail avatar"/>
 								</div>
 								<div class="media-body ml-2">
-									<a href="{{route('StockDetail',$item->id)}}">
+									<a href="{{route('stockDetail',$item->id)}}">
 										<h5 class="media-heading">
 											{!! $item->name !!}  <span class="badge badge-default new-old-product"> {!! ($item->status == 0)?"Mới":"Cũ" !!}
 											</span>
@@ -40,6 +40,7 @@ Date: 17/02/2017
 									</a>
 									<?php $cate = $cateModel->getCateById($item->cate_id); ?>
 									<p>Category: {!! $cate->name !!}</p>
+									<a href="{{route('getMatch',[$state,$item->id])}}">Kết quả matching.</a>
 								</div>
 							</div>
 						</div>
@@ -81,7 +82,7 @@ Date: 17/02/2017
 									<img src="{{ asset('resources/upload/'.$state.'s/'.$state.'-'.$item->id.'/'.$item->img) }}" class="media-object img-thumbnail avatar"/>
 								</div>
 								<div class="media-body ml-2">
-									<a href="{{route('OrderDetail',$item->id)}}">
+									<a href="{{route('orderDetail',$item->id)}}">
 										<h5 class="media-heading">
 											{!! $item->name !!}  <span class="badge badge-default new-old-product"> {!! ($item->status == 0)?"Mới":"Cũ" !!}
 											</span>
@@ -89,6 +90,7 @@ Date: 17/02/2017
 									</a>
 									<?php $cate = $cateModel->getCateById($item->cate_id); ?>
 									<p>Category: {!! $cate->name !!}</p>
+									<a href="{{route('getMatch',[$state,$item->id])}}">Kết quả matching.</a>
 								</div>
 							</div>
 						</div>
@@ -127,7 +129,7 @@ Date: 17/02/2017
 						$user = $userModel->getDetailUserByUserID($item->user_id);
 						$cate = $cateModel->getCateById($item->cate_id);
 					?>
-					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'state' => "Stock",'type' => 'stock'])
+					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock'])
 				@endforeach
 				<?php $page = $fav; ?>
 				<nav aria-label="Page navigation">

@@ -19,7 +19,7 @@ Update_at: 23/03/2017
 					$user = $userModel->getDetailUserByUserID($item->user_id);
 					$cate = $cateModel->getCateById($item->cate_id);
 				?>
-				@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'state' => "Stock", 'type' => 'stock'])
+				@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock'])
 				@endforeach
 				<a href="{{route('listByCate',[0,'stock'])}}" class="text-center"><h3>Xem thêm...</h3></a>
 			</div>
@@ -30,7 +30,7 @@ Update_at: 23/03/2017
 					$user = $userModel->getDetailUserByUserID($item->user_id);
 					$cate = $cateModel->getCateById($item->cate_id);
 				?>
-				@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'state' => "Order", 'type' => 'order'])
+				@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order'])
 				@endforeach
 				<a href="{{route('listByCate',[0,'order'])}}" class="text-center"><h3>Xem thêm...</h3></a>
 			</div>

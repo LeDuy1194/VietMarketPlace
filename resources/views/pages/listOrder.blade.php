@@ -98,10 +98,7 @@ Date: 21/02/2017
 					</div>
 				</div>
 				<div class="card card-block">
-					<div class="btn-group">
-						<button id="btnFav" class="btn btn-primary" type="button" onclick="">Thích</button>
-						<button id="btnReport" class="btn btn-block btn-lg">Báo cáo tin ảo</button>
-					</div>
+					<button id="btnReport" class="btn btn-block btn-lg">Báo cáo tin ảo</button>
 				</div>
 			</div>
 			<div class="col-lg-1 hidden-sm-down"></div>

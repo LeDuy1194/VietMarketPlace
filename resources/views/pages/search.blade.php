@@ -18,7 +18,7 @@ Create_at: 27/03/2017
                     $user = $userModel->getDetailUserByUserID($item->user_id);
                     $cate = $cateModel->getCateById($item->cate_id);
                     ?>
-                    @include('utils.contentTable',['item' => $item,'user' => json_decode($user),'cate' => json_decode($cate),'state' => "Stock", 'type' => 'stock'])
+                    @include('utils.contentTable',['item' => $item,'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock'])
                 @endforeach
             </div>
             @endif
@@ -30,7 +30,7 @@ Create_at: 27/03/2017
                     $user = $userModel->getDetailUserByUserID($item->user_id);
                     $cate = $cateModel->getCateById($item->cate_id);
                     ?>
-                    @include('utils.contentTable',['item' => $item,'user' => json_decode($user),'cate' => json_decode($cate),'state' => "Order", 'type' => 'order'])
+                    @include('utils.contentTable',['item' => $item,'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order'])
                 @endforeach
             </div>
                 @endif

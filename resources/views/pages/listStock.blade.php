@@ -18,7 +18,7 @@ Date: 21/02/2017
 @endsection
 
 @section('content')
-
+	@include('utils.message')
 	<div class="container-fluid content-product-detail">
 		<div class="row">
 			<div class="col-lg-12">
@@ -96,7 +96,7 @@ Date: 21/02/2017
 				</div>
 				<div class="card card-block">
 					<div class="btn-group">
-						<button id="btnFav" class="btn btn-primary" type="button" onclick="">Thích</button>
+						<a id="btnFav" class="btn btn-primary" href="{{route('favorite',$data->id)}}">Thích</a>
 						<button id="btnReport" class="btn btn-block btn-lg">Báo cáo tin ảo</button>
 					</div>
 				</div>

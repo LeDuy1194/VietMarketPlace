@@ -29,8 +29,8 @@ Route::get('homepage',['as'=>'Home','uses'=>'Client\HomeController@showHome']);
 
 Route::get('mystore/{state}',['as'=>'MyStore','uses'=>'Client\HomeController@showMyStore']);
 
-Route::get('order-detail/{id}',['as'=>'OrderDetail','uses'=>'Client\HomeController@showOrderDetail']);
-Route::get('stock-detail/{id}',['as'=>'StockDetail','uses'=>'Client\HomeController@showStockDetail']);
+Route::get('order-detail/{id}',['as'=>'orderDetail','uses'=>'Client\HomeController@showOrderDetail']);
+Route::get('stock-detail/{id}',['as'=>'stockDetail','uses'=>'Client\HomeController@showStockDetail']);
 
 Route::get('profile/{user_name}', ['as' => 'profile', 'uses' => 'Client\ClientController@profileDetail']);
 
@@ -69,3 +69,4 @@ Route::get('search',['uses' => 'SearchController@getSearch','as' => 'search']);
 //Route::resource('queries', 'QueryController');
 // Change favorite
 Route::get('favorite/{id}',['as' => 'favorite','uses' => 'Client\HomeController@changeFavorite']);
+Route::get('match/{state}--{id}',['as' => 'getMatch','uses' => 'Client\MatchController@getMatch']);

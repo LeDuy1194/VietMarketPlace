@@ -33,7 +33,7 @@ Date: 23/03/2017
 						$user = $userModel->getDetailUserByUserID($item->user_id);
 						$cate = $cateModel->getCateById($item->cate_id);
 					?>
-					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'state' => "Stock",'type' => 'stock'])
+					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock'])
 					@endforeach
 				</div>
 			@elseif ($state == 'order')
@@ -45,7 +45,7 @@ Date: 23/03/2017
 						$user = $userModel->getDetailUserByUserID($item->user_id);
 						$cate = $cateModel->getCateById($item->cate_id);
 					?>
-					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'state' => "Order",'type' => 'order'])
+					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order'])
 					@endforeach
 				</div>
 			@else
@@ -64,7 +64,7 @@ Date: 23/03/2017
 						$user = $userModel->getDetailUserByUserID($item->user_id);
 						$cate = $cateModel->getCateById($item->cate_id);
 					?>
-					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'state' => "Stock",'type' => 'stock'])
+					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock'])
 					@endforeach
 				</div>
 				<div class="col-lg-12 p-0 m-0">
@@ -74,7 +74,7 @@ Date: 23/03/2017
 						$user = $userModel->getDetailUserByUserID($item->user_id);
 						$cate = $cateModel->getCateById($item->cate_id);
 					?>
-					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'state' => "Order",'type' => 'order'])
+					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order'])
 					@endforeach
 				</div>
 			@endif
