@@ -17,7 +17,7 @@ class CreateStocksTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('price');
-            $table->string('status');
+            $table->tinyint('status')->default(0);
             $table->string('description');
             $table->string('place');
             $table->string('img');

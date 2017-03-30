@@ -38,7 +38,7 @@ Date: 17/02/2017
 								<div class="media-body ml-2">
 									<a href="{{route('StockDetail',$item->id)}}">
 										<h5 class="media-heading">
-											{!! $item->name !!}  <span class="badge badge-default new-old-product"> {!! ($item->status=="new")?"Mới":"Cũ" !!}
+											{!! $item->name !!}  <span class="badge badge-default new-old-product"> {!! ($item->status == 0)?"Mới":"Cũ" !!}
 											</span>
 										</h5>
 									</a>
@@ -87,7 +87,7 @@ Date: 17/02/2017
 								<div class="media-body ml-2">
 									<a href="{{route('OrderDetail',$item->id)}}">
 										<h5 class="media-heading">
-											{!! $item->name !!}  <span class="badge badge-default new-old-product"> {!! ($item->status=="new")?"Mới":"Cũ" !!}
+											{!! $item->name !!}  <span class="badge badge-default new-old-product"> {!! ($item->status == 0)?"Mới":"Cũ" !!}
 											</span>
 										</h5>
 									</a>

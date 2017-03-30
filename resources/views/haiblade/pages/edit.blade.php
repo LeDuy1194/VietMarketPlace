@@ -9,7 +9,7 @@
 					<a href="{{url('/')}}">Trang Chủ</a>
 				</li>
 				<li class="breadcrumb-item active">
-					Đăng Tin
+					Sửa Tin
 				</li>
 			</ul>
 		</div>
@@ -53,8 +53,8 @@
 										Chọn Tình Trạng *
 									</label>
 									<select class="form-control" id="status" name="status" >
-										<option selected value="Mới">Mới</option>
-										<option value="Cũ">Cũ</option>
+										<option selected value="0">Mới</option>
+										<option value="1">Cũ</option>
 									</select>
 								</div>
 							</div>
