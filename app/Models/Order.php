@@ -18,6 +18,11 @@ class Order extends Model
     public function cate() {
     	return $this->belongTo('App\Models\Cate');
     }
+    
+    public function oimage() {
+        return $this->hasMany('App\Models\OrderImage');
+    }
+
 
     //Get the newest $number unfinished order.
     public function getNewest($number) {

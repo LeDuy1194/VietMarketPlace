@@ -116,6 +116,22 @@ class ClientController extends Controller
 
     }
 
+    //Delete product --- Le Duy
+    public function getDeleteProduct($state,$id) {
+        if ($state == 'stock') {
+            $product = Stock::find($id);
+        }
+        else {
+            $product = Order::find($id);
+        }
+        $directory = base_path() . '/resources/upload/'.$state.'s/'.$state.'-' .$id;
+        File::cleanDirectory($directory);
+        File::deleteDirectory($directory);
+        $productName = $product->name;
+        $product->delete();
+        return redirect()->route('MyStore',$state)->with(['flash_level'=>'success','flash_message'=>'Xóa '.$productName.' thành công.']);
+    }
+
     //Show detail profile ---- Anh Pham
     public function profileDetail($user_name) {
         $userModel = new User();

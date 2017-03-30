@@ -51,16 +51,21 @@ class HomeController extends Controller {
         return view('pages.home',compact('stock','order','userModel','cateModel'));
     }
 
-    public function showMyStore($state) {
+    public function listByCate($id,$state) {
         $number = 5;
-        $userModel = new User();
         $cateModel = new Cate();
-        $favModel = new Fav();
-        $author = $userModel->getDetailUserByUserID(Auth::id());
-        $stock = $author->stock;
-        $order = $author->order;
-        $fav = $favModel->getFavByUser($author->id,$number);
-        return view('pages.myStore',compact('stock','order','fav','state','author','cateModel','userModel'));
+        $userModel = new User();
+        $stockModel = new Stock();
+        $orderModel = new Order();
+        if ($id != 0) {
+            $stock = $stockModel->getStockByCateId($id,$number);
+            $order = $orderModel->getOrderByCateId($id,$number);
+        }
+        else {
+            $stock = $stockModel->getPage($number);
+            $order = $orderModel->getPage($number);
+        }
+        return view('pages.listProduct',compact('stock','order','id','state','userModel','cateModel'));
     }
 
     public function showOrderDetail($id) {
@@ -83,6 +88,18 @@ class HomeController extends Controller {
         return view('pages.listStock',compact('data','cate', 'author', 'stockImages'));
     }
 
+    public function showMyStore($state) {
+        $number = 5;
+        $userModel = new User();
+        $cateModel = new Cate();
+        $favModel = new Fav();
+        $author = $userModel->getDetailUserByUserID(Auth::id());
+        $stock = $author->stock;
+        $order = $author->order;
+        $fav = $favModel->getFavByUser($author->id,$number);
+        return view('pages.myStore',compact('stock','order','fav','state','author','cateModel','userModel'));
+    }
+
     public function showUploadStock() {
         return view('haiblade.pages.uploadstock');
     }
@@ -93,22 +110,5 @@ class HomeController extends Controller {
 
     public function showMap() {
         return view('haiblade.pages.map');
-    }
-
-    public function listByCate($id,$state) {
-        $number = 5;
-        $cateModel = new Cate();
-        $userModel = new User();
-        $stockModel = new Stock();
-        $orderModel = new Order();
-        if ($id != 0) {
-            $stock = $stockModel->getStockByCateId($id,$number);
-            $order = $orderModel->getOrderByCateId($id,$number);
-        }
-        else {
-            $stock = $stockModel->getPage($number);
-            $order = $orderModel->getPage($number);
-        }
-        return view('pages.listProduct',compact('stock','order','id','state','userModel','cateModel'));
     }
 }

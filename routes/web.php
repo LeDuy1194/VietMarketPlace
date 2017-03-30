@@ -57,6 +57,11 @@ Route::get('listbycate/{id}/{state}',['as'=>'listByCate','uses'=>'Client\HomeCon
 Route::get('upload',['as'=>'getupload','uses'=>'Client\ClientController@getUpload']);
 Route::post('upload',['as'=>'postupload','uses'=>'Client\ClientController@postUpload']);
 
+//user edit, delete
+Route::get('delete/{state}--{id}',['as'=>'getDeleteProduct','uses'=>'Client\ClientController@getDeleteProduct']);
+// Route::get('edit/{id}',['as'=>'getEditProduct','uses'=>'Client\ClientController@getEditProduct']);
+// Route::post('edit/{id}',['as'=>'postEditProduct','uses'=>'Client\ClientController@postEditProduct']);
+
 Route::get('init_db',['uses'=>'Client\HomeController@init_db']);
 
 Route::get('search',['uses' => 'SearchController@getSearch','as' => 'search']);

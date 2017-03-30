@@ -18,9 +18,9 @@ class Stock extends Model
     public function cate() {
     	return $this->belongTo('App\Models\Cate');
     }
-
+    
     public function simage() {
-    	return $this->hasMany('App\Models\StockImage');
+        return $this->hasMany('App\Models\StockImage');
     }
 
     //Get the newest $number stock.

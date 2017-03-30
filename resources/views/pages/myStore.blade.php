@@ -8,6 +8,11 @@ Date: 17/02/2017
 @section('content')
 	@include('utils.advertise')
 	<div class="container">
+		@if (Session::has('flash_message'))
+            <div class="alert alert-{!! Session::get('flash_level') !!}">
+                {!! Session::get('flash_message') !!}
+            </div>
+        @endif
 		<div class="row mt-2">
 		@if($state == 'stock')
 			<div class="btn-group-justified m-auto">
@@ -52,7 +57,7 @@ Date: 17/02/2017
 							<a class="btn btn-warning" href="{{route('Home')}}" name=""><h3>Sửa</h3></a>
 						</div>
 						<div class="col-lg-1 text-right">
-							<a class="btn btn-danger" href="{{route('Home')}}" name=""><h3>Xóa</h3></a>
+							<a class="btn btn-danger" href="{{route('getDeleteProduct',[$state,$item->id])}}" name="" onclick="return confirmation('Có xóa {!! $item->name !!} không?')"><h3>Xóa</h3></a>
 						</div>
 					</div>
 				</div>
@@ -101,7 +106,7 @@ Date: 17/02/2017
 							<a class="btn btn-warning" href="{{route('Home')}}" name=""><h3>Sửa</h3></a>
 						</div>
 						<div class="col-lg-1 text-right">
-							<a class="btn btn-danger" href="{{route('Home')}}" name=""><h3>Xóa</h3></a>
+							<a class="btn btn-danger" href="{{route('getDeleteProduct',[$state,$item->id])}}" name="" onclick="return confirmation('Có xóa {!! $item->name !!} không?')"><h3>Xóa</h3></a>
 						</div>
 					</div>
 				</div>
@@ -151,5 +156,5 @@ Date: 17/02/2017
 @endsection
 
 @section('scripts')
-
+    <script src="{{asset('public/js/admin/admin.js')}}"></script>
 @endsection
