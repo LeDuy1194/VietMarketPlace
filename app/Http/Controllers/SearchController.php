@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use App\Models\Cate;
 use App\Models\User;
+use Illuminate\Database\Connection;
 
 class SearchController extends Controller
 {
@@ -22,7 +23,7 @@ class SearchController extends Controller
 //        $status = $request->search_status;
 //        $rate = $request->search_rate;
 //        $city = $request->search_city;
-        if ($type == '') {
+/*        if ($type == '') {
             if ($cate == '') {
                 $articles['stocks'] = DB::table('stocks')->where('name', 'LIKE', '%' . $key . '%')
 //                                      ->where('cate_id', '=', $cate)
@@ -51,9 +52,14 @@ class SearchController extends Controller
                     ->where('cate_id', '=', $cate)
                     ->paginate(10);
             }
-        }
-
-//        dd(sizeof($articles['orders']));
+        }*/
+            $articles[$type] = DB::table($type)->where('name', 'LIKE', '%' . $key . '%')
+                ->whereExists(function ($cate) {
+                    DB::raw("SELECT * WHERE  'cate_id'= '" . $cate . "'");
+                })
+//                                      ->where('cate_id', '=', $cate)
+                ->paginate(10);
+        dd($articles);
         // returns a view and passes the view the list of articles and the original query.
         return view('pages.search', compact('articles','userModel','cateModel'));
     }

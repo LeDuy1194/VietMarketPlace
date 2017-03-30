@@ -1,7 +1,8 @@
 <!--Created by: Nguyen Le Duy
 Date: 23/03/2017
 -->
-<div class="card card-block listV-item p-2">
+<div class="col-lg-12 p-0 m-0">
+	<div class="card card-block listV-item p-2">
 	<div class="row">
 		<div class="col-lg-4 col-sm-12">
 			<div class="media">
@@ -52,4 +53,5 @@ Date: 23/03/2017
 			<h3>{!! number_format($item->price,0,",",".")." VNĐ" !!}</h3>
 		</div>
 	</div>
+</div>
 </div>
