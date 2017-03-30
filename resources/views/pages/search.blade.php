@@ -8,6 +8,7 @@ Create_at: 27/03/2017
 @section('content')
     @include('utils.searchForm')
     <div class="container">
+        @include('utils.message')
         <div class="row mt-2">
             @if (isset($articles['stocks']) || sizeof($articles['stocks']) != 0 )
             <div class="col-lg-12 p-0 m-0">

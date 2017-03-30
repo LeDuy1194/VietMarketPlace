@@ -9,6 +9,7 @@ Date: 23/03/2017
 	@include('utils.advertise')
 	@include('utils.searchForm')
 	<div class="container mt-2">
+		@include('utils.message')
 		<div class="row">
 			<div class="col-lg-12">
 				@if ($id != 0)

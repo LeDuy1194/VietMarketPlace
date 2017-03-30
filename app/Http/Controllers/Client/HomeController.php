@@ -44,17 +44,19 @@ class HomeController extends Controller {
     public function showHome() {
         $userModel = new User();
         $cateModel = new Cate();
+        $favModel = new Fav();
         $stockModel = new Stock();
         $stock = $stockModel->getNewest(5);
         $orderModel = new Order();
         $order = $orderModel->getNewest(5);
-        return view('pages.home',compact('stock','order','userModel','cateModel'));
+        return view('pages.home',compact('stock','order','userModel','cateModel','favModel'));
     }
 
     public function listByCate($id,$state) {
         $number = 5;
         $cateModel = new Cate();
         $userModel = new User();
+        $favModel = new Fav();
         $stockModel = new Stock();
         $orderModel = new Order();
         if ($id != 0) {
@@ -65,7 +67,7 @@ class HomeController extends Controller {
             $stock = $stockModel->getPage($number);
             $order = $orderModel->getPage($number);
         }
-        return view('pages.listProduct',compact('stock','order','id','state','userModel','cateModel'));
+        return view('pages.listProduct',compact('stock','order','id','state','userModel','cateModel','favModel'));
     }
 
     public function showOrderDetail($id) {
@@ -110,5 +112,33 @@ class HomeController extends Controller {
 
     public function showMap() {
         return view('haiblade.pages.map');
+    }
+
+    public function changeFavorite($id) {
+        if (Auth::check()) {
+            $check = Stock::find($id);
+            if ($check != NULL) {
+                $favModel = new Fav();
+                $fav = $favModel->getFav(Auth::id(),$id);
+                if ($fav != NULL) {
+                    $fav->delete();
+                    $message = ['flash_level'=>'danger','flash_message'=>'Unlike '.$check->name.' .'];
+                }
+                else {
+                    $fav = new Fav();
+                    $fav->user_id = Auth::id();
+                    $fav->stock_id = $id;
+                    $fav->save();
+                    $message = ['flash_level'=>'danger','flash_message'=>'Like '.$check->name.' .'];
+                }
+            }
+            else {
+                $message = ['flash_level'=>'danger','flash_message'=>'Sản phẩm không tồn tại.'];
+            }
+        }
+        else {
+            $message = ['flash_level'=>'danger','flash_message'=>'Đăng nhập để thêm vào yêu thích.'];
+        }
+        return back()->with($message);
     }
 }

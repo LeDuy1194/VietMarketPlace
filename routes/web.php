@@ -67,3 +67,5 @@ Route::get('init_db',['uses'=>'Client\HomeController@init_db']);
 Route::get('search',['uses' => 'SearchController@getSearch','as' => 'search']);
 
 //Route::resource('queries', 'QueryController');
+// Change favorite
+Route::get('favorite/{id}',['as' => 'favorite','uses' => 'Client\HomeController@changeFavorite']);
