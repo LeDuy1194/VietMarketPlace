@@ -139,4 +139,15 @@ class ClientController extends Controller
 //        dd($data);
         return view('haiblade.pages.profile', compact('data'));
     }
+    public function postProfile($user_name, Request $request) {
+        $userModel = new User();
+        $data = $userModel->getDetailUserByUserName($user_name);
+
+        $data->fullname = $request->fullname;
+        $data->username = $request->nickname;
+        $data->phone = $request->sdt;
+        $data->address = $request->address;
+        $data->save();
+        return redirect()->Route('profile');
+    }
 }

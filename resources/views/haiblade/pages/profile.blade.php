@@ -61,6 +61,7 @@
 									</div>
 								</div>
 								@if(Auth::id()==$data->id)
+									<input type="hidden" name="_token" value="{!!csrf_token()!!}" action="{!!route('postProfile')!!}" method="POST" enctype="multipart/form-data">
 								<a href="#" class="btn btn-block btn-pf" type="button" data-toggle="modal" data-target="#editProfile">Sửa thông tin</a>
 								<!-- Modal -->
 								<div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="editProfile" aria-hidden="true">
@@ -78,17 +79,17 @@
 											<div class="modal-body">
 												<div class="input-group">
 													<span class="input-group-addon" id="addon-fullname">Họ &amp tên</span>
-													<input type="text" class="form-control" value="{!! $data->fullname !!}" placeholder="Họ tên" id="fullname" aria-describedby="addon-fullname">
+													<input type="text" class="form-control" value="{!! $data->fullname !!}" placeholder="Họ tên" id="fullname" name="fullname" aria-describedby="addon-fullname">
 												</div>
 												<br />
 												<div class="input-group">
 													<span class="input-group-addon" id="addon-username">Nickname</span>
-													<input type="text" class="form-control" value="{!! $data->username !!}" id="nickname" aria-describedby="addon-username">
+													<input type="text" class="form-control" value="{!! $data->username !!}" id="nickname" name="nickname" aria-describedby="addon-username">
 												</div>
 												<br />
 												<div class="input-group">
 													<span class="input-group-addon" id="addon-phone">Điện thoại</span>
-													<input type="text" class="form-control" value="{!! $data->phone !!}" id="sdt" aria-describedby="addon-phone">
+													<input type="text" class="form-control" value="{!! $data->phone !!}" id="sdt" name="sdt" aria-describedby="addon-phone">
 												</div>
 												<br />
 												<div class="input-group">
@@ -98,7 +99,7 @@
 												<br />
 												<div class="input-group">
 													<span class="input-group-addon" id="addon-address">Địa chỉ</span>
-													<input type="text" class="form-control" value="{!! $data->address !!}" id="address" aria-describedby="addon-address">
+													<input type="text" class="form-control" value="{!! $data->address !!}" id="address" name="address" aria-describedby="addon-address">
 												</div>
 												<br />
 
