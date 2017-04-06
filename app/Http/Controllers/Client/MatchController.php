@@ -30,9 +30,4 @@ class MatchController extends Controller
     	}
     	return view('pages.match',compact('base','data','state','cateModel','userModel'));
     }
-
-    // Post matching
-    public function postMatch(Request $request) {
-
-    }
 }

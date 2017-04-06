@@ -12,6 +12,7 @@ use App\Models\StockImage;
 use App\Models\OrderImage;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Match;
 use Illuminate\Support\Facades\File;
 //use Illuminate\Http\File;
 class ClientController extends Controller
@@ -68,11 +69,17 @@ class ClientController extends Controller
                 $stock_img->save();
                 $stock_img->save();
             }
-            // After
-            return redirect()->route('Home');
+
+            $match_table = match_searching($stock,'orders');
+            foreach ($match_table as $order) {
+                $match = new Match();
+                $match->order_id = $order->id;
+                $match->stock_id = $stock->id;
+                $match->save();
+            }
         }
         else {
-            // Stock
+            // Order
             $order = new Order();
             $order->name = $request->itemname;
             $order->price = $request->price;
@@ -92,7 +99,7 @@ class ClientController extends Controller
             }
             $request->file('image-main')->move($root_dir, $img_main);
 
-            //Stock_image
+            //Order_image
             $img_details = [];
             $img_detail_1 = $request->file('image-detail-1')->getClientOriginalName();
             $img_detail_2 = $request->file('image-detail-2')->getClientOriginalName();
@@ -109,11 +116,17 @@ class ClientController extends Controller
                 $order_img->save();
                 $order_img->save();
             }
-            // After
-            return redirect()->route('Home');
+
+            $match_table = match_searching($order,'stocks');
+            foreach ($match_table as $stock) {
+                $match = new Match();
+                $match->order_id = $order->id;
+                $match->stock_id = $stock->id;
+                $match->save();
+            }
         }
-
-
+        // After
+        return redirect()->route('Home');
     }
 
     //Delete product --- Le Duy

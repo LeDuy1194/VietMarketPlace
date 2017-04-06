@@ -33,7 +33,7 @@
             </button>
             <div class="dropdown-menu profile-dropdown" aria-labelledby="dropdownMenu1">
               <a class="dropdown-item" href="{!! url('profile', [Auth::user()->username]) !!}">Hồ sơ</a>
-              <a class="dropdown-item" href="{!! url('/',[Auth::logout()]) !!}">Đăng xuất</a>
+              {{--<a class="dropdown-item" href="{!! url('/',[Auth::logout()]) !!}">Đăng xuất</a> --}}
             </div>
           </li>
         @else

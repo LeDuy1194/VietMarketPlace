@@ -60,4 +60,15 @@ function cate_parent ($data,$parent = 0,$str="--",$select=0) {
 	}
 }
 
+/** Searching the product in table
+* @param $data: the product request data.
+* @param $match_type: the table to search the product.
+**/
+function match_searching($data,$match_type = 'orders') {
+	$result = DB::table($match_type)->where('cate_id','=',$data->cate_id)->where('finished',0)
+				->where('price','=',$data->price)->where('name','LIKE',$data->name)->get();
+	echo "match_searching";
+	return $result;
+}
+
 ?>

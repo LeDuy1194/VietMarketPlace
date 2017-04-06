@@ -102,23 +102,24 @@ Date: 30/03/2017
 				</div>
 			</div>
 			@endforeach
-			<?php $page = $data; ?>
-			<nav aria-label="Page navigation">
-				<ul class="pagination">
-					@if ($page->currentPage() != 1)
-					<li class="page-item"><a class="page-link" href="{!! $page->url($page->currentPage() - 1) !!}">Trước</a></li>
-					@endif
-					@for ($i = 1; $i <= $page->lastPage(); $i = $i + 1)
-					<li class="page-item {!! ($page->currentPage() == $i)?'active':'' !!}">
-						<a class="page-link" href="{!! $page->url($i) !!}">{!! $i !!}</a>
-					</li>
-					@endfor
-					@if ($page->currentPage() != $page->lastPage())
-					<li class="page-item"><a class="page-link" href="{!! $page->url($page->currentPage() + 1) !!}">Sau</a></li>
-					@endif
-				</ul>
-			</nav>
 		</div>
+		
+		<?php $page = $data; ?>
+		<nav aria-label="Page navigation">
+			<ul class="pagination">
+				@if ($page->currentPage() != 1)
+				<li class="page-item"><a class="page-link" href="{!! $page->url($page->currentPage() - 1) !!}">Trước</a></li>
+				@endif
+				@for ($i = 1; $i <= $page->lastPage(); $i = $i + 1)
+				<li class="page-item {!! ($page->currentPage() == $i)?'active':'' !!}">
+					<a class="page-link" href="{!! $page->url($i) !!}">{!! $i !!}</a>
+				</li>
+				@endfor
+				@if ($page->currentPage() != $page->lastPage())
+				<li class="page-item"><a class="page-link" href="{!! $page->url($page->currentPage() + 1) !!}">Sau</a></li>
+				@endif
+			</ul>
+		</nav>
 	</div><br>
 @endsection
 
