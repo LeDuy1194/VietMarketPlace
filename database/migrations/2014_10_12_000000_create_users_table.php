@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('level')->default(0);
             $table->string('fullname')->nullable();
             $table->string('address')->nullable();
+            $table->tinyInteger('city')->nullable();
+            $table->smallInteger('district')->nullable();
             $table->string('phone', 16)->nullable();
             $table->date('dob')->nullable();
             $table->string('avatar')->nullable();
