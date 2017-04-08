@@ -20,8 +20,8 @@ class CreateOrdersTable extends Migration
             $table->tinyint('status')->default(0);
             $table->string('description');
             $table->string('place');
-            $table->tinyInteger('city')->nullable();
-            $table->smallInteger('district')->nullable();
+            $table->string('city',100)->nullable();
+            $table->string('district',100)->nullable();
             $table->string('img');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

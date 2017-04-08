@@ -7,7 +7,7 @@ class Stock extends Model
     //
     protected $table = 'stocks';
 
-    protected $fillable = ['name', 'price', 'status', 'description', 'place', 'img', 'user_id', 'cate_id', 'finished'];
+    protected $fillable = ['name', 'price', 'status', 'description', 'place', 'city', 'district' ,'img', 'user_id', 'cate_id', 'finished'];
 
     public $timestamps = true;
 
