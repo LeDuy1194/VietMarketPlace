@@ -15,4 +15,12 @@ class District extends Model
     public function city() {
     	return $this->belongTo('App\Models\City');
     }
+
+    public function getDistrictByName($district) {
+        return $this->where('name',$district)->first();
+    }
+
+    public function getDistrictByCityId($id) {
+        return $this->where('name',$id)->first();
+    }
 }

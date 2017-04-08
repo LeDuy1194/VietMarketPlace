@@ -11,4 +11,12 @@ class City extends Model
     public function rdistrict() {
         return $this->hasMany('App\Models\District');
     }
+
+    public function getCityByName($city) {
+        return $this->where('name',$city)->first();
+    }
+
+    public function getCityByCityId($id) {
+        return $this->where('cityid',$id)->first();
+    }
 }

@@ -86,7 +86,35 @@
 							<label>
 								Địa Chỉ *
 							</label>
-							<input type="text" name="address" class="form-control" placeholder="Địa Chỉ" required>
+							<input type="text" name="address" class="form-control" placeholder="Đường" required>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>
+										Thành Phố *
+									</label>
+									<select class="form-control" name="ct" required>
+										<option value="0">Chọn</option>
+										@foreach($city as $item)
+											<option value="{!! $item["name"] !!}">{!! $item["name"] !!}</option>
+										@endforeach
+									</select>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>
+										Quận *
+									</label>
+									<select class="form-control" name="dt" required>
+										<option value="0">Chọn</option>
+										@foreach($district as $item)
+											<option value="{!! $item["name"] !!}">{!! $item["name"] !!}</option>
+										@endforeach
+									</select>
+								</div>
+							</div>
 						</div>
 						<br>
 						<hr>

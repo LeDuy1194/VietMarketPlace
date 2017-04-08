@@ -12,6 +12,8 @@ use App\Models\StockImage;
 use App\Models\OrderImage;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\City;
+use App\Models\District;
 use App\Models\Match;
 use Illuminate\Support\Facades\File;
 //use Illuminate\Http\File;
@@ -19,7 +21,9 @@ class ClientController extends Controller
 {
     public function getUpload() {
     	$cate = Cate::select('name','id')->get()->toArray();
-    	return view('haiblade.pages.upload',compact('cate'));
+        $city = City::select('name','cityid')->get()->toArray();
+        $district = District::select('name','cityid')->get()->toArray();
+    	return view('haiblade.pages.upload',compact('cate','city','district'));
     }
 
     /**
@@ -39,6 +43,8 @@ class ClientController extends Controller
             $stock->status = $_POST['status'];
             $stock->description = $request->discription;
             $stock->place = $request->address;
+            $stock->city = $request->ct;
+            $stock->district = $request->dt;
             $stock->img = $img_main;
             $stock->user_id = $user_id;
             $stock->cate_id = $_POST['cate'];
@@ -86,6 +92,8 @@ class ClientController extends Controller
             $order->status = $_POST['status'];
             $order->description = $request->discription;
             $order->place = $request->address;
+            $order->city = $request->ct;
+            $order->district = $request->dt;
             $order->img = $img_main;
             $order->user_id = $user_id;
             $order->cate_id = $_POST['cate'];
