@@ -60,8 +60,9 @@
 										</dl>
 									</div>
 								</div>
+
 								@if(Auth::id()==$data->id)
-									<input type="hidden" name="_token" value="{!!csrf_token()!!}" action="{!!route('postProfile')!!}" method="POST" enctype="multipart/form-data">
+									{{--<input type="hidden" name="_token" value="{!!csrf_token()!!}" action="{!!route('profile')!!}" method="POST" enctype="multipart/form-data"> --}}
 								<a href="#" class="btn btn-block btn-pf" type="button" data-toggle="modal" data-target="#editProfile">Sửa thông tin</a>
 								<!-- Modal -->
 								<div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="editProfile" aria-hidden="true">

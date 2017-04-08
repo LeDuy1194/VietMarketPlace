@@ -155,10 +155,10 @@ class ClientController extends Controller
     public function profileDetail($user_name) {
         $userModel = new User();
         $data = $userModel->getDetailUserByUserName($user_name);
-//        dd($data);
+        //dd($data);
         return view('haiblade.pages.profile', compact('data'));
     }
-    public function postProfile($user_name, Request $request) {
+    /*public function postProfile($user_name, Request $request) {
         $userModel = new User();
         $data = $userModel->getDetailUserByUserName($user_name);
 
@@ -168,5 +168,5 @@ class ClientController extends Controller
         $data->address = $request->address;
         $data->save();
         return redirect()->Route('profile');
-    }
+    }*/
 }

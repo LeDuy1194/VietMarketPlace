@@ -33,7 +33,7 @@ Route::get('order-detail/{id}',['as'=>'orderDetail','uses'=>'Client\HomeControll
 Route::get('stock-detail/{id}',['as'=>'stockDetail','uses'=>'Client\HomeController@showStockDetail']);
 
 Route::get('profile/{user_name}', ['as' => 'profile', 'uses' => 'Client\ClientController@profileDetail']);
-Route::get('profile/{user_name}', ['as' => 'editprofile', 'uses' => 'Client\ClientController@postProfile']);
+//Route::get('profile/{user_name}', ['as' => 'editprofile', 'uses' => 'Client\ClientController@postProfile']);
 
 Route::get('map',['as'=>'Map','uses'=>'Client\HomeController@showMap']);
 
