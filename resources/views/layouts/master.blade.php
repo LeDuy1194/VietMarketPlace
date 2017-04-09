@@ -17,7 +17,7 @@ Version: 01
 </head>
 <body>
 	@include('layouts.header')
-	<div role="main" ckass="main">
+	<div role="main" class="main main-page">
 		@yield('top-information')
 
 		@yield('content')

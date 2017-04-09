@@ -1,5 +1,5 @@
 <!--
-Created by: Nguyen Le Duy
+Created by: Anh Pham
 Date: 21/02/2017
 -->
 
@@ -14,6 +14,11 @@ Date: 21/02/2017
 	<link rel="stylesheet" href="{{asset('public/libs/royalslider/skins/default/rs-default.css')}}">
 
 	<link rel="stylesheet" href="{{asset('public/css/client/stockDetail.css')}}">
+
+	<link rel="stylesheet" href="{{asset('public/libs/pe-icon-7-stroke/css/pe-icon-7-stroke.css')}}">
+
+	<!-- Optional - Adds useful class to manipulate icon font display -->
+	<link rel="stylesheet"href="{{asset('public/libs/pe-icon-7-stroke/css/helper.css')}}">
 
 @endsection
 

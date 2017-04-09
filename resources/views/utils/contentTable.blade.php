@@ -1,4 +1,4 @@
-<!--Created by: Nguyen Le Duy
+<!--Created by: Anh Phạm
 Date: 23/03/2017
 -->
 <div class="col-lg-12 p-0 m-0">
@@ -50,7 +50,8 @@ Date: 23/03/2017
 			@endif
 		</div>
 		<div class="col-lg-2 col-sm-4 text-right pl-0">
-			<h3>{!! number_format($item->price,0,",",".")." VNĐ" !!}</h3>
+			<h3 class="price-product-item">{!! number_format($item->price,0,",",".") !!}</h3>
+			<sup class="currency-price">đ</sup>
 		</div>
 	</div>
 </div>

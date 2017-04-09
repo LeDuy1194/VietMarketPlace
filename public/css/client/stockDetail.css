@@ -54,3 +54,124 @@ ul#detailInfoAuthor li i {
     float: left;
     width: 100%
 }
+
+body .rsDefault {
+    background: #FFFFFF;
+    width: 100%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+body .rsDefault .rsOverflow,
+body .rsDefault .rsThumbsHor {
+    background: #FFFFFF;
+}
+body .rsDefault .rsSlide {
+    background: #FFFFFF;
+}
+body .rsDefault .rsFullscreenIcn {
+    background: none;
+    color: #424242;
+}
+body .rsDefault .rsFullscreenIcn:before {
+    content: "\e658";
+    font-family: "Pe-icon-7-stroke";
+    font-size: 30px;
+}
+body .rsDefault .rsFullscreenIcn:hover {
+    background: none;
+    color: #4caf50;
+}
+body .rsDefault.rsFullscreen .rsFullscreenIcn {
+    color: #424242;
+}
+body .rsDefault.rsFullscreen .rsFullscreenIcn:before {
+    content: "\e680";
+    font-family: "Pe-icon-7-stroke";
+    font-size: 110px;
+    position: relative;
+    right: 72px;
+    top: 30px;
+}
+body .rsDefault.rsFullscreen .rsFullscreenIcn:hover {
+    color: #4caf50;
+}
+body .rsDefault.rsFullscreen .rsArrowLeft {
+    left: 30px;
+}
+body .rsDefault.rsFullscreen .rsArrowRight {
+    right: 30px;
+}
+body .rsDefault.rsFullscreen .rsArrowIcn {
+    color: #424242;
+}
+body .rsDefault.rsFullscreen .rsArrowIcn:before {
+    font-size: 140px;
+    left: -53px;
+}
+body .rsDefault.rsFullscreen .rsArrowIcn:hover {
+    color: #4caf50;
+}
+body .rsDefault .rsArrowLeft .rsArrowIcn:before {
+    content: "\e686";
+}
+body .rsDefault .rsArrowRight .rsArrowIcn:before {
+    content: "\e684";
+}
+@media (max-width: 768px) {
+    body .rsDefault .rsNav.rsThumbs {
+        display: none;
+    }
+}
+body .rsDefault .rsNav.rsThumbs .rsThumbsContainer .rsThumb {
+    width: 72px;
+    border: 2px solid #fff;
+}
+body .rsDefault .rsNav.rsThumbs .rsThumbsContainer .rsThumb.rsNavSelected {
+    border-color: #dddddd;
+}
+body .rsDefault .rsNav.rsThumbs .rsThumbsContainer .rsThumb.rsNavSelected img {
+    opacity: 1;
+}
+body .rsDefault .rsArrowIcn {
+    background: none;
+    color: #616161;
+}
+body .rsDefault .rsArrowIcn:before {
+    font-family: "Pe-icon-7-stroke";
+    font-size: 60px;
+    left: -15px;
+    position: relative;
+    top: 5px;
+}
+body .rsDefault .rsArrowIcn:hover {
+    background: none;
+    color: #4caf50;
+}
+body .rsDefault.rsWithThumbsHor .rsThumbsArrowRight .rsThumbsArrowIcn:before {
+    content: "\e685";
+}
+body .rsDefault.rsWithThumbsHor .rsThumbsArrowLeft .rsThumbsArrowIcn:before {
+    content: "\e687";
+}
+body .rsDefault .rsThumbsArrow {
+    width: 50px;
+    background: rgba(255, 255, 255, 0.7) none repeat scroll 0 0;
+}
+body .rsDefault .rsThumbsArrow .rsThumbsArrowIcn {
+    background: none;
+    color: #999999;
+}
+body .rsDefault .rsThumbsArrow .rsThumbsArrowIcn:before {
+    font-family: "Pe-icon-7-stroke";
+    font-size: 40px;
+    left: -11px;
+    position: relative;
+    top: -3px;
+}
+body .rsDefault .rsThumbsArrow:hover {
+    background: rgba(255, 255, 255, 0.7) none repeat scroll 0 0;
+}
+body .rsDefault .rsThumbsArrow:hover .rsThumbsArrowIcn {
+    color: #4caf50;
+}
