@@ -21,6 +21,6 @@ class District extends Model
     }
 
     public function getDistrictByCityId($id) {
-        return $this->where('name',$id)->first();
+        return $this->where('cityid',$id)->first();
     }
 }

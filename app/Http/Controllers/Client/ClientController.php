@@ -23,6 +23,8 @@ class ClientController extends Controller
     	$cate = Cate::select('name','id')->get()->toArray();
         $city = City::select('name','cityid')->get()->toArray();
         $district = District::select('name','cityid')->get()->toArray();
+        //$dtModel = new District();
+        //$district = $dtModel->getDistrictByCityId($city->cityid);
     	return view('haiblade.pages.upload',compact('cate','city','district'));
     }
 
