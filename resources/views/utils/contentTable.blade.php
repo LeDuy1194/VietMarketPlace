@@ -43,11 +43,9 @@ Date: 23/03/2017
 			<p><i class="fa fa-street-view" aria-hidden="true"></i> {!! $item->place !!}</p>
 		</div>
 		<div class="col-lg-1 col-sm-2 text-right">
-			@if ($type == 'stock')
-				<a class="btn btn-warning" title="Thêm vào danh sách yêu thích." href="{{route('favorite',$item->id)}}">
-					<i class="fa fa-heart-o" aria-hidden="true"></i>
-				</a>
-			@endif
+			<a class="btn btn-warning" title="Xem sau." href="{{route('favorite',[$type,$item->id])}}">
+				<i class="fa fa-heart-o" aria-hidden="true"></i>
+			</a>
 		</div>
 		<div class="col-lg-2 col-sm-4 text-right pl-0">
 			<h3 class="price-product-item">{!! number_format($item->price,0,",",".") !!}</h3>

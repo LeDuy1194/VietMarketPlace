@@ -1,7 +1,7 @@
-<!--
+{{--
 Created by: Nguyen Le Duy
 Date: 23/03/2017
--->
+--}}
 
 @extends('layouts.master')
 
@@ -36,6 +36,21 @@ Date: 23/03/2017
 					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock'])
 					@endforeach
 				</div>
+				<nav aria-label="Page navigation">
+					<ul class="pagination">
+						@if ($page->currentPage() != 1)
+						<li class="page-item"><a class="page-link" href="{!! $page->url($page->currentPage() - 1) !!}">Trước</a></li>
+						@endif
+						@for ($i = 1; $i <= $page->lastPage(); $i = $i + 1)
+						<li class="page-item {!! ($page->currentPage() == $i)?'active':'' !!}">
+							<a class="page-link" href="{!! $page->url($i) !!}">{!! $i !!}</a>
+						</li>
+						@endfor
+						@if ($page->currentPage() != $page->lastPage())
+						<li class="page-item"><a class="page-link" href="{!! $page->url($page->currentPage() + 1) !!}">Sau</a></li>
+						@endif
+					</ul>
+				</nav>
 			@elseif ($state == 'order')
 				<?php $page = $order; ?>
 				<div class="col-lg-12 p-0 m-0">
@@ -48,15 +63,22 @@ Date: 23/03/2017
 					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order'])
 					@endforeach
 				</div>
+				<nav aria-label="Page navigation">
+					<ul class="pagination">
+						@if ($page->currentPage() != 1)
+						<li class="page-item"><a class="page-link" href="{!! $page->url($page->currentPage() - 1) !!}">Trước</a></li>
+						@endif
+						@for ($i = 1; $i <= $page->lastPage(); $i = $i + 1)
+						<li class="page-item {!! ($page->currentPage() == $i)?'active':'' !!}">
+							<a class="page-link" href="{!! $page->url($i) !!}">{!! $i !!}</a>
+						</li>
+						@endfor
+						@if ($page->currentPage() != $page->lastPage())
+						<li class="page-item"><a class="page-link" href="{!! $page->url($page->currentPage() + 1) !!}">Sau</a></li>
+						@endif
+					</ul>
+				</nav>
 			@else
-				<?php
-					if ($stock->lastPage() > $order->lastPage()) {
-						$page = $stock;
-					}
-					else {
-						$page = $order;
-					}
-				?>
 				<div class="col-lg-12 p-0 m-0">
 					<h1>Kho hàng</h1>
 					@foreach($stock as $item)
@@ -67,6 +89,22 @@ Date: 23/03/2017
 					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock'])
 					@endforeach
 				</div>
+				<nav aria-label="Page navigation">
+					<ul class="pagination">
+						@if ($stock->currentPage() != 1)
+						<li class="page-item"><a class="page-link" href="{!! $stock->appends(['order' => $order->currentPage()])->url($stock->currentPage() - 1) !!}">Trước</a></li>
+						@endif
+						@for ($i = 1; $i <= $stock->lastPage(); $i = $i + 1)
+						<li class="page-item {!! ($stock->currentPage() == $i)?'active':'' !!}">
+							<a class="page-link" href="{!! $stock->appends(['order' => $order->currentPage()])->url($i) !!}">{!! $i !!}</a>
+						</li>
+						@endfor
+						@if ($stock->currentPage() != $stock->lastPage())
+						<li class="page-item"><a class="page-link" href="{!! $stock->appends(['order' => $order->currentPage()])->url($stock->currentPage() + 1) !!}">Sau</a></li>
+						@endif
+					</ul>
+				</nav>
+
 				<div class="col-lg-12 p-0 m-0">
 					<h1>Đơn hàng</h1>
 					@foreach($order as $item)
@@ -77,22 +115,23 @@ Date: 23/03/2017
 					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order'])
 					@endforeach
 				</div>
+				<nav aria-label="Page navigation">
+					<ul class="pagination">
+						@if ($order->currentPage() != 1)
+						<li class="page-item"><a class="page-link" href="{!! $order->appends(['stock' => $stock->currentPage()])->url($order->currentPage() - 1) !!}">Trước</a></li>
+						@endif
+						@for ($i = 1; $i <= $order->lastPage(); $i = $i + 1)
+						<li class="page-item {!! ($order->currentPage() == $i)?'active':'' !!}">
+							<a class="page-link" href="{!! $order->appends(['stock' => $stock->currentPage()])->url($i) !!}">{!! $i !!}</a>
+						</li>
+						@endfor
+						@if ($order->currentPage() != $order->lastPage())
+						<li class="page-item"><a class="page-link" href="{!! $order->appends(['stock' => $stock->currentPage()])->url($order->currentPage() + 1) !!}">Sau</a></li>
+						@endif
+					</ul>
+				</nav>
 			@endif
-			<nav aria-label="Page navigation">
-				<ul class="pagination">
-					@if ($page->currentPage() != 1)
-					<li class="page-item"><a class="page-link" href="{!! $page->url($page->currentPage() - 1) !!}">Trước</a></li>
-					@endif
-					@for ($i = 1; $i <= $page->lastPage(); $i = $i + 1)
-					<li class="page-item {!! ($page->currentPage() == $i)?'active':'' !!}">
-						<a class="page-link" href="{!! $page->url($i) !!}">{!! $i !!}</a>
-					</li>
-					@endfor
-					@if ($page->currentPage() != $page->lastPage())
-					<li class="page-item"><a class="page-link" href="{!! $page->url($page->currentPage() + 1) !!}">Sau</a></li>
-					@endif
-				</ul>
-			</nav>
+			
 		</div>
 	</div><br>
 @endsection

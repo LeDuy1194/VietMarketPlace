@@ -15,6 +15,10 @@
           <li class="nav-item">
             <a class="nav-link" href="{{route('MyStore','stock')}}">Cửa hàng của tôi</a>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('myMark')}}">Danh sách xem sau</a>
+          </li>
         </li>
         @endif
         <li class="nav-item sign-in">

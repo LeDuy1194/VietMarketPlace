@@ -10,6 +10,7 @@ use App\Models\OrderImage;
 use App\Models\Cate;
 use App\Models\User;
 use App\Models\Fav;
+use App\Models\FavO;
 use Auth;
 
 class HomeController extends Controller {
@@ -46,9 +47,9 @@ class HomeController extends Controller {
         $cateModel = new Cate();
         $favModel = new Fav();
         $stockModel = new Stock();
-        $stock = $stockModel->getNewest(5);
+        $stock = $stockModel->getNewest(8);
         $orderModel = new Order();
-        $order = $orderModel->getNewest(5);
+        $order = $orderModel->getNewest(8);
         return view('pages.home',compact('stock','order','userModel','cateModel','favModel'));
     }
 
@@ -94,12 +95,10 @@ class HomeController extends Controller {
         $number = 5;
         $userModel = new User();
         $cateModel = new Cate();
-        $favModel = new Fav();
         $author = $userModel->getDetailUserByUserID(Auth::id());
         $stock = $author->stock;
         $order = $author->order;
-        $fav = $favModel->getFavByUser($author->id,$number);
-        return view('pages.myStore',compact('stock','order','fav','state','author','cateModel','userModel'));
+        return view('pages.myStore',compact('stock','order','state','author','cateModel','userModel'));
     }
 
     public function showUploadStock() {
@@ -114,31 +113,66 @@ class HomeController extends Controller {
         return view('haiblade.pages.map');
     }
 
-    public function changeFavorite($id) {
+    public function changeFavorite($state,$id) {
         if (Auth::check()) {
-            $check = Stock::find($id);
-            if ($check != NULL) {
-                $favModel = new Fav();
-                $fav = $favModel->getFav(Auth::id(),$id);
-                if ($fav != NULL) {
-                    $fav->delete();
-                    $message = ['flash_level'=>'danger','flash_message'=>'Unlike '.$check->name.' .'];
+            if ($state == 'stock') {
+                $check = Stock::find($id);
+                if ($check != NULL) {
+                    $favModel = new Fav();
+                    $fav = $favModel->getFav(Auth::id(),$id);
+                    if ($fav != NULL) {
+                        $fav->delete();
+                        $message = ['flash_level'=>'danger','flash_message'=>'Unlike S '.$check->name.' .'];
+                    }
+                    else {
+                        $fav = new Fav();
+                        $fav->user_id = Auth::id();
+                        $fav->stock_id = $id;
+                        $fav->save();
+                        $message = ['flash_level'=>'danger','flash_message'=>'Like S '.$check->name.' .'];
+                    }
                 }
                 else {
-                    $fav = new Fav();
-                    $fav->user_id = Auth::id();
-                    $fav->stock_id = $id;
-                    $fav->save();
-                    $message = ['flash_level'=>'danger','flash_message'=>'Like '.$check->name.' .'];
+                    $message = ['flash_level'=>'danger','flash_message'=>'Sản phẩm không tồn tại.'];
                 }
             }
             else {
-                $message = ['flash_level'=>'danger','flash_message'=>'Sản phẩm không tồn tại.'];
+                $check = Order::find($id);
+                if ($check != NULL) {
+                    $favModel = new FavO();
+                    $fav = $favModel->getFav(Auth::id(),$id);
+                    if ($fav != NULL) {
+                        $fav->delete();
+                        $message = ['flash_level'=>'danger','flash_message'=>'Unlike O '.$check->name.' .'];
+                    }
+                    else {
+                        $fav = new FavO();
+                        $fav->user_id = Auth::id();
+                        $fav->order_id = $id;
+                        $fav->save();
+                        $message = ['flash_level'=>'danger','flash_message'=>'Like O '.$check->name.' .'];
+                    }
+                }
+                else {
+                    $message = ['flash_level'=>'danger','flash_message'=>'Sản phẩm không tồn tại.'];
+                }
             }
         }
         else {
             $message = ['flash_level'=>'danger','flash_message'=>'Đăng nhập để thêm vào yêu thích.'];
         }
         return back()->with($message);
+    }
+
+    public function showMark() {
+        $number = 5;
+        $userModel = new User();
+        $cateModel = new Cate();
+        $favModel = new Fav();
+        $favOMode = new FavO();
+        $author = $userModel->getDetailUserByUserID(Auth::id());
+        $fav = $favModel->getFavByUser($author->id,$number);
+        $favO = $favOMode->getFavByUser($author->id,$number);
+        return view('pages.myMark',compact('fav','favO','cateModel','userModel'));
     }
 }

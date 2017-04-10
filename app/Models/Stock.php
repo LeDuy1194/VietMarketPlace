@@ -30,11 +30,11 @@ class Stock extends Model
 
     //Get paginate
     public function getPage($number) {
-        return $this->where('finished',0)->orderBy('updated_at','desc')->paginate($number);
+        return $this->where('finished',0)->orderBy('updated_at','desc')->paginate($number,['*'],'stock');
     }
 
     //Get stock by cate.
     public function getStockByCateId($cate_id,$number) {
-        return $this->where('finished',0)->where('cate_id',$cate_id)->orderBy('id','desc')->paginate($number);
+        return $this->where('finished',0)->where('cate_id',$cate_id)->orderBy('id','desc')->paginate($number,['*'],'stock');
     }
 }

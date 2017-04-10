@@ -9,6 +9,7 @@ return array(
     'CreateCatesTable' => $baseDir . '/database/migrations/2017_03_13_040246_create_cates_table.php',
     'CreateCityTable' => $baseDir . '/database/migrations/2017_04_07_092904_create_city_table.php',
     'CreateDistrictTable' => $baseDir . '/database/migrations/2017_04_07_092930_create_district_table.php',
+    'CreateFavOsTable' => $baseDir . '/database/migrations/2017_04_10_072141_create_fav-os_table.php',
     'CreateFavsTable' => $baseDir . '/database/migrations/2017_03_28_015020_create_favs_table.php',
     'CreateMatchsTable' => $baseDir . '/database/migrations/2017_03_13_090250_create_matchs_table.php',
     'CreateOrderimagesTable' => $baseDir . '/database/migrations/2017_03_23_030738_create_orderimages_table.php',

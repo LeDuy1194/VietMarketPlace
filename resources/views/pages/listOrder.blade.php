@@ -15,6 +15,11 @@ Date: 21/02/2017
 
 	<link rel="stylesheet" href="{{asset('public/css/client/stockDetail.css')}}">
 
+	<link rel="stylesheet" href="{{asset('public/libs/pe-icon-7-stroke/css/pe-icon-7-stroke.css')}}">
+
+	<!-- Optional - Adds useful class to manipulate icon font display -->
+	<link rel="stylesheet" href="{{asset('public/libs/pe-icon-7-stroke/css/helper.css')}}">
+
 @endsection
 
 @section('content')
@@ -98,7 +103,10 @@ Date: 21/02/2017
 					</div>
 				</div>
 				<div class="card card-block">
-					<button id="btnReport" class="btn btn-block btn-lg">Báo cáo tin ảo</button>
+					<div class="btn-group">
+						<a id="btnFav" class="btn btn-primary" href="{{route('favorite',['order',$data->id])}}">Xem sau</a>
+						<button id="btnReport" class="btn btn-block btn-lg">Báo cáo tin ảo</button>
+					</div>
 				</div>
 			</div>
 			<div class="col-lg-1 hidden-sm-down"></div>

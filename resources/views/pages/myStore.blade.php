@@ -18,9 +18,6 @@ Date: 17/02/2017
 				<a class="btn btn-primary" href="{{route('MyStore','order')}}" name="btnOrder">Đơn hàng 
 				<span class="badge badge-danger">{!! $order->count() !!}</span>
 				</a>
-				<a class="btn btn-primary" href="{{route('MyStore','favorite')}}" name="btnFav">Yêu thích
-				<span class="badge badge-danger">{!! $fav->count() !!}</span>
-				</a>
 			</div>
 			<div class="col-lg-12 p-0 m-0">
 			@foreach($stock as $item)
@@ -60,16 +57,13 @@ Date: 17/02/2017
 				</div>
 			@endforeach
 			</div>
-		@elseif($state == 'order')
+		@else
 			<div class="btn-group-justified m-auto">
 				<a class="btn btn-primary" href="{{route('MyStore','stock')}}" name="btnStock">Kho hàng 
 				<span class="badge badge-danger">{!! $stock->count() !!}</span>
 				</a>
 				<a class="btn btn-primary active" href="{{route('MyStore','order')}}" name="btnOrder">Đơn hàng 
 				<span class="badge badge-danger">{!! $order->count() !!}</span>
-				</a>
-				<a class="btn btn-primary" href="{{route('MyStore','favorite')}}" name="btnFav">Yêu thích
-				<span class="badge badge-danger">{!! $fav->count() !!}</span>
 				</a>
 			</div>
 			<div class="col-lg-12 p-0 m-0">
@@ -109,44 +103,6 @@ Date: 17/02/2017
 					</div>
 				</div>
 			@endforeach
-			</div>
-		@else
-			<div class="btn-group-justified m-auto">
-				<a class="btn btn-primary" href="{{route('MyStore','stock')}}" name="btnStock">Kho hàng 
-				<span class="badge badge-danger">{!! $stock->count() !!}</span>
-				</a>
-				<a class="btn btn-primary" href="{{route('MyStore','order')}}" name="btnOrder">Đơn hàng 
-				<span class="badge badge-danger">{!! $order->count() !!}</span>
-				</a>
-				<a class="btn btn-primary active" href="{{route('MyStore','favorite')}}" name="btnFav">Yêu thích
-				<span class="badge badge-danger">{!! $fav->count() !!}</span>
-				</a>
-			</div>
-			<div class="col-lg-12 p-0 m-0">
-				@foreach($fav as $key)
-					<?php
-						$item = App\Models\Stock::find($key->stock_id);
-						$user = $userModel->getDetailUserByUserID($item->user_id);
-						$cate = $cateModel->getCateById($item->cate_id);
-					?>
-					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock'])
-				@endforeach
-				<?php $page = $fav; ?>
-				<nav aria-label="Page navigation">
-					<ul class="pagination">
-						@if ($page->currentPage() != 1)
-						<li class="page-item"><a class="page-link" href="{!! $page->url($page->currentPage() - 1) !!}">Trước</a></li>
-						@endif
-						@for ($i = 1; $i <= $page->lastPage(); $i = $i + 1)
-						<li class="page-item {!! ($page->currentPage() == $i)?'active':'' !!}">
-							<a class="page-link" href="{!! $page->url($i) !!}">{!! $i !!}</a>
-						</li>
-						@endfor
-						@if ($page->currentPage() != $page->lastPage())
-						<li class="page-item"><a class="page-link" href="{!! $page->url($page->currentPage() + 1) !!}">Sau</a></li>
-						@endif
-					</ul>
-				</nav>
 			</div>
 		@endif
 		</div>

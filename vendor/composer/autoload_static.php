@@ -286,6 +286,7 @@ class ComposerStaticInit4bd09316556cc30a317b14bc17b6e888
         'CreateCatesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_13_040246_create_cates_table.php',
         'CreateCityTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_07_092904_create_city_table.php',
         'CreateDistrictTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_07_092930_create_district_table.php',
+        'CreateFavOsTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_072141_create_fav-os_table.php',
         'CreateFavsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_28_015020_create_favs_table.php',
         'CreateMatchsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_13_090250_create_matchs_table.php',
         'CreateOrderimagesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_23_030738_create_orderimages_table.php',

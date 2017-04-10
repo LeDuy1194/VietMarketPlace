@@ -69,5 +69,6 @@ Route::get('search',['uses' => 'SearchController@getSearch','as' => 'search']);
 
 //Route::resource('queries', 'QueryController');
 // Change favorite
-Route::get('favorite/{id}',['as' => 'favorite','uses' => 'Client\HomeController@changeFavorite']);
+Route::get('favorite/{state}--{id}',['as' => 'favorite','uses' => 'Client\HomeController@changeFavorite']);
+Route::get('mymark',['as' => 'myMark','uses' => 'Client\HomeController@showMark']);
 Route::get('match/{state}--{id}',['as' => 'getMatch','uses' => 'Client\MatchController@getMatch']);

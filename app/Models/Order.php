@@ -31,11 +31,11 @@ class Order extends Model
 
     //Get paginate
     public function getPage($number) {
-        return $this->where('finished',0)->orderBy('updated_at','desc')->paginate($number);
+        return $this->where('finished',0)->orderBy('updated_at','desc')->paginate($number,['*'],'order');
     }
 
     //Get order by cate.
     public function getOrderByCateId($cate_id,$number) {
-        return $this->where('finished',0)->where('cate_id',$cate_id)->orderBy('id','desc')->paginate($number);
+        return $this->where('finished',0)->where('cate_id',$cate_id)->orderBy('id','desc')->paginate($number,['*'],'order');
     }
 }

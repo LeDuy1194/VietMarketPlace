@@ -18,7 +18,7 @@ Date: 21/02/2017
 	<link rel="stylesheet" href="{{asset('public/libs/pe-icon-7-stroke/css/pe-icon-7-stroke.css')}}">
 
 	<!-- Optional - Adds useful class to manipulate icon font display -->
-	<link rel="stylesheet"href="{{asset('public/libs/pe-icon-7-stroke/css/helper.css')}}">
+	<link rel="stylesheet" href="{{asset('public/libs/pe-icon-7-stroke/css/helper.css')}}">
 
 @endsection
 
@@ -101,7 +101,7 @@ Date: 21/02/2017
 				</div>
 				<div class="card card-block">
 					<div class="btn-group">
-						<a id="btnFav" class="btn btn-primary" href="{{route('favorite',$data->id)}}">Thích</a>
+						<a id="btnFav" class="btn btn-primary" href="{{route('favorite',['stock',$data->id])}}">Xem sau</a>
 						<button id="btnReport" class="btn btn-block btn-lg">Báo cáo tin ảo</button>
 					</div>
 				</div>

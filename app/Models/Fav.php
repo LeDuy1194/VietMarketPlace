@@ -11,7 +11,7 @@ class Fav extends Model
     public $timestamps = true;
 
     public function getFavByUser($id,$number) {
-        return $this->where('user_id',$id)->paginate($number);
+        return $this->where('user_id',$id)->paginate($number,['*'],'stock');
     }
 
     public function getFavByStock($id) {
