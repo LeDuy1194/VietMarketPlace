@@ -77,9 +77,9 @@
 						<div class="form-group">
 
 							<label>
-								Giá *
+								Giá (Tối thiểu 10.000 VNĐ)*
 							</label>
-							<input type="number" name="price" class="form-control" placeholder="Điền vào đây (Đơn vị VND)" required>
+							<input type="number" name="price" min="10000" class="form-control" placeholder="Điền vào đây (Đơn vị VND)" required>
 						</div>
 						<div class="form-group">
 
