@@ -1,6 +1,7 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Stock extends Model
 {
@@ -36,5 +37,24 @@ class Stock extends Model
     //Get stock by cate.
     public function getStockByCateId($cate_id,$number) {
         return $this->where('finished',0)->where('cate_id',$cate_id)->orderBy('id','desc')->paginate($number,['*'],'stock');
+    }
+
+    //Search Stock --- Create by Anh Pham
+    public function searchStock($request) {
+        $key = $request->search_key;
+        $cate = $request->search_cate;
+        $status = $request->search_status;
+        $stock_query = DB::table('stocks')->where('name', 'LIKE', '%' . $key . '%');
+        if ($cate != '')
+        {
+            $stock_query = $stock_query->where('cate_id', $cate);
+        }
+
+        if ($status != '')
+        {
+            $stock_query = $stock_query->where('status', $status);
+        }
+        $result = $stock_query->get();
+        return $result;
     }
 }

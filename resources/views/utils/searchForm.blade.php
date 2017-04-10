@@ -32,8 +32,8 @@ Date: 17/02/2017
 	  <select class="form-control" id="search-status" name="search_status">
 		<option value="" selected>Tình Trạng</option>
 		<option disabled>──────────</option>
-		<option value="new">Mới</option>
-		<option value="old">Cũ</option>
+		<option value="0">Mới</option>
+		<option value="1">Cũ</option>
 	  </select>
 	</div>
 	
