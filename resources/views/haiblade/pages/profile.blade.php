@@ -168,97 +168,32 @@
 							</div>
 						</div>
 						<br>
-						<div class="card">
-							<div class="card-block">
-								<div class="media">
+						{{--
+                                                    <div class="card">
+                                                        @foreach($guest as $info)
+                                                    <div class="card-block">
+                                                        <div class="media">
 
-									<img class="d-flex mr-3 img-circle" src="{{url('public/img/avartar2.jpg')}}" alt="Generic placeholder image">
-									<div class="media-body">
-										<blockquote>
-											<div id="hearts-existing" class="starrr" data-rating='4'>****</div>
-											<p>
-												Hàng xài bình thường, không gặp vấn đề
-											</p>
+                                                            <img class="d-flex mr-3 img-circle" src="../resources/upload/user/{{$info->avatar}}" alt="Generic placeholder image">
+                                                            <div class="media-body">
+                                                                <blockquote>
+                                                                    <div id="hearts-existing" class="starrr" data-rating='4'>****</div>
+                                                                    <p>
+                                                                        {!! $review->comment !!}
+                                                                    </p>
 
-											<small>Phạm Tuấn Anh <br>
-												<em>
-													<time datetime="2011-01-12">January 12th, 2011</time>
-												</em>
-											</small>
-										</blockquote>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="card">
-							<div class="card-block">
-								<div class="media">
-									<img class="d-flex mr-3 img-circle" src="{{url('public/img/avartar.png')}}" alt="Generic placeholder image">
-									<div class="media-body">
-										<blockquote>
-											<div id="hearts-existing" class="starrr" data-rating='4'>****</div>
-											<p>
-												test
-											</p>
-											<small>trieuhai <br>
-												<em>
-													<time datetime="2011-01-12">January 12th, 2011</time>
-												</em>
-											</small>
-										</blockquote>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="card">
-							<div class="card-block">
-								<div class="media">
-									<img class="d-flex mr-3 img-circle" src="{{url('public/img/avartar1.jpg')}}" alt="Generic placeholder image">
-									<div class="media-body">
-										<blockquote>
-											<div id="hearts-existing" class="starrr" data-rating='4'>****</div>
-											<p>
-												Chất lượng như website
-											</p>
-											<small>Le Duy Nguyen <br>
-												<em>
-													<time datetime="2011-01-12">January 12th, 2011</time>
-												</em>
-											</small>
-
-										</blockquote>
-
-
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="card">
-							<div class="card-block">
-								<div class="media">
-									<img class="d-flex mr-3 img-circle" src="{{url('public/img/avartar1.jpg')}}" alt="Generic placeholder image">
-									<div class="media-body">
-										<blockquote>
-											<div id="hearts-existing" class="starrr" data-rating='4'>****</div>
-											<p>
-												Hẹn đúng giờ, nhanh chóng
-											</p>
-											<small>Le Duy Nguyen<br>
-												<em>
-													<time datetime="2011-01-12">January 12th, 2011</time>
-												</em>
-											</small>
-										</blockquote>
-
-
-									</div>
-								</div>
-							</div>
-						</div>
-
+                                                                    <small>{!! $info->username !!} <br>
+                                                                        <em>
+                                                                            <time datetime="">{!! $review->created_at !!}</time>
+                                                                        </em>
+                                                                    </small>
+                                                                </blockquote>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                        @endforeach
+                                                </div>
+                                                --}}
 					</div>
 				</div>
 				<br>

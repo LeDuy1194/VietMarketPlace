@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\ReviewRequest;
 use App\Models\Stock;
 use App\Models\StockImage;
 use App\Models\Order;
@@ -79,14 +80,6 @@ class HomeController extends Controller {
         $author = $userModel->getDetailUserByUserID($data['user_id']);
         $orderImageModel = new OrderImage();
         $orderImages = $orderImageModel->getImages($id);
-        $guestModel = new User();
-        $guest = $guestModel->getDetailUserByUserID(Auth::id());
-        $review = new Review();
-        $review->voting_user_id = $guest->id;
-        $review->voted_user_id = $author->id;
-        $review->vote = $guest->vote;
-        $review->comment = $guest->comment;
-        $review->save();
         return view('pages.listOrder',compact('data','cate','author','orderImages'));
     }
 
@@ -97,14 +90,25 @@ class HomeController extends Controller {
         $author = $userModel->getDetailUserByUserID($data['user_id']);
         $stockImageModel = new StockImage();
         $stockImages = $stockImageModel->getImages($id);
+        return view('pages.listStock',compact('data','cate', 'author', 'stockImages'));
+    }
+
+    public function postReview($id, ReviewRequest $request)
+    {
+        $data = Stock::find($id);
+        $cate = Cate::find($data['cate_id']);
+        $userModel = new User();
+        $author = $userModel->getDetailUserByUserID($data['user_id']);
         $guestModel = new User();
         $guest = $guestModel->getDetailUserByUserID(Auth::id());
         $review = new Review();
         $review->voting_user_id = $guest->id;
         $review->voted_user_id = $author->id;
-        $review->vote = $guest->vote;
-        $review->comment = $guest->comment;
+        $review->vote = $_POST['vote'];
+        $review->comment = $request->comment;
         $review->save();
+        $stockImageModel = new StockImage();
+        $stockImages = $stockImageModel->getImages($id);
         return view('pages.listStock',compact('data','cate', 'author', 'stockImages'));
     }
 

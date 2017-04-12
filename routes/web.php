@@ -32,6 +32,8 @@ Route::get('mystore/{state}',['as'=>'MyStore','uses'=>'Client\HomeController@sho
 Route::get('order-detail/{id}',['as'=>'orderDetail','uses'=>'Client\HomeController@showOrderDetail']);
 Route::get('stock-detail/{id}',['as'=>'stockDetail','uses'=>'Client\HomeController@showStockDetail']);
 
+Route::post('order-detail/{id}',['as'=>'postReview','uses'=>'Client\HomeController@postReview']);
+
 Route::get('profile/{user_name}', ['as' => 'profile', 'uses' => 'Client\ClientController@profileDetail']);
 //Route::get('profile/{user_name}', ['as' => 'editprofile', 'uses' => 'Client\ClientController@postProfile']);
 

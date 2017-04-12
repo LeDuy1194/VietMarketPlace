@@ -109,11 +109,12 @@ Date: 21/02/2017
 						<button id="btnReport" class="btn btn-block btn-lg">Báo cáo tin ảo</button>
 					</div>
 				</div>
+				@if(Auth::id()!=$author->id)
 				<div class="card card-block">
-					<form role="form" action="{!!route('orderDetail',[$data->id])!!}" method="POST" enctype="multipart/form-data">
+					<form role="form" action="{!!route('postReview',[$data->id])!!}" method="POST" enctype="multipart/form-data">
 						<input type="hidden" name="_token" value="{!!csrf_token()!!}">
 						<div class="form-group">
-							<textarea name="comment" rows="4" cols="30" maxlength="100" class="form-control" placeholder="Đánh giá" style="resize: none;"></textarea>
+							<textarea name="comment" id="comment" rows="4" cols="30" maxlength="100" class="form-control" placeholder="Đánh giá" style="resize: none;"></textarea>
 						</div>
 						<select class="form-control" name="vote" id="vote">
 							<option value="1">Tốt</option>
@@ -125,6 +126,7 @@ Date: 21/02/2017
 						</button>
 					</form>
 				</div>
+				@endif
 			</div>
 			<div class="col-lg-1 hidden-sm-down"></div>
 		</div>

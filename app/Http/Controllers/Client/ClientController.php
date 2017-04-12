@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Client;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
@@ -165,7 +166,11 @@ class ClientController extends Controller
     public function profileDetail($user_name) {
         $userModel = new User();
         $data = $userModel->getDetailUserByUserName($user_name);
-        //dd($data);
+        //$reviewModel = new Review();
+        //$review = $reviewModel->getReviewInfo($data->id);
+        //$guestModel = new User();
+        //$guest = $guestModel->getDetailUserByUserID($review->voting_user_id);
+        //dd($guest);
         return view('haiblade.pages.profile', compact('data'));
     }
     /*public function postProfile($user_name, Request $request) {
