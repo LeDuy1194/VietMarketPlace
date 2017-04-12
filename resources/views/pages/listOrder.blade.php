@@ -89,6 +89,7 @@ Date: 21/02/2017
 					</div>
 					<div class="card-body collapse show" id="authorInfomation">
 						<center>
+							<br>
 							<img src="../resources/upload/user/{!! $author->avatar !!}" class="rounded-circle author-avatar">
 							<!--<input type="file" value="upload avatar" name="avatarUploadImg" id="avatarUploadImg">-->
 							<h3 class="text-center author-name">
@@ -107,6 +108,22 @@ Date: 21/02/2017
 						<a id="btnFav" class="btn btn-primary" href="{{route('favorite',['order',$data->id])}}">Xem sau</a>
 						<button id="btnReport" class="btn btn-block btn-lg">Báo cáo tin ảo</button>
 					</div>
+				</div>
+				<div class="card card-block">
+					<form role="form" action="{!!route('orderDetail',[$data->id])!!}" method="POST" enctype="multipart/form-data">
+						<input type="hidden" name="_token" value="{!!csrf_token()!!}">
+						<div class="form-group">
+							<textarea name="comment" rows="4" cols="30" maxlength="100" class="form-control" placeholder="Đánh giá" style="resize: none;"></textarea>
+						</div>
+						<select class="form-control" name="vote" id="vote">
+							<option value="1">Tốt</option>
+							<option value="0">Không Tốt</option>
+						</select>
+						<hr>
+						<button type="submit" class="btn btn-block btn-success">
+							Gửi
+						</button>
+					</form>
 				</div>
 			</div>
 			<div class="col-lg-1 hidden-sm-down"></div>

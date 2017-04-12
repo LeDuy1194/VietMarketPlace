@@ -25,7 +25,7 @@ Version: 01
 	</div>
 
 	@include('layouts.footer')
-
+	<script src="{{asset('public/libs/jquery/starscripts.js')}}"></script>
 	<script src="{{asset('public/libs/tether/tether.min.js')}}"></script>
 	<script src="{{asset('public/libs/jquery/jquery.min.js')}}"></script>
 	<script src="{{asset('public/libs/bootstrap/js/bootstrap.min.js')}}"></script>

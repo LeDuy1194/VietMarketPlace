@@ -11,6 +11,7 @@ use App\Models\Cate;
 use App\Models\User;
 use App\Models\Fav;
 use App\Models\FavO;
+use App\Models\Review;
 use Auth;
 
 class HomeController extends Controller {
@@ -78,6 +79,14 @@ class HomeController extends Controller {
         $author = $userModel->getDetailUserByUserID($data['user_id']);
         $orderImageModel = new OrderImage();
         $orderImages = $orderImageModel->getImages($id);
+        $guestModel = new User();
+        $guest = $guestModel->getDetailUserByUserID(Auth::id());
+        $review = new Review();
+        $review->voting_user_id = $guest->id;
+        $review->voted_user_id = $author->id;
+        $review->vote = $guest->vote;
+        $review->comment = $guest->comment;
+        $review->save();
         return view('pages.listOrder',compact('data','cate','author','orderImages'));
     }
 
@@ -88,6 +97,14 @@ class HomeController extends Controller {
         $author = $userModel->getDetailUserByUserID($data['user_id']);
         $stockImageModel = new StockImage();
         $stockImages = $stockImageModel->getImages($id);
+        $guestModel = new User();
+        $guest = $guestModel->getDetailUserByUserID(Auth::id());
+        $review = new Review();
+        $review->voting_user_id = $guest->id;
+        $review->voted_user_id = $author->id;
+        $review->vote = $guest->vote;
+        $review->comment = $guest->comment;
+        $review->save();
         return view('pages.listStock',compact('data','cate', 'author', 'stockImages'));
     }
 
