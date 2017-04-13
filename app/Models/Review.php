@@ -12,14 +12,18 @@ class Review extends Model
     public $timestamps = true;
 
     public function ratedUser() {
-    	return $this->belongToMany('App\Models\User', 'voted_user_id', 'id');
+        return $this->belongToMany('App\Models\User', 'voted_user_id', 'id');
     }
 
     public function ratingUser() {
-    	return $this->belongToMany('App\Models\User', 'voting_user_id', 'id');
+        return $this->belongToMany('App\Models\User', 'voting_user_id', 'id');
     }
 
     public function getReviewInfo($user_id) {
-        return $this->where('voted_user_id', $user_id)->first();
+        return $this->where('voted_user_id', $user_id)->get();
+    }
+
+    public function getAverageVote($user_id){
+        return $this->where('voted_user_id', $user_id)->avg('vote');
     }
 }

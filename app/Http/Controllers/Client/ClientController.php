@@ -21,12 +21,12 @@ use Illuminate\Support\Facades\File;
 class ClientController extends Controller
 {
     public function getUpload() {
-    	$cate = Cate::select('name','id')->get()->toArray();
+        $cate = Cate::select('name','id')->get()->toArray();
         $city = City::select('name','cityid')->get()->toArray();
         $district = District::select('name','cityid')->get()->toArray();
         //$dtModel = new District();
         //$district = $dtModel->getDistrictByCityId($city->cityid);
-    	return view('haiblade.pages.upload',compact('cate','city','district'));
+        return view('haiblade.pages.upload',compact('cate','city','district'));
     }
 
     /**
@@ -166,12 +166,13 @@ class ClientController extends Controller
     public function profileDetail($user_name) {
         $userModel = new User();
         $data = $userModel->getDetailUserByUserName($user_name);
-        //$reviewModel = new Review();
-        //$review = $reviewModel->getReviewInfo($data->id);
+        $reviewModel = new Review();
+        $review = $reviewModel->getReviewInfo($data->id);
+        $vote = $reviewModel->getAverageVote($data->id);
         //$guestModel = new User();
         //$guest = $guestModel->getDetailUserByUserID($review->voting_user_id);
         //dd($guest);
-        return view('haiblade.pages.profile', compact('data'));
+        return view('haiblade.pages.profile', compact('data','review','userModel','vote'));
     }
     /*public function postProfile($user_name, Request $request) {
         $userModel = new User();
