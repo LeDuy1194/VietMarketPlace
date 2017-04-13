@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 use App\Http\Requests\LoginRequest;
+use Illuminate\Http\Request;
 use App\User;
 use Validator;
 use Auth;
@@ -56,5 +57,10 @@ class LoginController extends Controller
                 //return view('pages.myStore');
                 return redirect()->Route('Home');
             }
+    }
+
+    public function getLogout(Request $request){
+        Auth::logout();
+        return redirect()->route('Home');
     }
 }

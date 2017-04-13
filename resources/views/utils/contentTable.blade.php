@@ -25,7 +25,9 @@ Date: 23/03/2017
 					<img src="{{ asset('resources/upload/user/'.$user->avatar) }}" class="media-object rounded-circle user-avatar"/>
 				</div>
 				<div class="media-body">
-					<h5 class="media-heading"> {!! $user->username!!}</h5>
+					<a href="{!! url('profile', [$user->username]) !!}" >
+						<h5 class="media-heading"> {!! $user->username!!}</h5>
+					</a>
 				</div>
 			</div>
 			<div class="btn-group col-lg-12 col-sm-6">

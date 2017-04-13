@@ -74,3 +74,5 @@ Route::get('search',['uses' => 'SearchController@getSearch','as' => 'search']);
 Route::get('favorite/{state}--{id}',['as' => 'favorite','uses' => 'Client\HomeController@changeFavorite']);
 Route::get('mymark',['as' => 'myMark','uses' => 'Client\HomeController@showMark']);
 Route::get('match/{state}--{id}',['as' => 'getMatch','uses' => 'Client\MatchController@getMatch']);
+
+Route::get('logout',['as' => 'logout','uses' => 'Auth\LoginController@getLogout']);

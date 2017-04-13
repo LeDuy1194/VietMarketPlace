@@ -10,6 +10,11 @@ Date: 30/03/2017
 	<div class="container">
 		@include('utils.message')
 		<div class="row p-0 mt-2">
+			@if ($state == 'stock')
+				<h2 class="title-section-home bd-green">Kho hàng</h2>
+			@else
+				<h2 class="title-section-home bd-blue">Đơn hàng</h2>
+			@endif
 			<div class="card card-block listV-item">
 				<div class="row">
 					<div class="col-lg-4 col-sm-12">
@@ -25,8 +30,7 @@ Date: 30/03/2017
 									</h5>
 								</a>
 								<?php $cate = $cateModel->getCateById($base->cate_id); ?>
-								<p>Category: {!! $cate->name !!}<br>
-								Kết quả matching: {!! $data->count() !!}
+								<p>Category: {!! $cate->name !!}
 								</p>
 							</div>
 						</div>
@@ -49,6 +53,7 @@ Date: 30/03/2017
 					$result_type = 'stock';
 				}
 			?>
+			<h2 class="title-section-home">Matching {!! $data->count() !!}</h2>
 			@foreach($data as $item)
 			<div class="card card-block listV-item">
 				<div class="row">

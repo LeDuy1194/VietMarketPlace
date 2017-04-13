@@ -18,9 +18,19 @@ class Match extends Model
         return $result;
     }
 
+    public function getStockNumber($id) {
+        $stock = $this->select('stock_id')->where('order_id',$id)->get();
+        return $stock->count();
+    }
+
     public function getOrderByStockId($id,$number) {
         $order = $this->select('order_id')->where('stock_id',$id)->get();
         $result = DB::table('orders')->whereIn('id',$order)->orderBy('updated_at','desc')->paginate($number);
         return $result;
+    }
+
+    public function getOrderNumber($id) {
+        $order = $this->select('order_id')->where('stock_id',$id)->get();
+        return $order->count();
     }
 }

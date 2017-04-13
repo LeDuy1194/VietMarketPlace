@@ -29,6 +29,7 @@ Date: 21/02/2017
 			<div class="col-lg-12">
 				<ol class="breadcrumb" id="path">
 					<li class="breadcrumb-item"><a href="{{route('Home')}}">Trang Chủ</a></li>
+					<li class="breadcrumb-item"><a href="{{route('listByCate',[0,'order'])}}">Đơn hàng</a></li>
 					<li class="breadcrumb-item"><a href="{{route('listByCate',[$cate->id,'all'])}}">{!! $cate->name !!}</a></li>
 					<li class="breadcrumb-item active">{!!  $data->name !!}</li>
 				</ol>

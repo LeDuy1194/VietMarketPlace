@@ -37,7 +37,6 @@ Date: 17/02/2017
 									</a>
 									<?php $cate = $cateModel->getCateById($item->cate_id); ?>
 									<p>Category: {!! $cate->name !!}</p>
-									<a href="{{route('getMatch',[$state,$item->id])}}">Kết quả matching.</a>
 								</div>
 							</div>
 						</div>
@@ -47,11 +46,11 @@ Date: 17/02/2017
 						<div class="col-lg-3 col-sm-4 text-right">
 							<h3>{!! number_format($item->price,0,",",".")." VNĐ" !!}</h3>
 						</div>
-						<div class="col-lg-1 text-right">
-							<a class="btn btn-warning" href="{{route('Home')}}" name=""><h3>Sửa</h3></a>
-						</div>
-						<div class="col-lg-1 text-right">
-							<a class="btn btn-danger" href="{{route('getDeleteProduct',[$state,$item->id])}}" name="" onclick="return confirmation('Có xóa {!! $item->name !!} không?')"><h3>Xóa</h3></a>
+						<div class="col-lg-2 text-right">
+							<?php $match = $matchModel->getOrderNumber($item->id) ?>
+							<a class="btn btn-success btn-block" href="{{route('getMatch',[$state,$item->id])}}"><h5>Match {!! $match !!}
+							</h5></a>
+							<a class="btn btn-danger btn-block" href="{{route('getDeleteProduct',[$state,$item->id])}}" name="" onclick="return confirmation('Có xóa {!! $item->name !!} không?')"><h5>Xóa</h5></a>
 						</div>
 					</div>
 				</div>
@@ -84,7 +83,6 @@ Date: 17/02/2017
 									</a>
 									<?php $cate = $cateModel->getCateById($item->cate_id); ?>
 									<p>Category: {!! $cate->name !!}</p>
-									<a href="{{route('getMatch',[$state,$item->id])}}">Kết quả matching.</a>
 								</div>
 							</div>
 						</div>
@@ -94,11 +92,11 @@ Date: 17/02/2017
 						<div class="col-lg-3 col-sm-4 text-right">
 							<h3>{!! number_format($item->price,0,",",".")." VNĐ" !!}</h3>
 						</div>
-						<div class="col-lg-1 text-right">
-							<a class="btn btn-warning" href="{{route('Home')}}" name=""><h3>Sửa</h3></a>
-						</div>
-						<div class="col-lg-1 text-right">
-							<a class="btn btn-danger" href="{{route('getDeleteProduct',[$state,$item->id])}}" name="" onclick="return confirmation('Có xóa {!! $item->name !!} không?')"><h3>Xóa</h3></a>
+						<div class="col-lg-2 text-right">
+							<?php $match = $matchModel->getStockNumber($item->id) ?>
+							<a class="btn btn-success btn-block" href="{{route('getMatch',[$state,$item->id])}}"><h5>Match {!! $match !!}
+							</h5></a>
+							<a class="btn btn-danger btn-block" href="{{route('getDeleteProduct',[$state,$item->id])}}" name="" onclick="return confirmation('Có xóa {!! $item->name !!} không?')"><h4>Xóa</h4></a>
 						</div>
 					</div>
 				</div>

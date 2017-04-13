@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\Fav;
 use App\Models\FavO;
 use App\Models\Review;
+use App\Models\Match;
 use Auth;
 
 class HomeController extends Controller {
@@ -116,10 +117,11 @@ class HomeController extends Controller {
         $number = 5;
         $userModel = new User();
         $cateModel = new Cate();
+        $matchModel = new Match();
         $author = $userModel->getDetailUserByUserID(Auth::id());
         $stock = $author->stock;
         $order = $author->order;
-        return view('pages.myStore',compact('stock','order','state','author','cateModel','userModel'));
+        return view('pages.myStore',compact('stock','order','state','author','cateModel','userModel','matchModel'));
     }
 
     public function showUploadStock() {
