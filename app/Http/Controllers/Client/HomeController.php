@@ -116,52 +116,47 @@ class HomeController extends Controller {
     }
 
     public function changeFavorite($state,$id) {
-        if (Auth::check()) {
-            if ($state == 'stock') {
-                $check = Stock::find($id);
-                if ($check != NULL) {
-                    $favModel = new Fav();
-                    $fav = $favModel->getFav(Auth::id(),$id);
-                    if ($fav != NULL) {
-                        $fav->delete();
-                        $message = ['flash_level'=>'danger','flash_message'=>'Unlike S '.$check->name.' .'];
-                    }
-                    else {
-                        $fav = new Fav();
-                        $fav->user_id = Auth::id();
-                        $fav->stock_id = $id;
-                        $fav->save();
-                        $message = ['flash_level'=>'danger','flash_message'=>'Like S '.$check->name.' .'];
-                    }
+        if ($state == 'stock') {
+            $check = Stock::find($id);
+            if ($check != NULL) {
+                $favModel = new Fav();
+                $fav = $favModel->getFav(Auth::id(),$id);
+                if ($fav != NULL) {
+                    $fav->delete();
+                    $message = ['flash_level'=>'danger','flash_message'=>'Unlike S '.$check->name.' .'];
                 }
                 else {
-                    $message = ['flash_level'=>'danger','flash_message'=>'Sản phẩm không tồn tại.'];
+                    $fav = new Fav();
+                    $fav->user_id = Auth::id();
+                    $fav->stock_id = $id;
+                    $fav->save();
+                    $message = ['flash_level'=>'danger','flash_message'=>'Like S '.$check->name.' .'];
                 }
             }
             else {
-                $check = Order::find($id);
-                if ($check != NULL) {
-                    $favModel = new FavO();
-                    $fav = $favModel->getFav(Auth::id(),$id);
-                    if ($fav != NULL) {
-                        $fav->delete();
-                        $message = ['flash_level'=>'danger','flash_message'=>'Unlike O '.$check->name.' .'];
-                    }
-                    else {
-                        $fav = new FavO();
-                        $fav->user_id = Auth::id();
-                        $fav->order_id = $id;
-                        $fav->save();
-                        $message = ['flash_level'=>'danger','flash_message'=>'Like O '.$check->name.' .'];
-                    }
-                }
-                else {
-                    $message = ['flash_level'=>'danger','flash_message'=>'Sản phẩm không tồn tại.'];
-                }
+                $message = ['flash_level'=>'danger','flash_message'=>'Sản phẩm không tồn tại.'];
             }
         }
         else {
-            $message = ['flash_level'=>'danger','flash_message'=>'Đăng nhập để thêm vào yêu thích.'];
+            $check = Order::find($id);
+            if ($check != NULL) {
+                $favModel = new FavO();
+                $fav = $favModel->getFav(Auth::id(),$id);
+                if ($fav != NULL) {
+                    $fav->delete();
+                    $message = ['flash_level'=>'danger','flash_message'=>'Unlike O '.$check->name.' .'];
+                }
+                else {
+                    $fav = new FavO();
+                    $fav->user_id = Auth::id();
+                    $fav->order_id = $id;
+                    $fav->save();
+                    $message = ['flash_level'=>'danger','flash_message'=>'Like O '.$check->name.' .'];
+                }
+            }
+            else {
+                $message = ['flash_level'=>'danger','flash_message'=>'Sản phẩm không tồn tại.'];
+            }
         }
         return back()->with($message);
     }
