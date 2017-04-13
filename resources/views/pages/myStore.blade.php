@@ -96,7 +96,7 @@ Date: 17/02/2017
 							<?php $match = $matchModel->getStockNumber($item->id) ?>
 							<a class="btn btn-success btn-block" href="{{route('getMatch',[$state,$item->id])}}"><h5>Match {!! $match !!}
 							</h5></a>
-							<a class="btn btn-danger btn-block" href="{{route('getDeleteProduct',[$state,$item->id])}}" name="" onclick="return confirmation('Có xóa {!! $item->name !!} không?')"><h4>Xóa</h4></a>
+							<a class="btn btn-danger btn-block" href="{{route('getDeleteProduct',[$state,$item->id])}}" name="" onclick="return confirmation('Có xóa {!! $item->name !!} không?')"><h5>Xóa</h5></a>
 						</div>
 					</div>
 				</div>

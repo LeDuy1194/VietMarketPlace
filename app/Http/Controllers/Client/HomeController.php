@@ -18,30 +18,7 @@ use Auth;
 
 class HomeController extends Controller {
     //
-    public function init_db() {
-        // for ($i = 1; $i <= 20; $i++) {
-        //     $stock = new Stock;
-        //     $stock->name = "Item ".$i;
-        //     $stock->price = $i * 1000;
-        //     $stock->status = "new";
-        //     $stock->description = "describe ".$i;
-        //     $stock->place = "place ".$i;
-        //     $stock->img = "stock_image.png";
-        //     $stock->user_id = 1;
-        //     $stock->cate_id = mt_rand(1,6);
-        //     $stock->save();
-
-        //     $order = new Order;
-        //     $order->name = "Đơn hàng ".$i;
-        //     $order->price = $i * 1000;
-        //     $order->status = "new";
-        //     $order->description = "describe ".$i;
-        //     $order->place = "place ".$i;
-        //     $order->img = "order_image.jpg";
-        //     $order->user_id = 1;
-        //     $order->cate_id = mt_rand(1,6);
-        //     $order->save();
-        // }
+    public function test() {
         echo "Đã tạo";
     }
 
@@ -50,10 +27,11 @@ class HomeController extends Controller {
         $cateModel = new Cate();
         $favModel = new Fav();
         $stockModel = new Stock();
+        $reviewModel = new Review();
         $stock = $stockModel->getNewest(8);
         $orderModel = new Order();
         $order = $orderModel->getNewest(8);
-        return view('pages.home',compact('stock','order','userModel','cateModel','favModel'));
+        return view('pages.home',compact('stock','order','userModel','cateModel','favModel','reviewModel'));
     }
 
     public function listByCate($id,$state) {
@@ -63,6 +41,7 @@ class HomeController extends Controller {
         $favModel = new Fav();
         $stockModel = new Stock();
         $orderModel = new Order();
+        $reviewModel = new Review();
         if ($id != 0) {
             $stock = $stockModel->getStockByCateId($id,$number);
             $order = $orderModel->getOrderByCateId($id,$number);
@@ -71,7 +50,7 @@ class HomeController extends Controller {
             $stock = $stockModel->getPage($number);
             $order = $orderModel->getPage($number);
         }
-        return view('pages.listProduct',compact('stock','order','id','state','userModel','cateModel','favModel'));
+        return view('pages.listProduct',compact('stock','order','id','state','userModel','cateModel','favModel','reviewModel'));
     }
 
     public function showOrderDetail($id) {
@@ -193,9 +172,27 @@ class HomeController extends Controller {
         $cateModel = new Cate();
         $favModel = new Fav();
         $favOMode = new FavO();
+        $reviewModel = new Review();
         $author = $userModel->getDetailUserByUserID(Auth::id());
         $fav = $favModel->getFavByUser($author->id,$number);
         $favO = $favOMode->getFavByUser($author->id,$number);
-        return view('pages.myMark',compact('fav','favO','cateModel','userModel'));
+        return view('pages.myMark',compact('fav','favO','cateModel','userModel','reviewModel'));
+    }
+
+    public function getMatch($state,$id) {
+        $number = 10;
+        $matchModel = new Match();
+        $cateModel = new Cate();
+        $userModel = new User();
+        $reviewModel = new Review();
+        if ($state=='stock') {
+            $base = Stock::findOrFail($id);
+            $data = $matchModel->getOrderByStockId($id,$number);
+        }
+        else {
+            $base = Order::findOrFail($id);
+            $data = $matchModel->getStockByOrderId($id,$number);
+        }
+        return view('pages.match',compact('base','data','state','cateModel','userModel','reviewModel'));
     }
 }

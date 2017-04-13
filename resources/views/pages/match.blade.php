@@ -53,63 +53,19 @@ Date: 30/03/2017
 					$result_type = 'stock';
 				}
 			?>
-			<h2 class="title-section-home">Matching {!! $data->count() !!}</h2>
+			<h2 class="title-section-home">Matching <span class="badge badge-danger">{!! $data->count() !!}</span></h2>
 			@foreach($data as $item)
-			<div class="card card-block listV-item">
-				<div class="row">
-					<div class="col-lg-4 col-sm-12">
-						<div class="media">
-							<div class="media-left">
-								<img src="{{ asset('resources/upload/'.$result_type.'s/'.$result_type.'-'.$item->id.'/'.$item->img) }}" class="media-object img-thumbnail avatar"/>
-							</div>
-							<div class="media-body ml-2">
-								<a href="{{route($result_type.'Detail',$item->id)}}">
-									<h5 class="media-heading">
-										{!! $item->name !!}  <span class="badge badge-default new-old-product"> {!! ($item->status == 0)?"Mới":"Cũ" !!}
-										</span>
-									</h5>
-								</a>
-								<?php
-									$user = $userModel->getDetailUserByUserID($item->user_id);
-									$cate = $cateModel->getCateById($item->cate_id);
-								?>
-								<p>Category: {!! $cate->name !!}</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-2 col-sm-12">
-						<div class="row">
-						<div class="media col-lg-12 col-sm-6">
-							<div class="media-left">
-								<img src="{{ asset('resources/upload/user/'.$user->avatar) }}" class="media-object rounded-circle user-avatar"/>
-							</div>
-							<div class="media-body">
-								<h5 class="media-heading"> {!! $user->username!!}</h5>
-							</div>
-						</div>
-						<div class="btn-group col-lg-12 col-sm-6">
-							<ul class="list-inline" name="rating">
-								<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-								<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-								<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-								<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-								<li class="list-inline-item"><a class=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-							</ul>
-						</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-sm-6">
-						<p><i class="fa fa-street-view" aria-hidden="true"></i> {!! $item->place !!}</p>
-					</div>
-					<div class="col-lg-3 col-sm-6 text-right">
-						<h3>{!! number_format($item->price,0,",",".")." VNĐ" !!}</h3>
-					</div>
-				</div>
-			</div>
+				<?php
+					$user = $userModel->getDetailUserByUserID($item->user_id);
+					$cate = $cateModel->getCateById($item->cate_id);
+                	$vote = $reviewModel->getAverageVote($item->user_id);
+				?>
+				@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => $result_type,'vote' => $vote])
 			@endforeach
 		</div>
 		
 		<?php $page = $data; ?>
+		@if ($page->lastPage() > 1)
 		<nav aria-label="Page navigation">
 			<ul class="pagination">
 				@if ($page->currentPage() != 1)
@@ -125,6 +81,7 @@ Date: 30/03/2017
 				@endif
 			</ul>
 		</nav>
+		@endif
 	</div><br>
 @endsection
 

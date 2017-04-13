@@ -25,7 +25,7 @@ Route::post('register',['as'=>'postRegister','uses'=>'Auth\RegisterController@po
 //Route::get('reset',['as'=>'getReset','uses'=>'Client\ResetPasswordController@getReset']);
 //Route::post('reset',['as'=>'postReset','uses'=>'Auth\ResetPasswordController@postReset']);
 
-Route::get('homepage',['as'=>'Home','uses'=>'Client\HomeController@showHome']);
+Route::get('home',['as'=>'Home','uses'=>'Client\HomeController@showHome']);
 
 Route::get('mystore/{state}',['as'=>'MyStore','uses'=>'Client\HomeController@showMyStore']);
 
@@ -65,7 +65,7 @@ Route::get('delete/{state}--{id}',['as'=>'getDeleteProduct','uses'=>'Client\Clie
 // Route::get('edit/{state}--{id}',['as'=>'getEditProduct','uses'=>'Client\ClientController@getEditProduct']);
 // Route::post('edit/{state}--{id}',['as'=>'postEditProduct','uses'=>'Client\ClientController@postEditProduct']);
 
-Route::get('init_db',['uses'=>'Client\HomeController@init_db']);
+Route::get('test',['uses'=>'Client\HomeController@test']);
 
 Route::get('search',['uses' => 'SearchController@getSearch','as' => 'search']);
 
@@ -73,6 +73,6 @@ Route::get('search',['uses' => 'SearchController@getSearch','as' => 'search']);
 // Change favorite
 Route::get('favorite/{state}--{id}',['as' => 'favorite','uses' => 'Client\HomeController@changeFavorite']);
 Route::get('mymark',['as' => 'myMark','uses' => 'Client\HomeController@showMark']);
-Route::get('match/{state}--{id}',['as' => 'getMatch','uses' => 'Client\MatchController@getMatch']);
+Route::get('match/{state}--{id}',['as' => 'getMatch','uses' => 'Client\HomeController@getMatch']);
 
 Route::get('logout',['as' => 'logout','uses' => 'Auth\LoginController@getLogout']);

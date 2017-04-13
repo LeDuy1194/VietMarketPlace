@@ -9,6 +9,7 @@ use App\Models\Cate;
 use App\Models\User;
 use App\Models\Stock;
 use App\Models\Order;
+use App\Models\Review;
 class SearchController extends Controller
 {
 
@@ -16,6 +17,7 @@ class SearchController extends Controller
     {
         $userModel = new User();
         $cateModel = new Cate();
+        $reviewModel = new Review();
         $stock = new Stock();
         $order = new Order();
         $type = $request->search_type;
@@ -33,6 +35,6 @@ class SearchController extends Controller
         }
 //        dd($articles);
         // returns a view and passes the view the list of articles and the original query.
-        return view('pages.search', compact('articles','userModel','cateModel'));
+        return view('pages.search', compact('articles','userModel','cateModel','reviewModel'));
     }
 }

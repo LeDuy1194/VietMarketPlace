@@ -16,8 +16,9 @@ Update_at: 27/03/2017 by Anh Pham
                     <?php
                     $user = $userModel->getDetailUserByUserID($item->user_id);
                     $cate = $cateModel->getCateById($item->cate_id);
+                    $vote = $reviewModel->getAverageVote($item->user_id);
                     ?>
-					@include('utils.contentGrid',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock'])
+					@include('utils.contentGrid',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock','vote' => $vote])
 				@endforeach
 				</div>
 			<div class="show-more">
@@ -31,8 +32,9 @@ Update_at: 27/03/2017 by Anh Pham
                     <?php
                     $user = $userModel->getDetailUserByUserID($item->user_id);
                     $cate = $cateModel->getCateById($item->cate_id);
+                    $vote = $reviewModel->getAverageVote($item->user_id);
                     ?>
-					@include('utils.contentGrid',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order'])
+					@include('utils.contentGrid',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order','vote' => $vote])
 				@endforeach
 				</div>
 			<div class="show-more">

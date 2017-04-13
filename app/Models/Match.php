@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\Stock;
+use App\Models\Order;
 
 class Match extends Model
 {
@@ -14,7 +16,7 @@ class Match extends Model
 
     public function getStockByOrderId($id,$number) {
     	$stock = $this->select('stock_id')->where('order_id',$id)->get();
-        $result = DB::table('stocks')->whereIn('id',$stock)->orderBy('updated_at','desc')->paginate($number);
+        $result = Stock::whereIn('id',$stock)->orderBy('updated_at','desc')->paginate($number,['*'],'stock');
         return $result;
     }
 
@@ -25,7 +27,7 @@ class Match extends Model
 
     public function getOrderByStockId($id,$number) {
         $order = $this->select('order_id')->where('stock_id',$id)->get();
-        $result = DB::table('orders')->whereIn('id',$order)->orderBy('updated_at','desc')->paginate($number);
+        $result = Order::whereIn('id',$order)->orderBy('updated_at','desc')->paginate($number,['*'],'order');
         return $result;
     }
 

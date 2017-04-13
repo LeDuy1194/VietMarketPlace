@@ -17,8 +17,9 @@ Create_at: 27/03/2017
                     <?php
                     $user = $userModel->getDetailUserByUserID($item->user_id);
                     $cate = $cateModel->getCateById($item->cate_id);
+                    $vote = $reviewModel->getAverageVote($item->user_id);
                     ?>
-                    @include('utils.contentTable',['item' => $item,'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock'])
+                    @include('utils.contentTable',['item' => $item,'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock','vote' => $vote])
                 @endforeach
             </div>
             @endif
@@ -29,8 +30,9 @@ Create_at: 27/03/2017
                     <?php
                     $user = $userModel->getDetailUserByUserID($item->user_id);
                     $cate = $cateModel->getCateById($item->cate_id);
+                    $vote = $reviewModel->getAverageVote($item->user_id);
                     ?>
-                    @include('utils.contentTable',['item' => $item,'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order'])
+                    @include('utils.contentTable',['item' => $item,'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order','vote' => $vote])
                 @endforeach
             </div>
                 @endif

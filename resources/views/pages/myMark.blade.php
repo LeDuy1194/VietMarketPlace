@@ -9,17 +9,19 @@ Date: 10/04/2017
 		@include('utils.message')
 		<div class="row list-products-thumbnail">
 			<h2 class="title-section-home bd-green">Kho hàng 
-			<span class="badge badge-danger">{!! $fav->count() !!}</span>
+			<span class="badge badge-danger">{!! $fav->total() !!}</span>
 			</h2>
 				@foreach($fav as $key)
 					<?php
 						$item = App\Models\Stock::find($key->stock_id);
 						$user = $userModel->getDetailUserByUserID($item->user_id);
 						$cate = $cateModel->getCateById($item->cate_id);
+						$vote = $reviewModel->getAverageVote($item->user_id);
 					?>
-					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock'])
+					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock','vote' => $vote])
 				@endforeach
 		</div>
+		@if ($fav->lastPage() > 1)
 		<nav aria-label="Page navigation">
 			<ul class="pagination">
 				@if ($fav->currentPage() != 1)
@@ -35,20 +37,23 @@ Date: 10/04/2017
 				@endif
 			</ul>
 		</nav>
+		@endif
 
 		<div class="row list-products-thumbnail">
 			<h2 class="title-section-home bd-blue">Đơn hàng 
-			<span class="badge badge-danger">{!! $favO->count() !!}</span>
+			<span class="badge badge-danger">{!! $favO->total() !!}</span>
 			</h2>
 				@foreach($favO as $key)
 					<?php
 						$item = App\Models\Order::find($key->order_id);
 						$user = $userModel->getDetailUserByUserID($item->user_id);
 						$cate = $cateModel->getCateById($item->cate_id);
+						$vote = $reviewModel->getAverageVote($item->user_id);
 					?>
-					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order'])
+					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order','vote' => $vote])
 				@endforeach
 		</div>
+		@if ($favO->lastPage() > 1)
 		<nav aria-label="Page navigation">
 			<ul class="pagination">
 				@if ($favO->currentPage() != 1)
@@ -64,6 +69,7 @@ Date: 10/04/2017
 				@endif
 			</ul>
 		</nav>
+		@endif
 	</div>
 @endsection
 

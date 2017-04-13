@@ -60,7 +60,8 @@ class LoginController extends Controller
     }
 
     public function getLogout(Request $request){
-        Auth::logout();
-        return redirect()->route('Home');
+        if (Auth::check()) {
+            Auth::logout();
+        }
     }
 }
