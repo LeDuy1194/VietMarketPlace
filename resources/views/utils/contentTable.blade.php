@@ -1,9 +1,12 @@
 <!--Created by: Anh Phạm
 Date: 23/03/2017
 -->
+<?php 
+// dd($item); 
+?>
 <div class="col-lg-12 p-0 m-0">
 	<div class="card card-block listV-item p-2">
-	<div class="row">
+	<div class="row list-products-table">
 		<div class="col-lg-4 col-sm-12">
 			<div class="media">
 				<div class="media-left">
@@ -38,9 +41,10 @@ Date: 23/03/2017
 		<div class="col-lg-3 col-sm-6">
 			<p><i class="fa fa-street-view" aria-hidden="true"></i> {!! $item->place !!}</p>
 		</div>
-		<div class="col-lg-1 col-sm-2 text-right">
+		<div class="col-lg-1 col-sm-2 text-right btn-favorite-product">
 			<a class="btn btn-warning" title="Xem sau." href="{{route('favorite',[$type,$item->id])}}">
 				<i class="fa fa-heart-o" aria-hidden="true"></i>
+				<!-- <i class="fa fa-heart" aria-hidden="true"></i> -->
 			</a>
 		</div>
 		<div class="col-lg-2 col-sm-4 text-right pl-0">

@@ -70,6 +70,15 @@ Date: 21/02/2017
 				</div>
 			</div>
 			<div class="col-lg-3 col-sm-12">
+			    <div class="">
+			        <h3 class="price-product-item">{!! number_format($data->price,0,",",".") !!}</h3>
+			        <sup class="currency-price">đ</sup>
+			    </div>
+			    <div class="">
+			        			<a class="btn btn-warning" title="Xem sau." href="{{route('favorite',['stock',$data->id])}}">
+				<i class="fa fa-heart-o" aria-hidden="true"></i>
+			</a>
+			    </div>
 				<div class="card author-info">
 					<div class="card-header header-author-info">
 						<a class="fontItem" data-toggle="collapse" href="#collapseProductInfo" aria-expanded="true" aria-controls="collapseProductInfo"><h5>Thông tin sản phẩm</h5></a>

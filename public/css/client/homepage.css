@@ -37,6 +37,8 @@
     text-align: center;
     border-bottom: 1px solid #eee;
     display: flex;
+    overflow: hidden;
+    position: relative;
 }
 
 .card-top-thumbnail:before {
@@ -237,4 +239,87 @@ display: inline-block;
 
   .status-tag.old-tag:after {
     border-right: 10px solid #025aa5;
+}
+
+.card.product-item .card-top-thumbnail img {
+    -webkit-transition: all 300ms ease-in;
+    -webkit-transform: scale(1);
+    -ms-transition: all 300ms ease-in;
+    -ms-transform: scale(1);
+    -moz-transition: all 300ms ease-in;
+    -moz-transform: scale(1);
+    transition: all 300ms ease-in;
+    transform: scale(1);  
+}
+
+.card.product-item .card-top-thumbnail:hover img{
+      -webkit-transition: all 300ms ease-in;
+    -webkit-transform: scale(1.2);
+    -ms-transition: all 300ms ease-in;
+    -ms-transform: scale(1.2);
+    -moz-transition: all 300ms ease-in;
+    -moz-transform: scale(1.2);
+    transition: all 300ms ease-in;
+    transform: scale(1.2);
+}
+
+.btn-favorite-product a.btn.btn-warning {
+    color: #f90700;
+    background-color: rgba(240, 173, 78, 0);
+    border-color: #f90700;
+}
+
+.card.product-item .card-top-thumbnail:hover .frame-hover-product {
+    top: 50%;
+    opacity: 1;
+    visibility: visible;
+}
+
+.btn-favorite-product a.btn.btn-warning:hover {
+    color: #fff;
+    background-color: #f90700;
+    border-color: #f90700;
+}
+
+.product-item .frame-hover-product {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 52%;
+  background: rgba(0, 0, 0, 0.54);
+-webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    text-align: center;
+    width: 100%;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.button-area-product-item {
+    position: absolute;
+    top: 45%;
+    width: 100%;
+}
+
+.button-area-product-item .btn-for-product {
+    border: 2px solid;
+    color: #fff;
+    margin: 0 5px;
+}
+
+.button-area-product-item .btn-for-product:hover {
+    /* color: red; */
+    background: #d9534f;
+    border: 2px solid #d9534f;
+}
+
+.button-area-product-item .btn-for-product a:hover {
+  color: white;
 }
