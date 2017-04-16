@@ -317,7 +317,6 @@ display: inline-block;
 .button-area-product-item .btn-for-product:hover {
     /* color: red; */
     background: #d9534f;
-    border: 2px solid #d9534f;
 }
 
 .button-area-product-item .btn-for-product a:hover {

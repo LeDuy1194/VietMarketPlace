@@ -24,6 +24,9 @@ Date: 21/02/2017
 
 @section('content')
 	@include('utils.message')
+	<?php 
+// dd($author); 
+?>
 	<div class="container-fluid content-product-detail">
 		<div class="row header-product">
 			<div class="col-lg-12 breadcrumb-header">
@@ -70,14 +73,21 @@ Date: 21/02/2017
 				</div>
 			</div>
 			<div class="col-lg-3 col-sm-12">
-			    <div class="">
+			    <div class="price-product-detail">
 			        <h3 class="price-product-item">{!! number_format($data->price,0,",",".") !!}</h3>
 			        <sup class="currency-price">đ</sup>
 			    </div>
-			    <div class="">
-			        			<a class="btn btn-warning" title="Xem sau." href="{{route('favorite',['stock',$data->id])}}">
-				<i class="fa fa-heart-o" aria-hidden="true"></i>
-			</a>
+			    <div class="add-favorite-detail btn-action-product">
+				    <a title="Xem sau." href="{{route('favorite',['stock',$data->id])}}">
+						<i class="fa fa-heart-o" aria-hidden="true"></i>
+						<h3 class="add-favorite-product">Xem sau</h3>
+					</a>
+			    </div>
+			    <div class="report-product btn-action-product">
+				    <a title="Báo cáo tin xấu" href="{{route('favorite',['stock',$data->id])}}">
+						<i class="fa fa-flag" aria-hidden="true"></i>
+						<h3 class="report-product-title">Báo tin xấu</h3>
+					</a>
 			    </div>
 				<div class="card author-info">
 					<div class="card-header header-author-info">
@@ -86,13 +96,23 @@ Date: 21/02/2017
 					<div class="collapse show card-block" id="collapseProductInfo">
 						<ul class="product-info" id="productInfo">
 
-							<li class="price-product">
+<!-- 							<li class="price-product">
 								<i class="fa fa-money" aria-hidden="true"></i>
 								<h3 class="price-product-item">{!! number_format($data->price,0,",",".") !!}</h3>
 						    	<sup class="currency-price">đ</sup>
-						    </li>
-							<li><span class="badge badge-default new-old-product"> {!! ($data->status == 0)?"Mới":"Cũ" !!}</span></li>
-							<li><i class="fa fa-street-view" aria-hidden="true"></i> {!! $data->place !!}</li>
+						    </li> -->
+							<li>
+								<div class="title-info-detail">Tình trạng: </div>
+								<div class="badge badge-default {!! ($data->status == 0)?"new-product":"old-product" !!}">{!! ($data->status == 0)?"Hàng mới":"Hàng cũ" !!}</div>
+							</li>
+							<li>
+								<div class="title-info-detail">Địa chỉ: </div>
+								<div class="info-detail">{!! $data->place !!}, {!! $data->district !!}, {!! $data->city !!}</div>
+							</li>
+							<li>
+								<div class="title-info-detail">Ngày đăng: </div>
+								<div class="info-detail">{!! date_format($data->created_at,"d/m/Y") !!}</div>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -100,44 +120,75 @@ Date: 21/02/2017
 					<div class="card-header header-author-info">
 						<a class="fontItem" data-toggle="collapse" href="#authorInfomation" aria-expanded="true" aria-controls="collapseInfo"><h5>Thông tin người đăng</h5></a>
 					</div>
-					<div class="card-body collapse show" id="authorInfomation">
-						<center>
-							<br>
-							<img src="../resources/upload/user/{!! $author->avatar !!}" class="rounded-circle author-avatar">
-							<!--<input type="file" value="upload avatar" name="avatarUploadImg" id="avatarUploadImg">-->
-							<h3 class="text-center author-name">
-								<a href="{!! url('profile', [$author->username]) !!}" >{!! $author->username !!}</a>
-							</h3>
-						</center>
+					<div class="card-block collapse show" id="authorInfomation">
+						<div class="basic-info-author">
+							<span class="avatar-author">
+								<img src="../resources/upload/user/{!! $author->avatar !!}" class="rounded-circle author-avatar">
+							</span>
+							<span class="list-info-author">
+								<span class="name-author">
+									<h3 class="text-center author-name">
+										<a href="{!! url('profile', [$author->username]) !!}" >{!! $author->username !!}</a>
+									</h3>
+								</span>
+								<span class="socials-author">
+									<a href="#" class="facebook-author">
+										<span class="fa-stack fa-lg facebook-social">
+										  <i class="fa fa-circle fa-stack-2x"></i>
+										  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+									<a href="#" class="ggplus-author">
+										<span class="fa-stack fa-lg ggplus-social">
+										  <i class="fa fa-circle fa-stack-2x"></i>
+										  <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+								</span>
+							</span>
+						</div>	
 						<ul class="detail-info-author" id="detailInfoAuthor">
 							<!-- <li><i class="fa fa-map-marker" aria-hidden="true"></i> {!! $author->address !!}</li> -->
-							<li><h4><i class="fa fa-phone" aria-hidden="true"></i> {!! $author->phone !!}</h4></li>
-							<!-- <li><i class="fa fa-envelope" aria-hidden="true"></i> {!! $author->email !!}</li> -->
+							<?php if ($author->phone != ''): ?>
+								<li><h4><i class="fa fa-phone" aria-hidden="true"></i> {!! $author->phone !!}</h4></li>
+							<?php endif; ?>
+							<?php if ($author->email != ''): ?>
+								<li><i class="fa fa-envelope" aria-hidden="true"></i> {!! $author->email !!}</li>
+							<?php endif; ?>
+<!-- 							<li>
+								<div class="title-register-author">Ngày đăng ký: </div>
+								<div class="info-register-author">{!! date_format($author->created_at,"d/m/Y") !!}</div>
+							</li> -->
 						</ul>
 					</div>
 				</div>
-				<div class="card card-block">
+<!-- 				<div class="card card-block">
 					<div class="btn-group">
 						<a id="btnFav" class="btn btn-primary" href="{{route('favorite',['stock',$data->id])}}">Xem sau</a>
 						<button id="btnReport" class="btn btn-block btn-lg">Báo cáo tin ảo</button>
 					</div>
-				</div>
+				</div> -->
 				@if(Auth::id()!=$author->id)
-				<div class="card card-block">
-					<form role="form" action="{!!route('postReview',[$data->id])!!}" method="POST" enctype="multipart/form-data">
-						<input type="hidden" name="_token" value="{!!csrf_token()!!}">
-						<div class="form-group">
-							<textarea name="comment" id="comment" rows="4" cols="30" maxlength="100" class="form-control" placeholder="Đánh giá" style="resize: none;"></textarea>
-						</div>
-						<select class="form-control" name="vote" id="vote">
-							<option value="1">Tốt</option>
-							<option value="0">Không Tốt</option>
-						</select>
-						<hr>
-						<button type="submit" class="btn btn-block btn-success">
-							Gửi
-						</button>
-					</form>
+				<div class="card report-product-area">
+					<div class="card-header header-report-product">
+						<a class="fontItem" data-toggle="collapse" href="#reportProduct" aria-expanded="true" aria-controls="collapseInfo"><h5>Đánh giá người đăng</h5></a>
+					</div>
+					<div class="card-block collapse show" id="reportProduct">
+						<form role="form" action="{!!route('postReview',[$data->id])!!}" method="POST" enctype="multipart/form-data">
+							<input type="hidden" name="_token" value="{!!csrf_token()!!}">
+							<div class="form-group">
+								<textarea name="comment" id="comment" rows="4" cols="30" maxlength="100" class="form-control" placeholder="Nội dung đánh giá" style="resize: none;"></textarea>
+							</div>
+							<select class="form-control" name="vote" id="vote">
+								<option value="1">Tốt</option>
+								<option value="0">Không Tốt</option>
+							</select>
+							<hr>
+							<button type="submit" class="btn btn-block btn-success">
+								Gửi
+							</button>
+						</form>
+					</div>
 				</div>
 				@endif
 			</div>
