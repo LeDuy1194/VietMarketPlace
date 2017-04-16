@@ -16,6 +16,7 @@ ul#productInfo {
     list-style: none;
     font-size: 18px;
     margin-bottom: 0px;
+    padding: 0;
 }
 
 ul#productInfo li.price-product {
@@ -32,11 +33,6 @@ ul#detailInfoAuthor {
 
 ul#detailInfoAuthor li i {
     color: #014CA3;
-}
-
-#product-detail-gallery {
-    margin-bottom: 30px;
-    margin-top: 30px;
 }
 
 #product-detail-gallery.rsDefault .rsThumbsHor {
@@ -174,4 +170,43 @@ body .rsDefault .rsThumbsArrow:hover {
 }
 body .rsDefault .rsThumbsArrow:hover .rsThumbsArrowIcn {
     color: #4caf50;
+}
+
+.breadcrumb-header {
+    text-align: center;
+    padding: 65px 0;
+    color: white;
+}
+
+.row.header-product {
+    background: #5cb85c;
+    background: url(/public/img/header/09.png) no-repeat center center fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;  
+    height: 200px;
+}
+
+.breadcrumb-header .breadcrumb {
+    margin-bottom: 0;
+    list-style: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    margin-left: 0;
+    background: none;
+}
+
+.breadcrumb-header .breadcrumb-item+.breadcrumb-item::before {
+    color: #f7f7f9;
+}
+
+.slider-product-detail {
+    margin: 30px 0;
+}
+
+.card.author-info {
+    margin: 30px 0;
 }

@@ -3,8 +3,8 @@
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="{{url('/')}}">Viet MarketPlace</a>
-
+    <!-- <a class="navbar-brand" href="{{url('/')}}"><img src="../public/img/logo.png" /></a> -->
+    <a class="navbar-brand" href="{{url('/')}}">Viet Marketplace</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto mt-2 mt-md-0">
         @if(Auth::check())

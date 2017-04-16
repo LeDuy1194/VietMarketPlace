@@ -10,19 +10,27 @@
     <div class="card-top-thumbnail">
         <img class="card-img-top img-feature-product" src="{{ asset('resources/upload/'.$type.'s/'.$type.'-'.$item->id.'/'.$item->img) }}" alt="VietMarketPlace">
     </div>
-<!--    --><?php //dd($item); ?>
+<?php 
+// dd($item); 
+?>
     <div class="card-block card-body-product">
-        <a href="{{route($type.'Detail',$item->id)}}">
-            <h4 class="card-title title-product">{!! $item->name !!}</h4>
-        </a>
+        <span class="name-product">
+            <a href="{{route($type.'Detail',$item->id)}}">
+                <h4 class="card-title title-product">{!! $item->name !!}</h4>
+            </a>
+        </span>
         <!--            <p class="card-text short-desc-product"></p>-->
         <span class="card-cate-product card-left-text">
                 <a href="{{route('listByCate',[$cate->id,'all'])}}">{!! $cate->name !!}</a>
             </span>
-        <span class="card-price-product card-right-text">
+        <span class="card-addr-text">
+                {!! $item->district !!}, {!! $item->city !!}
+        </span>
+        <span class="card-price-product card-center-text">
                 <h3 class="price-product-item">{!! number_format($item->price,0,",",".") !!}</h3>
 			    <sup class="currency-price">đ</sup>
-            </span>
+        </span>
+        <div class="status-tag <?php if ($item->status != 0) echo "old-tag"; ?>"><?php if ($item->status == 0) echo "MỚI"; else echo "CŨ";?></div>
     </div>
     <div class="card-footer card-footer-product">
             <span class="card-avatar-author card-left-text">

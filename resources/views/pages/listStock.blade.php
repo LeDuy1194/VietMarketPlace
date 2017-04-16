@@ -25,13 +25,14 @@ Date: 21/02/2017
 @section('content')
 	@include('utils.message')
 	<div class="container-fluid content-product-detail">
-		<div class="row">
-			<div class="col-lg-12">
+		<div class="row header-product">
+			<div class="col-lg-12 breadcrumb-header">
+				<h2 class="title-post">{!!  $data->name !!}</h2>
 				<ol class="breadcrumb" id="path">
 					<li class="breadcrumb-item"><a href="{{route('Home')}}">Trang Chủ</a></li>
 					<li class="breadcrumb-item"><a href="{{route('listByCate',[0,'stock'])}}">Kho hàng</a></li>
 					<li class="breadcrumb-item"><a href="{{route('listByCate',[$cate->id,'all'])}}">{!! $cate->name !!}</a></li>
-					<li class="breadcrumb-item active">{!!  $data->name !!}</li>
+<!-- 					<li class="breadcrumb-item active">{!!  $data->name !!}</li> -->
 				</ol>
 			</div>
 		</div>
@@ -39,7 +40,7 @@ Date: 21/02/2017
 		<div class="row">
 			<div class="col-lg-1 hidden-sm-down"></div>
 			<div class="col-lg-7 col-sm-12">
-				<h2 class="title-post">{!!  $data->name !!}</h2>
+				<!-- <h2 class="title-post">{!!  $data->name !!}</h2> -->
 				{{--<div class="card card-block">--}}
 					{{--<img src="../resources/upload/{{$data->img}}"/>--}}
 				{{--</div>--}}
@@ -75,7 +76,12 @@ Date: 21/02/2017
 					</div>
 					<div class="collapse show card-block" id="collapseProductInfo">
 						<ul class="product-info" id="productInfo">
-							<li class="price-product"><i class="fa fa-money" aria-hidden="true"></i> {!! number_format($data->price,0,",",".")." VNĐ" !!}</li>
+
+							<li class="price-product">
+								<i class="fa fa-money" aria-hidden="true"></i>
+								<h3 class="price-product-item">{!! number_format($data->price,0,",",".") !!}</h3>
+						    	<sup class="currency-price">đ</sup>
+						    </li>
 							<li><span class="badge badge-default new-old-product"> {!! ($data->status == 0)?"Mới":"Cũ" !!}</span></li>
 							<li><i class="fa fa-street-view" aria-hidden="true"></i> {!! $data->place !!}</li>
 						</ul>
