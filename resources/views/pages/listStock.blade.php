@@ -134,14 +134,14 @@ Date: 21/02/2017
 								<span class="socials-author">
 									<a href="#" class="facebook-author">
 										<span class="fa-stack fa-lg facebook-social">
-										  <i class="fa fa-circle fa-stack-2x"></i>
-										  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+										  <i class="fa fa-circle fa-stack-2x fa-circle-custom"></i>
+										  <i class="fa fa-facebook fa-stack-1x fa-icon-custom"></i>
 										</span>
 									</a>
 									<a href="#" class="ggplus-author">
 										<span class="fa-stack fa-lg ggplus-social">
-										  <i class="fa fa-circle fa-stack-2x"></i>
-										  <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+										  <i class="fa fa-circle fa-stack-2x fa-circle-custom"></i>
+										  <i class="fa fa-google-plus fa-stack-1x fa-icon-custom"></i>
 										</span>
 									</a>
 								</span>

@@ -309,6 +309,7 @@ ul.product-info li .title-info-detail {
 .author-info .basic-info-author {
     margin-bottom: 10px;
     float: left;
+    width: 100%;
 }
 
 .author-info .avatar-author {
@@ -325,10 +326,31 @@ ul.product-info li .title-info-detail {
     float: left;
 }
 
-a.ggplus-author:hover {
-    color: #DB412B;
-}
-
 .socials-author a:hover {
     text-decoration: none;
 }
+
+a.ggplus-author:hover .fa-circle-custom{
+    color: #DB412B;
+}
+
+a.ggplus-author:hover .fa-icon-custom{
+    color: white;
+}
+
+a.facebook-author:hover .fa-circle-custom{
+    color: #0275d8;
+}
+
+a.facebook-author:hover .fa-icon-custom{
+    color: white;
+}
+
+.fa-icon-custom {
+    color: #777;
+}
+
+.fa-circle-custom {
+    color: white;
+}
+
