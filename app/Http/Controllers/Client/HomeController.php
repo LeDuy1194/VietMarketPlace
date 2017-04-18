@@ -73,8 +73,7 @@ class HomeController extends Controller {
         return view('pages.listStock',compact('data','cate', 'author', 'stockImages'));
     }
 
-    public function postReview($id, ReviewRequest $request)
-    {
+    public function postReview($id, ReviewRequest $request) {
         $data = Stock::find($id);
         $cate = Cate::find($data['cate_id']);
         $userModel = new User();
@@ -101,14 +100,6 @@ class HomeController extends Controller {
         $stock = $author->stock;
         $order = $author->order;
         return view('pages.myStore',compact('stock','order','state','author','cateModel','userModel','matchModel'));
-    }
-
-    public function showUploadStock() {
-        return view('haiblade.pages.uploadstock');
-    }
-
-    public function showUploadOrder() {
-        return view('haiblade.pages.uploadorder');
     }
 
     public function showMap() {

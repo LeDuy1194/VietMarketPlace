@@ -26,7 +26,21 @@ class ClientController extends Controller
         $district = District::select('name','cityid')->get()->toArray();
         //$dtModel = new District();
         //$district = $dtModel->getDistrictByCityId($city->cityid);
-        return view('haiblade.pages.upload',compact('cate','city','district'));
+
+        // Restrict Upload -- LeDuy
+        $userModel = new User();
+        $author = $userModel->getDetailUserByUserID(Auth::id());
+        $stockNumber = $author->stock()->count();
+        $orderNumber = $author->order()->count();
+        $totalPost = $stockNumber + $orderNumber;
+        $limit = $author->level * 5 + 5;
+        if ($totalPost >= $limit) {
+            $message = ['flash_level'=>'danger','flash_message'=>'Khong the dang nhieu hon '.$limit.' tin.'];
+            return redirect()->route('MyStore','stock')->with($message);
+        }
+        else {
+            return view('haiblade.pages.upload',compact('cate','city','district'));
+        }
     }
 
     /**
