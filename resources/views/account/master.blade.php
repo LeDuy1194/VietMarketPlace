@@ -29,7 +29,7 @@ Truong Trieu Hai
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 							<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">VietMarketPlace</a>
+						<a class="navbar-brand" href="{{route('Home')}}">VietMarketPlace</a>
 					</div>
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
@@ -105,7 +105,7 @@ Truong Trieu Hai
 <footer class="navbar-fixed-bottom panel-footer navbar-account">
 	<div class="row text-center">
 		<tr>
-			<td> <a href="#">Trang chủ</a></td>
+			<td> <a href="{{route('Home')}}">Trang chủ</a></td>
 			<span>|</span>
 			<td> <a href="#">Riêng tư</a></td>
 			<span>|</span>

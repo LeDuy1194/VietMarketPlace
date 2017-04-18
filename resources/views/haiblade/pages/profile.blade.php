@@ -1,4 +1,7 @@
-@extends('haiblade.master')
+@extends('layouts.master')
+@section('css')	
+	<link rel="stylesheet" href="{{asset('public/css/client/accountstyle.css')}}"/>
+@endsection
 @section('content')
 	<div class="container-fluid">
 		<div class="row">
