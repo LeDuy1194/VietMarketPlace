@@ -30,16 +30,22 @@ class ClientController extends Controller
         // Restrict Upload -- LeDuy
         $userModel = new User();
         $author = $userModel->getDetailUserByUserID(Auth::id());
-        $stockNumber = $author->stock()->count();
-        $orderNumber = $author->order()->count();
-        $totalPost = $stockNumber + $orderNumber;
-        $limit = $author->level * 5 + 5;
-        if ($totalPost >= $limit) {
-            $message = ['flash_level'=>'danger','flash_message'=>'Khong the dang nhieu hon '.$limit.' tin.'];
-            return redirect()->route('MyStore','stock')->with($message);
+        if (($author->phone == NULL)||($author->fullname == NULL)) {
+            $message = ['flash_level'=>'danger','flash_message'=>'Thiếu thông tin người dùng.'];
+            return redirect()->route('profile',$author->username)->with($message);
         }
         else {
-            return view('haiblade.pages.upload',compact('cate','city','district'));
+            $stockNumber = $author->stock()->count();
+            $orderNumber = $author->order()->count();
+            $totalPost = $stockNumber + $orderNumber;
+            $limit = $author->level * 5 + 5;
+            if ($totalPost >= $limit) {
+                $message = ['flash_level'=>'danger','flash_message'=>'Không thể đăng nhiều hơn '.$limit.' tin.'];
+                return redirect()->route('MyStore','stock')->with($message);
+            }
+            else {
+                return view('haiblade.pages.upload',compact('cate','city','district'));
+            }
         }
     }
 

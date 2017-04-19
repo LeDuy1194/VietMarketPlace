@@ -33,7 +33,7 @@ Date: 21/02/2017
 				<h2 class="title-post">{!!  $data->name !!}</h2>
 				<ol class="breadcrumb" id="path">
 					<li class="breadcrumb-item"><a href="{{route('Home')}}">Trang Chủ</a></li>
-					<li class="breadcrumb-item"><a href="{{route('listByCate',[0,'order'])}}">Kho hàng</a></li>
+					<li class="breadcrumb-item"><a href="{{route('listByCate',[0,'order'])}}">Đơn hàng</a></li>
 					<li class="breadcrumb-item"><a href="{{route('listByCate',[$cate->id,'all'])}}">{!! $cate->name !!}</a></li>
 <!-- 					<li class="breadcrumb-item active">{!!  $data->name !!}</li> -->
 				</ol>
