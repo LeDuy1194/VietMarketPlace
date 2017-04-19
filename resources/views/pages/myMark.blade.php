@@ -1,6 +1,7 @@
-<!--Created by: Lê Duy
+{{--
+Created by: Lê Duy
 Date: 10/04/2017
--->
+--}}
 @extends('layouts.master')
 
 @section('content')
