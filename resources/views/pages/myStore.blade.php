@@ -31,20 +31,21 @@ Date: 17/02/2017
 								<div class="media-body ml-2">
 									<a href="{{route('stockDetail',$item->id)}}">
 										<h5 class="media-heading">
-											{!! $item->name !!}  <span class="badge badge-default new-old-product"> {!! ($item->status == 0)?"Mới":"Cũ" !!}
-											</span>
+											{!! $item->name !!}
 										</h5>
 									</a>
 									<?php $cate = $cateModel->getCateById($item->cate_id); ?>
 									<p>Category: {!! $cate->name !!}</p>
+									<div class="badge badge-default {!! ($item->status == 0)?"new-product":"old-product" !!}">{!! ($item->status == 0)?"Hàng mới":"Hàng cũ" !!}</div>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-3 col-sm-6">
-							<p><i class="fa fa-street-view" aria-hidden="true"></i> {!! $item->place !!}</p>
+							<p><i class="fa fa-street-view" aria-hidden="true"></i> {!! $item->place !!},{!! $item->district !!}, {!! $item->city !!}</p>
 						</div>
 						<div class="col-lg-3 col-sm-4 text-right">
-							<h3>{!! number_format($item->price,0,",",".")." VNĐ" !!}</h3>
+							<h3 class="price-product-item">{!! number_format($item->price,0,",",".") !!}</h3>
+							<sup class="currency-price">đ</sup>
 						</div>
 						<div class="col-lg-2 text-right">
 							<?php $match = $matchModel->getOrderNumber($item->id) ?>
@@ -77,20 +78,21 @@ Date: 17/02/2017
 								<div class="media-body ml-2">
 									<a href="{{route('orderDetail',$item->id)}}">
 										<h5 class="media-heading">
-											{!! $item->name !!}  <span class="badge badge-default new-old-product"> {!! ($item->status == 0)?"Mới":"Cũ" !!}
-											</span>
+											{!! $item->name !!}
 										</h5>
 									</a>
 									<?php $cate = $cateModel->getCateById($item->cate_id); ?>
 									<p>Category: {!! $cate->name !!}</p>
+									<div class="badge badge-default {!! ($item->status == 0)?"new-product":"old-product" !!}">{!! ($item->status == 0)?"Hàng mới":"Hàng cũ" !!}</div>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-3 col-sm-6">
-							<p><i class="fa fa-street-view" aria-hidden="true"></i> {!! $item->place !!}</p>
+							<p><i class="fa fa-street-view" aria-hidden="true"></i> {!! $item->place !!},{!! $item->district !!}, {!! $item->city !!}</p>
 						</div>
 						<div class="col-lg-3 col-sm-4 text-right">
-							<h3>{!! number_format($item->price,0,",",".")." VNĐ" !!}</h3>
+							<h3 class="price-product-item">{!! number_format($item->price,0,",",".") !!}</h3>
+							<sup class="currency-price">đ</sup>
 						</div>
 						<div class="col-lg-2 text-right">
 							<?php $match = $matchModel->getStockNumber($item->id) ?>

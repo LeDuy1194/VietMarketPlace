@@ -2,7 +2,7 @@
 Date: 23/03/2017
 -->
 <?php 
-// dd($item); 
+// dd($item);
 ?>
 <div class="col-lg-12 p-0 m-0">
 	<div class="card card-block listV-item p-2">
@@ -18,7 +18,9 @@ Date: 23/03/2017
 						Danh Mục:
 						<a href="{{route('listByCate',[$cate->id,'all'])}}">{!! $cate->name !!}</a>
 					</p>
+					<div class="badge badge-default {!! ($item->status == 0)?"new-product":"old-product" !!}">{!! ($item->status == 0)?"Hàng mới":"Hàng cũ" !!}</div>
 				</div>
+
 			</div>
 		</div>
 		<div class="col-lg-2 col-sm-12">
@@ -39,7 +41,7 @@ Date: 23/03/2017
 			</div>
 		</div>
 		<div class="col-lg-3 col-sm-6">
-			<p><i class="fa fa-street-view" aria-hidden="true"></i> {!! $item->place !!}</p>
+			<p><i class="fa fa-street-view" aria-hidden="true"></i> {!! $item->place !!},{!! $item->district !!}, {!! $item->city !!}</p>
 		</div>
 		<div class="col-lg-1 col-sm-2 text-right btn-favorite-product">
 			<a class="btn btn-warning" title="Xem sau." href="{{route('favorite',[$type,$item->id])}}">

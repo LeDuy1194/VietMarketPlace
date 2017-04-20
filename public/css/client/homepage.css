@@ -322,3 +322,17 @@ display: inline-block;
 .button-area-product-item .btn-for-product a:hover {
   color: white;
 }
+
+.media-left {
+    margin-right: 5px;
+}
+
+.new-product {
+    background: #F65656;
+    padding: 6px;
+}
+
+.old-product {
+    background: #025aa5;
+    padding: 6px;
+}
