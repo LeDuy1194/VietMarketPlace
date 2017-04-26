@@ -34,12 +34,7 @@ Truong Trieu Hai
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
-								<button type="" class="btn-lang">Ngôn Ngữ <span class="caret"></span></button>
-								<ul class="dropdown-menu">
-									<li>
-										<a href="#">Tiếng Việt</a>
-									</li>
-								</ul>
+								
 							</li>
 						</ul>
 					</div>
@@ -100,6 +95,7 @@ Truong Trieu Hai
 	<script src="{{url('public/js/jquery.min.js')}}"></script>
 	<script src="{{url('public/js/bootstrap.min.js')}}"></script>
 	<script src="{{url('public/js/starscripts.js')}}"></script>
+	<script src="{{asset('public/js/register.js')}}"></script>
 </body>
 
 <footer class="navbar-fixed-bottom panel-footer navbar-account">

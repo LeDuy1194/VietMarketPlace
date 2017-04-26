@@ -26,7 +26,10 @@ class RegisterRequest extends FormRequest
         return [
             'username' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required'
+            'password' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'fullname' => 'required'
         ];
     }
     public function messages()
@@ -36,7 +39,10 @@ class RegisterRequest extends FormRequest
             'email.required' => 'Vui lòng nhập Email',
             'email.email' => 'Vui lòng nhập đúng định dạng Email',
             'email.unique' => 'Tài khoản đã tồn tại',
-            'password.required' => 'Vui lòng nhập Mật khẩu'
+            'password.required' => 'Vui lòng nhập Mật khẩu',
+            'address.required' => 'Vui lòng nhập Địa chỉ liên hệ',
+            'phone.required' => 'Vui lòng nhập Số điện thoại',
+            'fullname.required' => 'Vui lòng nhập Họ và tên',
         ];
     }
 }
