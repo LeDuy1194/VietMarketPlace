@@ -4,7 +4,9 @@ Date: 17/02/2017
 --}}
 
 @extends('layouts.master')
-
+@section('meta-title')
+	MyStore
+@endsection
 @section('content')
 	@include('utils.advertise')
 	<div class="container">

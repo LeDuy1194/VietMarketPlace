@@ -66,9 +66,16 @@ function cate_parent ($data,$parent = 0,$str="--",$select=0) {
 **/
 function match_searching($data,$match_type = 'orders') {
 	$result = DB::table($match_type)->where('cate_id','=',$data->cate_id)->where('finished',0)
-				->where('name','LIKE',$data->name)->get();
-	echo "match_searching";
-	return $result;
+			->where('name','LIKE',$data->name);
+	if ($match_type == 'orders') {
+		$price = $data->price * 0.9;
+		$result = $result->where('price','>=',$price);
+	}
+	else {
+		$price = $data->price * 1.1;
+		$result = $result->where('price','<=',$price);
+	}
+	return $result->get();
 }
 
 ?>

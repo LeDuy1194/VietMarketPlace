@@ -60,8 +60,9 @@ class LoginController extends Controller
     }
 
     public function getLogout(Request $request){
-        if (Auth::check()) {
-            Auth::logout();
+        if (\Auth::check()) {
+            \Auth::logout();
         }
+        return \Redirect::intended('/');
     }
 }

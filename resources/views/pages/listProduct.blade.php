@@ -4,7 +4,9 @@ Date: 23/03/2017
 --}}
 
 @extends('layouts.master')
-
+@section('meta-title')
+	ListProduct
+@endsection
 @section('content')
 	@include('utils.advertise')
 	@include('utils.searchForm')

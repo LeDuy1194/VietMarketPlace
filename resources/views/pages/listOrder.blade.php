@@ -4,7 +4,9 @@ Date: 21/02/2017
 -->
 
 @extends('layouts.master')
-
+@section('meta-title')
+	OrderDetail
+@endsection
 @section('css')
 
 	<!-- basic stylesheet -->

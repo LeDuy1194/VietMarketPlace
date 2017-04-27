@@ -62,8 +62,6 @@ Route::post('upload',['as'=>'postupload','uses'=>'Client\ClientController@postUp
 
 //user edit, delete
 Route::get('delete/{state}--{id}',['as'=>'getDeleteProduct','uses'=>'Client\ClientController@getDeleteProduct']);
-// Route::get('edit/{state}--{id}',['as'=>'getEditProduct','uses'=>'Client\ClientController@getEditProduct']);
-// Route::post('edit/{state}--{id}',['as'=>'postEditProduct','uses'=>'Client\ClientController@postEditProduct']);
 
 Route::get('test',['uses'=>'Client\HomeController@test']);
 
@@ -73,6 +71,7 @@ Route::get('search',['uses' => 'SearchController@getSearch','as' => 'search']);
 // Change favorite
 Route::get('favorite/{state}--{id}',['as' => 'favorite','uses' => 'Client\HomeController@changeFavorite']);
 Route::get('mymark',['as' => 'myMark','uses' => 'Client\HomeController@showMark']);
+
 Route::get('match/{state}--{id}',['as' => 'getMatch','uses' => 'Client\HomeController@getMatch']);
 
-Route::get('logout',['as' => 'logout','uses' => 'Auth\LoginController@getLogout']);
+Route::get('logout',['as' => 'logout','uses' => 'Auth\LoginController@getLogout'])->middleware('auth');
