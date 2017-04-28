@@ -4,7 +4,9 @@ Create_at: 27/03/2017
 -->
 
 @extends('layouts.master')
-
+@section('meta-title')
+    Search
+@endsection
 @section('content')
     @include('utils.searchForm')
     <div class="container">

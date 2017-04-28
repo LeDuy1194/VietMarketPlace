@@ -5,7 +5,9 @@ Update_at: 27/03/2017 by Anh Pham
 -->
 
 @extends('layouts.master')
-
+@section('meta-title')
+	Home
+@endsection
 @section('content')
 	@include('utils.advertise')
 	@include('utils.searchForm')
