@@ -14,6 +14,11 @@ Version: 01
 	<link rel="stylesheet" href="{{asset('public/css/client/mystyle.css')}}"/>
 	<link rel="stylesheet" href="{{asset('public/css/client/homepage.css')}}"/>
 	<link rel="stylesheet" href="{{asset('public/css/client/map.css')}}"/>
+	<style>
+		#map {
+        height: 100%;
+      }
+	</style>
 	@yield('css')
 </head>
 <body>

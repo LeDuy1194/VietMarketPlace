@@ -68,6 +68,8 @@ class ClientController extends Controller
             $stock->place = $request->address;
             $stock->city = $request->ct;
             $stock->district = $request->dt;
+            $stock->lat = $request->lat;
+            $stock->lng = $request->lng;
             $stock->img = $img_main;
             $stock->user_id = $user_id;
             $stock->cate_id = $_POST['cate'];
@@ -117,6 +119,8 @@ class ClientController extends Controller
             $order->place = $request->address;
             $order->city = $request->ct;
             $order->district = $request->dt;
+            $order->lat = $request->lat;
+            $order->lng = $request->lng;
             $order->img = $img_main;
             $order->user_id = $user_id;
             $order->cate_id = $_POST['cate'];

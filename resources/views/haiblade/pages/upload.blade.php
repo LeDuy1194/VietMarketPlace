@@ -15,7 +15,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-6">
 			<div class="card">
 				<div class="card-block">
 					<h3 class="text-left">
@@ -42,8 +42,8 @@
 									</label>
 									<select class="form-control" name="cate">
 										<option value="1">Điện thoại</option>
-                                        <option value="2">Máy tính</option>
-                                        <option value="3">Sách</option>
+										<option value="2">Máy tính</option>
+										<option value="3">Sách</option>
 									</select>
 								</div>
 							</div>
@@ -97,7 +97,7 @@
 									<select class="form-control" name="ct" required>
 										<option value="0">Chọn</option>
 										@foreach($city as $item)
-											<option value="{!! $item["name"] !!}">{!! $item["name"] !!}</option>
+										<option value="{!! $item["name"] !!}">{!! $item["name"] !!}</option>
 										@endforeach
 									</select>
 								</div>
@@ -110,7 +110,7 @@
 									<select class="form-control" name="dt" required>
 										<option value="0">Chọn</option>
 										@foreach($district as $item)
-											<option value="{!! $item["name"] !!}">{!! $item["name"] !!}</option>
+										<option value="{!! $item["name"] !!}">{!! $item["name"] !!}</option>
 										@endforeach
 									</select>
 								</div>
@@ -127,18 +127,18 @@
 							<label>Hình Đại Diện Sản Phẩm</label>
 							<input type="file" name="image-main" onchange="readURL(this);" required>
 							<img id="image-main-preview" src="#" alt="Ảnh" />
-                            <br>
-                            <label>Hình Chi tiết 1</label>
-                            <input type="file" name="image-detail-1" onchange="readURL(this);" required>
-                            <img id="image-detail-1-preview" src="#" alt="Ảnh" />
-                            <br>
-                            <label>Hình Chi tiết 2</label>
-                            <input type="file" name="image-detail-2" onchange="readURL(this);" required>
-                            <img id="image-detail-2-preview" src="#" alt="Ảnh" />
-                            <br>
-                            <label>Hình Chi tiết 3</label>
-                            <input type="file" name="image-detail-3" onchange="readURL(this);" required>
-                            <img id="image-detail-3-preview" src="#" alt="Ảnh" />
+							<br>
+							<label>Hình Chi tiết 1</label>
+							<input type="file" name="image-detail-1" onchange="readURL(this);" required>
+							<img id="image-detail-1-preview" src="#" alt="Ảnh" />
+							<br>
+							<label>Hình Chi tiết 2</label>
+							<input type="file" name="image-detail-2" onchange="readURL(this);" required>
+							<img id="image-detail-2-preview" src="#" alt="Ảnh" />
+							<br>
+							<label>Hình Chi tiết 3</label>
+							<input type="file" name="image-detail-3" onchange="readURL(this);" required>
+							<img id="image-detail-3-preview" src="#" alt="Ảnh" />
 						</div>
 						<br>
 						<hr>
@@ -155,51 +155,20 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-6">
 			<div class="card">
 				<div class="card-block">
 					<h3 class="text-left">
-						Matching
+						Địa điểm giao dịch
 					</h3>
 					<hr>
-					<div id="accordion" role="tablist" aria-multiselectable="true">
-						<div class="card">
-							<div class="card-header" role="tab" id="headingOne">
-								<h5 class="mb-0">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-										Kho Hàng
-									</a>
-								</h5>
-							</div>
-
-							<div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
-								<div class="card-block">
-									<div class="card" style="width: 20rem;">
-										<img class="card-img-top" src="{{url('public/img/1.png')}}" alt="Card image cap">
-										<div class="card-block">
-											<h4 class="card-title">Card title</h4>
-											<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-											<a href="#" class="btn btn-primary">Go somewhere</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="card">
-							<div class="card-header" role="tab" id="headingTwo">
-								<h5 class="mb-0">
-									<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-										Đơn Hàng
-									</a>
-								</h5>
-							</div>
-							<div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-								<div class="card-block">
-									None
-								</div>
-							</div>
-						</div>
-					</div>
+					<br>
+					<label>
+						Bạn vui lòng chọn vị trí giao dịch *
+					</label>
+					<input type="hidden" name="lat" id="lat">
+                    <input type="hidden" name="lng" id="lng">
+					<div id="map" style="height: 500px;width: auto;"></div>
 				</div>
 			</div>
 		</div>
@@ -213,21 +182,120 @@
 {{--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>--}}
 <!--[if IE]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
+  <![endif]-->
+
+  <script>
+      // Note: This example requires that you consent to location sharing when
+      // prompted by your browser. If you see the error "The Geolocation service
+      // failed.", it means you probably did not give permission for the browser to
+      // locate you.
+      var map, marker, infoWindow, messagewindow;
+      function initMap() {
+      	map = new google.maps.Map(document.getElementById('map'), {
+      		center: {lat: -34.397, lng: 150.644},
+      		zoom: 15
+      	});
+      	infoWindow = new google.maps.InfoWindow({
+          content: document.getElementById('form')
+        });
+
+      	messagewindow = new google.maps.InfoWindow({
+          content: document.getElementById('message')
+        });
+
+      	google.maps.event.addListener(map, 'click', function(event) {
+          marker = new google.maps.Marker({
+            position: event.latLng,
+            map: map
+          });
+
+          google.maps.event.addListener(marker, 'click', function() {
+            infowindow.open(map, marker);
+          });
+        });
+        
+      	
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+        	navigator.geolocation.getCurrentPosition(function(position) {
+        		var pos = {
+        			lat: position.coords.latitude,
+        			lng: position.coords.longitude
+        		};
+
+        		infoWindow.setPosition(pos);
+        		infoWindow.setContent('Vị Trí Hiện Tại');
+        		infoWindow.open(map);
+        		map.setCenter(pos);
+        	}, function() {
+        		handleLocationError(true, infoWindow, map.getCenter());
+        	});
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+      }
+
+  }
+  /*function saveData() {
+        var latlng = marker.getPosition();
+        var url = '&lat=' + latlng.lat() + '&lng=' + latlng.lng();
+        document.getElementById("lat").innerHTML = latlng.lat();
+        document.getElementById("lng").innerHTML = latlng.lng();
+        downloadUrl(url, function(data, responseCode) {
+
+          if (responseCode == 200 && data.length <= 1) {
+            infowindow.close();
+            messagewindow.open(map, marker);
+          }
+        });
+      }
+      function downloadUrl(url, callback) {
+        var request = window.ActiveXObject ?
+            new ActiveXObject('Microsoft.XMLHTTP') :
+            new XMLHttpRequest;
+
+        request.onreadystatechange = function() {
+          if (request.readyState == 4) {
+            request.onreadystatechange = doNothing;
+            callback(request.responseText, request.status);
+          }
+        };
+
+        request.open('GET', url, true);
+        request.send(null);
+      }
+
+      function doNothing () {
+      }
+*/
+  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  	infoWindow.setPosition(pos);
+  	infoWindow.setContent(browserHasGeolocation ?
+  		'Error: The Geolocation service failed.' :
+  		'Error: Your browser doesn\'t support geolocation.');
+  	infoWindow.open(map);
+  }
+
+</script>
+
+<script async defer
+src="{{url('https://maps.googleapis.com/maps/api/js?key=AIzaSyA9WOBv_HjdT4h03JtNFLoPHxdaMrP1Dyk&callback=initMap')}}">
+</script>
+
 <script type="text/javascript">
 	function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
 
-            reader.onload = function (e) {
-                $("#" + input.name + "-preview")
-                    .attr('src', e.target.result)
-                    .width(150)
-                    .height(auto);
-            };
+			reader.onload = function (e) {
+				$("#" + input.name + "-preview")
+				.attr('src', e.target.result)
+				.width(150)
+				.height(auto);
+			};
 
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
 </script>
 @endsection()
