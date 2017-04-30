@@ -81,6 +81,7 @@
                                     Giá (Tối thiểu 10.000 VNĐ)*
                                 </label>
                                 <input type="number" id="price" name="price" min="10000" class="form-control" placeholder="Điền vào đây (Đơn vị VND)" required>
+                                <button type="button" id="sugestPrice">Đề nghị.</button>
                             </div>
                             <div class="form-group">
                                 <label>
@@ -304,10 +305,6 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
-
-        $("#price").focus(function() {
-            $('#price').placeholder('testing');
-        });
 
     </script>
 @endsection()
