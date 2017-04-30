@@ -141,6 +141,9 @@
                                 <input type="file" name="image-detail-3" onchange="readURL(this);" required>
                                 <img id="image-detail-3-preview" src="#" alt="Ảnh" />
                             </div>
+
+                        <input type="hidden" name="lat" id="lat">
+                        <input type="hidden" name="lng" id="lng">
                             <br>
                             <hr>
                             <br>
@@ -167,8 +170,6 @@
                         <label>
                             Bạn vui lòng chọn vị trí giao dịch *
                         </label>
-                        <input type="hidden" name="lat" id="lat">
-                        <input type="hidden" name="lng" id="lng">
                         <div id="map" style="height: 500px;width: auto;"></div>
                     </div>
                 </div>
@@ -204,21 +205,23 @@
             messagewindow = new google.maps.InfoWindow({
                 content: document.getElementById('message')
             });
-
             google.maps.event.addListener(map, 'click', function(event) {
+
                 marker = new google.maps.Marker({
                     position: event.latLng,
                     map: map
                 });
 
+           var latLng = marker.getPosition();     
+            $('input#lat').val(latLng.lat);
+            $('input#lng').val(latLng.lng);
                 google.maps.event.addListener(marker, 'click', function() {
                     infowindow.open(map, marker);
                 });
             });
 
-            var latLng = marker.getPosition();
-            $('input#lat').val(latLng.lat);
-            $('input#lng').val(latLng.lng);
+            //var latLng = marker.getPosition();
+            
             //document.getElementById("lat").innerHTML = latLng.lat();
             //document.getElementById("lng").innerHTML = latLng.lng();
 
