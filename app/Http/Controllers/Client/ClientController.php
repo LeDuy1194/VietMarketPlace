@@ -119,8 +119,8 @@ class ClientController extends Controller
             $order->place = $request->address;
             $order->city = $request->ct;
             $order->district = $request->dt;
-            $order->lat = $request->lat;
-            $order->lng = $request->lng;
+            $stock->lat = $request->lat;
+            $stock->lng = $request->lng;
             $order->img = $img_main;
             $order->user_id = $user_id;
             $order->cate_id = $_POST['cate'];
