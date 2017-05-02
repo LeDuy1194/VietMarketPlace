@@ -105,9 +105,6 @@ class ClientController extends Controller
                 $stock_img->save();
             }
 
-            //Matching
-            $match = match_searching($stock,'orders');
-
             //Tag
             $tags = explode(',', $request->tags);
             $tagModel = new Tag();
@@ -127,6 +124,9 @@ class ClientController extends Controller
                     $stockTag->save();
                 }
             }
+
+            //Matching
+            match_searching($stock,'orders');
         }
         else {
             // Order
@@ -171,15 +171,6 @@ class ClientController extends Controller
                 $order_img->save();
             }
 
-            //Matching
-            $match_table = match_searching($order,'stocks');
-            foreach ($match_table as $stock) {
-                $match = new Match();
-                $match->order_id = $order->id;
-                $match->stock_id = $stock->id;
-                $match->save();
-            }
-
             //Tag
             $tags = explode(',', $request->tags);
             $tagModel = new Tag();
@@ -199,6 +190,9 @@ class ClientController extends Controller
                     $orderTag->save();
                 }
             }
+
+            //Matching
+            match_searching($order,'stocks');
         }
         // After
         return redirect()->route('Home');

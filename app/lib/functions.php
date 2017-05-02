@@ -60,35 +60,85 @@ function cate_parent ($data,$parent = 0,$str="--",$select=0) {
 	}
 }
 
+function compare_tag($data_1,$data_2) {
+	$count = 0;
+	$total = 0;
+	foreach ($data_1 as $key_1 => $val_1) {
+		$total++;
+		foreach ($data_2 as $key_2 => $val_2) {
+			if ($key_1 == $key_2) {
+				$count++;
+				break;
+			}
+			else if ($key_1 > $key_2) {
+				break;
+			}
+			else {}
+		}
+	}
+	var_dump($count);
+	echo " - ";
+	var_dump($total);
+	echo "<br><br>";
+	$result = round($count / $total * 100);
+	return $result;
+}
+
 /** Searching the product in table
 * @param $data: the product request data.
 * @param $match_type: the table to search the product.
 **/
 function match_searching($data,$match_type = 'orders') {
+	$stockTagModel = new App\Models\StockTag;
+	$orderTagModel = new App\Models\OrderTag;
+
 	// Match categories
-	$result = DB::table($match_type)->where('cate_id','=',$data->cate_id)->where('finished',0)
-			->where('name','LIKE',$data->name);
-	// Match price
+	$result = DB::table($match_type)->where('cate_id','=',$data->cate_id)->where('finished',0)->where('name','LIKE','%'.$data->name.'%');
+
 	if ($match_type == 'orders') {
+		// Match price
 		$price = $data->price * 0.9;
 		$result = $result->where('price','>=',$price);
+
+		// Match tag
+		$temp_table = $result->get();
+		$stock = $data;
+		$stockTag = $stockTagModel->getTagByStockId($stock->id);
+		foreach ($temp_table as $order) {
+			$orderTag = $orderTagModel->getTagByOrderId($order->id);
+			$point = compare_tag($stockTag, $orderTag);
+			// Check and save
+			if ($point >= 50) {
+				$match = new App\Models\Match();
+				$match->order_id = $order->id;
+				$match->stock_id = $stock->id;
+				$match->point = $point;
+				$match->save();
+			}
+		}
 	}
 	else {
+		// Match price
 		$price = $data->price * 1.1;
 		$result = $result->where('price','<=',$price);
-	}
 
-	// Match tags
-	
-	// Save matching
-	$match_table = $result->get();
-	foreach ($match_table as $order) {
-        $match = new Match();
-        $match->order_id = $order->id;
-        $match->stock_id = $stock->id;
-        $match->save();
-    }
-	return true;
+		// Match tag
+		$temp_table = $result->get();
+		$order = $data;
+		$orderTag = $orderTagModel->getTagByOrderId($order->id);
+		foreach ($temp_table as $stock) {
+			$stockTag = $stockTagModel->getTagByStockId($order->id);
+			$point = compare_tag($orderTag, $stockTag);
+			// Check and save
+			if ($point >= 50) {
+				$match = new App\Models\Match();
+				$match->order_id = $order->id;
+				$match->stock_id = $stock->id;
+				$match->point = $point;
+				$match->save();
+			}
+		}
+	}
 }
 
 ?>

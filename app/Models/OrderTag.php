@@ -11,6 +11,6 @@ class OrderTag extends Model
     public $timestamps = true;
 
     public function getTagByOrderId($id) {
-    	return $this->select('tag_id')->where('order_id',$id)->get();
+    	return $this->select('tag_id')->where('order_id',$id)->orderBy('tag_id','asc')->get();
     }
 }
