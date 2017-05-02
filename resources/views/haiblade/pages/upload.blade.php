@@ -70,6 +70,12 @@
                                 <input type="text" name="itemname" class="form-control" placeholder="Điền vào đây" required id="itemname">
                             </div>
                             <div class="form-group">
+                                <label for="tags">
+                                    Tags*
+                                </label>
+                                <input type="text" name="tags" class="form-control" placeholder="Điền vào đây" required id="tags">
+                            </div>
+                            <div class="form-group">
                                 <label for="discription">
                                     Mô Tả*
                                 </label>
@@ -79,9 +85,10 @@
 
                                 <label for="price">
                                     Giá (Tối thiểu 10.000 VNĐ)*
+                                    <button type="button" id="sugestPrice" class="btn">Đề nghị.</button>
                                 </label>
                                 <input type="number" id="price" name="price" min="10000" class="form-control" placeholder="Điền vào đây (Đơn vị VND)" required>
-                                <button type="button" id="sugestPrice">Đề nghị.</button>
+                                <span id="sugestPriceResult"></span>>
                             </div>
                             <div class="form-group">
                                 <label>
