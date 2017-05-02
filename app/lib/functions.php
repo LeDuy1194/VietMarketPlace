@@ -93,7 +93,7 @@ function match_searching($data,$match_type = 'orders') {
 	$orderTagModel = new App\Models\OrderTag;
 
 	// Match categories
-	$result = DB::table($match_type)->where('cate_id','=',$data->cate_id)->where('finished',0)->where('name','LIKE','%'.$data->name.'%');
+	$result = DB::table($match_type)->where('cate_id','=',$data->cate_id)->where('finished',0)->orwhere('name','LIKE','%'.$data->name.'%');
 
 	if ($match_type == 'orders') {
 		// Match price
