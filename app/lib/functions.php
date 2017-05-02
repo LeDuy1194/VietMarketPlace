@@ -65,8 +65,10 @@ function cate_parent ($data,$parent = 0,$str="--",$select=0) {
 * @param $match_type: the table to search the product.
 **/
 function match_searching($data,$match_type = 'orders') {
+	// Match categories
 	$result = DB::table($match_type)->where('cate_id','=',$data->cate_id)->where('finished',0)
 			->where('name','LIKE',$data->name);
+	// Match price
 	if ($match_type == 'orders') {
 		$price = $data->price * 0.9;
 		$result = $result->where('price','>=',$price);
@@ -75,7 +77,18 @@ function match_searching($data,$match_type = 'orders') {
 		$price = $data->price * 1.1;
 		$result = $result->where('price','<=',$price);
 	}
-	return $result->get();
+
+	// Match tags
+	
+	// Save matching
+	$match_table = $result->get();
+	foreach ($match_table as $order) {
+        $match = new Match();
+        $match->order_id = $order->id;
+        $match->stock_id = $stock->id;
+        $match->save();
+    }
+	return true;
 }
 
 ?>

@@ -182,8 +182,8 @@ Date: 21/02/2017
 								<textarea name="comment" id="comment" rows="4" cols="30" maxlength="100" class="form-control" placeholder="Nội dung đánh giá" style="resize: none;"></textarea>
 							</div>
 							<select class="form-control" name="vote" id="vote">
-								<option value="1">Tốt</option>
-								<option value="0">Không Tốt</option>
+								<option value="1">Tiến cử người đăng.</option>
+								<option value="0">Không...</option>
 							</select>
 							<hr>
 							<button type="submit" class="btn btn-block btn-success">

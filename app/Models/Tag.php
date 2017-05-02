@@ -10,4 +10,8 @@ class Tag extends Model
     protected $fillable = ['name', 'alias'];
 
     public $timestamps = true;
+
+    public function getTagByAlias($name) {
+    	return $this->where('alias',$name)->first();
+    }
 }

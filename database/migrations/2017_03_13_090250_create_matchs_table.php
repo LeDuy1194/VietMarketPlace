@@ -19,6 +19,7 @@ class CreateMatchsTable extends Migration
             $table->foreign('stock_id')->references('id')->on('stocks')->onDelete('cascade');
             $table->integer('order_id')->unsigned();
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+            $table->integer('point')->default(0);
             $table->timestamps();
         });
     }

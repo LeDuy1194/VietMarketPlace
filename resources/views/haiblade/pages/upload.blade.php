@@ -88,7 +88,7 @@
                                     <button type="button" id="sugestPrice" class="btn">Đề nghị.</button>
                                 </label>
                                 <input type="number" id="price" name="price" min="10000" class="form-control" placeholder="Điền vào đây (Đơn vị VND)" required>
-                                <span id="sugestPriceResult"></span>>
+                                <span id="sugestPriceResult"></span>
                             </div>
                             <div class="form-group">
                                 <label>
