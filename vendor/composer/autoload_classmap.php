@@ -7,8 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'CreateCatesTable' => $baseDir . '/database/migrations/2017_03_13_040246_create_cates_table.php',
-    'CreateCityTable' => $baseDir . '/database/migrations/2017_04_07_092904_create_city_table.php',
-    'CreateDistrictTable' => $baseDir . '/database/migrations/2017_04_07_092930_create_district_table.php',
     'CreateFavOsTable' => $baseDir . '/database/migrations/2017_04_10_072141_create_fav-os_table.php',
     'CreateFavsTable' => $baseDir . '/database/migrations/2017_03_28_015020_create_favs_table.php',
     'CreateMatchsTable' => $baseDir . '/database/migrations/2017_03_13_090250_create_matchs_table.php',
@@ -18,8 +16,9 @@ return array(
     'CreateReviewsTable' => $baseDir . '/database/migrations/2017_03_13_085146_create_reviews_table.php',
     'CreateStockimagesTable' => $baseDir . '/database/migrations/2017_03_13_043004_create_stockimages_table.php',
     'CreateStocksTable' => $baseDir . '/database/migrations/2017_03_13_041217_create_stocks_table.php',
+    'CreateTagListsTable' => $baseDir . '/database/migrations/2017_05_02_015506_create_tag_lists_table.php',
+    'CreateTagsTable' => $baseDir . '/database/migrations/2017_05_02_015407_create_tags_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
-    'CreateWardTable' => $baseDir . '/database/migrations/2017_04_07_092939_create_ward_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
