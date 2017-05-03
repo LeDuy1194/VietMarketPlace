@@ -11,6 +11,9 @@ use App\Models\Order;
 use App\Models\Cate;
 use App\Models\StockImage;
 use App\Models\OrderImage;
+use App\Models\Tag;
+use App\Models\StockTag;
+use App\Models\OrderTag;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\City;
@@ -24,6 +27,7 @@ class ClientController extends Controller
         $cate = Cate::select('name','id')->get()->toArray();
         $city = City::select('name','cityid')->get()->toArray();
         $district = District::select('name','cityid')->get()->toArray();
+        $tag = Tag::select('id','name')->get()->toArray();
         //$dtModel = new District();
         //$district = $dtModel->getDistrictByCityId($city->cityid);
 
@@ -44,7 +48,7 @@ class ClientController extends Controller
                 return redirect()->route('MyStore','stock')->with($message);
             }
             else {
-                return view('haiblade.pages.upload',compact('cate','city','district'));
+                return view('haiblade.pages.upload',compact('cate','city','district','tag'));
             }
         }
     }
@@ -58,7 +62,7 @@ class ClientController extends Controller
         $img_main = $request->file('image-main')->getClientOriginalName();
         $img_main = 'main-' . $img_main;
         $cate_parent = $_POST['prtcate'];
-        if ($cate_parent == 'Kho Hàng') {
+        if ($cate_parent == 'stock') {
             // Stock
             $stock = new Stock();
             $stock->name = $request->itemname;
@@ -101,13 +105,28 @@ class ClientController extends Controller
                 $stock_img->save();
             }
 
-            $match_table = match_searching($stock,'orders');
-            foreach ($match_table as $order) {
-                $match = new Match();
-                $match->order_id = $order->id;
-                $match->stock_id = $stock->id;
-                $match->save();
+            //Tag
+            $tags = explode(',', $request->tags);
+            $tagModel = new Tag();
+            foreach ($tags as $tagName) {
+                if (($tagName != '')&&($tagName != ' ')) {
+                    $tempTag = $tagModel->getTagByAlias(changeTitle($tagName));
+                    if ($tempTag == NULL) {
+                        $tag = new Tag();
+                        $tag->name = $tagName;
+                        $tag->alias = changeTitle($tagName);
+                        $tag->save();
+                        $tempTag = $tag;
+                    }
+                    $stockTag = new StockTag();
+                    $stockTag->stock_id = $stock_id;
+                    $stockTag->tag_id = $tempTag->id;
+                    $stockTag->save();
+                }
             }
+
+            //Matching
+            match_searching($stock,'orders');
         }
         else {
             // Order
@@ -119,8 +138,8 @@ class ClientController extends Controller
             $order->place = $request->address;
             $order->city = $request->ct;
             $order->district = $request->dt;
-            $stock->lat = $request->lat;
-            $stock->lng = $request->lng;
+            $order->lat = $request->lat;
+            $order->lng = $request->lng;
             $order->img = $img_main;
             $order->user_id = $user_id;
             $order->cate_id = $_POST['cate'];
@@ -152,13 +171,28 @@ class ClientController extends Controller
                 $order_img->save();
             }
 
-            $match_table = match_searching($order,'stocks');
-            foreach ($match_table as $stock) {
-                $match = new Match();
-                $match->order_id = $order->id;
-                $match->stock_id = $stock->id;
-                $match->save();
+            //Tag
+            $tags = explode(',', $request->tags);
+            $tagModel = new Tag();
+            foreach ($tags as $tagName) {
+                if (($tagName != '')&&($tagName != ' ')) {
+                    $tempTag = $tagModel->getTagByAlias(changeTitle($tagName));
+                    if ($tempTag == NULL) {
+                        $tag = new Tag();
+                        $tag->name = $tagName;
+                        $tag->alias = changeTitle($tagName);
+                        $tag->save();
+                        $tempTag = $tag;
+                    }
+                    $orderTag = new OrderTag();
+                    $orderTag->order_id = $order_id;
+                    $orderTag->tag_id = $tempTag->id;
+                    $orderTag->save();
+                }
             }
+
+            //Matching
+            match_searching($order,'stocks');
         }
         // After
         return redirect()->route('Home');

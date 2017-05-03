@@ -284,8 +284,6 @@ class ComposerStaticInit4bd09316556cc30a317b14bc17b6e888
 
     public static $classMap = array (
         'CreateCatesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_13_040246_create_cates_table.php',
-        'CreateCityTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_07_092904_create_city_table.php',
-        'CreateDistrictTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_07_092930_create_district_table.php',
         'CreateFavOsTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_072141_create_fav-os_table.php',
         'CreateFavsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_28_015020_create_favs_table.php',
         'CreateMatchsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_13_090250_create_matchs_table.php',
@@ -295,8 +293,9 @@ class ComposerStaticInit4bd09316556cc30a317b14bc17b6e888
         'CreateReviewsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_13_085146_create_reviews_table.php',
         'CreateStockimagesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_13_043004_create_stockimages_table.php',
         'CreateStocksTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_13_041217_create_stocks_table.php',
+        'CreateTagListsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_02_015506_create_tag_lists_table.php',
+        'CreateTagsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_02_015407_create_tags_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
-        'CreateWardTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_07_092939_create_ward_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',

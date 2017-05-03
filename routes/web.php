@@ -34,8 +34,8 @@ Route::get('stock-detail/{id}',['as'=>'stockDetail','uses'=>'Client\HomeControll
 
 Route::post('order-detail/{id}',['as'=>'postReview','uses'=>'Client\HomeController@postReview']);
 
-Route::get('profile/{user_name}', ['as' => 'profile', 'uses' => 'Client\ClientController@profileDetail']);
-//Route::get('profile/{user_name}', ['as' => 'editprofile', 'uses' => 'Client\ClientController@postProfile']);
+Route::get('profile/{user_name}', ['as'=>'profile', 'uses'=>'Client\ClientController@profileDetail']);
+//Route::get('profile/{user_name}', ['as'=>'editprofile', 'uses'=>'Client\ClientController@postProfile']);
 
 Route::get('map',['as'=>'Map','uses'=>'Client\HomeController@showMap']);
 
@@ -65,13 +65,15 @@ Route::get('delete/{state}--{id}',['as'=>'getDeleteProduct','uses'=>'Client\Clie
 
 Route::get('test',['uses'=>'Client\HomeController@test']);
 
-Route::get('search',['uses' => 'SearchController@getSearch','as' => 'search']);
+Route::get('search',['uses'=>'SearchController@getSearch','as'=>'search']);
 
 //Route::resource('queries', 'QueryController');
 // Change favorite
-Route::get('favorite/{state}--{id}',['as' => 'favorite','uses' => 'Client\HomeController@changeFavorite']);
-Route::get('mymark',['as' => 'myMark','uses' => 'Client\HomeController@showMark']);
+Route::get('favorite/{state}--{id}',['as'=>'favorite','uses'=>'Client\HomeController@changeFavorite']);
+Route::get('mymark',['as'=>'myMark','uses'=>'Client\HomeController@showMark']);
 
-Route::get('match/{state}--{id}',['as' => 'getMatch','uses' => 'Client\HomeController@getMatch']);
+Route::get('match/{state}--{id}',['as'=>'getMatch','uses'=>'Client\HomeController@getMatch']);
 
-Route::get('logout',['as' => 'logout','uses' => 'Auth\LoginController@getLogout'])->middleware('auth');
+Route::get('logout',['as'=>'logout','uses'=>'Auth\LoginController@getLogout'])->middleware('auth');
+
+Route::get('suggestprice',['as'=>'suggestprice','uses'=>'Client\SuggestController@suggestPrice']);

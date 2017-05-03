@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMatchsTable extends Migration
+class CreateTagListsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,21 @@ class CreateMatchsTable extends Migration
      */
     public function up()
     {
-        Schema::create('matchs', function (Blueprint $table) {
+        Schema::create('stock_tag_lists', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('stock_id')->unsigned();
             $table->foreign('stock_id')->references('id')->on('stocks')->onDelete('cascade');
+            $table->integer('tag_id')->unsigned();
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
+            $table->timestamps();
+        });
+
+        Schema::create('order_tag_lists', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('order_id')->unsigned();
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-            $table->integer('point')->default(0);
+            $table->integer('tag_id')->unsigned();
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +39,7 @@ class CreateMatchsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('matchs');
+        Schema::dropIfExists('stock_tag_lists');
+        Schema::dropIfExists('order_tag_lists');
     }
 }
