@@ -26,69 +26,71 @@
                         <form role="form" action="{!!route('getupload')!!}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{!!csrf_token()!!}">
                             <br>
-                            <div class="form-group">
-                                <label>
-                                    Chọn Phần Mục *
-                                </label>
-                                <select class="form-control" id="prtcate" name="prtcate" >
-                                    <option selected value="Kho Hàng">Kho Hàng</option>
-                                    <option value="Đơn Hàng">Đơn Hàng</option>
-                                </select>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>
-                                            Chọn Danh mục *
-                                        </label>
-                                        <select class="form-control" name="cate">
-                                            <option value="1">Điện thoại</option>
-                                            <option value="2">Máy tính</option>
-                                            <option value="3">Sách</option>
-                                        </select>
+                            <div class="form-content">
+                                <div class="form-group">
+                                    <label>
+                                        Chọn Phần Mục *
+                                    </label>
+                                    <select class="form-control" id="prtcate" name="prtcate" >
+                                        <option selected value="stock">Kho Hàng</option>
+                                        <option value="order">Đơn Hàng</option>
+                                    </select>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>
+                                                Chọn Danh mục *
+                                            </label>
+                                            <select class="form-control" id="cate" name="cate">
+                                                <option value="1">Điện thoại</option>
+                                                <option value="2">Máy tính</option>
+                                                <option value="3">Sách</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>
+                                                Chọn Tình Trạng *
+                                            </label>
+                                            <select class="form-control" id="status" name="status" >
+                                                <option selected value="0">Mới</option>
+                                                <option value="1">Cũ</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>
-                                            Chọn Tình Trạng *
-                                        </label>
-                                        <select class="form-control" id="status" name="status" >
-                                            <option selected value="0">Mới</option>
-                                            <option value="1">Cũ</option>
-                                        </select>
-                                    </div>
+                                <br>
+                                <hr>
+                                <br>
+                                <div class="form-group">
+                                    <label for="itemname">
+                                        Tên Vật Phẩm*
+                                    </label>
+                                    <input type="text" name="itemname" class="form-control" placeholder="Điền vào đây" required id="itemname">
                                 </div>
-                            </div>
-                            <br>
-                            <hr>
-                            <br>
-                            <div class="form-group">
-                                <label for="itemname">
-                                    Tên Vật Phẩm*
-                                </label>
-                                <input type="text" name="itemname" class="form-control" placeholder="Điền vào đây" required id="itemname">
-                            </div>
-                            <div class="form-group">
-                                <label for="tags">
-                                    Tags*
-                                </label>
-                                <input type="text" name="tags" class="form-control" placeholder="Điền vào đây" required id="tags">
-                            </div>
-                            <div class="form-group">
-                                <label for="discription">
-                                    Mô Tả*
-                                </label>
-                                <textarea name="discription" rows="5" cols="50" class="form-control" placeholder="Điền vào đây" style="resize: none;" id="discription"></textarea>
-                            </div>
-                            <div class="form-group">
+                                <div class="form-group">
+                                    <label for="tags">
+                                        Tags*
+                                    </label>
+                                    <input type="text" name="tags" class="form-control" placeholder="Điền vào đây" required id="tags">
+                                </div>
+                                <div class="form-group">
+                                    <label for="discription">
+                                        Mô Tả*
+                                    </label>
+                                    <textarea name="discription" rows="5" cols="50" class="form-control" placeholder="Điền vào đây" style="resize: none;" id="discription"></textarea>
+                                </div>
+                                <div class="form-group">
 
-                                <label for="price">
-                                    Giá (Tối thiểu 10.000 VNĐ)*
-                                    <button type="button" id="sugestPrice" class="btn">Đề nghị.</button>
-                                </label>
-                                <input type="number" id="price" name="price" min="10000" class="form-control" placeholder="Điền vào đây (Đơn vị VND)" required>
-                                <span id="sugestPriceResult"></span>
+                                    <label for="price">
+                                        Giá (Tối thiểu 10.000 VNĐ)*
+                                        <button type="button" id="sugestPrice" class="btn">Đề nghị.</button>
+                                    </label>
+                                    <input type="number" id="price" name="price" min="10000" class="form-control" placeholder="Điền vào đây (Đơn vị VND)" required>
+                                    <div id="sugestPriceResult"></div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>
@@ -149,8 +151,8 @@
                                 <img id="image-detail-3-preview" src="#" alt="Ảnh" />
                             </div>
 
-                        <input type="hidden" name="lat" id="lat">
-                        <input type="hidden" name="lng" id="lng">
+                            <input type="hidden" name="lat" id="lat">
+                            <input type="hidden" name="lng" id="lng">
                             <br>
                             <hr>
                             <br>
@@ -300,7 +302,6 @@
     </script>
 
     <script type="text/javascript">
-
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -315,6 +316,54 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+    </script>
 
+    <script type="text/javascript">
+        var baseUrl = '<?php echo url('/'); ?>'
+        $('#sugestPrice').click(function(e) {
+            e.stopPropagation();
+            var temp_form = $(this).closest(".form-content"),
+                Inputs = temp_form.find("input[type='text'], input, select"),
+                isValid = true;
+
+            $(".form-group").removeClass("has-error");
+            for (var i = 0; i < Inputs.length; i++) {
+                if (!Inputs[i].validity.valid) {
+                    isValid = false;
+                    $(Inputs[i]).closest(".form-group").addClass("has-error");
+                }
+            }
+
+            if (isValid) {
+                $('#sugestPriceResult').empty();
+                $('#sugestPriceResult').append('<img id="loading" src="{{ asset("resources/upload/loading.gif") }}" alt="loading"/>');
+                var url = baseUrl+'/suggestprice?itemname='+$('#itemname').val()+'&prtcate='+$('#prtcate').val()+'&cate='+$('#cate').val()+'&tags='+$('#tags').val()+'&status='+$('#status').val();
+                $('#sugestPriceResult').append('<p>'+url+'</p>');
+                $.get(url, function(data) {
+                    $('#sugestPriceResult').empty();
+                    $('#sugestPriceResult').append(
+                        '<label for="priceMax">Giá cao nhất: </label>\
+                        <button type="button" class="btn btn-block" id="priceMax">'+data.priceMax+' VND</button>\
+                        <label for="priceSuggest">Giá đề nghị: </label>\
+                        <button type="button" class="btn btn-block" id="priceSuggest">'+data.priceSuggest+' VND</button>\
+                        <label for="priceMin">Giá thấp nhất: </label>\
+                        <button type="button" class="btn btn-block" id="priceMin">'+data.priceMin+' VND</button>'
+                        );
+                    $('#priceMax').click(function(){
+                        $('input[name="price"]').val(data.priceMax);
+                    });
+                    $('#priceSuggest').click(function(){
+                        $('input[name="price"]').val(data.priceSuggest);
+                    });
+                    $('#priceMin').click(function(){
+                        $('input[name="price"]').val(data.priceMin);
+                    });
+                });
+            }
+            else {
+                $('#sugestPriceResult').empty();
+                $('#sugestPriceResult').append('<p>Error</p>');
+            }
+        });
     </script>
 @endsection()

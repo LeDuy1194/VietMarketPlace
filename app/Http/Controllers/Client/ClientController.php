@@ -62,7 +62,7 @@ class ClientController extends Controller
         $img_main = $request->file('image-main')->getClientOriginalName();
         $img_main = 'main-' . $img_main;
         $cate_parent = $_POST['prtcate'];
-        if ($cate_parent == 'Kho Hàng') {
+        if ($cate_parent == 'stock') {
             // Stock
             $stock = new Stock();
             $stock->name = $request->itemname;
