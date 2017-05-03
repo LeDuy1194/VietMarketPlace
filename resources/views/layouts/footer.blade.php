@@ -24,15 +24,15 @@ Date: 23/02/2017
                     </ul>
                 </div>
                 <div class="col-lg-4 col-xs-12 ">
-                    <!-- <h3> Subcribe </h3>
-                    <ul>
-                        <li>
-                            <div class="input-append newsletter-box text-center">
-                                <input type="text" class="full text-center" placeholder="Email ">
-                                <button class="btn btn-success btn-send-mail" type="button"> Gửi <i class="fa fa-long-arrow-right"> </i> </button>
-                            </div>
-                        </li>
-                    </ul> -->
+                    <h3> Kết nối với chúng tôi: </h3>
+                    <!--  <ul>
+                         <li>
+                             <div class="input-append newsletter-box text-center">
+                                 <input type="text" class="full text-center" placeholder="Email ">
+                                 <button class="btn btn-success btn-send-mail" type="button"> Gửi <i class="fa fa-long-arrow-right"> </i> </button>
+                             </div>
+                         </li>
+                     </ul> -->
                     <ul class="social">
                         <li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
                         <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>

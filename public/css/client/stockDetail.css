@@ -1,6 +1,7 @@
 /*Stock detail ---- Anh Pham*/
 h2.title-post {
     text-transform: capitalize;
+    color: #E0B419;
 }
 
 img.author-avatar {
@@ -183,19 +184,34 @@ body .rsDefault .rsThumbsArrow:hover .rsThumbsArrowIcn {
 
 .breadcrumb-header {
     text-align: center;
-    padding: 65px 0;
     color: white;
+    margin: 0 auto;
 }
 
-.row.header-product {
+.breadcrumb-header:before {
+    content: ' ';
+    display: inline-block;
+    vertical-align: middle;  /* vertical alignment of the inline element */
+    height: 100%;
+}
+
+.content-breadcrumb-header {
+    vertical-align: middle;
+    display: inline-block;
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.77);
+    border-radius: 10px;
+}
+
+.header-product {
     background: #5cb85c;
-    background: url(/public/img/header/09.png) no-repeat center center fixed;
+    /*background: url(/public/img/header/maytinh-02.png);*/
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;  
-    height: 200px;
+    text-align: center;
+    height: 300px;
 }
 
 .breadcrumb-header .breadcrumb {
@@ -206,10 +222,11 @@ body .rsDefault .rsThumbsArrow:hover .rsThumbsArrowIcn {
     padding: 0;
     margin-left: 0;
     background: none;
+    color: #5cb85c;
 }
 
 .breadcrumb-header .breadcrumb-item+.breadcrumb-item::before {
-    color: #f7f7f9;
+    color: #40ab5c;
 }
 
 .slider-product-detail {

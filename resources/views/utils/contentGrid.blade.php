@@ -11,14 +11,14 @@
         <img class="card-img-top img-feature-product" src="{{ asset('resources/upload/'.$type.'s/'.$type.'-'.$item->id.'/'.$item->img) }}" alt="VietMarketPlace">
         <div class="frame-hover-product w3-animate-top">
             <div class="button-area-product-item">
-                <span class="btn favorite-product btn-for-product">
-                    <a class="button-view" title="Chi tiết" href="{{route($type.'Detail',$item->id)}}">
+                <span class="btn favorite-product btn-for-product" title="Chi tiết">
+                    <a class="button-view" href="{{route($type.'Detail',$item->id)}}">
                         <i class="fa fa-eye" aria-hidden="true"></i>
                         <!-- <i class="fa fa-heart" aria-hidden="true"></i> -->
                     </a>
                 </span>
-                <span class="btn favorite-product btn-for-product">
-                    <a class="button-fav" title="Xem sau." href="{{route('favorite',[$type,$item->id])}}">
+                <span class="btn favorite-product btn-for-product" title="Xem sau">
+                    <a class="button-fav" href="{{route('favorite',[$type,$item->id])}}">
                         <i class="fa fa-heart-o" aria-hidden="true"></i>
                         <!-- <i class="fa fa-heart" aria-hidden="true"></i> -->
                     </a>
@@ -46,7 +46,7 @@
                 <h3 class="price-product-item">{!! number_format($item->price,0,",",".") !!}</h3>
 			    <sup class="currency-price">đ</sup>
         </span>
-        <div class="status-tag <?php if ($item->status != 0) echo "old-tag"; ?>"><?php if ($item->status == 0) echo "MỚI"; else echo "CŨ";?></div>
+        <div class="status-tag <?php if ($item->status != 0) echo "old-tag"; ?>"><?php if ($item->status == 0) echo "HÀNG MỚI"; else echo "HÀNG CŨ";?></div>
     </div>
     <div class="card-footer card-footer-product">
             <span class="card-avatar-author card-left-text">

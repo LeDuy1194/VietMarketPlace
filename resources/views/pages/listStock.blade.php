@@ -22,6 +22,32 @@ Date: 21/02/2017
 	<!-- Optional - Adds useful class to manipulate icon font display -->
 	<link rel="stylesheet" href="{{asset('public/libs/pe-icon-7-stroke/css/helper.css')}}">
 
+    <?php
+			if ($cate->id == 1) {
+                $bg = array('bg-01.jpg', 'bg-02.jpg');
+			}
+			elseif ($cate->id == 2) {
+                $bg = array('bg-03.jpg', 'bg-04.jpg'); // array of filenames
+			}
+			elseif ($cate->id == 3) {
+				$bg = array('bg-05.jpg', 'bg-06.jpg', 'bg-07.jpg', 'bg-08.jpg' );
+			}
+
+    $i = rand(0, count($bg)-1); // generate random number size of the array
+    $selectedBg = "$bg[$i]"; // set variable equal to which random filename was chosen
+    ?>
+	<style type="text/css">
+		<!--
+		.header-product {
+			background: url(/public/img/header/<?php echo $selectedBg; ?>);
+			background-attachment: fixed;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		-->
+	</style>
+
 @endsection
 
 @section('content')
@@ -31,14 +57,16 @@ Date: 21/02/2017
 ?>
 	<div class="container-fluid content-product-detail">
 		<div class="row header-product">
-			<div class="col-lg-12 breadcrumb-header">
-				<h2 class="title-post">{!!  $data->name !!}</h2>
-				<ol class="breadcrumb" id="path">
-					<li class="breadcrumb-item"><a href="{{route('Home')}}">Trang Chủ</a></li>
-					<li class="breadcrumb-item"><a href="{{route('listByCate',[0,'stock'])}}">Kho hàng</a></li>
-					<li class="breadcrumb-item"><a href="{{route('listByCate',[$cate->id,'all'])}}">{!! $cate->name !!}</a></li>
-<!-- 					<li class="breadcrumb-item active">{!!  $data->name !!}</li> -->
-				</ol>
+			<div class="breadcrumb-header">
+				<div class="content-breadcrumb-header">
+					<h2 class="title-post">{!!  $data->name !!}</h2>
+					<ol class="breadcrumb" id="path">
+						<li class="breadcrumb-item"><a href="{{route('Home')}}">Trang Chủ</a></li>
+						<li class="breadcrumb-item"><a href="{{route('listByCate',[0,'stock'])}}">Kho hàng</a></li>
+						<li class="breadcrumb-item"><a href="{{route('listByCate',[$cate->id,'all'])}}">{!! $cate->name !!}</a></li>
+					<!-- 					<li class="breadcrumb-item active">{!!  $data->name !!}</li> -->
+					</ol>
+				</div>
 			</div>
 		</div>
 

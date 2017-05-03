@@ -11,7 +11,8 @@ Update_at: 27/03/2017 by Anh Pham
 @section('content')
 	@include('utils.advertise')
 	@include('utils.searchForm')
-	<div class="container">
+
+	<div class="container homepage-custom">
 				<div class="row list-products-thumbnail">
 					<h2 class="title-section-home bd-green">Kho hàng</h2>
 				@foreach($stock as $item)
@@ -24,7 +25,7 @@ Update_at: 27/03/2017 by Anh Pham
 				@endforeach
 				</div>
 			<div class="show-more">
-				<a href="{{route('listByCate',[0,'stock'])}}" class="text-center"><h3>Xem thêm...</h3></a>
+				<button type="button" class="btn btn-success btn-show-more-custom"><a href="{{route('listByCate',[0,'stock'])}}" class="text-center"><h3>Xem thêm...</h3></a></button>
 			</div>
 
 
@@ -40,7 +41,7 @@ Update_at: 27/03/2017 by Anh Pham
 				@endforeach
 				</div>
 			<div class="show-more">
-				<a href="{{route('listByCate',[0,'order'])}}" class="text-center title-show-more"><h3>Xem thêm...</h3></a>
+				<button type="button" class="btn btn-primary btn-show-more-custom"><a href="{{route('listByCate',[0,'order'])}}" class="text-center title-show-more"><h3>Xem thêm...</h3></a></button>
 			</div>
 	</div>
 @endsection

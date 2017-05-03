@@ -3,7 +3,7 @@
 	<link rel="stylesheet" href="{{asset('public/css/client/accountstyle.css')}}"/>
 @endsection
 @section('content')
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
 				<br>

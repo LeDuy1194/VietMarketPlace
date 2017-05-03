@@ -43,7 +43,7 @@ Date: 17/02/2017
 							</div>
 						</div>
 						<div class="col-lg-3 col-sm-6">
-							<p><i class="fa fa-street-view" aria-hidden="true"></i> {!! $item->place !!},{!! $item->district !!}, {!! $item->city !!}</p>
+							<p><i class="fa fa-street-view" aria-hidden="true"></i> {!! $item->place !!}, {!! $item->district !!}, {!! $item->city !!}</p>
 						</div>
 						<div class="col-lg-3 col-sm-4 text-right">
 							<h3 class="price-product-item">{!! number_format($item->price,0,",",".") !!}</h3>

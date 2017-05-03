@@ -70,6 +70,7 @@
 
 .show-more {
   padding: 30px 0;
+    text-align: center;
 }
 
 .show-more h3 {
@@ -83,7 +84,7 @@
 
 .card.product-item {
   padding: 0;
-  margin-right: 1%;
+  margin-right: 2%;
   margin-top: 30px;
 }
 
@@ -101,11 +102,11 @@
 }
 @media (min-width: 768px) {
   .col-md-3.product-item {
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 0 24%;
-    -ms-flex: 0 0 24%;
-    flex: 0 0 24%;
-    max-width: 24%;
+    -webkit-box-flex: 23.5;
+    -webkit-flex: 0 0 23.5%;
+    -ms-flex: 0 0 23.5%;
+    flex: 0 0 23.5%;
+    max-width: 23.5%;
   }
 }
 
@@ -156,12 +157,16 @@ sup.currency-price {
   background: #f0f0f0;
 }
 
-.row.list-products-thumbnail {
-  margin-top: 60px;
+.list-products-thumbnail {
+  margin-top: 30px;
+}
+
+.list-products-thumbnail:first-child {
+    margin-top: 0px;
 }
 
 h2.title-section-home {
-  width: 99%;
+  width: 100%;
   background: white;
   padding: 10px;
   border-left: 5px solid blue;
