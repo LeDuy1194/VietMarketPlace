@@ -15,8 +15,8 @@ update: 03-05-2017 by Anh Pham
 				<select class="form-control" id="search-type" name="search_type">
 					<option value="" selected>Loại hàng</option>
 					<option disabled>──────────</option>
-					<option value="stocks">Kho hàng</option>
-					<option value="orders">Đơn hàng</option>
+					<option value="stocks">Tin rao bán</option>
+					<option value="orders">Tin tìm mua</option>
 				</select>
 			</div>
 

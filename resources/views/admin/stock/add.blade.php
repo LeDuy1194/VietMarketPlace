@@ -1,5 +1,5 @@
 @extends('admin.master')
-@section('controller')Kho hàng
+@section('controller')Tin rao bán
 @endsection()
 @section('action')Thêm
 @endsection()

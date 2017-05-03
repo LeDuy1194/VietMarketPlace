@@ -14,7 +14,7 @@ Update_at: 27/03/2017 by Anh Pham
 
 	<div class="container homepage-custom">
 				<div class="row list-products-thumbnail">
-					<h2 class="title-section-home bd-green">Kho hàng</h2>
+					<h2 class="title-section-home bd-green">Tin rao bán</h2>
 				@foreach($stock as $item)
                     <?php
                     $user = $userModel->getDetailUserByUserID($item->user_id);
@@ -30,7 +30,7 @@ Update_at: 27/03/2017 by Anh Pham
 
 
 				<div class="row list-products-thumbnail">
-					<h2 class="title-section-home bd-blue">Đơn hàng</h2>
+					<h2 class="title-section-home bd-blue">Tin tìm mua</h2>
 				@foreach($order as $item)
                     <?php
                     $user = $userModel->getDetailUserByUserID($item->user_id);

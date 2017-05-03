@@ -14,12 +14,12 @@ Date: 17/02/2017
 		<div class="row mt-2">
 				<ul class="nav nav-pills" id="store-tabs" role="tablist">
 					<li class="nav-item nav-custom">
-						<a class="nav-link active" href="#stock" name="btnStock">Kho hàng
+						<a class="nav-link active" href="#stock" name="btnStock">Tin rao bán
 							<span class="badge badge-danger">{!! $stock->count() !!}</span>
 						</a>
 					</li>
 					<li class="nav-item nav-custom">
-						<a class="nav-link" href="#order" name="btnOrder">Đơn hàng
+						<a class="nav-link" href="#order" name="btnOrder">Tin tìm mua
 							<span class="badge badge-danger">{!! $order->count() !!}</span>
 						</a>
 					</li>

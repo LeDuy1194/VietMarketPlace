@@ -11,7 +11,7 @@ Date: 10/04/2017
 	<div class="container">
 		@include('utils.message')
 		<div class="row list-products-thumbnail">
-			<h2 class="title-section-home bd-green">Kho hàng 
+			<h2 class="title-section-home bd-green">Tin rao bán
 			<span class="badge badge-danger">{!! $fav->total() !!}</span>
 			</h2>
 				@foreach($fav as $key)
@@ -43,7 +43,7 @@ Date: 10/04/2017
 		@endif
 
 		<div class="row list-products-thumbnail">
-			<h2 class="title-section-home bd-blue">Đơn hàng 
+			<h2 class="title-section-home bd-blue">Tin tìm mua
 			<span class="badge badge-danger">{!! $favO->total() !!}</span>
 			</h2>
 				@foreach($favO as $key)

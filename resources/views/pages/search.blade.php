@@ -14,7 +14,7 @@ Create_at: 27/03/2017
         <div class="row mt-2">
             @if (sizeof($articles['stocks']) != 0 )
             <div class="col-lg-12 p-0 m-0">
-                <h2>Kho hàng</h2>
+                <h2>Tin rao bán</h2>
                 @foreach($articles['stocks'] as $item)
                     <?php
                     $user = $userModel->getDetailUserByUserID($item->user_id);
@@ -27,7 +27,7 @@ Create_at: 27/03/2017
             @endif
                 @if (sizeof($articles['orders']) != 0 )
             <div class="col-lg-12 p-0 m-0">
-                <h2>Đơn hàng</h2>
+                <h2>Tin tìm mua</h2>
                 @foreach($articles['orders'] as $item)
                     <?php
                     $user = $userModel->getDetailUserByUserID($item->user_id);

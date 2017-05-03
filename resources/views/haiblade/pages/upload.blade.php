@@ -32,8 +32,8 @@
                                         Chọn Phần Mục *
                                     </label>
                                     <select class="form-control" id="prtcate" name="prtcate" >
-                                        <option selected value="stock">Kho Hàng</option>
-                                        <option value="order">Đơn Hàng</option>
+                                        <option selected value="stock">Tin rao bán</option>
+                                        <option value="order">Tin tìm mua</option>
                                     </select>
                                 </div>
                                 <div class="row">

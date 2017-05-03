@@ -30,8 +30,8 @@
 								Chọn Phần Mục *
 							</label>
 							<select class="form-control" id="prtcate" name="prtcate" >
-								<option selected value="Kho Hàng">Kho Hàng</option>
-								<option value="Đơn Hàng">Đơn Hàng</option>
+								<option selected value="Kho Hàng">Tin rao bán</option>
+								<option value="Đơn Hàng">Tin tìm mua</option>
 							</select>
 						</div>
 						<div class="row">
@@ -161,7 +161,7 @@
 							<div class="card-header" role="tab" id="headingTwo">
 								<h5 class="mb-0">
 									<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-										Đơn Hàng
+										Tin tìm mua
 									</a>
 								</h5>
 							</div>

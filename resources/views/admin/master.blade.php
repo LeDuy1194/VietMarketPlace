@@ -31,21 +31,21 @@
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            Kho hàng<span class="fa arrow"></span>
+                            Tin rao bán<span class="fa arrow"></span>
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Danh sách Kho hàng</a>
-                            <a class="dropdown-item" href="#">Thêm Kho hàng</a>
+                            <a class="dropdown-item" href="#">Danh sách Tin rao bán</a>
+                            <a class="dropdown-item" href="#">Thêm Tin rao bán</a>
                         </div>
                     </li>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            Đơn hàng<span class="fa arrow"></span>
+                            Tin tìm mua<span class="fa arrow"></span>
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Danh sách Đơn hàng</a>
-                            <a class="dropdown-item" href="#">Thêm Đơn hàng</a>
+                            <a class="dropdown-item" href="#">Danh sách Tin tìm mua</a>
+                            <a class="dropdown-item" href="#">Thêm Tin tìm mua</a>
                         </div>
                     </li>
 

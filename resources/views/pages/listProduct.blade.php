@@ -29,7 +29,7 @@ Date: 23/03/2017
 			@if ($state == 'stock')
 				<?php $page = $stock; ?>
 				<div class="col-lg-12 p-0 m-0">
-					<h2 class="title-section-home bd-green">Kho hàng <span class="badge badge-danger">{!! $stock->total() !!}</span></h2>
+					<h2 class="title-section-home bd-green">Tin rao bán <span class="badge badge-danger">{!! $stock->total() !!}</span></h2>
 					@foreach($stock as $item)
 					<?php
 						$user = $userModel->getDetailUserByUserID($item->user_id);
@@ -59,7 +59,7 @@ Date: 23/03/2017
 			@elseif ($state == 'order')
 				<?php $page = $order; ?>
 				<div class="col-lg-12 p-0 m-0">
-					<h2 class="title-section-home bd-blue">Đơn hàng <span class="badge badge-danger">{!! $order->total() !!}</span></h2>
+					<h2 class="title-section-home bd-blue">Tin tìm mua <span class="badge badge-danger">{!! $order->total() !!}</span></h2>
 					@foreach($order as $item)
 					<?php
 						$user = $userModel->getDetailUserByUserID($item->user_id);
@@ -88,7 +88,7 @@ Date: 23/03/2017
 				@endif
 			@else
 				<div class="col-lg-12 p-0 m-0">
-					<h2 class="title-section-home bd-green">Kho hàng <span class="badge badge-danger">{!! $stock->total() !!}</span></h2>
+					<h2 class="title-section-home bd-green">Tin rao bán <span class="badge badge-danger">{!! $stock->total() !!}</span></h2>
 					@foreach($stock as $item)
 					<?php
 						$user = $userModel->getDetailUserByUserID($item->user_id);
@@ -116,7 +116,7 @@ Date: 23/03/2017
 				</nav>
 				@endif
 				<div class="col-lg-12 p-0 m-0">
-					<h2 class="title-section-home bd-blue">Đơn hàng <span class="badge badge-danger">{!! $order->total() !!}</span></h2>
+					<h2 class="title-section-home bd-blue">Tin tìm mua <span class="badge badge-danger">{!! $order->total() !!}</span></h2>
 					@foreach($order as $item)
 					<?php
 						$user = $userModel->getDetailUserByUserID($item->user_id);

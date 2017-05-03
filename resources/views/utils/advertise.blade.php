@@ -44,22 +44,6 @@ Update: 03-05-2017 by Bi Pham
 		{{--</div>--}}
 	{{--</div>--}}
 {{--</div>--}}
-@if(Route::current()->getName() == '')
-	<div class="row-fluid img-banner-home-custom parallax">
-		{{--	<img class="banner-home-custom" src="{{url('/public/img/header/14.jpg')}}" alt="">--}}
-		<div class="welcome-web-custom">
-			<div class="title-welcome">
-				CHÀO MỪNG BẠN ĐẾN VỚI
-			</div>
-			<div class="name-website-welcome">
-				VIỆT MARKETPLACE
-			</div>
-			<div class="content-welcome">
-				Website đăng tin rao vặt miễn phí, đảm bảo bán được hàng nhanh nhất!
-			</div>
-		</div>
-	</div>
-@endif
 
 @if(Route::current()->getName() == 'MyStore')
 	<div class="row-fluid img-banner-store-custom parallax">
@@ -76,4 +60,21 @@ Update: 03-05-2017 by Bi Pham
 			</div>
 		</div>
 	</div>
+@else
+	<div class="row-fluid img-banner-home-custom parallax">
+		{{--	<img class="banner-home-custom" src="{{url('/public/img/header/14.jpg')}}" alt="">--}}
+		<div class="welcome-web-custom">
+			<div class="title-welcome">
+				CHÀO MỪNG BẠN ĐẾN VỚI
+			</div>
+			<div class="name-website-welcome">
+				VIỆT MARKETPLACE
+			</div>
+			<div class="content-welcome">
+				Website đăng tin rao vặt miễn phí, đảm bảo bán được hàng nhanh nhất!
+			</div>
+		</div>
+	</div>
 @endif
+
+

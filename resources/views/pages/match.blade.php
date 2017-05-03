@@ -13,9 +13,9 @@ Date: 30/03/2017
 		@include('utils.message')
 		<div class="row p-0 mt-2">
 			@if ($state == 'stock')
-				<h2 class="title-section-home bd-green">Kho hàng</h2>
+				<h2 class="title-section-home bd-green">Tin rao bán</h2>
 			@else
-				<h2 class="title-section-home bd-blue">Đơn hàng</h2>
+				<h2 class="title-section-home bd-blue">Tin tìm mua</h2>
 			@endif
 			<div class="card card-block listV-item">
 				<div class="row">
