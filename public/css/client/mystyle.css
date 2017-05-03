@@ -34,7 +34,6 @@ body {
 }
 
 .welcome-web-custom {
-	width: 50%;
 	height: 40%;
 	margin: 0 auto;
 	/* text-align: center; */
@@ -358,4 +357,60 @@ a.nav-link {
 .btn-show-more-custom a:hover {
 	 color: white;
 	 text-decoration: none;
+}
+
+.img-banner-store-custom.parallax {
+	/* The image used */
+	background-image: url("/public/img/banner-warehouse.jpg");
+
+	/* Full height */
+	height: 500px;
+
+	/* Create the parallax scrolling effect */
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	text-align: center;
+}
+
+.img-banner-store-custom.parallax:before {
+	content: ' ';
+	display: inline-block;
+	vertical-align: middle;
+	height: 100%;
+}
+
+.welcome-store-custom {
+	height: 40%;
+	margin: 0 auto;
+	/* text-align: center; */
+	display: inline-block;
+	vertical-align: middle;
+	background: rgba(41, 43, 44, 0.65);
+	padding: 20px;
+}
+
+.name-store-welcome {
+	color: #00d8b3;
+	font-size: 60px;
+	font-weight: 900;
+	letter-spacing: 2px;
+}
+
+.content-store {
+	color: white;
+	font-size: 18px;
+}
+
+.nav-pills .nav-custom.nav-item.show .nav-link, .nav-pills .nav-custom .nav-link.active {
+	background-color: #5cb85c;
+}
+
+.nav-custom a.nav-link{
+	background: #ccc;
+}
+
+.my-store-custom {
+	margin-top: 30px;
 }

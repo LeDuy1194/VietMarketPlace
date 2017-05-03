@@ -91,7 +91,7 @@ class HomeController extends Controller {
         return view('pages.listStock',compact('data','cate', 'author', 'stockImages'));
     }
 
-    public function showMyStore($state) {
+    public function showMyStore() {
         $number = 5;
         $userModel = new User();
         $cateModel = new Cate();
@@ -99,7 +99,7 @@ class HomeController extends Controller {
         $author = $userModel->getDetailUserByUserID(Auth::id());
         $stock = $author->stock;
         $order = $author->order;
-        return view('pages.myStore',compact('stock','order','state','author','cateModel','userModel','matchModel'));
+        return view('pages.myStore',compact('stock','order','author','cateModel','userModel','matchModel'));
     }
 
     public function showMap() {

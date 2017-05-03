@@ -27,7 +27,7 @@ Route::post('register',['as'=>'postRegister','uses'=>'Auth\RegisterController@po
 
 Route::get('home',['as'=>'Home','uses'=>'Client\HomeController@showHome']);
 
-Route::get('mystore/{state}',['as'=>'MyStore','uses'=>'Client\HomeController@showMyStore']);
+Route::get('mystore',['as'=>'MyStore','uses'=>'Client\HomeController@showMyStore']);
 
 Route::get('order-detail/{id}',['as'=>'orderDetail','uses'=>'Client\HomeController@showOrderDetail']);
 Route::get('stock-detail/{id}',['as'=>'stockDetail','uses'=>'Client\HomeController@showStockDetail']);

@@ -1,5 +1,6 @@
 <!--Created by: Nguyen Le Duy
 Date: 17/02/2017
+Update: 03-05-2017 by Bi Pham
 -->
 
 <!--Slide quang cao-->
@@ -43,18 +44,36 @@ Date: 17/02/2017
 		{{--</div>--}}
 	{{--</div>--}}
 {{--</div>--}}
-
-<div class="row-fluid img-banner-home-custom parallax">
-{{--	<img class="banner-home-custom" src="{{url('/public/img/header/14.jpg')}}" alt="">--}}
-	<div class="welcome-web-custom">
-		<div class="title-welcome">
-			CHÀO MỪNG BẠN ĐẾN VỚI
-		</div>
-		<div class="name-website-welcome">
-			VIỆT MARKETPLACE
-		</div>
-		<div class="content-welcome">
-			Website đăng tin rao vặt miễn phí, đảm bảo bán được hàng nhanh nhất!
+@if(Route::current()->getName() == '')
+	<div class="row-fluid img-banner-home-custom parallax">
+		{{--	<img class="banner-home-custom" src="{{url('/public/img/header/14.jpg')}}" alt="">--}}
+		<div class="welcome-web-custom">
+			<div class="title-welcome">
+				CHÀO MỪNG BẠN ĐẾN VỚI
+			</div>
+			<div class="name-website-welcome">
+				VIỆT MARKETPLACE
+			</div>
+			<div class="content-welcome">
+				Website đăng tin rao vặt miễn phí, đảm bảo bán được hàng nhanh nhất!
+			</div>
 		</div>
 	</div>
-</div>
+@endif
+
+@if(Route::current()->getName() == 'MyStore')
+	<div class="row-fluid img-banner-store-custom parallax">
+		{{--	<img class="banner-home-custom" src="{{url('/public/img/header/14.jpg')}}" alt="">--}}
+		<div class="welcome-store-custom">
+			<div class="title-welcome">
+				CHÀO MỪNG BẠN ĐẾN VỚI
+			</div>
+			<div class="name-store-welcome">
+				CỬA HÀNG - VIỆT MARKETPLACE
+			</div>
+			<div class="content-store">
+				Đây là nơi bạn có thể quản lý tất cả các tin rao vặt mua hoặc bán của bạn một cách dễ dàng và trực quan!
+			</div>
+		</div>
+	</div>
+@endif
