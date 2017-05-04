@@ -491,3 +491,12 @@ ul.list-tab-custom li.nav-item.nav-custom {
 	margin-top: 10px;
 	width: 100%;
 }
+
+.welcome-list-cate-page-custom {
+	background: rgba(41, 43, 44, 0.78) !important;
+	padding: 20px 30px !important;
+}
+
+.name-list-cate-page-welcome {
+	font-size: 40px !important;
+}

@@ -13,17 +13,17 @@ Date: 17/02/2017
 		@include('utils.message')
 		<div class="row mt-2">
 			<ul class="nav nav-pills" id="store-tabs" role="tablist">
-					<li class="nav-item nav-custom">
-						<a class="nav-link active" href="#stock" name="btnStock">Tin rao bán
-							<span class="badge badge-danger">{!! $stock->count() !!}</span>
-						</a>
-					</li>
-					<li class="nav-item nav-custom">
-						<a class="nav-link" href="#order" name="btnOrder">Tin tìm mua
-							<span class="badge badge-danger">{!! $order->count() !!}</span>
-						</a>
-					</li>
-				</ul>
+				<li class="nav-item nav-custom">
+					<a class="nav-link active" href="#stock" name="btnStock">Tin rao bán
+						<span class="badge badge-danger">{!! $stock->count() !!}</span>
+					</a>
+				</li>
+				<li class="nav-item nav-custom">
+					<a class="nav-link" href="#order" name="btnOrder">Tin tìm mua
+						<span class="badge badge-danger">{!! $order->count() !!}</span>
+					</a>
+				</li>
+			</ul>
 			<div class="col-lg-12 p-0 m-0 tab-content tab-content-custom">
 				<div class="tab-pane active" id="stock" role="tabpanel">
 					@if ($stock->count() == 0)

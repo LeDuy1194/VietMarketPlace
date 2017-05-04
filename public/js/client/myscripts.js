@@ -8,4 +8,9 @@ $( document ).ready(function() {
         $(this).tab('show');
     });
 
+    $('#list-cate-tabs a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+
 });

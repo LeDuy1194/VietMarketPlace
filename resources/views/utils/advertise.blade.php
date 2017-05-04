@@ -44,7 +44,9 @@ Update: 03-05-2017 by Bi Pham
 		{{--</div>--}}
 	{{--</div>--}}
 {{--</div>--}}
-
+<?php
+//dd($cate);
+?>
 @if(Route::current()->getName() == 'MyStore')
 	<div class="row-fluid img-banner-store-custom parallax">
 		{{--	<img class="banner-home-custom" src="{{url('/public/img/header/14.jpg')}}" alt="">--}}
@@ -66,6 +68,26 @@ Update: 03-05-2017 by Bi Pham
 		<div class="welcome-wish-page-custom welcome-custom">
 			<div class="name-wish-page-welcome title-page-custom">
 				Danh sách quan tâm
+			</div>
+		</div>
+	</div>
+@elseif(Route::current()->getName() == 'listByCate')
+	<?php
+    $bg = array('dt-bg.jpg', 'mt-bg-01.jpg', 'sach-bg.jpg');
+    $id_cate = $cate->id - 1;
+    $selectedBg = "$bg[$id_cate]";
+	?>
+	<div class="row-fluid img-banner img-banner-list-cate-custom parallax"
+		 style="background-image: url('/public/img/<?php echo $selectedBg; ?>');
+				background-attachment: fixed;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+				">
+		{{--	<img class="banner-home-custom" src="{{url('/public/img/header/14.jpg')}}" alt="">--}}
+		<div class="welcome-list-cate-page-custom welcome-custom">
+			<div class="name-list-cate-page-welcome title-page-custom">
+				<?php echo $cate->name; ?>
 			</div>
 		</div>
 	</div>
