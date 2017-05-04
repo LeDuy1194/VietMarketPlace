@@ -9,7 +9,7 @@ Date: 30/03/2017
 @endsection
 @section('content')
 	@include('utils.advertise')
-	<div class="container">
+	<div class="container matching-page-custom my-store-custom">
 		@include('utils.message')
 		<div class="row p-0 mt-2">
 			@if ($state == 'stock')
@@ -27,26 +27,29 @@ Date: 30/03/2017
 							<div class="media-body ml-2">
 								<a href="{{route($state.'Detail',$base->id)}}">
 									<h5 class="media-heading">
-										{!! $base->name !!}  <span class="badge badge-default new-old-product"> {!! ($base->status == 0)?"Mới":"Cũ" !!}
-										</span>
+										{!! $base->name !!}
 									</h5>
 								</a>
-								<?php $cate = $cateModel->getCateById($base->cate_id); ?>
-								<p>Category: {!! $cate->name !!}
+                                <?php $cate = $cateModel->getCateById($base->cate_id); ?>
+								<p>
+									Danh Mục:
+									<a href="{{route('listByCate',[$cate->id,'all'])}}">{!! $cate->name !!}</a>
 								</p>
+								<div class="badge badge-default {!! ($base->status == 0)?"new-product":"old-product" !!}">{!! ($base->status == 0)?"Hàng mới":"Hàng cũ" !!}</div>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-4 col-sm-7">
-						<p><i class="fa fa-street-view" aria-hidden="true"></i> {!! $base->place !!}</p>
+						<p><i class="fa fa-street-view" aria-hidden="true"></i> {!! $base->place !!}, {!! $base->district !!}, {!! $base->city !!}</p>
 					</div>
 					<div class="col-lg-4 col-sm-3 text-right">
-						<h3>{!! number_format($base->price,0,",",".")." VNĐ" !!}</h3>
+						<h3 class="price-product-item">{!! number_format($base->price,0,",",".") !!}</h3>
+						<sup class="currency-price">đ</sup>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="row ml-2">
+		<div class="row show-result-matching">
 			<?php
 				if ($state == 'stock') {
 					$result_type = 'order';
@@ -55,7 +58,12 @@ Date: 30/03/2017
 					$result_type = 'stock';
 				}
 			?>
-			<h2 class="title-section-home">Matching <span class="badge badge-danger">{!! $data->count() !!}</span></h2>
+			<h2 class="title-section-home title-result-matching">Kết quả matching <span class="badge badge-danger">{!! $data->count() !!}</span></h2>
+				@if ($data->count() == 0)
+					<div class="alert alert-danger msg-custom" role="alert">
+						<strong>Oh no!</strong> Rất tiếc, hiện tại chưa có kết quả phù hợp với sản phẩm bạn đang tìm kiếm.
+					</div>
+				@endif
 			@foreach($data as $item)
 				<?php
 					$user = $userModel->getDetailUserByUserID($item->user_id);
