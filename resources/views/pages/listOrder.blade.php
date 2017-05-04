@@ -216,8 +216,8 @@ Date: 21/02/2017
 								<textarea name="comment" id="comment" rows="4" cols="30" maxlength="100" class="form-control" placeholder="Nội dung đánh giá" style="resize: none;"></textarea>
 							</div>
 							<select class="form-control" name="vote" id="vote">
-								<option value="1">Tiến cử người đăng.</option>
-								<option value="0">Không...</option>
+								<option value="1">Người đăng uy tín</option>
+								<option value="0">Người đăng không uy tín</option>
 							</select>
 							<hr>
 							<button type="submit" class="btn btn-block btn-success">
@@ -245,14 +245,17 @@ Date: 21/02/2017
         	LatLng = {lat: {{ $data['lat'] }}, lng: {{ $data['lng'] }}};
         	map = new google.maps.Map(document.getElementById('map'), {
         		center: LatLng,
-        		zoom: 16
+        		zoom: 16,
+        		scrollwheel: false
         	});
         	var marker = new google.maps.Marker({
-        		position: LatLng,
         		map: map,
+        		animation: google.maps.Animation.DROP,
+        		position: LatLng,
         		icon: 'http://maps.google.com/mapfiles/kml/paddle/red-circle.png',
         		title: '{{ $data['title'] }}'
         	});
+        	marker.addListener('click', toggleBounce);
         	infoWindow = new google.maps.InfoWindow({
         		content: document.getElementById('form')
         	});
@@ -260,6 +263,12 @@ Date: 21/02/2017
         	messagewindow = new google.maps.InfoWindow({
         		content: document.getElementById('message')
         	});
+        }
+        function toggleBounce() {
+        if (marker.getAnimation() !== null) {
+          marker.setAnimation(null);
+        } else {
+          marker.setAnimation(google.maps.Animation.BOUNCE);
         }
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         	infoWindow.setPosition(pos);
