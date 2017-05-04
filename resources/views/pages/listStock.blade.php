@@ -73,10 +73,6 @@ Date: 21/02/2017
 		<div class="row">
 			<div class="col-lg-1 hidden-sm-down"></div>
 			<div class="col-lg-7 col-sm-12">
-				<!-- <h2 class="title-post">{!!  $data->name !!}</h2> -->
-				{{--<div class="card card-block">--}}
-					{{--<img src="../resources/upload/{{$data->img}}"/>--}}
-				{{--</div>--}}
 				<div class="slider-product-detail">
 					<center>
 						<div id="product-detail-gallery" class="royalSlider rsDefault">
@@ -90,24 +86,28 @@ Date: 21/02/2017
 						</div>
 					</center>
 				</div>
-
-				<div class="card description-product">
-					<div class="card-header header-description-product">
-						<a class="fontItem" data-toggle="collapse" href="#collapseProductDesc" aria-expanded="true" aria-controls="collapseProductDesc"><h5>Miêu tả</h5></a>
-					</div>
-					<div class="card-block show collapse" id="collapseProductDesc">
-						<div>
+				<div class="detail-desc-product-custom">
+					<ul class="nav nav-pills" id="detail-tabs" role="tablist">
+						<li class="nav-item nav-custom">
+							<a class="nav-link active" href="#descProduct" name="btnDesc" role="tab">
+								Miêu tả
+							</a>
+						</li>
+						<li class="nav-item nav-custom">
+							<a class="nav-link" href="#map" name="btnMap" role="tab">
+								Vị trí giao dịch
+							</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="descProduct" role="tabpanel">
 							{!! $data->description !!}
+						</div>
+						<div class="tab-pane" id="map" role="tabpanel">
+
 						</div>
 					</div>
 				</div>
-
-				<div class="card">
-				<div class="card-block">
-					<a class="fontItem" data-toggle="collapse" href="#collapseProductDesc" aria-expanded="true" aria-controls="collapseProductDesc"><h5>Vị trí giao dịch</h5></a>
-					<div id="map" style="height:400px; width: auto;"></div>
-				</div>
-			</div>
 			</div>
 			<div class="col-lg-3 col-sm-12">
 			    <div class="price-product-detail">
@@ -132,12 +132,6 @@ Date: 21/02/2017
 					</div>
 					<div class="collapse show card-block" id="collapseProductInfo">
 						<ul class="product-info" id="productInfo">
-
-<!-- 							<li class="price-product">
-								<i class="fa fa-money" aria-hidden="true"></i>
-								<h3 class="price-product-item">{!! number_format($data->price,0,",",".") !!}</h3>
-						    	<sup class="currency-price">đ</sup>
-						    </li> -->
 							<li>
 								<div class="title-info-detail">Tình trạng: </div>
 								<div class="badge badge-default {!! ($data->status == 0)?"new-product":"old-product" !!}">{!! ($data->status == 0)?"Hàng mới":"Hàng cũ" !!}</div>
@@ -199,12 +193,6 @@ Date: 21/02/2017
 						</ul>
 					</div>
 				</div>
-<!-- 				<div class="card card-block">
-					<div class="btn-group">
-						<a id="btnFav" class="btn btn-primary" href="{{route('favorite',['stock',$data->id])}}">Xem sau</a>
-						<button id="btnReport" class="btn btn-block btn-lg">Báo cáo tin ảo</button>
-					</div>
-				</div> -->
 				@if(Auth::id()!=$author->id)
 				<div class="card report-product-area">
 					<div class="card-header header-report-product">
@@ -235,8 +223,11 @@ Date: 21/02/2017
 @endsection
 
 @section('scripts')
-
 	<script>
+//        $('#detail-tabs a').click(function (e) {
+//            e.preventDefault();
+//            $(this).tab('show');
+//        });
         // Note: This example requires that you consent to location sharing when
         // prompted by your browser. If you see the error "The Geolocation service
         // failed.", it means you probably did not give permission for the browser to
