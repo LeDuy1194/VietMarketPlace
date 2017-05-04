@@ -11,7 +11,6 @@ Update_at: 27/03/2017 by Anh Pham
 @section('content')
 	@include('utils.advertise')
 	@include('utils.searchForm')
-
 	<div class="container homepage-custom">
 				<div class="row list-products-thumbnail">
 					<h2 class="title-section-home bd-green">Tin rao bán</h2>
