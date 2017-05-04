@@ -103,8 +103,8 @@ Date: 21/02/2017
 
 				<div class="card">
 				<div class="card-block">
-					<a class="fontItem" data-toggle="collapse" href="#collapseProductDesc" aria-expanded="true" aria-controls="collapseProductDesc"><h5>Vị trí giao dịch</h5></a>
-					<div id="map" style="height:400px; width: auto;"></div>
+					
+					<div id="map" style="height:400px; width: auto"></div>
 				</div>
 			</div>
 			</div>
@@ -236,10 +236,6 @@ Date: 21/02/2017
 @section('scripts')
 
 	<script>
-        // Note: This example requires that you consent to location sharing when
-        // prompted by your browser. If you see the error "The Geolocation service
-        // failed.", it means you probably did not give permission for the browser to
-        // locate you.
         var map, infoWindow, messagewindow;
         function initMap() {
         	LatLng = {lat: {{ $data['lat'] }}, lng: {{ $data['lng'] }}};
@@ -270,6 +266,7 @@ Date: 21/02/2017
         } else {
           marker.setAnimation(google.maps.Animation.BOUNCE);
         }
+      }
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         	infoWindow.setPosition(pos);
         	infoWindow.setContent(browserHasGeolocation ?
@@ -279,9 +276,8 @@ Date: 21/02/2017
         }
 
     </script>
-
-    <script async defer
-    src="{{url('https://maps.googleapis.com/maps/api/js?key=AIzaSyA9WOBv_HjdT4h03JtNFLoPHxdaMrP1Dyk&callback=initMap')}}">
+	<script async defer src="{{url('https://maps.googleapis.com/maps/api/js?key=AIzaSyA9WOBv_HjdT4h03JtNFLoPHxdaMrP1Dyk&callback=initMap')}}">
+    
     	
     </script>
 	<!-- Plugin requires jQuery 1.8+  -->
