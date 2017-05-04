@@ -90,19 +90,17 @@ Date: 21/02/2017
 						<li class="nav-item nav-custom">
 							<a class="nav-link active" href="#descProduct" name="btnDesc" role="tab">Miêu tả</a>
 						</li>
-						<li class="nav-item nav-custom">
-							<a class="nav-link" href="#map" name="btnMap" role="tab">Vị trí giao dịch</a>
-
+						<li class="nav-item nav-custom" id="show-map-product">
+							<a class="nav-link" href="#mapProduct" name="btnMap" role="tab">Vị trí giao dịch</a>
 						</li>
-
 					</ul>
-					<div id="map" style="height: 300px;width: auto"></div>
+
 					<div class="tab-content detail-product-content-tab">
 						<div class="tab-pane active" id="descProduct" role="tabpanel">
 							{!! $data->description !!}
 						</div>
-						<div class="tab-pane" id="map" role="tabpanel">
-
+						<div class="tab-pane" id="mapProduct" role="tabpanel">
+							<div id="map" style="height: 300px;width: auto"></div>
 						</div>
 					</div>
 				</div>
@@ -222,46 +220,51 @@ Date: 21/02/2017
 
 @section('scripts')
 	<script>
-
+        $('#detail-tabs a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+        $('#detail-tabs').on('shown.bs.tab', function () {
+            google.maps.event.trigger(window, 'resize', {});
+        });
         var map, infoWindow, messagewindow;
         function initMap() {
-        	LatLng = {lat: {{ $data['lat'] }}, lng: {{ $data['lng'] }}};
-        	map = new google.maps.Map(document.getElementById('map'), {
-        		center: LatLng,
-        		zoom: 16,
-        		scrollwheel: false
-        	});
-        	var marker = new google.maps.Marker({
-        		map: map,
-        		animation: google.maps.Animation.DROP,
-        		position: LatLng,
-        		icon: 'http://maps.google.com/mapfiles/kml/paddle/red-circle.png',
-        		title: '{{ $data['title'] }}'
-        	});
-        	marker.addListener('click', toggleBounce);
-        	infoWindow = new google.maps.InfoWindow({
-        		content: document.getElementById('form')
-        	});
+            LatLng = {lat: {{ $data['lat'] }}, lng: {{ $data['lng'] }}};
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: LatLng,
+                zoom: 16,
+                scrollwheel: false
+            });
+            var marker = new google.maps.Marker({
+                map: map,
+                animation: google.maps.Animation.DROP,
+                position: LatLng,
+                icon: 'http://maps.google.com/mapfiles/kml/paddle/red-circle.png',
+                title: '{{ $data['title'] }}'
+            });
+            marker.addListener('click', toggleBounce);
+            infoWindow = new google.maps.InfoWindow({
+                content: document.getElementById('form')
+            });
 
-        	messagewindow = new google.maps.InfoWindow({
-        		content: document.getElementById('message')
-        	});
+            messagewindow = new google.maps.InfoWindow({
+                content: document.getElementById('message')
+            });
         }
         function toggleBounce() {
-        if (marker.getAnimation() !== null) {
-          marker.setAnimation(null);
-        } else {
-          marker.setAnimation(google.maps.Animation.BOUNCE);
+            if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+            } else {
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+            }
         }
-      }
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        	infoWindow.setPosition(pos);
-        	infoWindow.setContent(browserHasGeolocation ?
-        		'Error: The Geolocation service failed.' :
-        		'Error: Your browser doesn\'t support geolocation.');
-        	infoWindow.open(map);
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                'Error: The Geolocation service failed.' :
+                'Error: Your browser doesn\'t support geolocation.');
+            infoWindow.open(map);
         }
-
     </script>
 
     <script async defer src="{{url('https://maps.googleapis.com/maps/api/js?key=AIzaSyA9WOBv_HjdT4h03JtNFLoPHxdaMrP1Dyk&callback=initMap')}}">
@@ -294,10 +297,6 @@ Date: 21/02/2017
 						arrowsAutoHide: true
 				}
             });
-            $('#detail-tabs a').click(function (e) {
-                e.preventDefault()
-                $(this).tab('show')
-            })
         });
 	</script>
 

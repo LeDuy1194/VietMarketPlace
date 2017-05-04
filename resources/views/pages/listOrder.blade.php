@@ -90,15 +90,15 @@ Date: 21/02/2017
 							<a class="nav-link active" href="#descProduct" name="btnDesc" role="tab">Miêu tả</a>
 						</li>
 						<li class="nav-item nav-custom">
-							<a class="nav-link" href="#map" name="btnMap" role="tab">Vị trí giao dịch</a>
+							<a class="nav-link" href="#mapProduct" name="btnMap" role="tab">Vị trí giao dịch</a>
 						</li>
 					</ul>
 					<div class="tab-content detail-product-content-tab">
 						<div class="tab-pane active" id="descProduct" role="tabpanel">
 							{!! $data->description !!}
 						</div>
-						<div class="tab-pane" id="map" role="tabpanel">
-
+						<div class="tab-pane" id="mapProduct" role="tabpanel">
+							<div id="map" style="height:400px; width: auto"></div>
 						</div>
 					</div>
 				</div>
@@ -126,12 +126,6 @@ Date: 21/02/2017
 					</div>
 					<div class="collapse show card-block" id="collapseProductInfo">
 						<ul class="product-info" id="productInfo">
-
-<!-- 							<li class="price-product">
-								<i class="fa fa-money" aria-hidden="true"></i>
-								<h3 class="price-product-item">{!! number_format($data->price,0,",",".") !!}</h3>
-						    	<sup class="currency-price">đ</sup>
-						    </li> -->
 							<li>
 								<div class="title-info-detail">Tình trạng: </div>
 								<div class="badge badge-default {!! ($data->status == 0)?"new-product":"old-product" !!}">{!! ($data->status == 0)?"Hàng mới":"Hàng cũ" !!}</div>
@@ -186,19 +180,9 @@ Date: 21/02/2017
 							<?php if ($author->email != ''): ?>
 								<li><i class="fa fa-envelope" aria-hidden="true"></i> {!! $author->email !!}</li>
 							<?php endif; ?>
-<!-- 							<li>
-								<div class="title-register-author">Ngày đăng ký: </div>
-								<div class="info-register-author">{!! date_format($author->created_at,"d/m/Y") !!}</div>
-							</li> -->
 						</ul>
 					</div>
 				</div>
-<!-- 				<div class="card card-block">
-					<div class="btn-group">
-						<a id="btnFav" class="btn btn-primary" href="{{route('favorite',['order',$data->id])}}">Xem sau</a>
-						<button id="btnReport" class="btn btn-block btn-lg">Báo cáo tin ảo</button>
-					</div>
-				</div> -->
 				@if(Auth::id()!=$author->id)
 				<div class="card report-product-area">
 					<div class="card-header header-report-product">
@@ -229,12 +213,14 @@ Date: 21/02/2017
 @endsection
 
 @section('scripts')
-
 	<script>
-        // Note: This example requires that you consent to location sharing when
-        // prompted by your browser. If you see the error "The Geolocation service
-        // failed.", it means you probably did not give permission for the browser to
-        // locate you.
+        $('#detail-tabs a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+        $('#detail-tabs').on('shown.bs.tab', function () {
+            google.maps.event.trigger(window, 'resize', {});
+        });
         var map, infoWindow, messagewindow;
         function initMap() {
         	LatLng = {lat: {{ $data['lat'] }}, lng: {{ $data['lng'] }}};
@@ -265,6 +251,7 @@ Date: 21/02/2017
         } else {
           marker.setAnimation(google.maps.Animation.BOUNCE);
         }
+      }
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         	infoWindow.setPosition(pos);
         	infoWindow.setContent(browserHasGeolocation ?
@@ -274,9 +261,7 @@ Date: 21/02/2017
         }
 
     </script>
-
-    <script async defer
-    src="{{url('https://maps.googleapis.com/maps/api/js?key=AIzaSyA9WOBv_HjdT4h03JtNFLoPHxdaMrP1Dyk&callback=initMap')}}">
+	<script async defer src="{{url('https://maps.googleapis.com/maps/api/js?key=AIzaSyA9WOBv_HjdT4h03JtNFLoPHxdaMrP1Dyk&callback=initMap')}}">
     	
     </script>
 	<!-- Plugin requires jQuery 1.8+  -->
