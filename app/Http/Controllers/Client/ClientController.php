@@ -23,6 +23,23 @@ use Illuminate\Support\Facades\File;
 //use Illuminate\Http\File;
 class ClientController extends Controller
 {
+    public function test() {
+        $tags = Tag::select('id','name')->get()->toArray();
+        $str = '';
+        for ($i=1; $i<=count($tags); $i++) {
+            if ($i == count($tags)) {
+                $str = $str.$tags[$i-1]['name'];
+            }
+            else {
+                $str = $str.$tags[$i-1]['name'].',';
+            }
+        }
+        $str = explode(',', $str);
+        var_dump($tags);
+        echo "<br><br>";
+        var_dump($str);
+    }
+
     public function getUpload() {
         $cate = Cate::select('name','id')->get()->toArray();
         $city = City::select('name','cityid')->get()->toArray();

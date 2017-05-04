@@ -76,10 +76,6 @@ function compare_tag($data_1,$data_2) {
 			else {}
 		}
 	}
-	var_dump($count);
-	echo " - ";
-	var_dump($total);
-	echo "<br><br>";
 	$result = round($count / $total * 100);
 	return $result;
 }

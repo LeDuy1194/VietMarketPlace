@@ -19,59 +19,107 @@ class SuggestController extends Controller
 		$tags = explode(',', $request->tags);
 		$tagModel = new Tag();
 		$price = 0;
+		$price_max = 0;
+		$price_min = 1000000;
 		$count = 0;
-		echo "testing";
 
-		for ($i; $i < count($tags); $i++) {
+		for ($i=0; $i < count($tags); $i++) {
 			$temp = $tagModel->getTagByAlias(changeTitle($tags[$i]));
 			if ($temp) {
-				$tag[$i] = $temp->id;
+				$tags[$i] = $temp->id;
 			}
 			else {
-				$tag[$i] = -1;
+				$tags[$i] = -1;
 			}
 		}
 
 		if ($parent_cate == 'stock') {
-			$price_max = Stock::where('cate',$cate)->orwhere('name','LIKE','%'.$itemname.'%')->max('price');
-			$price_min = Stock::where('cate',$cate)->orwhere('name','LIKE','%'.$itemname.'%')->min('price');
-
 			$stockTagModel = new StockTag();
-			$stocks = DB::table('stocks')->where('cate',$cate)->orwhere('name','LIKE','%'.$itemname.'%')
-						->join('reviews','stocks.user_id','=','reviews.voted_user_id')
-						->select(DB::raw('stocks.*, avg(reviews.vote) as vote'))
-						->groupBy('stocks.id')
-						->get();
+			$stocks = DB::table('stocks')->where('cate_id',$cate)->orwhere('name','LIKE','%'.$itemname.'%')->get();
+			$reviews = DB::table('reviews')->select('voted_user_id','vote');
 			foreach ($stocks as $stock) {
 				$stockTag = $stockTagModel->getTagByStockId($stock->id);
+				$review = $reviews->where('voted_user_id',$stock->user_id)->avg('vote');
 				$point = compare_tag($tags, $stockTag);
+				
 				if ($point >= 50) {
-					$price += $stock->price * $stock->vote;
-					$count += 1 * $stock->vote;
+					if ($stock->price < $price_min) {
+						$price_min = $stock->price;
+					}
+					if ($stock->price > $price_max) {
+						$price_max = $stock->price;
+					}
+					$price += $stock->price * $review;
+					$count += 1 * $review;
 				}
 			}
-			$price = round($price / $count);
-		}
-		else {
-			$price_max = Order::where('cate',$cate)->orwhere('name','LIKE','%'.$itemname.'%')->max('price');
-			$price_min = Order::where('cate',$cate)->orwhere('name','LIKE','%'.$itemname.'%')->min('price');
-			
-			$orderTagModel = new OrderTag();
-			$orders = DB::table('orders')->where('cate',$cate)->orwhere('name','LIKE','%'.$itemname.'%')
-						->join('reviews','orders.user_id','=','reviews.voted_user_id')
-						->select(DB::raw('orders.*, avg(reviews.vote) as vote'))
-						->groupBy('orders.id')
-						->get();
-			foreach ($orders as $order) {
-				$orderTag = $orderTagModel->getTagByOrderId($order->id);
-				$point = compare_tag($tags, $orderTag);
-				if ($point >= 50) {
-					$price += $order->price * $order->vote;
-					$count += 1 * $order->vote;
-				}
+			if ($count > 0) {
+				$price = round($price / $count);
+		        echo '<label for="priceMax">Giá cao nhất: </label>
+                <button type="button" class="btn btn-block btn-max" id="priceMax">'.$price_max.' VND</button>
+                <label for="priceSuggest">Giá đề nghị: </label>
+                <button type="button" class="btn btn-block btn-suggest" id="priceSuggest">'.$price.' VND</button>
+                <label for="priceMin">Giá thấp nhất: </label>
+                <button type="button" class="btn btn-block btn-min" id="priceMin">'.$price_min.' VND</button>';
 			}
-			$price = round($price / $count);
+			else {
+				echo "<p>Không có sản phẩm phù hợp.</p>";
+			}
 		}
-		return response()->json(['priceSuggest'=>$price, 'priceMax'=>$price_max, 'priceMin'=>$price_min]);
+		else {			
+		// 	$orderTagModel = new OrderTag();
+		// 	$orders = DB::table('orders')->where('cate_id',$cate)->orwhere('name','LIKE','%'.$itemname.'%')
+		// 				->join('reviews','orders.user_id','=','reviews.voted_user_id')
+		// 				->select(DB::raw('orders.*, avg(reviews.vote) as vote'))
+		// 				->groupBy('orders.id')
+		// 				->get();
+		// 	foreach ($orders as $order) {
+		// 		$orderTag = $orderTagModel->getTagByOrderId($order->id);
+		// 		$point = compare_tag($tags, $orderTag);
+		// 		if ($point >= 50) {
+		// 			if ($order->price < $price_min) {
+		// 				$price_min = $order->price;
+		// 			}
+		// 			if ($order->price > $price_max) {
+		// 				$price_max = $order->price;
+		// 			}
+		// 			$price += $order->price * $order->vote;
+		// 			$count += 1 * $order->vote;
+		// 		}
+		// 	}
+		// 	$price = round($price / $count);
+			echo "testing4-2<br>";
+		}
+		// return response()->json(['priceSuggest'=>$price, 'priceMax'=>$price_max, 'priceMin'=>$price_min]);
+	}
+
+	public function getHint(Request $request) {
+		$tags = Tag::select('id','name')->get()->toArray();
+        $str = '';
+        for ($i=1; $i<=count($tags); $i++) {
+            if ($i == count($tags)) {
+                $str = $str.$tags[$i-1]['name'];
+            }
+            else {
+                $str = $str.$tags[$i-1]['name'].',';
+            }
+        }
+        $str = explode(',', $str);
+        $q = $request->q;
+        $hint = "";
+        if ($q !== "") {
+		    $q = strtolower($q);
+		    $len=strlen($q);
+		    foreach($str as $name) {
+		        if (stristr($q, substr($name, 0, $len))) {
+		            if ($hint === "") {
+		                $hint = $name;
+		            } else {
+		                $hint .= ", $name";
+		            }
+		        }
+		    }
+		}
+		echo $hint === "" ? "Chưa có tag này." : $hint;
 	}
 }
