@@ -45,7 +45,7 @@
                               {{--<img alt="{!! Auth::user()->username !!}" src="../public/img/stock.png " class="img-circle img-status-custom">--}}
                           {{--</li>--}}
                           <li class="img-avatar-header">
-                              <img alt="{!! Auth::user()->username !!}" src="../resources/upload/user/{!! Auth::user()->avatar !!}" class="img-circle img-ava-header">
+                              <img alt="{!! Auth::user()->username !!}" src="{!! asset('resources/upload/user/') !!}/{!! Auth::user()->avatar !!}" class="img-circle img-ava-header">
                           </li>
                           <li class="dropdown dropdown-custom open">
                               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
