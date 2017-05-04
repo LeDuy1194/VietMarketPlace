@@ -8,7 +8,7 @@
           <!-- <a class="navbar-brand" href="{{url('/')}}"><img src="../public/img/logo.png" /></a> -->
               <a class="navbar-brand" href="{{url('/')}}">Viet Marketplace</a>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav navbar-custom-header mr-auto mt-2 mt-md-0">
+                  <ul class="navbar-nav navbar-custom-header primary-header-custom mr-auto mt-2 mt-md-0">
                       @if(Auth::check())
 
                           <li class="nav-item">
@@ -32,7 +32,7 @@
                         <a class="nav-link" href="#">Về chúng tôi</a>
                       </li>--}}
                   </ul>
-                  <ul class="navbar-nav my-2 my-lg-0">
+                  <ul class="navbar-nav my-2 my-lg-0 primary-header-logged-custom">
                       @if(Auth::check())
                           {{--<li class="img-wish-header img-status-header">--}}
                               {{--<img alt="{!! Auth::user()->username !!}" src="../public/img/wish.png " class="img-circle img-status-custom">--}}

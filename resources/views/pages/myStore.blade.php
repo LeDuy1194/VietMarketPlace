@@ -12,7 +12,7 @@ Date: 17/02/2017
 	<div class="container my-store-custom">
 		@include('utils.message')
 		<div class="row mt-2">
-				<ul class="nav nav-pills" id="store-tabs" role="tablist">
+			<ul class="nav nav-pills" id="store-tabs" role="tablist">
 					<li class="nav-item nav-custom">
 						<a class="nav-link active" href="#stock" name="btnStock">Tin rao bán
 							<span class="badge badge-danger">{!! $stock->count() !!}</span>
@@ -110,8 +110,8 @@ Date: 17/02/2017
     <script src="{{asset('public/js/admin/admin.js')}}"></script>
 	<script>
         $('#store-tabs a').click(function (e) {
-            e.preventDefault()
-            $(this).tab('show')
+            e.preventDefault();
+            $(this).tab('show');
         })
 	</script>
 @endsection

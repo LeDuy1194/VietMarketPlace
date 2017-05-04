@@ -371,3 +371,14 @@ a.facebook-author:hover .fa-icon-custom{
     color: white;
 }
 
+.detail-product-content-tab {
+    background: white;
+    padding: 10px;
+    font-size: 18px;
+    margin: 10px 0;
+    color: #000000;
+}
+
+ul#detail-tabs li.nav-item.nav-custom {
+    margin-right: 5px;
+}
