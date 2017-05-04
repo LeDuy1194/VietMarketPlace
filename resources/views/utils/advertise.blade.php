@@ -71,6 +71,15 @@ Update: 03-05-2017 by Bi Pham
 			</div>
 		</div>
 	</div>
+@elseif(Route::current()->getName() == 'getMatch')
+	<div class="row-fluid img-banner img-banner-matching-custom parallax">
+		{{--	<img class="banner-home-custom" src="{{url('/public/img/header/14.jpg')}}" alt="">--}}
+		<div class="welcome-matching-page-custom welcome-custom">
+			<div class="name-matching-page-welcome title-page-custom">
+				Matching
+			</div>
+		</div>
+	</div>
 @elseif(Route::current()->getName() == 'listByCate')
 	<?php
     $bg = array('dt-bg.jpg', 'mt-bg-01.jpg', 'sach-bg.jpg');
