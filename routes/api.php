@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
+
+Route::get('suggestprice',['as'=>'suggestprice','uses'=>'Client\SuggestController@suggestPrice']);
+
+Route::get('gethint',['as'=>'gethint','uses'=>'Client\SuggestController@getHint']);

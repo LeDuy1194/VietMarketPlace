@@ -76,4 +76,4 @@ Route::get('match/{state}--{id}',['as'=>'getMatch','uses'=>'Client\HomeControlle
 
 Route::get('logout',['as'=>'logout','uses'=>'Auth\LoginController@getLogout'])->middleware('auth');
 
-Route::get('suggestprice',['as'=>'suggestprice','uses'=>'Client\SuggestController@suggestPrice']);
+Route::get('test',['uses'=>'Client\ClientController@test']);
