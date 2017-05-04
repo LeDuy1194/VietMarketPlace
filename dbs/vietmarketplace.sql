@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2017 at 12:42 PM
+-- Generation Time: May 04, 2017 at 05:05 AM
 -- Server version: 10.1.19-MariaDB
--- PHP Version: 5.6.28
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -146,6 +146,7 @@ CREATE TABLE `matchs` (
   `id` int(10) UNSIGNED NOT NULL,
   `stock_id` int(10) UNSIGNED NOT NULL,
   `order_id` int(10) UNSIGNED NOT NULL,
+  `point` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -154,9 +155,9 @@ CREATE TABLE `matchs` (
 -- Dumping data for table `matchs`
 --
 
-INSERT INTO `matchs` (`id`, `stock_id`, `order_id`, `created_at`, `updated_at`) VALUES
-(1, 30, 18, '2017-04-10 06:35:21', '2017-04-10 06:35:21'),
-(4, 42, 30, '2017-04-29 06:52:01', '2017-04-29 06:52:01');
+INSERT INTO `matchs` (`id`, `stock_id`, `order_id`, `point`, `created_at`, `updated_at`) VALUES
+(1, 30, 18, 100, '2017-04-10 06:35:21', '2017-04-10 06:35:21'),
+(4, 42, 30, 100, '2017-04-29 06:52:01', '2017-04-29 06:52:01');
 
 -- --------------------------------------------------------
 
@@ -186,7 +187,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (53, '2017_03_23_030738_create_orderimages_table', 1),
 (54, '2017_03_28_015020_create_favs_table', 2),
 (55, '2017_04_10_072141_create_fav-os_table', 3),
-(56, '2017_04_07_092904_create_city_table', 4);
+(56, '2017_04_07_092904_create_city_table', 4),
+(57, '2017_05_02_015407_create_tags_table', 5),
+(58, '2017_05_02_015506_create_tag_lists_table', 5);
 
 -- --------------------------------------------------------
 
@@ -290,6 +293,20 @@ INSERT INTO `orders` (`id`, `name`, `price`, `status`, `description`, `place`, `
 (28, 'sách ielts cambridge', 180000, 0, 'cần mua bộ đầy đủ', '255 Tô Hiến Thành', 'Hồ Chí Minh', 'Quận 10', 10.772954, 106.661011, 'main-201304225510_p1000927.jpg', 2, 3, 0, '2017-04-10 08:09:54', '2017-04-10 08:09:54'),
 (29, 'Macbook Air 2017', 35000000, 1, 'Cần gấp', '22 Cửu Long', 'Hồ Chí Minh', 'Quận 10', 10.782361, 106.661835, 'main-macbook-air-13-3-inch-128gb---mmgf2----2016--8122547143-jpg.jpg', 2, 2, 0, '2017-04-10 08:12:40', '2017-04-10 08:12:40'),
 (30, 'Iphone6 32GB', 6000000, 1, 'Cũ nhưng nhìn còn mới và xài tốt là được', '1025/20F CMT8', 'Hồ Chí Minh', 'Quận Tân Bình', 10.789915, 106.655739, 'main-iphone-6-32gb-gold-gold-1-org.jpg', 7, 1, 0, '2017-04-28 06:11:13', '2017-04-28 06:11:13');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_tag_lists`
+--
+
+CREATE TABLE `order_tag_lists` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `order_id` int(10) UNSIGNED NOT NULL,
+  `tag_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -434,6 +451,34 @@ INSERT INTO `stocks` (`id`, `name`, `price`, `status`, `description`, `place`, `
 (38, 'Asus UX510UX', 16000000, 1, 'Asus UX510UX i5 7200U/4GB/1TB/4GB 950M/Win10\r\nMới mua được 2 tháng', '230 Đường 3/2', 'Hồ Chí Minh', 'Quận 10', 10.771397, 106.674484, 'main-asus-zenbook-ux501vw-thin-1500x1000_800x450-300x200.jpg', 2, 2, 0, '0000-00-00 00:00:00', '2017-04-10 08:01:46'),
 (39, 'Cẩm Nang Luyện Thi IELTS', 290000, 0, 'Cẩm Nang Luyện Thi IELTS', '356 Đường 3/2', 'Hồ Chí Minh', 'Quận 10', 10.769611, 106.670319, 'main-cam-nang-luyen-thi-ielts.u4972.d20170324.t161134.87504.jpg', 2, 3, 0, '2017-04-10 08:07:08', '2017-04-10 08:07:08'),
 (42, 'Iphone6 32GB', 6500000, 1, 'Mới mua 4 tháng, không bị trầy xướt, nhìn còn mới', '30 Vân Côi', 'Hồ Chí Minh', 'Quận Tân Bình', 10.785773, 106.656792, 'main-iphone-6-32gb-vang-400-400x460.png', 3, 1, 0, '2017-04-29 06:52:01', '2017-04-29 06:52:01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_tag_lists`
+--
+
+CREATE TABLE `stock_tag_lists` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `stock_id` int(10) UNSIGNED NOT NULL,
+  `tag_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tags`
+--
+
+CREATE TABLE `tags` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `alias` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -884,6 +929,14 @@ ALTER TABLE `orders`
   ADD KEY `orders_cate_id_foreign` (`cate_id`);
 
 --
+-- Indexes for table `order_tag_lists`
+--
+ALTER TABLE `order_tag_lists`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_tag_lists_order_id_foreign` (`order_id`),
+  ADD KEY `order_tag_lists_tag_id_foreign` (`tag_id`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -912,6 +965,21 @@ ALTER TABLE `stocks`
   ADD PRIMARY KEY (`id`),
   ADD KEY `stocks_user_id_foreign` (`user_id`),
   ADD KEY `stocks_cate_id_foreign` (`cate_id`);
+
+--
+-- Indexes for table `stock_tag_lists`
+--
+ALTER TABLE `stock_tag_lists`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `stock_tag_lists_stock_id_foreign` (`stock_id`),
+  ADD KEY `stock_tag_lists_tag_id_foreign` (`tag_id`);
+
+--
+-- Indexes for table `tags`
+--
+ALTER TABLE `tags`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `tags_alias_unique` (`alias`);
 
 --
 -- Indexes for table `users`
@@ -956,7 +1024,7 @@ ALTER TABLE `matchs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 --
 -- AUTO_INCREMENT for table `orderimages`
 --
@@ -967,6 +1035,11 @@ ALTER TABLE `orderimages`
 --
 ALTER TABLE `orders`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+--
+-- AUTO_INCREMENT for table `order_tag_lists`
+--
+ALTER TABLE `order_tag_lists`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `reviews`
 --
@@ -982,6 +1055,16 @@ ALTER TABLE `stockimages`
 --
 ALTER TABLE `stocks`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+--
+-- AUTO_INCREMENT for table `stock_tag_lists`
+--
+ALTER TABLE `stock_tag_lists`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tags`
+--
+ALTER TABLE `tags`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -1026,6 +1109,13 @@ ALTER TABLE `orders`
   ADD CONSTRAINT `orders_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `order_tag_lists`
+--
+ALTER TABLE `order_tag_lists`
+  ADD CONSTRAINT `order_tag_lists_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `order_tag_lists_tag_id_foreign` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `reviews`
 --
 ALTER TABLE `reviews`
@@ -1044,6 +1134,13 @@ ALTER TABLE `stockimages`
 ALTER TABLE `stocks`
   ADD CONSTRAINT `stocks_cate_id_foreign` FOREIGN KEY (`cate_id`) REFERENCES `cates` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `stocks_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `stock_tag_lists`
+--
+ALTER TABLE `stock_tag_lists`
+  ADD CONSTRAINT `stock_tag_lists_stock_id_foreign` FOREIGN KEY (`stock_id`) REFERENCES `stocks` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `stock_tag_lists_tag_id_foreign` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

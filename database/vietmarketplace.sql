@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2017 at 04:24 AM
+-- Generation Time: May 04, 2017 at 05:05 AM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.24
 
@@ -146,6 +146,7 @@ CREATE TABLE `matchs` (
   `id` int(10) UNSIGNED NOT NULL,
   `stock_id` int(10) UNSIGNED NOT NULL,
   `order_id` int(10) UNSIGNED NOT NULL,
+  `point` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -154,9 +155,9 @@ CREATE TABLE `matchs` (
 -- Dumping data for table `matchs`
 --
 
-INSERT INTO `matchs` (`id`, `stock_id`, `order_id`, `created_at`, `updated_at`) VALUES
-(1, 30, 18, '2017-04-10 06:35:21', '2017-04-10 06:35:21'),
-(4, 42, 30, '2017-04-29 06:52:01', '2017-04-29 06:52:01');
+INSERT INTO `matchs` (`id`, `stock_id`, `order_id`, `point`, `created_at`, `updated_at`) VALUES
+(1, 30, 18, 100, '2017-04-10 06:35:21', '2017-04-10 06:35:21'),
+(4, 42, 30, 100, '2017-04-29 06:52:01', '2017-04-29 06:52:01');
 
 -- --------------------------------------------------------
 
