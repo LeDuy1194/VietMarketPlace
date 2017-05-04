@@ -418,3 +418,63 @@ a.nav-link {
 ul#store-tabs li.nav-item.nav-custom {
 	margin-right: 5px;
 }
+
+.img-banner.parallax {
+	height: 500px;
+	/* Create the parallax scrolling effect */
+	text-align: center;
+}
+
+.img-banner.parallax:before {
+	content: ' ';
+	display: inline-block;
+	vertical-align: middle;
+	height: 100%;
+}
+
+.img-banner-wish-custom {
+	/*height: 200px !important;*/
+	background-image: url("/public/img/19.jpg");
+	/* Create the parallax scrolling effect */
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.welcome-custom {
+	margin: 0 auto;
+	display: inline-block;
+	vertical-align: middle;
+	background: rgba(41, 43, 44, 0.65);
+	padding: 10px 20px;
+	border-radius: 10px
+}
+
+.welcome-custom .title-page-custom {
+	color: #f0ad4e;
+	font-size: 30px;
+	font-weight: 600;
+}
+
+.my-wish-page {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.tab-content-custom {
+	/*background: white;*/
+	/*padding: 10px;*/
+	font-size: 18px;
+	margin: 10px 0 !important;
+	color: #000000;
+}
+
+ul.list-tab-custom li.nav-item.nav-custom {
+	margin-right: 5px;
+}
+
+.link-home-custom {
+	color: #5cb85c;
+	font-weight: 500;
+}

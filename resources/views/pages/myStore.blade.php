@@ -24,8 +24,13 @@ Date: 17/02/2017
 						</a>
 					</li>
 				</ul>
-			<div class="col-lg-12 p-0 m-0 tab-content">
+			<div class="col-lg-12 p-0 m-0 tab-content tab-content-custom">
 				<div class="tab-pane active" id="stock" role="tabpanel">
+					@if ($stock->count() == 0)
+						<div class="alert alert-danger msg-custom" role="alert">
+							<strong>Oh no!</strong> Hình như bạn chưa có bài đăng tin rao vặt hoặc tin tìm mua nào cả. Bạn có thể tới trang <a href="{{route('getupload')}}" class="link-home-custom">đăng tin</a> và đăng tin rao vặt hoặc tin tìm mua nha! Tất cả đều MIỄN PHÍ nha!!!
+						</div>
+					@endif
 					@foreach($stock as $item)
 						<div class="card card-block listV-item">
 							<div class="row">
@@ -64,6 +69,11 @@ Date: 17/02/2017
 					@endforeach
 				</div>
 				<div class="tab-pane" id="order" role="tabpanel">
+					@if ($order->count() == 0)
+						<div class="alert alert-danger msg-custom" role="alert">
+							<strong>Oh no!</strong> Hình như bạn chưa có bài đăng tin rao vặt hoặc tin tìm mua nào cả. Bạn có thể tới trang <a href="{{route('getupload')}}" class="link-home-custom">đăng tin</a> và đăng tin rao vặt hoặc tin tìm mua nha! Tất cả đều MIỄN PHÍ nha!!!
+						</div>
+					@endif
 					@foreach($order as $item)
 						<div class="card card-block listV-item">
 							<div class="row">

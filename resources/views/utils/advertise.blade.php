@@ -60,6 +60,15 @@ Update: 03-05-2017 by Bi Pham
 			</div>
 		</div>
 	</div>
+@elseif(Route::current()->getName() == 'myMark')
+	<div class="row-fluid img-banner img-banner-wish-custom parallax">
+		{{--	<img class="banner-home-custom" src="{{url('/public/img/header/14.jpg')}}" alt="">--}}
+		<div class="welcome-wish-page-custom welcome-custom">
+			<div class="name-wish-page-welcome title-page-custom">
+				Danh sách quan tâm
+			</div>
+		</div>
+	</div>
 @else
 	<div class="row-fluid img-banner-home-custom parallax">
 		{{--	<img class="banner-home-custom" src="{{url('/public/img/header/14.jpg')}}" alt="">--}}

@@ -5,7 +5,7 @@
 @section('content')
         <div class="row-fluid img-banner-upload-custom parallax">
             {{--	<img class="banner-home-custom" src="{{url('/public/img/header/14.jpg')}}" alt="">--}}
-            <div class="welcome-upload-custom">
+            <div class="welcome-upload-custom welcome-custom">
                 <div class="title-page-custom">
                     Đăng tin
                 </div>

@@ -69,7 +69,6 @@ Date: 21/02/2017
 				</div>
 			</div>
 		</div>
-
 		<div class="row">
 			<div class="col-lg-1 hidden-sm-down"></div>
 			<div class="col-lg-7 col-sm-12">
