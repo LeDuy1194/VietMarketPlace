@@ -218,10 +218,7 @@
             });
             google.maps.event.addListener(map, 'click', function(event) {
 
-                marker = new google.maps.Marker({
-                    position: event.latLng,
-                    map: map
-                });
+                placeMarker(event.latLng);
 
            var latLng = marker.getPosition();     
             $('input#lat').val(latLng.lat);
@@ -231,12 +228,6 @@
                 });
             });
 
-            //var latLng = marker.getPosition();
-            
-            //document.getElementById("lat").innerHTML = latLng.lat();
-            //document.getElementById("lng").innerHTML = latLng.lng();
-
-            // Try HTML5 geolocation.
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
                     var pos = {
@@ -257,38 +248,17 @@
             }
 
         }
-        /*function saveData() {
-         var latlng = marker.getPosition();
-         var url = '&lat=' + latlng.lat() + '&lng=' + latlng.lng();
-         document.getElementById("lat").innerHTML = latlng.lat();
-         document.getElementById("lng").innerHTML = latlng.lng();
-         downloadUrl(url, function(data, responseCode) {
 
-         if (responseCode == 200 && data.length <= 1) {
-         infowindow.close();
-         messagewindow.open(map, marker);
-         }
-         });
-         }
-         function downloadUrl(url, callback) {
-         var request = window.ActiveXObject ?
-         new ActiveXObject('Microsoft.XMLHTTP') :
-         new XMLHttpRequest;
-
-         request.onreadystatechange = function() {
-         if (request.readyState == 4) {
-         request.onreadystatechange = doNothing;
-         callback(request.responseText, request.status);
-         }
-         };
-
-         request.open('GET', url, true);
-         request.send(null);
-         }
-
-         function doNothing () {
-         }
-         */
+        function placeMarker(location) {
+  if ( marker ) {
+    marker.setPosition(location);
+  } else {
+    marker = new google.maps.Marker({
+      position: location,
+      map: map
+    });
+  }
+}
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
             infoWindow.setPosition(pos);
             infoWindow.setContent(browserHasGeolocation ?
