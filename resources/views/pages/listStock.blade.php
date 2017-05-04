@@ -89,17 +89,13 @@ Date: 21/02/2017
 				<div class="detail-desc-product-custom">
 					<ul class="nav nav-pills" id="detail-tabs" role="tablist">
 						<li class="nav-item nav-custom">
-							<a class="nav-link active" href="#descProduct" name="btnDesc" role="tab">
-								Miêu tả
-							</a>
+							<a class="nav-link active" href="#descProduct" name="btnDesc" role="tab">Miêu tả</a>
 						</li>
 						<li class="nav-item nav-custom">
-							<a class="nav-link" href="#map" name="btnMap" role="tab">
-								Vị trí giao dịch
-							</a>
+							<a class="nav-link" href="#map" name="btnMap" role="tab">Vị trí giao dịch</a>
 						</li>
 					</ul>
-					<div class="tab-content">
+					<div class="tab-content detail-product-content-tab">
 						<div class="tab-pane active" id="descProduct" role="tabpanel">
 							{!! $data->description !!}
 						</div>
@@ -273,14 +269,9 @@ Date: 21/02/2017
 
     </script>
 
-    <script async defer
-    src="{{url('https://maps.googleapis.com/maps/api/js?key=AIzaSyA9WOBv_HjdT4h03JtNFLoPHxdaMrP1Dyk&callback=initMap')}}">
+    <script async defer src="{{url('https://maps.googleapis.com/maps/api/js?key=AIzaSyA9WOBv_HjdT4h03JtNFLoPHxdaMrP1Dyk&callback=initMap')}}">
     	
     </script>
-	<!-- Plugin requires jQuery 1.8+  -->
-	<!-- If you already have jQuery on your page, you shouldn't include it second time. -->
-	<script src="{{asset('public/libs/royalslider/jquery-1.8.3.min.js')}}"></script>
-
 	<!-- Main slider JS script file -->
 	<!-- Create it with slider online build tool for better performance. -->
 	<script src="{{asset('public/libs/royalslider/jquery.royalslider.min.js')}}"></script>
@@ -308,6 +299,10 @@ Date: 21/02/2017
 						arrowsAutoHide: true
 				}
             });
+            $('#detail-tabs a').click(function (e) {
+                e.preventDefault()
+                $(this).tab('show')
+            })
         });
 	</script>
 

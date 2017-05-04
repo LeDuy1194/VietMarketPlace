@@ -33,10 +33,11 @@ Version: 01
 	@include('layouts.footer')
 	<script type="text/javascript" async="" defer="" src="{{url('https://maps.googleapis.com/maps/api/js?key=AIzaSyA9WOBv_HjdT4h03JtNFLoPHxdaMrP1Dyk&libraries=places')}}"></script>
 	{{--<script src="{{asset('public/js/script.js')}}"></script>--}}
-	<script src="{{asset('public/libs/jquery/starscripts.js')}}"></script>
+	{{--<script src="{{asset('public/libs/jquery/starscripts.js')}}"></script>--}}
 	<script src="{{asset('public/libs/tether/tether.min.js')}}"></script>
 	<script src="{{asset('public/libs/jquery/jquery.min.js')}}"></script>
 	<script src="{{asset('public/libs/bootstrap/js/bootstrap.min.js')}}"></script>
+	<script src="{{asset('public/js/client/myscripts.js')}}"></script>
 	@yield('scripts')
 </body>
 </html>

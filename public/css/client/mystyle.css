@@ -308,7 +308,7 @@ img.img-status-custom {
 	vertical-align: middle;
 }
 
-li.nav-item:before {
+ul.primary-header-custom li.nav-item:before {
 	content: ' ';
 	display: inline-block;
 	vertical-align: middle;  /* vertical alignment of the inline element */
@@ -413,4 +413,8 @@ a.nav-link {
 
 .my-store-custom {
 	margin-top: 30px;
+}
+
+ul#store-tabs li.nav-item.nav-custom {
+	margin-right: 5px;
 }
