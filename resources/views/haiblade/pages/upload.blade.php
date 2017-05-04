@@ -79,6 +79,7 @@
                                             Tags*
                                         </label>
                                         <input type="text" name="tags" class="form-control" placeholder="Điền vào đây" required id="tags">
+                                        <div id="tagsHint"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="discription">
@@ -288,6 +289,22 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+        function showHint(str) {
+            var xhttp;
+            var url = baseUrl+'/api/gethint?q='+str;
+            if (str.length == 0) { 
+                document.getElementById("tagsHint").innerHTML = "";
+                return;
+            }
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("tagsHint").innerHTML = '<p>'+this.responseText+'</p>';
+                }
+            };
+            xhttp.open("GET", url, true);
+            xhttp.send();
+        }
     </script>
 
     <script type="text/javascript">
@@ -309,28 +326,17 @@
             if (isValid) {
                 $('#sugestPriceResult').empty();
                 $('#sugestPriceResult').append('<img id="loading" src="{{ asset("resources/upload/loading.gif") }}" alt="loading"/>');
-                var url = baseUrl+'/suggestprice?itemname='+$('#itemname').val()+'&prtcate='+$('#prtcate').val()+'&cate='+$('#cate').val()+'&tags='+$('#tags').val()+'&status='+$('#status').val();
+                var url = baseUrl+'/api/suggestprice?itemname='+$('#itemname').val()+'&prtcate='+$('#prtcate').val()+'&cate='+$('#cate').val()+'&tags='+$('#tags').val()+'&status='+$('#status').val();
                 $('#sugestPriceResult').append('<p>'+url+'</p>');
-                $.get(url, function(data) {
-                    $('#sugestPriceResult').empty();
-                    $('#sugestPriceResult').append(
-                        '<label for="priceMax">Giá cao nhất: </label>\
-                        <button type="button" class="btn btn-block" id="priceMax">'+data.priceMax+' VND</button>\
-                        <label for="priceSuggest">Giá đề nghị: </label>\
-                        <button type="button" class="btn btn-block" id="priceSuggest">'+data.priceSuggest+' VND</button>\
-                        <label for="priceMin">Giá thấp nhất: </label>\
-                        <button type="button" class="btn btn-block" id="priceMin">'+data.priceMin+' VND</button>'
-                        );
-                    $('#priceMax').click(function(){
-                        $('input[name="price"]').val(data.priceMax);
-                    });
-                    $('#priceSuggest').click(function(){
-                        $('input[name="price"]').val(data.priceSuggest);
-                    });
-                    $('#priceMin').click(function(){
-                        $('input[name="price"]').val(data.priceMin);
-                    });
-                });
+                
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("sugestPriceResult").innerHTML = this.responseText;
+                    }
+                };
+                xhttp.open("GET", url, true);
+                xhttp.send();
             }
             else {
                 $('#sugestPriceResult').empty();
