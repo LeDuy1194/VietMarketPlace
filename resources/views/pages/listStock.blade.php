@@ -92,8 +92,11 @@ Date: 21/02/2017
 						</li>
 						<li class="nav-item nav-custom">
 							<a class="nav-link" href="#map" name="btnMap" role="tab">Vị trí giao dịch</a>
+
 						</li>
+
 					</ul>
+					<div id="map" style="height: 300px;width: auto"></div>
 					<div class="tab-content detail-product-content-tab">
 						<div class="tab-pane active" id="descProduct" role="tabpanel">
 							{!! $data->description !!}
@@ -219,14 +222,7 @@ Date: 21/02/2017
 
 @section('scripts')
 	<script>
-//        $('#detail-tabs a').click(function (e) {
-//            e.preventDefault();
-//            $(this).tab('show');
-//        });
-        // Note: This example requires that you consent to location sharing when
-        // prompted by your browser. If you see the error "The Geolocation service
-        // failed.", it means you probably did not give permission for the browser to
-        // locate you.
+
         var map, infoWindow, messagewindow;
         function initMap() {
         	LatLng = {lat: {{ $data['lat'] }}, lng: {{ $data['lng'] }}};
