@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\Fav;
 use App\Models\FavO;
 use App\Models\Review;
+use App\Services\productLocation;
 use App\Models\Match;
 use Auth;
 
@@ -103,7 +104,15 @@ class HomeController extends Controller {
     }
 
     public function showMap() {
-        return view('haiblade.pages.map');
+        $mapStock = new Stock();
+        $mapOrder = new Order();
+        $stockProducts = $mapStock->getAllStock();
+        $orderProducts = $mapOrder->getAllOrder();
+        $productLocations = new productLocation();
+        $product = $productLocations->getProducts();
+
+        //dd($orderProduct);
+        return view('haiblade.pages.map', compact('product'));
     }
 
     public function changeFavorite($state,$id) {

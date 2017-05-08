@@ -40,6 +40,11 @@ class Order extends Model
         return $this->where('finished',0)->where('cate_id',$cate_id)->orderBy('id','desc')->paginate($number,['*'],'order');
     }
 
+    //Get all Product
+    public function getAllOrder() {
+        return $this->get();
+    }
+
     //Search Orders --- Create by Anh Pham
     public function searchOrders($request) {
         $key = $request->search_key;
