@@ -93,8 +93,8 @@ function match_searching($data,$match_type = 'orders') {
 
 	if ($match_type == 'orders') {
 		// Match price
-		$price = $data->price * 0.9;
-		$result = $result->where('price','>=',$price);
+		$price = $data->price * 1.1;
+		$result = $result->where('price','<=',$price);
 
 		// Match tag
 		$temp_table = $result->get();
@@ -115,8 +115,8 @@ function match_searching($data,$match_type = 'orders') {
 	}
 	else {
 		// Match price
-		$price = $data->price * 1.1;
-		$result = $result->where('price','<=',$price);
+		$price = $data->price * 0.9;
+		$result = $result->where('price','>=',$price);
 
 		// Match tag
 		$temp_table = $result->get();

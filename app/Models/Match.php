@@ -16,7 +16,7 @@ class Match extends Model
 
     public function getStockByOrderId($id,$number) {
     	$stock = $this->select('stock_id')->where('order_id',$id)->where('point','>=',50)->get();
-        $result = Stock::whereIn('id',$stock)->orderBy('price','desc')->paginate($number,['*'],'stock');
+        $result = Stock::whereIn('id',$stock)->orderBy('price','asc')->paginate($number,['*'],'stock');
         return $result;
     }
 
@@ -27,7 +27,7 @@ class Match extends Model
 
     public function getOrderByStockId($id,$number) {
         $order = $this->select('order_id')->where('stock_id',$id)->where('point','>=',50)->get();
-        $result = Order::whereIn('id',$order)->orderBy('price','asc')->paginate($number,['*'],'order');
+        $result = Order::whereIn('id',$order)->orderBy('price','desc')->paginate($number,['*'],'order');
         return $result;
     }
 
