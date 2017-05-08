@@ -39,6 +39,11 @@ class Stock extends Model
         return $this->where('finished',0)->where('cate_id',$cate_id)->orderBy('id','desc')->paginate($number,['*'],'stock');
     }
 
+    //Get all Product
+    public function getAllStock() {
+        return $this->get();
+    }
+
     //Search Stock --- Create by Anh Pham
     public function searchStock($request) {
         $key = $request->search_key;
