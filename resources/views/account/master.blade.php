@@ -47,7 +47,7 @@ Truong Trieu Hai
 <body>
 
 	<div class="container-fluid">
-		
+
 		<div class="row">
 			<div class="col-md-12">
 				<div class="row">
@@ -78,13 +78,13 @@ Truong Trieu Hai
 					</div>
 					<div class="col-md-1">
 					</div>
-					
+
 
 					<!-- Body div class="col-md-4" -->
 					@yield('content')
 					<!-- End -->
 
-					
+
 					<div class="col-md-1">
 					</div>
 				</div>

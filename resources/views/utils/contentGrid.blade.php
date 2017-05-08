@@ -6,7 +6,7 @@
  * Time: 05:35
  */
 ?>
-<div class="card col-xxs-12 col-xs-6 col-sm-6 col-md-3 product-item">
+<div class="card col-xs-6 col-md-3 product-item">
     <div class="card-top-thumbnail">
         <img class="card-img-top img-feature-product" src="{{ asset('resources/upload/'.$type.'s/'.$type.'-'.$item->id.'/'.$item->img) }}" alt="VietMarketPlace">
         <div class="frame-hover-product w3-animate-top">
