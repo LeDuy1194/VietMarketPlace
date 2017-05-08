@@ -78,7 +78,7 @@
                                         <label for="tags">
                                             Tags*
                                         </label>
-                                        <input type="text" name="tags" class="form-control" placeholder="Điền vào đây" required id="tags">
+                                        <input type="text" name="tags" class="form-control" placeholder="Điền vào đây" required id="tags" onkeyup="showHint(this.value)">
                                         <div id="tagsHint"></div>
                                     </div>
                                     <div class="form-group">
@@ -90,7 +90,7 @@
                                     <div class="form-group">
                                         <label for="price">
                                             Giá (Tối thiểu 10.000 VNĐ)*
-                                            <button type="button" id="sugestPrice" class="btn btn-info">Đề nghị.</button>
+                                            <button type="button" id="sugestPrice" class="btn btn-info">Giá tham khảo</button>
                                         </label>
                                         <input type="number" id="price" name="price" min="10000" class="form-control" placeholder="Điền vào đây (Đơn vị VND)" required>
                                         <div id="sugestPriceResult"></div>
@@ -299,7 +299,7 @@
             xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("tagsHint").innerHTML = '<p>'+this.responseText+'</p>';
+                    document.getElementById("tagsHint").innerHTML = this.responseText;
                 }
             };
             xhttp.open("GET", url, true);
@@ -333,6 +333,9 @@
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                         document.getElementById("sugestPriceResult").innerHTML = this.responseText;
+                        $('.btn-price').click(function(){
+                            $('input[name="price"]').val(parseInt(this.value));
+                        });
                     }
                 };
                 xhttp.open("GET", url, true);
