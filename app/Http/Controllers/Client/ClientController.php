@@ -234,7 +234,7 @@ class ClientController extends Controller
         else {
             $message = ['flash_level'=>'danger','flash_message'=>'Bạn không phải là chủ tin này.'];
         }
-        return redirect()->route('MyStore',$state)->with($message);
+        return redirect()->route('MyStore')->with($message);
     }
 
     //Show detail profile ---- Anh Pham

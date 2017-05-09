@@ -16,7 +16,7 @@
                           </li>
 
                           <li class="nav-item">
-                              <a class="nav-link" href="{{route('MyStore','stock')}}">Cửa hàng của tôi</a>
+                              <a class="nav-link" href="{{route('MyStore')}}">Cửa hàng của tôi</a>
                           </li>
 
                           <li class="nav-item">
