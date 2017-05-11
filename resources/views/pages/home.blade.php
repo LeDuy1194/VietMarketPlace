@@ -15,11 +15,11 @@ Update_at: 27/03/2017 by Anh Pham
 				<div class="row list-products-thumbnail">
 					<h2 class="title-section-home bd-green">Tin rao bán</h2>
 				@foreach($stock as $item)
-                    <?php
-                    $user = $userModel->getDetailUserByUserID($item->user_id);
-                    $cate = $cateModel->getCateById($item->cate_id);
-                    $vote = $reviewModel->getAverageVote($item->user_id);
-                    ?>
+					<?php
+					$user = $userModel->getDetailUserByUserID($item->user_id);
+					$cate = $cateModel->getCateById($item->cate_id);
+					$vote = $reviewModel->getAverageVote($item->user_id);
+					?>
 					@include('utils.contentGrid',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock','vote' => $vote])
 				@endforeach
 				</div>
@@ -31,11 +31,11 @@ Update_at: 27/03/2017 by Anh Pham
 				<div class="row list-products-thumbnail">
 					<h2 class="title-section-home bd-blue">Tin tìm mua</h2>
 				@foreach($order as $item)
-                    <?php
-                    $user = $userModel->getDetailUserByUserID($item->user_id);
-                    $cate = $cateModel->getCateById($item->cate_id);
-                    $vote = $reviewModel->getAverageVote($item->user_id);
-                    ?>
+					<?php
+					$user = $userModel->getDetailUserByUserID($item->user_id);
+					$cate = $cateModel->getCateById($item->cate_id);
+					$vote = $reviewModel->getAverageVote($item->user_id);
+					?>
 					@include('utils.contentGrid',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order','vote' => $vote])
 				@endforeach
 				</div>

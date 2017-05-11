@@ -19,10 +19,6 @@ use Auth;
 
 class HomeController extends Controller {
     //
-    public function test() {
-        echo "Đã tạo";
-    }
-
     public function showHome() {
         $userModel = new User();
         $cateModel = new Cate();

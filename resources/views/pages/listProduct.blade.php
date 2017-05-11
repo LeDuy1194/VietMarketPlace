@@ -8,9 +8,7 @@ Date: 23/03/2017
 	ListProduct
 @endsection
 @section('content')
-    <?php
-    $cate = $cateModel->getCateById($id);
-    ?>
+	<?php $cate = $cateModel->getCateById($id); ?>
 	@include('utils.advertise', ['cate' => json_decode($cate)])
 	@include('utils.searchForm')
 	<div class="container mt-2">
@@ -30,13 +28,13 @@ Date: 23/03/2017
 			</ul>
 			<div class="col-lg-12 p-0 m-0 tab-content tab-content-custom">
 				<div class="tab-pane active" id="listStock" role="tabpanel">
-                    <?php $page = $stock; ?>
+					<?php $page = $stock; ?>
 					@foreach($stock as $item)
-                        <?php
-                        $user = $userModel->getDetailUserByUserID($item->user_id);
-                        $cate = $cateModel->getCateById($item->cate_id);
-                        $vote = $reviewModel->getAverageVote($item->user_id);
-                        ?>
+						<?php
+						$user = $userModel->getDetailUserByUserID($item->user_id);
+						$cate = $cateModel->getCateById($item->cate_id);
+						$vote = $reviewModel->getAverageVote($item->user_id);
+						?>
 						@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock','vote' => $vote])
 					@endforeach
 						@if ($page->lastPage() > 1)
@@ -58,13 +56,13 @@ Date: 23/03/2017
 						@endif
 				</div>
 				<div class="tab-pane" id="listOrder" role="tabpanel">
-                    <?php $page = $order;?>
+					<?php $page = $order;?>
 					@foreach($order as $item)
-                        <?php
-                        $user = $userModel->getDetailUserByUserID($item->user_id);
-                        $cate = $cateModel->getCateById($item->cate_id);
-                        $vote = $reviewModel->getAverageVote($item->user_id);
-                        ?>
+						<?php
+						$user = $userModel->getDetailUserByUserID($item->user_id);
+						$cate = $cateModel->getCateById($item->cate_id);
+						$vote = $reviewModel->getAverageVote($item->user_id);
+						?>
 						@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order','vote' => $vote])
 					@endforeach
 					@if ($page->lastPage() > 1)

@@ -16,7 +16,7 @@
                           </li>
 
                           <li class="nav-item">
-                              <a class="nav-link" href="{{route('MyStore','stock')}}">Cửa hàng của tôi</a>
+                              <a class="nav-link" href="{{route('MyStore')}}">Cửa hàng của tôi</a>
                           </li>
 
                           <li class="nav-item">
@@ -66,6 +66,19 @@
                       @endif
                   </ul>
               </div>
+          </nav>
+          <nav class="navbar bg-faded navbar-custom">
+            <?php 
+              $cateModel = new App\Models\Cate();
+              $cates = $cateModel->getAllCate();
+            ?>
+            <ul class="navbar-nav navbar-custom-header mr-auto mt-2 mt-md-0 d-inline">
+              @foreach($cates as $cate)
+                  <li class="nav-item d-inline">
+                      <a class="nav-link" href="{{route('listByCate',[$cate->id,'all'])}}">{!! $cate->name !!}</a>
+                  </li>
+              @endforeach
+            </ul>
           </nav>
       </div>
   </div>
