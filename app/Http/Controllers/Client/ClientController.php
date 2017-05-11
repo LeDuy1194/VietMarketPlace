@@ -24,20 +24,20 @@ use Illuminate\Support\Facades\File;
 class ClientController extends Controller
 {
     public function test() {
-        $tags = Tag::select('id','name')->get()->toArray();
-        $str = '';
-        for ($i=1; $i<=count($tags); $i++) {
-            if ($i == count($tags)) {
-                $str = $str.$tags[$i-1]['name'];
-            }
-            else {
-                $str = $str.$tags[$i-1]['name'].',';
-            }
-        }
-        $str = explode(',', $str);
-        var_dump($tags);
-        echo "<br><br>";
-        var_dump($str);
+        $stock = Stock::find(43);
+        $order = Order::find(33);
+        $stockTagModel = new StockTag();
+        $stockTag = $stockTagModel->getTagByStockId($stock->id);
+        $orderTagModel = new OrderTag();
+        $orderTag = $orderTagModel->getTagByOrderId($order->id);
+        var_dump($stockTag);
+        echo "<hr><br>";
+        var_dump($orderTag);
+        echo "<hr><br>";
+        $point = compareTag($stockTag,$orderTag);
+        var_dump($point);
+        echo "<hr><br>";
+        echo "test: ".matchSearching($order,'stocks')."<br>";
     }
 
     public function getUpload() {
@@ -143,7 +143,7 @@ class ClientController extends Controller
             }
 
             //Matching
-            match_searching($stock,'orders');
+            matchSearching($stock,'orders');
         }
         else {
             // Order
@@ -209,7 +209,7 @@ class ClientController extends Controller
             }
 
             //Matching
-            match_searching($order,'stocks');
+            matchSearching($order,'stocks');
         }
         // After
         return redirect()->route('Home');
@@ -234,7 +234,7 @@ class ClientController extends Controller
         else {
             $message = ['flash_level'=>'danger','flash_message'=>'Bạn không phải là chủ tin này.'];
         }
-        return redirect()->route('MyStore',$state)->with($message);
+        return redirect()->route('MyStore')->with($message);
     }
 
     //Show detail profile ---- Anh Pham

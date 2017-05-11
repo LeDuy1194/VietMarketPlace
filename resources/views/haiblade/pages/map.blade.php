@@ -32,6 +32,25 @@
 
 </div>
 <div id="map" style="height:600px; width: auto;"></div>
+<div id="legend" style="background: #fff;
+        padding: 10px;
+        margin: 10px;
+        border: 3px solid #000;">
+            <img src="{{ asset('public/img/bookStock.png') }}" alt="bookStock"> Sách rao bán
+            <img src="{{ asset('public/img/bookOrder.png') }}" alt="bookOrder"> Sách tìm mua
+            <img src="{{ asset('public/img/computerStock.png') }}" alt="computerStock"> Máy tính rao bán
+            <img src="{{ asset('public/img/computerOrder.png') }}" alt="computerOrder"> Máy tính tìm mua
+            <img src="{{ asset('public/img/smartphoneStock.png') }}" alt="smartphoneStock"> Điện thoại rao bán
+            <img src="{{ asset('public/img/smartphoneOrder.png') }}" alt="smartphoneOrder"> Điện thoại tìm mua
+        </div>
+<div class="card mb-3 text-center" id="info">
+  <!--<img class="card-img-top rounded-circle" src="..." alt="Card image cap" id="productImage">-->
+  <div class="card-block">
+    <h4 class="card-title" id="productTitle"></h4>
+    <h5 class="card-text" id="productPrice"></h5>
+    <p class="card-text" id="productPlace"></p>
+  </div>
+</div>
 @endsection()
 @section('scripts')
     <script>
@@ -39,44 +58,68 @@
         // prompted by your browser. If you see the error "The Geolocation service
         // failed.", it means you probably did not give permission for the browser to
         // locate you.
-            var productLocations = <?php print_r(json_encode($product)); ?>;
+            var productStocks = <?php print_r(json_encode($productStock)); ?>;
+            var productOrders = <?php print_r(json_encode($productOrder)); ?>;
             //console.log(productLocations);
             var map, infoWindow;
             var markers = [];
+
             function initMap() {
                 map = new google.maps.Map(document.getElementById('map'), {
                     center: {lat: 10.772846, lng: 106.660016},
                     zoom: 13
                 });
-                jQuery.each( productLocations, function( i, product ) {
+                var infowindow = new google.maps.InfoWindow({
+                    content: info
+                });
+                var legend = document.getElementById('legend');
+                map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(legend);
+                jQuery.each( productStocks, function( i, product ) {
                     LatLng = {lat: product.lat, lng: product.lng};
+                    if (product.cate_id == 1) {
+                        var img = '../public/img/smartphoneStock.png';
+                    } else if (product.cate_id == 2) {
+                        var img = '../public/img/computerStock.png';
+                    } else
+                        var img = '../public/img/bookStock.png';
                     var marker = new google.maps.Marker({
                         map: map,
                         animation: google.maps.Animation.DROP,
                         position: LatLng,
-                        icon: 'http://maps.google.com/mapfiles/kml/paddle/red-circle.png'
+                        title: product.name,
+                        icon: img
                     });
+                    google.maps.event.addListener(marker, 'click', function() {
+                    document.getElementById("productTitle").innerHTML = product.name;
+                    document.getElementById("productPlace").innerHTML = product.place;
+                    document.getElementById("productPrice").innerHTML = product.price;
+                    infowindow.open(map, marker);
+                    });
+                    
                 });
 
-                infoWindow = new google.maps.InfoWindow;
-
-//                if (navigator.geolocation) {
-//                    navigator.geolocation.getCurrentPosition(function(position) {
-//                        var pos = {
-//                            lat: position.coords.latitude,
-//                            lng: position.coords.longitude
-//                        };
-//
-//                        infoWindow.setPosition(pos);
-//                        infoWindow.setContent('Vị Trí Hiện Tại');
-//                        infoWindow.open(map);
-//                        map.setCenter(pos);
-//                    }, function() {
-//                        handleLocationError(true, infoWindow, map.getCenter());
-//                    });
-//                } else {
-//                    handleLocationError(false, infoWindow, map.getCenter());
-//                }
+                jQuery.each( productOrders, function( i, product ) {
+                    LatLng = {lat: product.lat, lng: product.lng};
+                    if (product.cate_id == 1) {
+                        var img = '../public/img/smartphoneOrder.png';
+                    } else if (product.cate_id == 2) {
+                        var img = '../public/img/computerOrder.png';
+                    } else
+                        var img = '../public/img/bookOrder.png';
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        animation: google.maps.Animation.DROP,
+                        position: LatLng,
+                        title: product.name,
+                        icon: img                        
+                    });
+                    google.maps.event.addListener(marker, 'click', function() {
+                    document.getElementById("productTitle").innerHTML = product.name;
+                    document.getElementById("productPlace").innerHTML = product.place;
+                    document.getElementById("productPrice").innerHTML = product.price;
+                    infowindow.open(map, marker);
+                    });
+                });
             }
 
             function handleLocationError(browserHasGeolocation, infoWindow, pos) {

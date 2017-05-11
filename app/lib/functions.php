@@ -43,7 +43,7 @@ function changeTitle($str) {
 	return $str;
 }
 
-function cate_parent ($data,$parent = 0,$str="--",$select=0) {
+function cateParent ($data,$parent = 0,$str="--",$select=0) {
 	foreach ($data as $key => $val) {
 		$id = $val["id"];
 		$name = $val["name"];
@@ -60,22 +60,18 @@ function cate_parent ($data,$parent = 0,$str="--",$select=0) {
 	}
 }
 
-function compare_tag($data_1,$data_2) {
+function compareTag($data_1,$data_2) {
 	$count = 0;
-	$total = 0;
+	$total = count($data_1);
 	foreach ($data_1 as $key_1 => $val_1) {
-		$total++;
 		foreach ($data_2 as $key_2 => $val_2) {
-			if ($key_1 == $key_2) {
+			if ($val_1 == $val_2) {
 				$count++;
 				break;
 			}
-			else if ($key_1 > $key_2) {
-				break;
-			}
-			else {}
 		}
 	}
+	// echo $count." - ".$total."<br>";
 	$result = round($count / $total * 100);
 	return $result;
 }
@@ -84,17 +80,28 @@ function compare_tag($data_1,$data_2) {
 * @param $data: the product request data.
 * @param $match_type: the table to search the product.
 **/
-function match_searching($data,$match_type = 'orders') {
+function matchSearching($data,$match_type = 'orders') {
 	$stockTagModel = new App\Models\StockTag;
 	$orderTagModel = new App\Models\OrderTag;
+	$count = 0;
 
 	// Match categories
-	$result = DB::table($match_type)->where('cate_id','=',$data->cate_id)->where('finished',0)->orwhere('name','LIKE','%'.$data->name.'%');
+	$result = DB::table($match_type)->where('cate_id','=',$data->cate_id)->where('finished',0)->select('id','price');
 
 	if ($match_type == 'orders') {
+		echo "matching stock with orders<br>";
 		// Match price
-		$price = $data->price * 1.1;
-		$result = $result->where('price','<=',$price);
+		$price = intval($data->price * 0.9);
+		$result = $result->where('price','>=',$price);
+
+		// To check later.
+		// ->where(function ($query) use ($data) { // Can't get $data.
+		// 		$query->where('cate_id','=',$data->cate_id)
+		// 			->where('finished',0)
+		// 			->orwhere('name','LIKE','%'.$data->name.'%');
+		// 	})->where('price','>=',$price);
+		
+		// ->where(DB::raw("((cate_id = ".$data->cate_id." AND finished = 0 OR name LIKE ? %".$data->name."%) AND price >= ".$price.")")); // error
 
 		// Match tag
 		$temp_table = $result->get();
@@ -102,7 +109,7 @@ function match_searching($data,$match_type = 'orders') {
 		$stockTag = $stockTagModel->getTagByStockId($stock->id);
 		foreach ($temp_table as $order) {
 			$orderTag = $orderTagModel->getTagByOrderId($order->id);
-			$point = compare_tag($stockTag, $orderTag);
+			$point = compareTag($stockTag, $orderTag);
 			// Check and save
 			if ($point >= 50) {
 				$match = new App\Models\Match();
@@ -110,21 +117,23 @@ function match_searching($data,$match_type = 'orders') {
 				$match->stock_id = $stock->id;
 				$match->point = $point;
 				$match->save();
+				$count++;
 			}
 		}
 	}
 	else {
+		echo "matching order with stocks<br>";
 		// Match price
-		$price = $data->price * 0.9;
-		$result = $result->where('price','>=',$price);
+		$price = intval($data->price * 1.1);
+		$result = $result->where('price','<=',$price);
 
 		// Match tag
 		$temp_table = $result->get();
 		$order = $data;
 		$orderTag = $orderTagModel->getTagByOrderId($order->id);
 		foreach ($temp_table as $stock) {
-			$stockTag = $stockTagModel->getTagByStockId($order->id);
-			$point = compare_tag($orderTag, $stockTag);
+			$stockTag = $stockTagModel->getTagByStockId($stock->id);
+			$point = compareTag($orderTag, $stockTag);
 			// Check and save
 			if ($point >= 50) {
 				$match = new App\Models\Match();
@@ -132,9 +141,11 @@ function match_searching($data,$match_type = 'orders') {
 				$match->stock_id = $stock->id;
 				$match->point = $point;
 				$match->save();
+				$count++;
 			}
 		}
 	}
+	return $count;
 }
 
 ?>

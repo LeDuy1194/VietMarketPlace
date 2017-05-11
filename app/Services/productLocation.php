@@ -9,25 +9,16 @@
 use App\Models\Stock;
 use App\Models\Order;
 class productLocation {
-    public function getProducts() {
+    public function getStockProducts() {
         $mapStock = new Stock();
-        $mapOrder = new Order();
         $stockProducts = $mapStock->getAllStock();
-        $orderProducts = $mapOrder->getAllOrder();
-        $dom = new \DOMDocument("1.0");
-        $node = $dom->createElement("markers");
-        $parnode = $dom->appendChild($node);
-//        foreach ($stockProducts as $stockProduct) {
-//            $node = $dom->createElement("marker");
-//            $newnode = $parnode->appendChild($node);
-//            $newnode->setAttribute("name", $stockProduct['name']);
-//            $newnode->setAttribute("place", $stockProduct['place']);
-//            $newnode->setAttribute("user_id", $stockProduct['user_id']);
-//            $newnode->setAttribute("cate_id", $stockProduct['cate_id']);
-//            $newnode->setAttribute("lat", $stockProduct['lat']);
-//            $newnode->setAttribute("lng", $stockProduct['lng']);
-//        }
         return $stockProducts;
-}
+    }
+
+    public function getOrderProducts() {
+        $mapOrder = new Order();
+        $orderProducts = $mapOrder->getAllOrder();
+        return $orderProducts;
+    }
 }
 

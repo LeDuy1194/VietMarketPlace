@@ -34,15 +34,18 @@ class SuggestController extends Controller
 				$tags[$i] = -1;
 			}
 		}
+		$tags = array_values(array_sort($tags, function ($value) {
+		    return $value;
+		}));
 
 		if ($parent_cate == 'stock') {
 			$stockTagModel = new StockTag();
-			$stocks = DB::table('stocks')->where('cate_id',$cate)->orwhere('name','LIKE','%'.$itemname.'%')->get();
+			$stocks = DB::table('stocks')->select('id','user_id','price')->where('cate_id',$cate)->orwhere('name','LIKE','%'.$itemname.'%')->get();
 			foreach ($stocks as $stock) {
 				$stockTag = $stockTagModel->getTagByStockId($stock->id);
 				$review = $reModel->getAverageVote($stock->user_id);
 				$review += 0.5;
-				$point = compare_tag($tags, $stockTag);
+				$point = compareTag($tags, $stockTag);
 				
 				if ($point >= 50) {
 					if ($stock->price < $price_min) {
@@ -66,17 +69,17 @@ class SuggestController extends Controller
 				<button type="button" class="btn btn-block btn-price" value='.$price_min.'>'.number_format($price_min).' VND</button>';
 			}
 			else {
-				echo "<p>Không có tin bán phù hợp.</p>";
+				echo "<p>Không có tin rao bán phù hợp.</p>";
 			}
 		}
 		else {
 			$orderTagModel = new OrderTag();
-			$orders = DB::table('orders')->where('cate_id',$cate)->orwhere('name','LIKE','%'.$itemname.'%')->get();
+			$orders = DB::table('orders')->select('id','user_id','price')->where('cate_id',$cate)->orwhere('name','LIKE','%'.$itemname.'%')->get();
 			foreach ($orders as $order) {
 				$orderTag = $orderTagModel->getTagByOrderId($order->id);
-				$review = $reModel->getAverageVote($stock->user_id);
+				$review = $reModel->getAverageVote($order->user_id);
 				$review += 0.5;
-				$point = compare_tag($tags, $orderTag);
+				$point = compareTag($tags, $orderTag);
 				if ($point >= 50) {
 					if ($order->price < $price_min) {
 						$price_min = $order->price;
@@ -89,16 +92,17 @@ class SuggestController extends Controller
 				}
 			}
 			if ($count > 0) {
-				$price = round($price / $count);
+				$price = round($price / $count / 10000) * 10000;
+				// echo $price_max.' - '.$price.' - '.$price_min;
 				echo '<label for="priceMax">Giá cao nhất: </label>
-				<button type="button" class="btn btn-block btn-max" id="priceMax" value="'.$price_max.'">'.number_format($price_max).' VND</button>
+				<button type="button" class="btn btn-block btn-price" value='.$price_max.'>'.number_format($price_max).' VND</button>
 				<label for="priceSuggest">Giá đề nghị: </label>
-				<button type="button" class="btn btn-block btn-suggest" id="priceSuggest" value="'.$price.'">'.number_format($price).' VND</button>
+				<button type="button" class="btn btn-block btn-price" value='.$price.'>'.number_format($price).' VND</button>
 				<label for="priceMin">Giá thấp nhất: </label>
-				<button type="button" class="btn btn-block btn-min" id="priceMin" value="'.$price_min.'">'.number_format($price_min).' VND</button>';
+				<button type="button" class="btn btn-block btn-price" value='.$price_min.'>'.number_format($price_min).' VND</button>';
 			}
 			else {
-				echo "<p>Không có tin mua phù hợp.</p>";
+				echo "<p>Không có tin tìm mua phù hợp.</p>";
 			}
 		}
 	}

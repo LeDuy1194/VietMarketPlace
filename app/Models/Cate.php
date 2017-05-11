@@ -19,6 +19,10 @@ class Cate extends Model
     	return $this->hasMany('App\Models\Order');
     }
 
+    public function getAllCate() {
+        return $this->select('id','name')->get();
+    }
+
     public function getCateByAlias($name) {
         return $this->where('alias',$name)->first();
     }
