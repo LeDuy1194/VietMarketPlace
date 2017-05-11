@@ -109,10 +109,10 @@ class HomeController extends Controller {
         $stockProducts = $mapStock->getAllStock();
         $orderProducts = $mapOrder->getAllOrder();
         $productLocations = new productLocation();
-        $product = $productLocations->getProducts();
-
+        $productStock = $mapStock->getAllStock();
+        $productOrder = $mapOrder->getAllOrder();
         //dd($orderProduct);
-        return view('haiblade.pages.map', compact('product'));
+        return view('haiblade.pages.map', compact('productStock','productOrder'));
     }
 
     public function changeFavorite($state,$id) {
