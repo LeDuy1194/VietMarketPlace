@@ -467,6 +467,16 @@ ul#store-tabs li.nav-item.nav-custom {
 	background-size: cover;
 }
 
+.img-banner-search-result-custom {
+	/*height: 200px !important;*/
+	background-image: url("/public/img/13.png");
+	/* Create the parallax scrolling effect */
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
 .my-wish-page {
 	margin-top: 30px;
 	margin-bottom: 30px;

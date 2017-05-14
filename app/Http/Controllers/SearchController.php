@@ -35,6 +35,7 @@ class SearchController extends Controller
         }
 //        dd($articles);
         // returns a view and passes the view the list of articles and the original query.
-        return view('pages.search', compact('articles','userModel','cateModel','reviewModel'));
+        $key_search = $request->search_key;
+        return view('pages.search', compact('articles','userModel','cateModel','reviewModel', 'key_search'));
     }
 }

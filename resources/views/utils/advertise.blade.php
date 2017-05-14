@@ -80,6 +80,15 @@ Update: 03-05-2017 by Bi Pham
 			</div>
 		</div>
 	</div>
+@elseif(Route::current()->getName() == 'search')
+	<div class="row-fluid img-banner img-banner-search-result-custom parallax">
+		{{--	<img class="banner-home-custom" src="{{url('/public/img/header/14.jpg')}}" alt="">--}}
+		<div class="search-result-page-custom welcome-custom">
+			<div class="name-search-result-page-welcome title-page-custom">
+				Kết quả tìm kiếm cho: "{!! $key_search !!}"
+			</div>
+		</div>
+	</div>
 @elseif(Route::current()->getName() == 'listByCate')
 	<?php
     $bg = array('dt-bg.jpg', 'mt-bg-01.jpg', 'sach-bg.jpg');

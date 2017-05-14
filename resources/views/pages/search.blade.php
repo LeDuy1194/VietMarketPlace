@@ -8,6 +8,7 @@ Create_at: 27/03/2017
     Search
 @endsection
 @section('content')
+    @include('utils.advertise', ['key_search' => $key_search])
     @include('utils.searchForm')
     <div class="container">
         @include('utils.message')
