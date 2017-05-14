@@ -102,9 +102,9 @@ class HomeController extends Controller {
     public function showMap() {
         $mapStock = new Stock();
         $mapOrder = new Order();
-        $stockProducts = $mapStock->getAllStock();
-        $orderProducts = $mapOrder->getAllOrder();
-        $productLocations = new productLocation();
+        //$stockProducts = $mapStock->getAllStock();
+        //$orderProducts = $mapOrder->getAllOrder();
+        //$productLocations = new productLocation();
         $productStock = $mapStock->getAllStock();
         $productOrder = $mapOrder->getAllOrder();
         //dd($orderProduct);
