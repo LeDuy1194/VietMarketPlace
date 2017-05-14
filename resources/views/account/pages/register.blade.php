@@ -1,6 +1,8 @@
-@extends('account.master')
+@extends('layouts.master')
 @section('content')
-<div class="col-md-4">
+<div class="container-fluid">
+<div class="row">
+<div class="col col-md-4 text-center">
 	<form role="form" action="{!!route('postRegister')!!}" method="POST">
 		<input type="hidden" name="_token" value="{!!csrf_token()!!}">
 		<h1>Tạo Tài khoản Mới</h1>
@@ -44,5 +46,10 @@
 			</center>
 		</div>
 	</form>
+</div>
+<div class="col col-md-8">
+	image qc them sau
+</div>
+</div>
 </div>
 @endsection()
