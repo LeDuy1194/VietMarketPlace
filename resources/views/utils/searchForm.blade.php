@@ -64,7 +64,7 @@ update: 03-05-2017 by Anh Pham
 			</div>
 
 			<div class="form-group">
-				<input type="submit" class="btn btn-primary form-control" id="search-submit" value="Tìm kiếm"/>
+				<input type="submit" class="btn btn-primary form-control search-submit-custom" id="search-submit" value="Tìm kiếm"/>
 			</div>
 		</form>
 	</div>

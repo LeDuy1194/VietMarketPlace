@@ -510,3 +510,24 @@ ul.list-tab-custom li.nav-item.nav-custom {
 .name-list-cate-page-welcome {
 	font-size: 40px !important;
 }
+
+.dropdown-cate-custom {
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.dropdown-custom-cate-btn {
+	background: none;
+	border: none;
+	color: white;
+}
+
+.search-submit-custom {
+	background: #00d8b3;
+	border-color: #00d8b3;
+}
+
+.search-submit-custom:hover {
+	background-color: #1a9e87;
+	border-color: #1a9e87;
+}
