@@ -1,76 +1,6 @@
 @extends('layouts.master')
 @section('content')
-
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<ul class="nav justify-content-center">
-				<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mặt Hàng</a>
-    <div class="dropdown-menu">
-    <a class="dropdown-item" href="#">Sách</a>
-      <a class="dropdown-item" href="#">Máy tính</a>
-      <a class="dropdown-item" href="#">Điện thoại</a>
-    </div>
-  </li>
-				<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Nơi Tìm</a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Tin rao bán</a>
-      <a class="dropdown-item" href="#">Tin tìm mua</a>
-    </div>
-  </li>
-				<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Tình Trạng</a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Mới</a>
-      <a class="dropdown-item" href="#">Cũ</a>
-    </div>
-  </li>
-			</ul>
-		</div>
-	</div>
-</div>
-<!--
-<div class="container search-custom">
-    <div class="row search-bar-home">
-        <form class="form-inline justify-content-center form-search-custom" action="" method="get">
-            <input type="hidden" name="_token" value="{!!csrf_token()!!}"/>
-            <div class="form-group">
-                <select class="form-control" id="search-type" name="search_type">
-                    <option value="" selected>Loại hàng</option>
-                    <option disabled>──────────</option>
-                    <option value="stocks">Tin rao bán</option>
-                    <option value="orders">Tin tìm mua</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <select class="form-control" id="search-category" name="search_cate">
-                    <option value="" selected>Danh Mục</option>
-                    <option disabled>──────────</option>
-                    <option value="2">Máy tính</option>
-                    <option value="1">Điện thoại</option>
-                    <option value="3">Sách</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <select class="form-control" id="search-status" name="search_status">
-                    <option value="" selected>Tình Trạng</option>
-                    <option disabled>──────────</option>
-                    <option value="0">Mới</option>
-                    <option value="1">Cũ</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary form-control" id="search-submit" value="Tìm kiếm"/>
-            </div>
-        </form>
-    </div>
-</div>
--->
 <div id="map" style="height:600px; width: auto;"></div>
 <div id="legend" style="background: #fff;
         padding: 10px;
@@ -91,6 +21,7 @@
     <h5 class="card-text" id="productPrice"></h5>
     <p class="card-text" id="productPlace"></p>
   </div>
+</div>
 </div>
 @endsection()
 @section('scripts')
