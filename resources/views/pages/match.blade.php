@@ -69,8 +69,10 @@ Date: 30/03/2017
 					$user = $userModel->getDetailUserByUserID($item->user_id);
 					$cate = $cateModel->getCateById($item->cate_id);
                 	$vote = $reviewModel->getAverageVote($item->user_id);
+					$fav = $favModel->getFav($author->id,$item->id);
+					$fav != NULL ? $favCheck = true : $favCheck = false;
 				?>
-				@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => $result_type,'vote' => $vote])
+				@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => $result_type,'vote' => $vote,'fav' => $favCheck])
 			@endforeach
 		</div>
 		

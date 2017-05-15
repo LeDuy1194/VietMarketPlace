@@ -33,8 +33,15 @@ Create_at: 27/03/2017
                         $user = $userModel->getDetailUserByUserID($item->user_id);
                         $cate = $cateModel->getCateById($item->cate_id);
                         $vote = $reviewModel->getAverageVote($item->user_id);
+                        if ($author != NULL) {
+                        $fav = $favModel->getFav($author->id,$item->id);
+                        $fav != NULL ? $favCheck = true : $favCheck = false;
+                        }
+                        else {
+                            $favCheck = false;
+                        }
                         ?>
-                        @include('utils.contentTable',['item' => $item,'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock','vote' => $vote])
+                        @include('utils.contentTable',['item' => $item,'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock','vote' => $vote,'fav' => $favCheck])
                     @endforeach
                 </div>
                 <div class="tab-pane" id="listOrder" role="tabpanel">
@@ -44,8 +51,15 @@ Create_at: 27/03/2017
                         $user = $userModel->getDetailUserByUserID($item->user_id);
                         $cate = $cateModel->getCateById($item->cate_id);
                         $vote = $reviewModel->getAverageVote($item->user_id);
+                        if ($author != NULL) {
+                            $fav = $favOModel->getFav($author->id,$item->id);
+                            $fav != NULL ? $favCheck = true : $favCheck = false;
+                        }
+                        else {
+                            $favCheck = false;
+                        }
                         ?>
-                        @include('utils.contentTable',['item' => $item,'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order','vote' => $vote])
+                        @include('utils.contentTable',['item' => $item,'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order','vote' => $vote,'fav' => $favCheck])
                     @endforeach
                 </div>
             </div>

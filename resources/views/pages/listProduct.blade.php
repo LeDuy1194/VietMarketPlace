@@ -9,7 +9,7 @@ Date: 23/03/2017
 @endsection
 @section('content')
 	<?php $cate = $cateModel->getCateById($id); ?>
-	@include('utils.advertise', ['cate' => json_decode($cate)])
+	@include('utils.advertise', ['cate' => json_decode($cate), 'id' => $id])
 	@include('utils.searchForm')
 	<div class="container mt-2">
 		@include('utils.message')
@@ -34,8 +34,15 @@ Date: 23/03/2017
 						$user = $userModel->getDetailUserByUserID($item->user_id);
 						$cate = $cateModel->getCateById($item->cate_id);
 						$vote = $reviewModel->getAverageVote($item->user_id);
+						if ($author != NULL) {
+						$fav = $favModel->getFav($author->id,$item->id);
+						$fav != NULL ? $favCheck = true : $favCheck = false;
+						}
+						else {
+							$favCheck = false;
+						}
 						?>
-						@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock','vote' => $vote])
+						@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock','vote' => $vote,'fav' => $favCheck])
 					@endforeach
 						@if ($page->lastPage() > 1)
 							<nav aria-label="Page navigation">
@@ -62,8 +69,15 @@ Date: 23/03/2017
 						$user = $userModel->getDetailUserByUserID($item->user_id);
 						$cate = $cateModel->getCateById($item->cate_id);
 						$vote = $reviewModel->getAverageVote($item->user_id);
+						if ($author != NULL) {
+							$favO = $favOModel->getFav($author->id,$item->id);
+							$favO != NULL ? $favCheck = true : $favCheck = false;
+						}
+						else {
+							$favCheck = false;
+						}
 						?>
-						@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order','vote' => $vote])
+					@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order','vote' => $vote,'fav' => $favCheck])
 					@endforeach
 					@if ($page->lastPage() > 1)
 						<nav aria-label="Page navigation">

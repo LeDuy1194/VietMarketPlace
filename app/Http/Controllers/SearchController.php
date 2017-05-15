@@ -10,6 +10,8 @@ use App\Models\User;
 use App\Models\Stock;
 use App\Models\Order;
 use App\Models\Review;
+use App\Models\Fav;
+use App\Models\FavO;
 class SearchController extends Controller
 {
 
@@ -20,6 +22,8 @@ class SearchController extends Controller
         $reviewModel = new Review();
         $stock = new Stock();
         $order = new Order();
+        $favModel = new Fav();
+        $favOModel = new FavO();
         $type = $request->search_type;
         $articles['stocks'] = array();
         $articles['orders'] = array();
@@ -33,9 +37,15 @@ class SearchController extends Controller
         else {
             $articles['orders'] = $order->searchOrders($request);
         }
+        if (Auth::check()) {
+            $author = $userModel->getDetailUserByUserID(Auth::id());
+        }
+        else {
+            $author = NULL;
+        }
 //        dd($articles);
         // returns a view and passes the view the list of articles and the original query.
         $key_search = $request->search_key;
-        return view('pages.search', compact('articles','userModel','cateModel','reviewModel', 'key_search'));
+        return view('pages.search', compact('articles','userModel','cateModel','reviewModel', 'key_search','favModel','favOModel','author'));
     }
 }
