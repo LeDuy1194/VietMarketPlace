@@ -69,6 +69,22 @@ Date: 21/02/2017
 	<div class="container content-product-detail">
 		<div class="row">
 			<div class="col-md-8 col-xs-12 product-detail-custom">
+				<div class="price-product-detail hidden-desktop">
+					<h3 class="price-product-item">{!! number_format($data->price,0,",",".") !!}</h3>
+					<sup class="currency-price">đ</sup>
+				</div>
+				<div class="add-favorite-detail btn-action-product hidden-desktop">
+					<a title="Xem sau." href="{{route('favorite',['order',$data->id])}}">
+						<i class="fa fa-heart-o" aria-hidden="true"></i>
+						<h3 class="add-favorite-product">Xem sau</h3>
+					</a>
+				</div>
+				<div class="report-product btn-action-product hidden-desktop">
+					<a title="Báo cáo tin xấu" href="{{route('favorite',['order',$data->id])}}">
+						<i class="fa fa-flag" aria-hidden="true"></i>
+						<h3 class="report-product-title">Báo tin xấu</h3>
+					</a>
+				</div>
 				<div class="slider-product-detail">
 					<center>
 						<div id="product-detail-gallery" class="royalSlider rsDefault">
@@ -102,17 +118,17 @@ Date: 21/02/2017
 				</div>
 			</div>
 			<div class="col-md-4 col-xs-12 info-basic-product-custom">
-			    <div class="price-product-detail">
+			    <div class="price-product-detail hidden-mobile">
 			        <h3 class="price-product-item">{!! number_format($data->price,0,",",".") !!}</h3>
 			        <sup class="currency-price">đ</sup>
 			    </div>
-			    <div class="add-favorite-detail btn-action-product">
+			    <div class="add-favorite-detail btn-action-product hidden-mobile">
 				    <a title="Xem sau." href="{{route('favorite',['order',$data->id])}}">
 						<i class="fa fa-heart-o" aria-hidden="true"></i>
 						<h3 class="add-favorite-product">Xem sau</h3>
 					</a>
 			    </div>
-			    <div class="report-product btn-action-product">
+			    <div class="report-product btn-action-product hidden-mobile">
 				    <a title="Báo cáo tin xấu" href="{{route('favorite',['order',$data->id])}}">
 						<i class="fa fa-flag" aria-hidden="true"></i>
 						<h3 class="report-product-title">Báo tin xấu</h3>
