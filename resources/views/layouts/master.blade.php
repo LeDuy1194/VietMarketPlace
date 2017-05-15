@@ -10,6 +10,7 @@ Version: 01
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<title>@yield('meta-title', 'VietMarket') - VietMarketPlace</title>
 	<link rel="stylesheet" href="{{asset('public/libs/bootstrap/css/bootstrap.min.css')}}"/>
+	<link rel="stylesheet" href="{{asset('public/css/client/responsive.css')}}"/>
 	<link rel="stylesheet" href="{{asset('public/libs/font-awesome/css/font-awesome.min.css')}}"/>
 	<link rel="stylesheet" href="{{asset('public/css/client/mystyle.css')}}"/>
 	<link rel="stylesheet" href="{{asset('public/css/client/homepage.css')}}"/>

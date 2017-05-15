@@ -7,11 +7,11 @@ update: 03-05-2017 by Anh Pham
 	<div class="row search-bar-home">
 		<form class="form-inline justify-content-center form-search-custom" action="search" method="get">
 			<input type="hidden" name="_token" value="{!!csrf_token()!!}"/>
-			<div class="form-group">
+			<div class="form-group form-group-custom form-group-key">
 				<input type="text" class="form-control" id="search-keyword" name="search_key" placeholder="Từ khóa tìm kiếm..."/>
 			</div>
 
-			<div class="form-group">
+			<div class="form-group form-group-custom form-group-select-custom form-group-type">
 				<select class="form-control" id="search-type" name="search_type">
 					<option value="" selected>Loại hàng</option>
 					<option disabled>──────────</option>
@@ -20,7 +20,7 @@ update: 03-05-2017 by Anh Pham
 				</select>
 			</div>
 
-			<div class="form-group">
+			<div class="form-group form-group-custom form-group-select-custom form-group-cate">
 				<select class="form-control" id="search-category" name="search_cate">
 					<option value="" selected>Danh Mục</option>
 					<option disabled>──────────</option>
@@ -30,7 +30,7 @@ update: 03-05-2017 by Anh Pham
 				</select>
 			</div>
 
-			<div class="form-group">
+			<div class="form-group form-group-custom form-group-select-custom form-group-status">
 				<select class="form-control" id="search-status" name="search_status">
 					<option value="" selected>Tình Trạng</option>
 					<option disabled>──────────</option>
@@ -51,7 +51,7 @@ update: 03-05-2017 by Anh Pham
 			{{--</select>--}}
 			{{--</div>--}}
 
-			<div class="form-group">
+			<div class="form-group form-group-custom form-group-select-custom form-group-city">
 				<select class="form-control" id="search-city" name="search_city">
 					<option value="" selected>Thành phố</option>
 					<option disabled>──────────</option>
@@ -63,7 +63,7 @@ update: 03-05-2017 by Anh Pham
 				</select>
 			</div>
 
-			<div class="form-group">
+			<div class="form-group form-group-custom form-group-btn-search">
 				<input type="submit" class="btn btn-primary form-control search-submit-custom" id="search-submit" value="Tìm kiếm"/>
 			</div>
 		</form>

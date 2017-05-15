@@ -8,7 +8,9 @@
 ?>
 <div class="card col-xs-6 col-md-3 product-item">
     <div class="card-top-thumbnail">
-        <img class="card-img-top img-feature-product" src="{{ asset('resources/upload/'.$type.'s/'.$type.'-'.$item->id.'/'.$item->img) }}" alt="VietMarketPlace">
+        <div class="feature-img-custom">
+            <img class="card-img-top img-feature-product" src="{{ asset('resources/upload/'.$type.'s/'.$type.'-'.$item->id.'/'.$item->img) }}" alt="VietMarketPlace">
+        </div>
         <div class="frame-hover-product w3-animate-top">
             <div class="button-area-product-item">
                 <span class="btn favorite-product btn-for-product" title="Chi tiết">
