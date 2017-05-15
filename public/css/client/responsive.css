@@ -26,6 +26,9 @@
     .hidden-desktop {
         display: block;
     }
+    .upload-product-custom {
+        margin-bottom: 30px;
+    }
 }
 
 @media (max-width: 500px) {

@@ -20,83 +20,112 @@
             </div>
         </div>
         <div class="container upload-page-custom">
-            <div class="row">
                 @include('utils.message')
-                <div class="col-md-6 col-xs-12 col-info-upload">
-                    <div class="card upload-product-custom">
-                        <div class="card-header">
-                            <h3 class="text-left">
-                                Thông Tin Vật Phẩm
-                            </h3>
-                        </div>
-                        <div class="card-block">
-                            <form role="form" action="{!!route('getupload')!!}" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="_token" value="{!!csrf_token()!!}">
-                                <div class="form-content">
-                                    <div class="form-group">
-                                        <label>
-                                            Chọn Phần Mục *
-                                        </label>
-                                        <select class="form-control" id="prtcate" name="prtcate" >
-                                            <option selected value="stock">Tin rao bán</option>
-                                            <option value="order">Tin tìm mua</option>
-                                        </select>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>
-                                                    Chọn Danh mục *
-                                                </label>
-                                                <select class="form-control" id="cate" name="cate">
-                                                    <option value="1">Điện thoại</option>
-                                                    <option value="2">Máy tính</option>
-                                                    <option value="3">Sách</option>
-                                                </select>
+                <form class="row" role="form" action="{!!route('getupload')!!}" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="_token" value="{!!csrf_token()!!}">
+                    <div class="col-md-6 col-xs-12 col-info-upload">
+                        <div class="card upload-product-custom">
+                            <div class="card-header">
+                                <h3 class="text-left">
+                                    Thông Tin Vật Phẩm
+                                </h3>
+                            </div>
+                            <div class="card-block">
+                                    <div class="form-content">
+                                        <div class="form-group">
+                                            <label>
+                                                Chọn Phần Mục *
+                                            </label>
+                                            <select class="form-control" id="prtcate" name="prtcate" >
+                                                <option selected value="stock">Tin rao bán</option>
+                                                <option value="order">Tin tìm mua</option>
+                                            </select>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>
+                                                        Chọn Danh mục *
+                                                    </label>
+                                                    <select class="form-control" id="cate" name="cate">
+                                                        <option value="1">Điện thoại</option>
+                                                        <option value="2">Máy tính</option>
+                                                        <option value="3">Sách</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>
+                                                        Chọn Tình Trạng *
+                                                    </label>
+                                                    <select class="form-control" id="status" name="status" >
+                                                        <option selected value="0">Mới</option>
+                                                        <option value="1">Cũ</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>
-                                                    Chọn Tình Trạng *
-                                                </label>
-                                                <select class="form-control" id="status" name="status" >
-                                                    <option selected value="0">Mới</option>
-                                                    <option value="1">Cũ</option>
-                                                </select>
-                                            </div>
+                                        <hr>
+                                        <div class="form-group">
+                                            <label for="itemname">
+                                                Tên Vật Phẩm*
+                                            </label>
+                                            <input type="text" name="itemname" class="form-control" placeholder="Điền vào đây" required id="itemname">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tags">
+                                                Tags*
+                                            </label>
+                                            <input type="text" name="tags" class="form-control" placeholder="Điền vào đây" required id="tags" onkeyup="showHint(this.value)">
+                                            <div id="tagsHint"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="discription">
+                                                Mô Tả*
+                                            </label>
+                                            <textarea name="discription" rows="5" cols="50" class="form-control" placeholder="Điền vào đây" style="resize: none;" id="discription"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="price">
+                                                Giá (Tối thiểu 10.000 VNĐ)*
+                                                <button type="button" id="sugestPrice" class="btn btn-info">Giá tham khảo</button>
+                                            </label>
+                                            <input type="number" id="price" name="price" min="10000" class="form-control" placeholder="Điền vào đây (Đơn vị VND)" required>
+                                            <div id="sugestPriceResult"></div>
                                         </div>
                                     </div>
                                     <hr>
-                                    <div class="form-group">
-                                        <label for="itemname">
-                                            Tên Vật Phẩm*
-                                        </label>
-                                        <input type="text" name="itemname" class="form-control" placeholder="Điền vào đây" required id="itemname">
+                                    <div class="form-group form-upload-img-custom">
+                                        <label>Hình Đại Diện</label>
+                                        <input type="file" name="image-main" onchange="readURL(this);" required>
+                                        <img id="image-main-preview" class="img-upload-product" src="#" alt="Ảnh" />
+                                        <br>
+                                        <label>Hình Chi tiết 1</label>
+                                        <input type="file" name="image-detail-1" onchange="readURL(this);" required>
+                                        <img id="image-detail-1-preview" class="img-upload-product" src="#" alt="Ảnh" />
+                                        <br>
+                                        <label>Hình Chi tiết 2</label>
+                                        <input type="file" name="image-detail-2" onchange="readURL(this);" required>
+                                        <img id="image-detail-2-preview" class="img-upload-product" src="#" alt="Ảnh" />
+                                        <br>
+                                        <label>Hình Chi tiết 3</label>
+                                        <input type="file" name="image-detail-3" onchange="readURL(this);" required>
+                                        <img id="image-detail-3-preview" class="img-upload-product" src="#" alt="Ảnh" />
                                     </div>
-                                    <div class="form-group">
-                                        <label for="tags">
-                                            Tags*
-                                        </label>
-                                        <input type="text" name="tags" class="form-control" placeholder="Điền vào đây" required id="tags" onkeyup="showHint(this.value)">
-                                        <div id="tagsHint"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="discription">
-                                            Mô Tả*
-                                        </label>
-                                        <textarea name="discription" rows="5" cols="50" class="form-control" placeholder="Điền vào đây" style="resize: none;" id="discription"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="price">
-                                            Giá (Tối thiểu 10.000 VNĐ)*
-                                            <button type="button" id="sugestPrice" class="btn btn-info">Giá tham khảo</button>
-                                        </label>
-                                        <input type="number" id="price" name="price" min="10000" class="form-control" placeholder="Điền vào đây (Đơn vị VND)" required>
-                                        <div id="sugestPriceResult"></div>
-                                    </div>
-                                </div>
-                                <hr>
+                                    <input type="hidden" name="lat" id="lat">
+                                    <input type="hidden" name="lng" id="lng">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xs-12 col-map-upload">
+                        <div class="card map-upload-product">
+                            <div class="card-header">
+                                <h3 class="text-left">
+                                    Địa điểm giao dịch
+                                </h3>
+                            </div>
+                            <div class="card-block">
                                 <div class="form-group">
                                     <label>
                                         Địa Chỉ *
@@ -132,26 +161,11 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="form-group">
-                                    <label>Hình Đại Diện</label>
-                                    <input type="file" name="image-main" onchange="readURL(this);" required>
-                                    <img id="image-main-preview" class="img-upload-product" src="#" alt="Ảnh" />
-                                    <br>
-                                    <label>Hình Chi tiết 1</label>
-                                    <input type="file" name="image-detail-1" onchange="readURL(this);" required>
-                                    <img id="image-detail-1-preview" class="img-upload-product" src="#" alt="Ảnh" />
-                                    <br>
-                                    <label>Hình Chi tiết 2</label>
-                                    <input type="file" name="image-detail-2" onchange="readURL(this);" required>
-                                    <img id="image-detail-2-preview" class="img-upload-product" src="#" alt="Ảnh" />
-                                    <br>
-                                    <label>Hình Chi tiết 3</label>
-                                    <input type="file" name="image-detail-3" onchange="readURL(this);" required>
-                                    <img id="image-detail-3-preview" class="img-upload-product" src="#" alt="Ảnh" />
-                                </div>
-                                <input type="hidden" name="lat" id="lat">
-                                <input type="hidden" name="lng" id="lng">
-                                <div class="checkbox">
+                                <label>
+                                    Bạn vui lòng chọn vị trí giao dịch *
+                                </label>
+                                <div id="map" style="height: 500px;width: auto;"></div>
+                                <div class="checkbox checkbox-upload-custom">
                                     <label>
                                         <input name="checkedUpload" type="checkbox" required> Tôi đã đọc các điều lệ
                                     </label>
@@ -159,26 +173,10 @@
                                 <button type="submit" class="btn btn-success btn-submit-form-upload btn-block btn-pf" disabled>
                                     Gửi
                                 </button>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-xs-12 col-map-upload">
-                    <div class="card map-upload-product">
-                        <div class="card-header">
-                            <h3 class="text-left">
-                                Địa điểm giao dịch
-                            </h3>
-                        </div>
-                        <div class="card-block">
-                            <label>
-                                Bạn vui lòng chọn vị trí giao dịch *
-                            </label>
-                            <div id="map" style="height: 500px;width: auto;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </form>
         </div>
     @endsection()
 @section('scripts')

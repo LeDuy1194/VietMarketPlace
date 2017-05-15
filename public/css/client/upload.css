@@ -88,3 +88,15 @@ Created by Bi Pham
 img.img-upload-product {
     margin: 10px 0;
 }
+
+.checkbox.checkbox-upload-custom {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 13px;
+}
+
+.form-upload-img-custom {
+    margin-bottom: 0;
+}
