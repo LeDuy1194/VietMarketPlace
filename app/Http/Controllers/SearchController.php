@@ -12,6 +12,8 @@ use App\Models\Order;
 use App\Models\Review;
 use App\Models\Fav;
 use App\Models\FavO;
+use Auth;
+
 class SearchController extends Controller
 {
 

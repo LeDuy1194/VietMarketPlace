@@ -308,7 +308,7 @@
     </script>
 
     <script type="text/javascript">
-        var baseUrl = '<?php echo url('/'); ?>'
+        var baseUrl = '<?php echo url('/'); ?>';
         $('#sugestPrice').click(function(e) {
             e.stopPropagation();
             var temp_form = $(this).closest(".form-content"),
