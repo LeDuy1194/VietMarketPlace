@@ -124,11 +124,7 @@ body .rsDefault .rsArrowLeft .rsArrowIcn:before {
 body .rsDefault .rsArrowRight .rsArrowIcn:before {
     content: "\e684";
 }
-@media (max-width: 768px) {
-    body .rsDefault .rsNav.rsThumbs {
-        display: none;
-    }
-}
+
 body .rsDefault .rsNav.rsThumbs .rsThumbsContainer .rsThumb {
     width: 72px;
     border: 2px solid #fff;
@@ -141,7 +137,8 @@ body .rsDefault .rsNav.rsThumbs .rsThumbsContainer .rsThumb.rsNavSelected img {
 }
 body .rsDefault .rsArrowIcn {
     background: none;
-    color: #616161;
+    color: #000000;
+    font-weight: 600;
 }
 body .rsDefault .rsArrowIcn:before {
     font-family: "Pe-icon-7-stroke";
@@ -186,13 +183,6 @@ body .rsDefault .rsThumbsArrow:hover .rsThumbsArrowIcn {
     text-align: center;
     color: white;
     margin: 0 auto;
-}
-
-.breadcrumb-header:before {
-    content: ' ';
-    display: inline-block;
-    vertical-align: middle;  /* vertical alignment of the inline element */
-    height: 100%;
 }
 
 .content-breadcrumb-header {
@@ -282,9 +272,9 @@ body .rsDefault .rsThumbsArrow:hover .rsThumbsArrowIcn {
 .btn-action-product h3 {
     display: inline-block;
     margin-left: 10px;
-/*    font-size: 35px;*/
     margin-bottom: 0;
-
+    font-size: 26px;
+    line-height: 1.4;
 }
 
 .btn-action-product i {

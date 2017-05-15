@@ -54,23 +54,21 @@ Date: 21/02/2017
 	<?php 
 // dd($author); 
 ?>
-	<div class="container-fluid content-product-detail">
-		<div class="row header-product">
-			<div class="breadcrumb-header">
-				<div class="content-breadcrumb-header">
-					<h2 class="title-post">{!!  $data->name !!}</h2>
-					<ol class="breadcrumb" id="path">
-						<li class="breadcrumb-item"><a href="{{route('Home')}}">Trang Chủ</a></li>
-						<li class="breadcrumb-item"><a href="{{route('listByCate',[0,'order'])}}">Tin tìm mua</a></li>
-						<li class="breadcrumb-item"><a href="{{route('listByCate',[$cate->id,'all'])}}">{!! $cate->name !!}</a></li>
-	<!-- 					<li class="breadcrumb-item active">{!!  $data->name !!}</li> -->
-					</ol>
-				</div>
+	<div class="row-fluid header-product outer-banner-custom">
+		<div class="breadcrumb-header middle-banner-custom">
+			<div class="content-breadcrumb-header content-banner-custom">
+				<h2 class="title-post">{!!  $data->name !!}</h2>
+				<ol class="breadcrumb" id="path">
+					<li class="breadcrumb-item"><a href="{{route('Home')}}">Trang Chủ</a></li>
+					<li class="breadcrumb-item"><a href="{{route('listByCate',[0,'order'])}}">Tin tìm mua</a></li>
+					<li class="breadcrumb-item"><a href="{{route('listByCate',[$cate->id,'all'])}}">{!! $cate->name !!}</a></li>
+				</ol>
 			</div>
 		</div>
+	</div>
+	<div class="container content-product-detail">
 		<div class="row">
-			<div class="col-lg-1 hidden-sm-down"></div>
-			<div class="col-lg-7 col-sm-12">
+			<div class="col-md-8 col-xs-12 product-detail-custom">
 				<div class="slider-product-detail">
 					<center>
 						<div id="product-detail-gallery" class="royalSlider rsDefault">
@@ -103,7 +101,7 @@ Date: 21/02/2017
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-3 col-sm-12">
+			<div class="col-md-4 col-xs-12 info-basic-product-custom">
 			    <div class="price-product-detail">
 			        <h3 class="price-product-item">{!! number_format($data->price,0,",",".") !!}</h3>
 			        <sup class="currency-price">đ</sup>
@@ -121,8 +119,10 @@ Date: 21/02/2017
 					</a>
 			    </div>
 				<div class="card author-info">
-					<div class="card-header header-author-info">
-						<a class="fontItem" data-toggle="collapse" href="#collapseProductInfo" aria-expanded="true" aria-controls="collapseProductInfo"><h5>Thông tin sản phẩm</h5></a>
+					<div class="card-header header-author-info card-header-custom">
+						<a class="fontItem" data-toggle="collapse" href="#collapseProductInfo" aria-expanded="true" aria-controls="collapseProductInfo">
+							<h5 class="header-info-custom">Thông tin sản phẩm</h5>
+						</a>
 					</div>
 					<div class="collapse show card-block" id="collapseProductInfo">
 						<ul class="product-info" id="productInfo">
@@ -142,8 +142,10 @@ Date: 21/02/2017
 					</div>
 				</div>
 				<div class="card author-info">
-					<div class="card-header header-author-info">
-						<a class="fontItem" data-toggle="collapse" href="#authorInfomation" aria-expanded="true" aria-controls="collapseInfo"><h5>Thông tin người đăng</h5></a>
+					<div class="card-header header-author-info card-header-custom">
+						<a class="fontItem" data-toggle="collapse" href="#authorInfomation" aria-expanded="true" aria-controls="collapseInfo">
+							<h5 class="header-info-custom">Thông tin người đăng</h5>
+						</a>
 					</div>
 					<div class="card-block collapse show" id="authorInfomation">
 						<div class="basic-info-author">
@@ -185,8 +187,10 @@ Date: 21/02/2017
 				</div>
 				@if(Auth::id()!=$author->id)
 				<div class="card report-product-area">
-					<div class="card-header header-report-product">
-						<a class="fontItem" data-toggle="collapse" href="#reportProduct" aria-expanded="true" aria-controls="collapseInfo"><h5>Đánh giá người đăng</h5></a>
+					<div class="card-header header-report-product card-header-custom">
+						<a class="fontItem" data-toggle="collapse" href="#reportProduct" aria-expanded="true" aria-controls="collapseInfo">
+							<h5 class="header-info-custom">Đánh giá người đăng</h5>
+						</a>
 					</div>
 					<div class="card-block collapse show" id="reportProduct">
 						<form role="form" action="{!!route('postReview',[$data->id])!!}" method="POST" enctype="multipart/form-data">
@@ -207,7 +211,6 @@ Date: 21/02/2017
 				</div>
 				@endif
 			</div>
-			<div class="col-lg-1 hidden-sm-down"></div>
 		</div>
 	</div>
 @endsection

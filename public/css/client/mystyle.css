@@ -299,7 +299,8 @@ ul.navbar-nav li.nav-item a:hover {
     float: left;
 }
 .footer-bottom p.pull-left {
-	padding-top: 6px;
+	padding-top: 10px;
+	font-size: 15px;
 }
 .payments {
 	font-size: 1.5em;	
