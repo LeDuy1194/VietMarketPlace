@@ -13,6 +13,7 @@
             <img src="{{ asset('public/img/computerOrder.png') }}" alt="computerOrder" onclick="clickComputerOrder()"> Máy tính tìm mua
             <img src="{{ asset('public/img/smartphoneStock.png') }}" alt="smartphoneStock" onclick="clickSmartPhoneStock()"> Điện thoại rao bán
             <img src="{{ asset('public/img/smartphoneOrder.png') }}" alt="smartphoneOrder" onclick="clickSmartPhoneOrder()"> Điện thoại tìm mua
+            <button class="btn btn-primary" alt="showall" onclick="clickAll()">All</button>
         </div>
 <div class="card mb-3 text-center" id="info">
   <!--<img class="card-img-top rounded-circle" src="..." alt="Card image cap" id="productImage">-->
@@ -119,6 +120,11 @@
                 });
             }
             function clearMap(map) {
+                for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+                }
+            }
+            function clickAll() {
                 for (var i = 0; i < markers.length; i++) {
                 markers[i].setMap(map);
                 }

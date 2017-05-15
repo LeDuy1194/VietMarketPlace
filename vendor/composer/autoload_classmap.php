@@ -10,6 +10,7 @@ return array(
     'CreateFavOsTable' => $baseDir . '/database/migrations/2017_04_10_072141_create_fav-os_table.php',
     'CreateFavsTable' => $baseDir . '/database/migrations/2017_03_28_015020_create_favs_table.php',
     'CreateMatchsTable' => $baseDir . '/database/migrations/2017_03_13_090250_create_matchs_table.php',
+    'CreateNotificationsTable' => $baseDir . '/database/migrations/2017_05_15_042332_create_notifications_table.php',
     'CreateOrderimagesTable' => $baseDir . '/database/migrations/2017_03_23_030738_create_orderimages_table.php',
     'CreateOrdersTable' => $baseDir . '/database/migrations/2017_03_13_085722_create_orders_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',

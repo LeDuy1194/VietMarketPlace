@@ -81,8 +81,9 @@ function compareTag($data_1,$data_2) {
 * @param $match_type: the table to search the product.
 **/
 function matchSearching($data,$match_type = 'orders') {
-	$stockTagModel = new App\Models\StockTag;
-	$orderTagModel = new App\Models\OrderTag;
+	$stockTagModel = new App\Models\StockTag();
+	$orderTagModel = new App\Models\OrderTag();
+	$userModel = new App\Models\User();
 	$count = 0;
 
 	// Match categories
@@ -94,15 +95,6 @@ function matchSearching($data,$match_type = 'orders') {
 		$price = intval($data->price * 0.9);
 		$result = $result->where('price','>=',$price);
 
-		// To check later.
-		// ->where(function ($query) use ($data) { // Can't get $data.
-		// 		$query->where('cate_id','=',$data->cate_id)
-		// 			->where('finished',0)
-		// 			->orwhere('name','LIKE','%'.$data->name.'%');
-		// 	})->where('price','>=',$price);
-		
-		// ->where(DB::raw("((cate_id = ".$data->cate_id." AND finished = 0 OR name LIKE ? %".$data->name."%) AND price >= ".$price.")")); // error
-
 		// Match tag
 		$temp_table = $result->get();
 		$stock = $data;
@@ -112,6 +104,8 @@ function matchSearching($data,$match_type = 'orders') {
 			$point = compareTag($stockTag, $orderTag);
 			// Check and save
 			if ($point >= 50) {
+				$user = $userModel->getDetailUserByUserID($order->user_id);
+				$user->notify(new App\Notifications\Matching($order, 'order'));
 				$match = new App\Models\Match();
 				$match->order_id = $order->id;
 				$match->stock_id = $stock->id;
@@ -136,6 +130,8 @@ function matchSearching($data,$match_type = 'orders') {
 			$point = compareTag($orderTag, $stockTag);
 			// Check and save
 			if ($point >= 50) {
+				$user = $userModel->getDetailUserByUserID($stock->user_id);
+				$user->notify(new App\Notifications\Matching($stock, 'stock'));
 				$match = new App\Models\Match();
 				$match->order_id = $order->id;
 				$match->stock_id = $stock->id;

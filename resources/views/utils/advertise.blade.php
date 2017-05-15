@@ -52,26 +52,44 @@ Update: 03-05-2017 by Bi Pham
 		</div>
 	</div>
 @elseif(Route::current()->getName() == 'listByCate')
-	<?php
-    $bg = array('dt-bg.jpg', 'mt-bg-01.jpg', 'sach-bg.jpg');
-    $id_cate = $cate->id - 1;
-    $selectedBg = "$bg[$id_cate]";
-	?>
-	<div class="row-fluid outer-banner-custom img-banner img-banner-list-cate-custom parallax"
-		 style="background-image: url('/public/img/<?php echo $selectedBg; ?>');
-				background-attachment: fixed;
-				background-position: center;
-				background-repeat: no-repeat;
-				background-size: cover;
-				">
-		<div class="middle-banner-custom">
-			<div class="welcome-list-cate-page-custom inner-banner-custom welcome-custom">
-				<div class="name-list-cate-page-welcome title-page-custom name-banner-custom">
-                    <?php echo $cate->name; ?>
-				</div>
-			</div>
-		</div>
-	</div>
+        @if ($id != 0)
+        <?php
+        $bg = array('dt-bg.jpg', 'mt-bg-01.jpg', 'sach-bg.jpg');
+        $id_cate = $cate->id - 1;
+        $selectedBg = "$bg[$id_cate]";
+        ?>
+        <div class="row-fluid outer-banner-custom img-banner img-banner-list-cate-custom parallax"
+             style="background-image: url('/public/img/<?php echo $selectedBg; ?>');
+                    background-attachment: fixed;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    ">
+            <div class="middle-banner-custom">
+                <div class="welcome-list-cate-page-custom inner-banner-custom welcome-custom">
+                    <div class="name-list-cate-page-welcome title-page-custom name-banner-custom">
+                        <?php echo $cate->name; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @else
+            <div class="row-fluid outer-banner-custom img-banner img-banner-list-cate-custom parallax"
+                 style="background-image: url('/public/img/bg-search.jpg');
+                         background-attachment: fixed;
+                         background-position: center;
+                         background-repeat: no-repeat;
+                         background-size: cover;
+                         ">
+                <div class="middle-banner-custom">
+                    <div class="welcome-list-cate-page-custom inner-banner-custom welcome-custom">
+                        <div class="name-list-cate-page-welcome title-page-custom name-banner-custom">
+                            Tất cả tin
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
 @else
 	<div class="row-fluid outer-banner-custom img-banner-home-custom parallax">
 		<div class="middle-banner-custom">

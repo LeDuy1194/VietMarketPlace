@@ -23,12 +23,19 @@ class HomeController extends Controller {
         $userModel = new User();
         $cateModel = new Cate();
         $favModel = new Fav();
+        $favOModel = new FavO();
         $stockModel = new Stock();
         $reviewModel = new Review();
         $stock = $stockModel->getNewest(8);
         $orderModel = new Order();
         $order = $orderModel->getNewest(8);
-        return view('pages.home',compact('stock','order','userModel','cateModel','favModel','reviewModel'));
+        if (Auth::check()) {
+            $author = $userModel->getDetailUserByUserID(Auth::id());
+        }
+        else {
+            $author = NULL;
+        }
+        return view('pages.home',compact('stock','order','author','userModel','cateModel','favModel','favOModel','reviewModel'));
     }
 
     public function listByCate($id,$state) {
@@ -36,6 +43,7 @@ class HomeController extends Controller {
         $cateModel = new Cate();
         $userModel = new User();
         $favModel = new Fav();
+        $favOModel = new FavO();
         $stockModel = new Stock();
         $orderModel = new Order();
         $reviewModel = new Review();
@@ -47,7 +55,13 @@ class HomeController extends Controller {
             $stock = $stockModel->getPage($number);
             $order = $orderModel->getPage($number);
         }
-        return view('pages.listProduct',compact('stock','order','id','state','userModel','cateModel','favModel','reviewModel'));
+        if (Auth::check()) {
+            $author = $userModel->getDetailUserByUserID(Auth::id());
+        }
+        else {
+            $author = NULL;
+        }
+        return view('pages.listProduct',compact('stock','order','author','id','state','userModel','cateModel','favModel','favOModel','reviewModel'));
     }
 
     public function showOrderDetail($id) {
@@ -162,11 +176,11 @@ class HomeController extends Controller {
         $userModel = new User();
         $cateModel = new Cate();
         $favModel = new Fav();
-        $favOMode = new FavO();
+        $favOModel = new FavO();
         $reviewModel = new Review();
         $author = $userModel->getDetailUserByUserID(Auth::id());
         $fav = $favModel->getFavByUser($author->id,$number);
-        $favO = $favOMode->getFavByUser($author->id,$number);
+        $favO = $favOModel->getFavByUser($author->id,$number);
         return view('pages.myMark',compact('fav','favO','cateModel','userModel','reviewModel'));
     }
 
@@ -176,14 +190,17 @@ class HomeController extends Controller {
         $cateModel = new Cate();
         $userModel = new User();
         $reviewModel = new Review();
+        $author = $userModel->getDetailUserByUserID(Auth::id());
         if ($state=='stock') {
             $base = Stock::findOrFail($id);
             $data = $matchModel->getOrderByStockId($id,$number);
+            $favModel = new Fav();
         }
         else {
             $base = Order::findOrFail($id);
             $data = $matchModel->getStockByOrderId($id,$number);
+            $favModel = new FavO();
         }
-        return view('pages.match',compact('base','data','state','cateModel','userModel','reviewModel'));
+        return view('pages.match',compact('base','data','state','author','cateModel','userModel','reviewModel','favModel'));
     }
 }

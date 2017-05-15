@@ -19,8 +19,15 @@ Update_at: 27/03/2017 by Anh Pham
 					$user = $userModel->getDetailUserByUserID($item->user_id);
 					$cate = $cateModel->getCateById($item->cate_id);
 					$vote = $reviewModel->getAverageVote($item->user_id);
+					if ($author != NULL) {
+						$fav = $favModel->getFav($author->id,$item->id);
+						$fav != NULL ? $favCheck = true : $favCheck = false;
+					}
+					else {
+						$favCheck = false;
+					}
 					?>
-					@include('utils.contentGrid',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock','vote' => $vote])
+					@include('utils.contentGrid',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock','vote' => $vote, 'fav' => $favCheck])
 				@endforeach
 				</div>
 			<div class="show-more">
@@ -35,8 +42,15 @@ Update_at: 27/03/2017 by Anh Pham
 					$user = $userModel->getDetailUserByUserID($item->user_id);
 					$cate = $cateModel->getCateById($item->cate_id);
 					$vote = $reviewModel->getAverageVote($item->user_id);
+					if ($author != NULL) {
+						$favO = $favOModel->getFav($author->id,$item->id);
+						$favO != NULL ? $favCheck = true : $favCheck = false;
+					}
+					else {
+						$favCheck = false;
+					}
 					?>
-					@include('utils.contentGrid',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order','vote' => $vote])
+					@include('utils.contentGrid',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order','vote' => $vote,'fav' => $favCheck])
 				@endforeach
 				</div>
 			<div class="show-more">

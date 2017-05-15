@@ -37,7 +37,7 @@ Date: 10/04/2017
                             $cate = $cateModel->getCateById($item->cate_id);
                             $vote = $reviewModel->getAverageVote($item->user_id);
                             ?>
-							@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock','vote' => $vote])
+							@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock','vote' => $vote,'fav' => true])
 						@endforeach
 							@if ($fav->lastPage() > 1)
 								<nav aria-label="Page navigation">
@@ -70,7 +70,7 @@ Date: 10/04/2017
                             $cate = $cateModel->getCateById($item->cate_id);
                             $vote = $reviewModel->getAverageVote($item->user_id);
                             ?>
-							@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order','vote' => $vote])
+							@include('utils.contentTable',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order','vote' => $vote,'fav' => true])
 						@endforeach
 							@if ($favO->lastPage() > 1)
 								<nav aria-label="Page navigation">
