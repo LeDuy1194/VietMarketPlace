@@ -105,7 +105,7 @@ Date: 17/02/2017
                                     <?php $match = $matchModel->getStockNumber($item->id) ?>
 									<a class="btn btn-success btn-block" href="{{route('getMatch',['order',$item->id])}}"><h5>Match {!! $match !!}
 										</h5></a>
-									<a class="btn btn-danger btn-block" href="{{route('getDeleteProduct',['order',$item->id])}}" name="" onclick="return confirmation('Có xóa {!! $item->name !!} không?')"><h5>Xóa</h5></a>
+									<a class="btn btn-danger btn-block btn-delete" href="{{route('getDeleteProduct',['order',$item->id])}}" name="" onclick="return confirmation('Có xóa {!! $item->name !!} không?')"><h5>Xóa</h5></a>
 								</div>
 							</div>
 						</div>
@@ -123,5 +123,25 @@ Date: 17/02/2017
             e.preventDefault();
             $(this).tab('show');
         })
+	</script>
+	<script type="text/javascript">
+		// $('.btn-delete').click(function (e) {
+		//     e.stopPropagation();
+		//     var baseUrl = '<?php //echo url('/'); ?>',
+
+		//         url = baseUrl+'/delete/'+
+
+		//     var xhttp = new XMLHttpRequest();
+		//     xhttp.onreadystatechange = function() {
+		//         if (this.readyState == 4 && this.status == 200) {
+		//             document.getElementById("sugestPriceResult").innerHTML = this.responseText;
+		//             $('.btn-price').click(function(){
+		//                 $('input[name="price"]').val(parseInt(this.value));
+		//             });
+		//         }
+		//     };
+		//     xhttp.open("GET", url, true);
+		//     xhttp.send();
+		// });
 	</script>
 @endsection

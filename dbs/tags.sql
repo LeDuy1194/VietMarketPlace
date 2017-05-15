@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2017 at 08:42 AM
+-- Generation Time: May 15, 2017 at 09:29 AM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.24
 
@@ -41,7 +41,18 @@ CREATE TABLE `tags` (
 INSERT INTO `tags` (`id`, `name`, `alias`, `created_at`, `updated_at`) VALUES
 (1, 'Iphone', 'iphone', '2017-05-07 17:00:00', '2017-05-07 17:00:00'),
 (2, 'Iphone 6', 'iphone-6', '2017-05-07 17:00:00', '2017-05-07 17:00:00'),
-(3, '32GB', '32gb', '2017-05-07 17:00:00', '2017-05-07 17:00:00');
+(3, '32GB', '32gb', '2017-05-07 17:00:00', '2017-05-07 17:00:00'),
+(4, 'Asus Zenfone 3', 'asus-zenfone-3', '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(5, 'Samsung', 'samsung', '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(6, 'Galaxy J7', 'galaxy-j7', '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(7, 'Macbook', 'macbook', '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(8, 'iPad', 'ipad', '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(9, '256GB', '256gb', '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(10, '15 inch', '15-inch', '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(11, 'Truyen Tranh', 'truyen-tranh', '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(12, 'Doremon', 'doremon', '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(13, 'Tieu thuyet', 'tieu-thuyet', '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(14, 'IELTS', 'ielts', '2017-05-14 17:00:00', '2017-05-14 17:00:00');
 
 --
 -- Indexes for dumped tables
@@ -62,7 +73,7 @@ ALTER TABLE `tags`
 -- AUTO_INCREMENT for table `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

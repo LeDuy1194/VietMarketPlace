@@ -63,8 +63,6 @@ Route::post('upload',['as'=>'postupload','uses'=>'Client\ClientController@postUp
 //user edit, delete
 Route::get('delete/{state}--{id}',['as'=>'getDeleteProduct','uses'=>'Client\ClientController@getDeleteProduct']);
 
-Route::get('test',['uses'=>'Client\HomeController@test']);
-
 Route::get('search',['uses'=>'SearchController@getSearch','as'=>'search']);
 
 //Route::resource('queries', 'QueryController');
@@ -76,4 +74,5 @@ Route::get('match/{state}--{id}',['as'=>'getMatch','uses'=>'Client\HomeControlle
 
 Route::get('logout',['as'=>'logout','uses'=>'Auth\LoginController@getLogout'])->middleware('auth');
 
-Route::get('test',['uses'=>'Client\ClientController@test']);
+//Noti
+Route::get('/mark-noti-as-read/{notiId}/{state}--{id}', ['as' => 'markNotiAsRead', 'uses' => 'NotificationController@delete'])->middleware('auth');
