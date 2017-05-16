@@ -43,7 +43,7 @@ Date: 17/02/2017
                             $favCheck = false;
                         }
                         ?>
-						@include('utils.contentGrid',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock','vote' => $vote,'fav' => $favCheck])
+						@include('utils.contentGrid',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock','vote' => $vote,'fav' => $favCheck, 'matchModel' => $matchModel])
 					@endforeach
 			</div>
 			<div class="row tab-pane" id="order" role="tabpanel">
@@ -65,7 +65,7 @@ Date: 17/02/2017
                             $favCheck = false;
                         }
                         ?>
-						@include('utils.contentGrid',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order','vote' => $vote,'fav' => $favCheck])
+						@include('utils.contentGrid',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order','vote' => $vote,'fav' => $favCheck, 'matchModel' => $matchModel])
 					@endforeach
 			</div>
 		</div>

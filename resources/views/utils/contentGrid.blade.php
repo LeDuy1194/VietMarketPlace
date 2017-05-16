@@ -51,18 +51,34 @@
         <div class="status-tag <?php if ($item->status != 0) echo "old-tag"; ?>"><?php if ($item->status == 0) echo "HÀNG MỚI"; else echo "HÀNG CŨ";?></div>
     </div>
     <div class="card-footer card-footer-product">
+        @if(Route::current()->getName() == 'MyStore')
+            <?php $match = $matchModel->getOrderNumber($item->id) ?>
+            <span class="card-name-author card-left-text">
+                <div class="card-name-author-body">
+                    <a class="btn btn-success btn-block" href="{{route('getMatch',['stock',$item->id])}}">
+                        <h5>Match {!! $match !!}</h5>
+                    </a>
+                </div>
+            </span>
+            <span class="card-rate-author card-right-text">
+                <a class="btn btn-danger btn-block" href="{{route('getDeleteProduct',['stock',$item->id])}}" name="" onclick="return confirmation('Có xóa {!! $item->name !!} không?')">
+                    <h5>Xóa</h5>
+                </a>
+            </span>
+        @else
             <span class="card-avatar-author card-left-text">
                 <img src="{{ asset('resources/upload/user/'.$user->avatar) }}" class="media-object rounded-circle user-avatar"/>
             </span>
-        <span class="card-name-author card-left-text">
+            <span class="card-name-author card-left-text">
                 <div class="card-name-author-body">
-					<a href="{!! url('profile', [$user->username]) !!}" >
+                    <a href="{!! url('profile', [$user->username]) !!}" >
                         <h5 class="name-author"> {!! $user->username!!}</h5>
                     </a>
-				</div>
+                </div>
             </span>
-        <span class="card-rate-author card-right-text">
+            <span class="card-rate-author card-right-text">
                 <h5><i class="fa fa-thumbs-up" aria-hidden="true"></i> {!! number_format($vote*100,0) !!}&#37</h5>
             </span>
+        @endif
     </div>
 </div>
