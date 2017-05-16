@@ -16,7 +16,7 @@
 					<input type="password" class="form-control" placeholder="Mật khẩu" id="password" name="password">
 				</div>
 				<div>
-					<a style="color: #000;" href="{{url('reset')}}"> <em>* Quên mật khẩu ?</em></a>
+					<a style="color: #000;" href="{{url('password/reset')}}"> <em>* Quên mật khẩu ?</em></a>
 				</div>
 				<div>
 					<CENTER>

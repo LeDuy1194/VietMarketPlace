@@ -1,25 +1,22 @@
 @extends('layouts.master')
 @section('content')
-<div class="col-md-4">
-	<form role="form" action="{!!route('postForgot')!!}" method="POST">
-		<input type="hidden" name="_token" value="{!!csrf_token()!!}">
-		<h3>Khôi phục Mật khẩu</h3>
-		<div class="form-group">
-			<input type="email" class="form-control" placeholder="Địa chỉ Email" id="email" name="email">
+<div class="row">
+	<div class="col-md-6">
+		<div class="card">
+			<form role="form" action="{!!route('postForgot')!!}" method="POST">
+				<!-- <input type="hidden" name="_token" value="{!!csrf_token()!!}"/> -->
+				<h3 class="card-header">Khôi phục Mật khẩu</h3>
+				<div class="card-block">
+					<div class="form-group">
+						<label for="email">Email: </label>
+						<input type="email" class="form-control" placeholder="Địa chỉ Email" id="email" name="email"/>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-lg btn-account">Khôi phục mật khẩu.</button>
+					</div>
+				</div>
+			</form>
 		</div>
-		<div>
-			<CENTER>
-				<button type="submit" class="btn btn-lg btn-account">
-					Gửi
-				</button>
-			</CENTER>
-		</div>
-		<div>
-			<center>
-				Bạn đã có Tài khoản?
-				<a style="color: #000; font-weight: bold;" href="{{url('login')}}">Đăng nhập</a>
-			</center>
-		</div>
-	</form>
+	</div>
 </div>
 @endsection()

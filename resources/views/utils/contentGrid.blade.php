@@ -49,16 +49,23 @@
     </div>
     <div class="card-footer card-footer-product">
         @if(Route::current()->getName() == 'MyStore')
-            <?php $match = $matchModel->getOrderNumber($item->id) ?>
+            <?php
+                if ($type == 'stock') {
+                    $match = $matchModel->getOrderNumber($item->id);
+                }
+                else {
+                    $match = $matchModel->getStockNumber($item->id);
+                }
+            ?>
             <span class="card-name-author card-left-text">
                 <div class="card-name-author-body">
-                    <a class="btn btn-success btn-block" href="{{route('getMatch',['stock',$item->id])}}">
+                    <a class="btn btn-success btn-block" href="{{route('getMatch',[$type,$item->id])}}">
                         <h5 class="btn-for-my-store-custom">Match {!! $match !!}</h5>
                     </a>
                 </div>
             </span>
             <span class="card-rate-author card-right-text">
-                <a class="btn btn-danger btn-block" href="{{route('getDeleteProduct',['stock',$item->id])}}" name="" onclick="return confirmation('Có xóa {!! $item->name !!} không?')">
+                <a class="btn btn-danger btn-block" href="{{route('getDeleteProduct',[$type,$item->id])}}" name="" onclick="return confirmation('Có xóa {!! $item->name !!} không?')">
                     <h5 class="btn-for-my-store-custom">Xóa</h5>
                 </a>
             </span>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use App\Http\Requests\ForgotRequest;
+
 class ForgotPasswordController extends Controller
 {
     /*
@@ -28,12 +29,5 @@ class ForgotPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-    }
-    public function getForgot() {
-        return view('account.pages.forgot');
-    }
-
-    public function postForgot(ForgotRequest $request) {
-        return redirect()->Route('postForgot');
     }
 }

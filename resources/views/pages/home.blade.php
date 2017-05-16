@@ -33,7 +33,7 @@ Update_at: 27/03/2017 by Anh Pham
 					</div>
 				</div>
 			<div class="show-more">
-				<button type="button" class="btn btn-success btn-show-more-custom"><a href="{{route('listByCate',[0,'stock'])}}" class="text-center"><h3>Xem thêm...</h3></a></button>
+				<button type="button" class="btn btn-success btn-show-more-custom"><a href="{{route('listByCate',[0])}}" class="text-center"><h3>Xem thêm...</h3></a></button>
 			</div>
 
 
@@ -58,7 +58,7 @@ Update_at: 27/03/2017 by Anh Pham
 					</div>
 				</div>
 			<div class="show-more">
-				<button type="button" class="btn btn-primary btn-show-more-custom"><a href="{{route('listByCate',[0,'order'])}}" class="text-center title-show-more"><h3>Xem thêm...</h3></a></button>
+				<button type="button" class="btn btn-primary btn-show-more-custom"><a href="{{route('listByCate',[0])}}" class="text-center title-show-more"><h3>Xem thêm...</h3></a></button>
 			</div>
 	</div>
 @endsection

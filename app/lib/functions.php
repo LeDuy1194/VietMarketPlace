@@ -87,7 +87,7 @@ function matchSearching($data,$match_type = 'orders') {
 	$count = 0;
 
 	// Match categories
-	$result = DB::table($match_type)->where('cate_id','=',$data->cate_id)->where('finished',0)->select('id','price');
+	$result = DB::table($match_type)->where('cate_id','=',$data->cate_id)->where('finished',0)->select('id','price','user_id');
 
 	if ($match_type == 'orders') {
 		echo "matching stock with orders<br>";
