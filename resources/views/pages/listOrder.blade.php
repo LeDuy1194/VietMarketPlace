@@ -238,6 +238,7 @@ Date: 21/02/2017
             $(this).tab('show')
         })
         $('#detail-tabs').on('shown.bs.tab', function () {
+            initMap();
             google.maps.event.trigger(window, 'resize', {});
         });
         var map, infoWindow, messagewindow;

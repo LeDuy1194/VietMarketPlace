@@ -256,10 +256,12 @@ Date: 21/02/2017
             $(this).tab('show')
         })
         $('#detail-tabs').on('shown.bs.tab', function () {
+            initMap();
             google.maps.event.trigger(window, 'resize', {});
         });
         var map, infoWindow, messagewindow;
         function initMap() {
+            console.log(<?php echo $data; ?>);
             LatLng = {lat: {{ $data['lat'] }}, lng: {{ $data['lng'] }}};
             map = new google.maps.Map(document.getElementById('map'), {
                 center: LatLng,
