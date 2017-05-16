@@ -38,7 +38,8 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+//        $this->middleware('guest', ['except' => 'logout']);
+        $this->middleware('guest', ['except' => ['logout', 'getLogout']]);
     }
     public function getLogin() {
         return view('account.pages.login');
@@ -60,9 +61,12 @@ class LoginController extends Controller
     }
 
     public function getLogout(Request $request){
-        if (\Auth::check()) {
-            \Auth::logout();
-        }
-        return \Redirect::intended('/');
+//        if (Auth::check()) {
+//            Auth::logout();
+//            return redirect()->Route('getLogin');
+//        }
+        //return Redirect::intended('/login');
+        Auth::logout();
+        return redirect('/');
     }
 }
