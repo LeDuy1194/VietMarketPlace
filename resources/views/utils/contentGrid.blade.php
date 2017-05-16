@@ -28,9 +28,6 @@
             </div>
         </div>
     </div>
-<?php 
-// dd($item); 
-?>
     <div class="card-block card-body-product">
         <span class="name-product">
             <a href="{{route($type.'Detail',$item->id)}}">

@@ -1,29 +1,132 @@
 @extends('layouts.master')
+@section('css')
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+@endsection
 @section('content')
     <div class="container-fluid">
-        <div id="map" style="height:600px; width: auto;"></div>
-        <div id="legend" style="background: #fff;
-        padding: 10px;
-        margin: 10px;
-        border: 3px solid #000;">
-            <h4><p class="text-center">Chọn Icon để lọc</p></h4>
-            <img src="{{ asset('public/img/bookStock.png') }}" alt="bookStock" onclick="clickBookStock()"> Sách rao bán
-            <img src="{{ asset('public/img/bookOrder.png') }}" alt="bookOrder" onclick="clickBookOrder()"> Sách tìm mua
-            <img src="{{ asset('public/img/computerStock.png') }}" alt="computerStock" onclick="clickComputerStock()"> Máy tính rao bán
-            <img src="{{ asset('public/img/computerOrder.png') }}" alt="computerOrder" onclick="clickComputerOrder()"> Máy tính tìm mua
-            <img src="{{ asset('public/img/smartphoneStock.png') }}" alt="smartphoneStock" onclick="clickSmartPhoneStock()"> Điện thoại rao bán
-            <img src="{{ asset('public/img/smartphoneOrder.png') }}" alt="smartphoneOrder" onclick="clickSmartPhoneOrder()"> Điện thoại tìm mua
-            <button class="btn btn-primary" alt="showall" onclick="clickAll()">All</button>
-        </div>
-        <div class="mark-total">
-            <div class="card mb-3 text-center mark" id="info">
-                <!--<img class="card-img-top rounded-circle" src="..." alt="Card image cap" id="productImage">-->
-                <div class="card-block">
-                    <h4 class="card-title" id="productTitle"></h4>
-                    <h5 class="card-text" id="productPrice"></h5>
-                    <p class="card-text" id="productPlace"></p>
-                    <a class="link-product" href="">Chi tiết</a>
+        <div id="map" style="height:570px; width: auto;"></div>
+        <div id="legend" class="menu-filter-map-custom">
+            <div class="menu-select-map">
+                <div class="title-menu-filter">
+                    <h4 class="title-filter-text"><p class="text-center title-filter-custom">Chọn Icon để lọc</p></h4>
                 </div>
+                <div class="filter-all-custom">
+                    <button class="btn btn-danger btn-select-all-filter cursor-pointer-class" alt="showall" onclick="clickAll()">Tất cả</button>
+                </div>
+                <div class="row list-filter-map">
+                    <div class="filter-item-map col-md-2">
+                        <span class="img-filter">
+                            <img class="cursor-pointer-class" src="http://vietmarketplace.dev/public/img/bookStock.png" alt="bookStock" onclick="clickBookStock()">
+                        </span>
+                        <span class="outer-div-custom">
+                            <div class="middle-div-custom">
+                                <div class="inner-div-custom">
+                                    <div class="content-div-custom">
+                                        Sách rao bán
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="filter-item-map col-md-2">
+                        <span class="img-filter">
+                            <img class="cursor-pointer-class" src="{{ asset('public/img/bookOrder.png') }}" alt="bookOrder" onclick="clickBookOrder()">
+                        </span>
+                        <span class="outer-div-custom">
+                            <div class="middle-div-custom">
+                                <div class="inner-div-custom">
+                                    <div class="content-div-custom">
+                                        Sách tìm mua
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="filter-item-map col-md-2">
+                        <span class="img-filter">
+                            <img class="cursor-pointer-class" src="{{ asset('public/img/computerStock.png') }}" alt="computerStock" onclick="clickComputerStock()">
+                        </span>
+                        <span class="outer-div-custom">
+                            <div class="middle-div-custom">
+                                <div class="inner-div-custom">
+                                    <div class="content-div-custom">
+                                        Máy tính rao bán
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="filter-item-map col-md-2">
+                        <span class="img-filter">
+                            <img class="cursor-pointer-class" src="{{ asset('public/img/computerOrder.png') }}" alt="computerOrder" onclick="clickComputerOrder()">
+                        </span>
+                        <span class="outer-div-custom">
+                            <div class="middle-div-custom">
+                                <div class="inner-div-custom">
+                                    <div class="content-div-custom">
+                                        Máy tính tìm mua
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="filter-item-map col-md-2">
+                        <span class="img-filter">
+                            <img class="cursor-pointer-class" src="{{ asset('public/img/smartphoneStock.png') }}" alt="smartphoneStock" onclick="clickSmartPhoneStock()">
+                        </span>
+                        <span class="outer-div-custom">
+                            <div class="middle-div-custom">
+                                <div class="inner-div-custom">
+                                    <div class="content-div-custom">
+                                        Điện thoại rao bán
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="filter-item-map col-md-2">
+                        <span class="img-filter">
+                            <img class="cursor-pointer-class" src="{{ asset('public/img/smartphoneOrder.png') }}" alt="smartphoneOrder" onclick="clickSmartPhoneOrder()">
+                        </span>
+                        <span class="outer-div-custom">
+                            <div class="middle-div-custom">
+                                <div class="inner-div-custom">
+                                    <div class="content-div-custom">
+                                        Điện thoại tìm mua
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card product-item hidden-class" id="info">
+            <div class="card-top-thumbnail">
+                <div class="feature-img-custom">
+                    <img class="card-img-top img-feature-product" src="" alt="VietMarketPlace">
+                </div>
+            </div>
+            <div class="card-block card-body-product">
+                <span class="name-product">
+                    <a class="link-product" href="">
+                        <h4 class="card-title title-product"></h4>
+                    </a>
+                </span>
+                <span class="card-price-product card-left-text full-width-custom">
+                    <h3 class="price-product-item"></h3>
+                    <sup class="currency-price">đ</sup>
+                </span>
+                <span class="card-status-custom card-left-text full-width-custom">
+                    <span class="status-tag-custom badge badge-default"></span>
+                </span>
+            </div>
+            <div class="card-footer card-footer-product">
+                <button class="btn btn-success btn-detail-custom">
+                    <a class="link-product" href="">
+                        Chi tiết
+                    </a>
+                </button>
             </div>
         </div>
     </div>
@@ -36,7 +139,7 @@
         // locate you.
         var productStocks = <?php print_r(json_encode($productStock)); ?>;
         var productOrders = <?php print_r(json_encode($productOrder)); ?>;
-        //console.log(productLocations);
+        var author = <?php print_r(json_encode($author)); ?>;
         var map, infoWindow, marker;
         var markers = [];
         var smartphoneStockMarkers = [];
@@ -72,7 +175,6 @@
                     title: product.name,
                     icon: img
                 });
-
                 markers.push(marker);
                 if (product.cate_id == 1) {
                     smartphoneStockMarkers.push(marker);
@@ -84,12 +186,37 @@
 
                 var baseUrl = '<?php echo url('/'); ?>',
                     url = baseUrl + '/stock-detail/' + product.id;
+                var ajaxUrl = baseUrl + '/mapStockInfoDetail/' + product.id;
+                var img_feature = baseUrl + '/resources/upload/stocks/stock-' + product.id + '/' + product.img;
                 google.maps.event.addListener(marker, 'click', function() {
-                    infowindow.open(map, marker);
-                    document.getElementById("productTitle").innerHTML = product.name;
-                    document.getElementById("productPlace").innerHTML = product.place;
-                    document.getElementById("productPrice").innerHTML = product.price;
-                    jQuery(".link-product").attr('href', url)  ;
+                    console.log(ajaxUrl);
+                    $.ajax({
+                        type: "GET",
+                        url: ajaxUrl,
+                        dataType: "json",
+                        success: function (data) {
+                            $("#info").removeClass('hidden-class');
+                            infowindow.open(map, marker);
+                            $("img.img-feature-product").attr('src', img_feature);
+                            $(".link-product").attr('href', url);
+                            $(".title-product").html(product.name);
+                            $(".card-addr-text").html(product.place + ', ' + product.district + ', ' + product.city);
+                            $(".price-product-item").html(data.price);
+                            if (product.status != 0) {
+                                $(".status-tag-custom").removeClass('new-product');
+                                $(".status-tag-custom").addClass('old-product');
+                                $(".status-tag-custom").html('HÀNG CŨ');
+                            }
+                            else {
+                                $(".status-tag-custom").removeClass('old-product');
+                                $(".status-tag-custom").addClass('new-product');
+                                $(".status-tag-custom").html('HÀNG MỚI');
+                            }
+                        },
+                        error: function (data) {
+                            console.log('Error:', data);
+                        }
+                    });
                 });
             });
 
@@ -109,7 +236,6 @@
                     title: product.name,
                     icon: img
                 });
-
                 markers.push(marker);
                 if (product.cate_id == 1) {
                     smartphoneOrderMarkers.push(marker);
@@ -121,12 +247,37 @@
 
                 var baseUrl = '<?php echo url('/'); ?>',
                     url = baseUrl + '/order-detail/' + product.id;
+                var ajaxUrl = baseUrl + '/mapOrderInfoDetail/' + product.id;
+                var img_feature = baseUrl + '/resources/upload/orders/order-' + product.id + '/' + product.img;
                 google.maps.event.addListener(marker, 'click', function() {
-                    infowindow.open(map, marker);
-                    document.getElementById("productTitle").innerHTML = product.name;
-                    document.getElementById("productPlace").innerHTML = product.place;
-                    document.getElementById("productPrice").innerHTML = product.price;
-                    jQuery(".link-product").attr('href', url)  ;
+                    console.log(ajaxUrl);
+                    $.ajax({
+                        type: "GET",
+                        url: ajaxUrl,
+                        dataType: "json",
+                        success: function (data) {
+                            $("#info").removeClass('hidden-class');
+                            infowindow.open(map, marker);
+                            $("img.img-feature-product").attr('src', img_feature);
+                            $(".link-product").attr('href', url);
+                            $(".title-product").html(product.name);
+                            $(".card-addr-text").html(product.place + ', ' + product.district);
+                            $(".price-product-item").html(data.price);
+                            if (product.status != 0) {
+                                $(".status-tag-custom").removeClass('new-product');
+                                $(".status-tag-custom").addClass('old-product');
+                                $(".status-tag-custom").html('HÀNG CŨ');
+                            }
+                            else {
+                                $(".status-tag-custom").removeClass('old-product');
+                                $(".status-tag-custom").addClass('new-product');
+                                $(".status-tag-custom").html('HÀNG MỚI');
+                            }
+                        },
+                        error: function (data) {
+                            console.log('Error:', data);
+                        }
+                    });
                 });
             });
 

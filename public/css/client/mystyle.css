@@ -539,3 +539,11 @@ nav.pagination-custom {
 h5.btn-for-my-store-custom {
 	margin-bottom: 0;
 }
+
+.full-width-custom {
+	width: 100%;
+}
+
+.hidden-class {
+	display: none;
+}

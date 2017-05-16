@@ -38,6 +38,9 @@ Route::get('profile/{user_name}', ['as'=>'profile', 'uses'=>'Client\ClientContro
 //Route::get('profile/{user_name}', ['as'=>'editprofile', 'uses'=>'Client\ClientController@postProfile']);
 
 Route::get('map',['as'=>'Map','uses'=>'Client\HomeController@showMap']);
+Route::get('mapStockInfoDetail/{id}',['as'=>'mapStockInfoDetail','uses'=>'Client\HomeController@showMapStockInfoDetail']);
+Route::get('mapOrderInfoDetail/{id}',['as'=>'mapOrderInfoDetail','uses'=>'Client\HomeController@showMapOrderInfoDetail']);
+
 
 Route::group(['prefix'=>'admin'],function () {
 	Route::group(['prefix'=>'cate'],function () {

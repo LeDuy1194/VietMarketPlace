@@ -2,7 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use App\Http\Requests\ReviewRequest;
 use App\Models\Stock;
 use App\Models\StockImage;
@@ -16,6 +16,7 @@ use App\Models\Review;
 use App\Services\productLocation;
 use App\Models\Match;
 use Auth;
+use Request;
 
 class HomeController extends Controller {
     //
@@ -118,13 +119,40 @@ class HomeController extends Controller {
     public function showMap() {
         $mapStock = new Stock();
         $mapOrder = new Order();
-        //$stockProducts = $mapStock->getAllStock();
-        //$orderProducts = $mapOrder->getAllOrder();
-        //$productLocations = new productLocation();
         $productStock = $mapStock->getAllStock();
         $productOrder = $mapOrder->getAllOrder();
+        $userModel = new User();
+        $cateModel = new Cate();
+        $reviewModel = new Review();
+        if (Auth::check()) {
+            $author = $userModel->getDetailUserByUserID(Auth::id());
+        }
+        else {
+            $author = NULL;
+        }
+
         //dd($orderProduct);
-        return view('haiblade.pages.map', compact('productStock','productOrder'));
+        return view('haiblade.pages.map', compact('productStock','productOrder', 'author','userModel','cateModel','reviewModel'));
+    }
+
+    public function showMapStockInfoDetail($id) {
+        if (Request::ajax()) {
+            $data = Stock::find($id);
+            $price = number_format($data->price,0,",",".");
+            $userModel = new User();
+            $author = $userModel->getDetailUserByUserID($data['user_id']);
+            return json_encode(['author' => $author, 'price' => $price]);
+        }
+    }
+
+    public function showMapOrderInfoDetail($id) {
+        if (Request::ajax()) {
+            $data = Order::find($id);
+            $price = number_format($data->price,0,",",".");
+            $userModel = new User();
+            $author = $userModel->getDetailUserByUserID($data['user_id']);
+            return json_encode(['author' => $author, 'price' => $price]);
+        }
     }
 
     public function changeFavorite($state,$id) {
