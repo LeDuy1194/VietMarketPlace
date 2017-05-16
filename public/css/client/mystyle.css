@@ -520,3 +520,12 @@ ul.list-tab-custom li.nav-item.nav-custom {
 .navbar-custom-header {
 	padding: 0 10px;
 }
+
+.tab-content>.active {
+	display: flex;
+}
+
+nav.pagination-custom {
+	width: 100%;
+	margin: 30px 1%;
+}
