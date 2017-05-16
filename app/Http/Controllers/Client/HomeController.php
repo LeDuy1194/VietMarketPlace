@@ -39,7 +39,7 @@ class HomeController extends Controller {
     }
 
     public function listByCate($id,$state) {
-        $number = 5;
+        $number = 12;
         $cateModel = new Cate();
         $userModel = new User();
         $favModel = new Fav();
@@ -103,14 +103,16 @@ class HomeController extends Controller {
     }
 
     public function showMyStore() {
-        $number = 5;
         $userModel = new User();
         $cateModel = new Cate();
         $matchModel = new Match();
+        $reviewModel = new Review();
+        $favModel = new Fav();
+        $favOModel = new FavO();
         $author = $userModel->getDetailUserByUserID(Auth::id());
         $stock = $author->stock;
         $order = $author->order;
-        return view('pages.myStore',compact('stock','order','author','cateModel','userModel','matchModel'));
+        return view('pages.myStore',compact('stock','order','author','cateModel','userModel','matchModel', 'favModel','favOModel', 'reviewModel'));
     }
 
     public function showMap() {
