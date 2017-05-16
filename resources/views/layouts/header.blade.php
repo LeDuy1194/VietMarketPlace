@@ -69,7 +69,7 @@
                               </button>
                               <div class="dropdown-menu profile-dropdown-custom" aria-labelledby="dropdownMenu1">
                                   <a class="dropdown-item" href="{!! url('profile', [Auth::user()->username]) !!}">Hồ sơ</a>
-                                  <a class="dropdown-item" href="{{ route('logout') }}">Đăng xuất</a>
+                                  <a class="dropdown-item" href="{!! url('logout') !!}">Đăng xuất</a>
                               </div>
                           </li>
                       @else
