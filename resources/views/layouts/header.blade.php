@@ -22,8 +22,8 @@
                                   @foreach($cates as $cate)
                                       <a class="dropdown-item" href="{{route('listByCate',[$cate->id])}}">{!! $cate->name !!}</a>
                                   @endforeach
-                                  <hr>
-                                  <a class="dropdown-item" href="{{route('listByCate',0)}}">Tat ca tin</a>
+                                  <hr class="hr-custom">
+                                  <a class="dropdown-item" href="{{route('listByCate',0)}}">Tất cả tin</a>
                               </div>
                           </div>
                       </li>

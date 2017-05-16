@@ -491,7 +491,7 @@ ul.list-tab-custom li.nav-item.nav-custom {
 	background: none;
 	border: none;
 	color: white;
-	padding: 0;
+	padding: 10px;
 }
 
 .show>.dropdown-menu.profile-dropdown-custom {
@@ -546,4 +546,27 @@ h5.btn-for-my-store-custom {
 
 .hidden-class {
 	display: none;
+}
+
+.hr-custom {
+	margin: 2px 0;
+}
+
+.dropdown-custom-cate-btn:hover {
+	color: #292b2c;
+	background-color: white;
+	border: none;
+	border-radius: 0;
+}
+
+.dropdown-custom-cate-btn.active, .dropdown-custom-cate-btn:active, .show>.dropdown-custom-cate-btn.dropdown-toggle {
+	color: white;
+	background-color: transparent;
+	background-image: none;
+	border-color: transparent;
+}
+
+.dropdown-custom-cate-btn.focus, .dropdown-custom-cate-btn:focus {
+	-webkit-box-shadow: none;
+	box-shadow: none;
 }
