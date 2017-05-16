@@ -63,6 +63,11 @@ body {
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	height: 300px;
+}
+
+.img-banner-list-cate-custom {
+	height: 300px;
 }
 
 .welcome-custom {
@@ -94,6 +99,7 @@ body {
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	height: 300px;
 }
 
 .my-wish-page {
