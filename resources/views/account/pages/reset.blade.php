@@ -20,12 +20,12 @@
 				</button>
 			</CENTER>
 		</div>
-		<div>
+		<!-- <div>
 			<center>
 				Bạn đã có Tài khoản?
 				<a style="color: #000; font-weight: bold;" href="{{url('login')}}">Đăng nhập</a>
 			</center>
-		</div>
+		</div> -->
 	</form>
 </div>
 @endsection()
