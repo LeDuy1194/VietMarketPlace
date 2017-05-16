@@ -20,8 +20,10 @@
                               ?>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                   @foreach($cates as $cate)
-                                      <a class="dropdown-item" href="{{route('listByCate',[$cate->id,'all'])}}">{!! $cate->name !!}</a>
+                                      <a class="dropdown-item" href="{{route('listByCate',[$cate->id])}}">{!! $cate->name !!}</a>
                                   @endforeach
+                                  <hr>
+                                  <a class="dropdown-item" href="{{route('listByCate',0)}}">Tat ca tin</a>
                               </div>
                           </div>
                       </li>

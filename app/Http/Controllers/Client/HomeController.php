@@ -38,7 +38,7 @@ class HomeController extends Controller {
         return view('pages.home',compact('stock','order','author','userModel','cateModel','favModel','favOModel','reviewModel'));
     }
 
-    public function listByCate($id,$state) {
+    public function listByCate($id) {
         $number = 12;
         $cateModel = new Cate();
         $userModel = new User();
@@ -61,7 +61,7 @@ class HomeController extends Controller {
         else {
             $author = NULL;
         }
-        return view('pages.listProduct',compact('stock','order','author','id','state','userModel','cateModel','favModel','favOModel','reviewModel'));
+        return view('pages.listProduct',compact('stock','order','author','id','userModel','cateModel','favModel','favOModel','reviewModel'));
     }
 
     public function showOrderDetail($id) {
