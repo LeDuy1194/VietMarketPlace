@@ -56,13 +56,13 @@
             <span class="card-name-author card-left-text">
                 <div class="card-name-author-body">
                     <a class="btn btn-success btn-block" href="{{route('getMatch',['stock',$item->id])}}">
-                        <h5>Match {!! $match !!}</h5>
+                        <h5 class="btn-for-my-store-custom">Match {!! $match !!}</h5>
                     </a>
                 </div>
             </span>
             <span class="card-rate-author card-right-text">
                 <a class="btn btn-danger btn-block" href="{{route('getDeleteProduct',['stock',$item->id])}}" name="" onclick="return confirmation('Có xóa {!! $item->name !!} không?')">
-                    <h5>Xóa</h5>
+                    <h5 class="btn-for-my-store-custom">Xóa</h5>
                 </a>
             </span>
         @else

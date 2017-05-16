@@ -372,3 +372,7 @@ a.facebook-author:hover .fa-icon-custom{
 ul#detail-tabs li.nav-item.nav-custom {
     margin-right: 5px;
 }
+
+.detail-product-content-tab.tab-content>.active {
+    display: block;
+}

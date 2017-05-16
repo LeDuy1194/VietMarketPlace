@@ -535,3 +535,7 @@ nav.pagination-custom {
 	width: 100%;
 	margin: 30px 1%;
 }
+
+h5.btn-for-my-store-custom {
+	margin-bottom: 0;
+}
