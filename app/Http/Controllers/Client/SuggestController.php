@@ -55,7 +55,7 @@ class SuggestController extends Controller
 						$price_max = $stock->price;
 					}
 					$price += $stock->price * $review;
-					$count += 1.0 * $review;
+					$count += 1.0;
 				}
 			}
 
@@ -75,7 +75,7 @@ class SuggestController extends Controller
 						$price_max = $order->price;
 					}
 					$price += $order->price * $review;
-					$count += 1.0 * $review;
+					$count += 1.0;
 				}
 			}
 

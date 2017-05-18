@@ -46,7 +46,7 @@ Route::get('mapStockInfoDetail/{id}',['as'=>'mapStockInfoDetail','uses'=>'Client
 Route::get('mapOrderInfoDetail/{id}',['as'=>'mapOrderInfoDetail','uses'=>'Client\HomeController@showMapOrderInfoDetail']);
 
 
-Route::group(['prefix'=>'admin'],function () {
+Route::group(['prefix'=>'admin','middleware'=>'auth'],function () {
 	Route::group(['prefix'=>'cate'],function () {
 		Route::get('list',['as'=>'admin.cate.list','uses'=>'Admin\CateController@getList']);
 		Route::get('add',['as'=>'admin.cate.getAdd','uses'=>'Admin\CateController@getAdd']);
@@ -56,8 +56,12 @@ Route::group(['prefix'=>'admin'],function () {
 		Route::post('edit/{id}',['as'=>'admin.cate.postEdit','uses'=>'Admin\CateController@postEdit']);
 	});
 	Route::group(['prefix'=>'stock'],function () {
-		Route::get('add',['as'=>'admin.stock.getAdd','uses'=>'Admin\StockController@getAdd']);
-		Route::post('add',['as'=>'admin.stock.postAdd','uses'=>'Admin\StockController@postAdd']);
+		Route::get('list',['as'=>'admin.stock.list','uses'=>'Admin\StockController@getList']);
+		Route::get('delete/{id}',['as'=>'admin.stock.getDelete','uses'=>'Admin\StockController@getDelete']);
+	});
+	Route::group(['prefix'=>'order'],function () {
+		Route::get('list',['as'=>'admin.order.list','uses'=>'Admin\OrderController@getList']);
+		Route::get('delete/{id}',['as'=>'admin.order.getDelete','uses'=>'Admin\OrderController@getDelete']);
 	});
 });
 

@@ -92,6 +92,7 @@ function matchSearching($data,$match_type = 'orders') {
 	if ($match_type == 'orders') {
 		echo "matching stock with orders<br>";
 		// Match price
+		$temp_item = $result->orderBy('price','asc')->first();
 		$price = intval($data->price * 0.9);
 		$result = $result->where('price','>=',$price);
 

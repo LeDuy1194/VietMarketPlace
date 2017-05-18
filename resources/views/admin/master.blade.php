@@ -13,7 +13,7 @@
 
 <body>
     <!-- Navigation -->
-    @include('admin.header')
+    @include('layouts.header')
 
     <div class="row m-auto mt-2">
         <div class="col-lg-2 col-md-0 hidden-md-down">
@@ -34,8 +34,7 @@
                             Tin rao bán<span class="fa arrow"></span>
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Danh sách Tin rao bán</a>
-                            <a class="dropdown-item" href="#">Thêm Tin rao bán</a>
+                            <a class="dropdown-item" href="{{route('admin.stock.list')}}">Danh sách Tin rao bán</a>
                         </div>
                     </li>
 
@@ -44,8 +43,7 @@
                             Tin tìm mua<span class="fa arrow"></span>
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Danh sách Tin tìm mua</a>
-                            <a class="dropdown-item" href="#">Thêm Tin tìm mua</a>
+                            <a class="dropdown-item" href="{{route('admin.order.list')}}">Danh sách Tin tìm mua</a>
                         </div>
                     </li>
 

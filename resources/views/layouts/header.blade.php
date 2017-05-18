@@ -41,8 +41,13 @@
                               <a class="nav-link" href="{{route('myMark')}}">Xem sau</a>
                           </li>
                           </li>
+                          @if(Auth::user()->level == 2)
+                              <li class="nav-item">
+                                  <a class="nav-link" href="{{route('admin.cate.list')}}">Admin</a>
+                              </li>
+                          @endif
                       @endif
-                      <li class="nav-item sign-in">
+                      <li class="nav-item">
                           <a class="nav-link" href="{{route('Map')}}">Bản đồ</a>
                       </li>
 
