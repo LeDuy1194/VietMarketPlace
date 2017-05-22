@@ -83,7 +83,9 @@ class RegisterController extends Controller
         $account->fullname = $request->fullname;
         $account->address = $request->address;
         $account->phone = $request->phone;
+        $account->avatar = 'default_avatar.png';
         $account->save();
-        return redirect()->Route('postLogin');
+        $message = ['flash_level'=>'success','flash_message'=>'Đăng ký thành công.'];
+        return redirect()->Route('postLogin')->with($message);
     }
 }

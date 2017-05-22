@@ -4,6 +4,8 @@
 <div class="container">
 	<div class="row">
 		<div class="col col-md-5 text-center">
+			@include('utils.message')
+			@include('errors.input')
 			<form role="form" action="{!!route('postRegister')!!}" method="POST">
 				<input type="hidden" name="_token" value="{!!csrf_token()!!}">
 				<h1>Tạo Tài khoản Mới</h1>

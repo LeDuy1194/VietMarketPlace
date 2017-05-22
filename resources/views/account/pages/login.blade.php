@@ -4,11 +4,13 @@
 <div class="container">
 	<div class="row">
 		<div class="col col-md-4 text-center">
+			@include('utils.message')
+			@include('errors.input')
+
 			<form role="form" action="{!!route('postLogin')!!}" method="POST">
 				<input type="hidden" name="_token" value="{!!csrf_token()!!}">
 				<h2>Đăng nhập vào VietMarketPlace</h2>
 				<h4>Kho hàng Trực tuyến Khổng lồ</h4>
-
 				<div class="form-group">
 					<input type="email" class="form-control" placeholder="Địa chỉ Email" id="email" name="email">
 				</div>

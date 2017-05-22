@@ -31,7 +31,7 @@ Route::post('password/reset',['uses'=>'Auth\ResetPasswordController@reset']);
 
 Route::get('home',['as'=>'Home','uses'=>'Client\HomeController@showHome']);
 
-Route::get('mystore',['as'=>'MyStore','uses'=>'Client\HomeController@showMyStore']);
+Route::get('mystore',['as'=>'MyStore','uses'=>'Client\HomeController@showMyStore'])->middleware('auth');
 
 Route::get('order-detail/{id}',['as'=>'orderDetail','uses'=>'Client\HomeController@showOrderDetail']);
 Route::get('stock-detail/{id}',['as'=>'stockDetail','uses'=>'Client\HomeController@showStockDetail']);
@@ -68,20 +68,20 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function () {
 Route::get('listbycate/{id}',['as'=>'listByCate','uses'=>'Client\HomeController@listByCate']);
 
 //user upload
-Route::get('upload',['as'=>'getupload','uses'=>'Client\ClientController@getUpload']);
+Route::get('upload',['as'=>'getupload','uses'=>'Client\ClientController@getUpload'])->middleware('auth');
 Route::post('upload',['as'=>'postupload','uses'=>'Client\ClientController@postUpload']);
 
 //user edit, delete
-Route::get('delete/{state}--{id}',['as'=>'getDeleteProduct','uses'=>'Client\ClientController@getDeleteProduct']);
+Route::get('delete/{state}--{id}',['as'=>'getDeleteProduct','uses'=>'Client\ClientController@getDeleteProduct'])->middleware('auth');
 
 Route::get('search',['uses'=>'SearchController@getSearch','as'=>'search']);
 
 //Route::resource('queries', 'QueryController');
 // Change favorite
-Route::get('favorite/{state}--{id}',['as'=>'favorite','uses'=>'Client\HomeController@changeFavorite']);
-Route::get('mymark',['as'=>'myMark','uses'=>'Client\HomeController@showMark']);
+Route::get('favorite/{state}--{id}',['as'=>'favorite','uses'=>'Client\HomeController@changeFavorite'])->middleware('auth');
+Route::get('mymark',['as'=>'myMark','uses'=>'Client\HomeController@showMark'])->middleware('auth');
 
-Route::get('match/{state}--{id}',['as'=>'getMatch','uses'=>'Client\HomeController@getMatch']);
+Route::get('match/{state}--{id}',['as'=>'getMatch','uses'=>'Client\HomeController@getMatch'])->middleware('auth');
 
 Route::get('logout',['as'=>'logout','uses'=>'Auth\LoginController@getLogout'])->middleware('auth');
 

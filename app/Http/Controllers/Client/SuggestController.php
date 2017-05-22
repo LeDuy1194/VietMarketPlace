@@ -48,13 +48,14 @@ class SuggestController extends Controller
 				$point = compareTag($tags, $stockTag);
 				if ($point >= 50) {
 					//echo "stock-".$stock->id."-".$stock->price."<br>";
-					if ($stock->price < $price_min) {
-						$price_min = $stock->price;
+					$temp_price = $stock->price * $review;
+					if ($temp_price < $price_min) {
+						$price_min = $temp_price;
 					}
-					if ($stock->price > $price_max) {
-						$price_max = $stock->price;
+					if (($temp_price > $price_max)&&($parent_cate != 'order')) {
+						$price_max = $temp_price;
 					}
-					$price += $stock->price * $review;
+					$price += $temp_price;
 					$count += 1.0;
 				}
 			}
@@ -68,13 +69,14 @@ class SuggestController extends Controller
 				$point = compareTag($tags, $orderTag);
 				if ($point >= 50) {
 					//echo "order-".$order->id."-".$order->price."<br>";
-					if ($order->price < $price_min) {
-						$price_min = $order->price;
+					$temp_price = $order->price * $review;
+					if (($temp_price < $price_min)&&($parent_cate != 'stock')) {
+						$price_min = $temp_price;
 					}
-					if ($order->price > $price_max) {
-						$price_max = $order->price;
+					if ($temp_price > $price_max) {
+						$price_max = $temp_price;
 					}
-					$price += $order->price * $review;
+					$price += $temp_price;
 					$count += 1.0;
 				}
 			}

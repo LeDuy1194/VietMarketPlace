@@ -62,7 +62,7 @@ class ClientController extends Controller
             $limit = $author->level * 5 + 5;
             if ($totalPost >= $limit) {
                 $message = ['flash_level'=>'danger','flash_message'=>'Không thể đăng nhiều hơn '.$limit.' tin.'];
-                return redirect()->route('MyStore','stock')->with($message);
+                return redirect()->route('MyStore')->with($message);
             }
             else {
                 return view('haiblade.pages.upload',compact('cate','city','district','tag'));
@@ -79,6 +79,16 @@ class ClientController extends Controller
         $img_main = $request->file('image-main')->getClientOriginalName();
         $img_main = 'main-' . $img_main;
         $cate_parent = $_POST['prtcate'];
+
+        $userModel = new User();
+        $author = $userModel->getDetailUserByUserID(Auth::id());
+        $totalPost = $author->stock()->count() + $author->order()->count();
+        $limit = $author->level * 5 + 5;
+        if ($totalPost >= $limit) {
+            $message = ['flash_level'=>'danger','flash_message'=>'Không thể đăng nhiều hơn '.$limit.' tin.'];
+            return redirect()->route('MyStore')->with($message);
+        }
+
         if ($cate_parent == 'stock') {
             // Stock
             $stock = new Stock();
