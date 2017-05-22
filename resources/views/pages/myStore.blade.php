@@ -31,18 +31,18 @@ Date: 17/02/2017
 					</div>
 				@endif
 					@foreach($stock as $item)
-                        <?php
-                        $user = $userModel->getDetailUserByUserID($item->user_id);
-                        $cate = $cateModel->getCateById($item->cate_id);
-                        $vote = $reviewModel->getAverageVote($item->user_id);
-                        if ($author != NULL) {
-                            $fav = $favModel->getFav($author->id,$item->id);
-                            $fav != NULL ? $favCheck = true : $favCheck = false;
-                        }
-                        else {
-                            $favCheck = false;
-                        }
-                        ?>
+						<?php
+						$user = $userModel->getDetailUserByUserID($item->user_id);
+						$cate = $cateModel->getCateById($item->cate_id);
+						$vote = $reviewModel->getAverageVote($item->user_id);
+						if ($author != NULL) {
+							$fav = $favModel->getFav($author->id,$item->id);
+							$fav != NULL ? $favCheck = true : $favCheck = false;
+						}
+						else {
+							$favCheck = false;
+						}
+						?>
 						@include('utils.contentGrid',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock','vote' => $vote,'fav' => $favCheck, 'matchModel' => $matchModel])
 					@endforeach
 			</div>
@@ -53,66 +53,68 @@ Date: 17/02/2017
 					</div>
 				@endif
 					@foreach($order as $item)
-                        <?php
-                        $user = $userModel->getDetailUserByUserID($item->user_id);
-                        $cate = $cateModel->getCateById($item->cate_id);
-                        $vote = $reviewModel->getAverageVote($item->user_id);
-                        if ($author != NULL) {
-                            $favO = $favOModel->getFav($author->id,$item->id);
-                            $favO != NULL ? $favCheck = true : $favCheck = false;
-                        }
-                        else {
-                            $favCheck = false;
-                        }
-                        ?>
+						<?php
+						$user = $userModel->getDetailUserByUserID($item->user_id);
+						$cate = $cateModel->getCateById($item->cate_id);
+						$vote = $reviewModel->getAverageVote($item->user_id);
+						if ($author != NULL) {
+							$favO = $favOModel->getFav($author->id,$item->id);
+							$favO != NULL ? $favCheck = true : $favCheck = false;
+						}
+						else {
+							$favCheck = false;
+						}
+						?>
 						@include('utils.contentGrid',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order','vote' => $vote,'fav' => $favCheck, 'matchModel' => $matchModel])
 					@endforeach
 			</div>
 		</div>
+		{{--
 		<div id="modal-matching" class="modal fade" role="dialog">
-	        <div class="modal-dialog">
-	            <!-- Modal content-->
-	            <div class="modal-content">
-	                <div class="modal-header">
-	                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-	                    <h3 class="modal-title">Matching</h3>
-	                </div>
-	                <div class="modal-body">
-	                </div>
-	                <div class="modal-footer">
-	                </div>
-	            </div>
-	        </div>
-	    </div>
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h3 class="modal-title">Matching</h3>
+					</div>
+					<div class="modal-body">
+					</div>
+					<div class="modal-footer">
+					</div>
+				</div>
+			</div>
+		</div>
+		--}}
 	</div><br>
 @endsection
 
 @section('scripts')
-    <script src="{{asset('public/js/admin/admin.js')}}"></script>
+	<script src="{{asset('public/js/admin/admin.js')}}"></script>
 	<script>
-        $('#store-tabs a').click(function (e) {
-            e.preventDefault();
-            $(this).tab('show');
-        })
+		$('#store-tabs a').click(function (e) {
+			e.preventDefault();
+			$(this).tab('show');
+		})
 	</script>
 	<script type="text/javascript">
 		// $('.btn-delete').click(function (e) {
-		//     e.stopPropagation();
-		//     var baseUrl = '<?php //echo url('/'); ?>',
+		//	 e.stopPropagation();
+		//	 var baseUrl = '<?php //echo url('/'); ?>',
 
-		//         url = baseUrl+'/delete/'+
+		//		 url = baseUrl+'/delete/'+
 
-		//     var xhttp = new XMLHttpRequest();
-		//     xhttp.onreadystatechange = function() {
-		//         if (this.readyState == 4 && this.status == 200) {
-		//             document.getElementById("sugestPriceResult").innerHTML = this.responseText;
-		//             $('.btn-price').click(function(){
-		//                 $('input[name="price"]').val(parseInt(this.value));
-		//             });
-		//         }
-		//     };
-		//     xhttp.open("GET", url, true);
-		//     xhttp.send();
+		//	 var xhttp = new XMLHttpRequest();
+		//	 xhttp.onreadystatechange = function() {
+		//		 if (this.readyState == 4 && this.status == 200) {
+		//			 document.getElementById("sugestPriceResult").innerHTML = this.responseText;
+		//			 $('.btn-price').click(function(){
+		//				 $('input[name="price"]').val(parseInt(this.value));
+		//			 });
+		//		 }
+		//	 };
+		//	 xhttp.open("GET", url, true);
+		//	 xhttp.send();
 		// });
 	</script>
 @endsection
