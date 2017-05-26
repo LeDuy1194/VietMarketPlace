@@ -118,7 +118,7 @@
 										</div>
 									</div>
 
-									<a href="#" class="btn btn-block btn-pf" type="button" data-toggle="modal" data-target="#editpw">Đổi Mật Khẩu</a>
+									{{--<a href="#" class="btn btn-block btn-pf" type="button" data-toggle="modal" data-target="#editpw">Đổi Mật Khẩu</a>
 									<!-- Modal -->
 									<div id="editpw" class="modal fade" role="dialog">
 										<div class="modal-dialog">
@@ -147,19 +147,19 @@
 											</div>
 
 										</div>
-									</div>
+									</div>--}}
 								@endif
 							</div>
 						</div>
 						<br>
-						<div class="">
+						{{--<div class="">
 							<div class="list-group">
 								<a href="#" class="list-group-item active">
 									Đánh Giá
 								</a>
 								<a href="#" class="list-group-item list-group-item-action">Nháp</a>
 							</div>
-						</div>
+						</div>--}}
 					</div>
 
 					<div class="col-md-8">
