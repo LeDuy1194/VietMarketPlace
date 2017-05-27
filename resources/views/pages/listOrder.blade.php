@@ -202,7 +202,7 @@ Date: 21/02/2017
 					</div>
 				</div>
 				@if(Auth::id()!=$author->id)
-				<div class="card report-product-area">
+				{{--<div class="card report-product-area">
 					<div class="card-header header-report-product card-header-custom">
 						<a class="fontItem" data-toggle="collapse" href="#reportProduct" aria-expanded="true" aria-controls="collapseInfo">
 							<h5 class="header-info-custom">Đánh giá người đăng</h5>
@@ -224,7 +224,7 @@ Date: 21/02/2017
 							</button>
 						</form>
 					</div>
-				</div>
+				</div>--}}
 				@endif
 			</div>
 		</div>
