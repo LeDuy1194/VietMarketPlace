@@ -26,6 +26,9 @@ Version: 01
 <body>
 	@include('layouts.header')
 	<div role="main" class="main main-page">
+		@if(Auth::check())
+			<input type="hidden" data-user-id-socket="{{ Auth::user()->id }}" id="auth_id_socket">
+		@endif
 		@yield('top-information')
 
 		@yield('content')
@@ -38,7 +41,9 @@ Version: 01
 	<script src="{{asset('public/libs/tether/tether.min.js')}}"></script>
 	<script src="{{asset('public/libs/jquery/jquery.min.js')}}"></script>
 	<script src="{{asset('public/libs/bootstrap/js/bootstrap.min.js')}}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
 	<script src="{{asset('public/js/client/myscripts.js')}}"></script>
+	<script src="{{asset('Client_socket/socketClient.js')}}"></script>
 	@yield('scripts')
 </body>
 </html>

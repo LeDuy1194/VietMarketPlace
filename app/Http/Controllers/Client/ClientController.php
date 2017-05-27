@@ -21,6 +21,7 @@ use App\Models\District;
 use App\Models\Match;
 use Illuminate\Support\Facades\File;
 //use Illuminate\Http\File;
+use LRedis;
 class ClientController extends Controller
 {
     public function test() {
@@ -153,7 +154,7 @@ class ClientController extends Controller
             }
 
             //Matching
-            matchSearching($stock,'orders');
+            $result_data = matchSearching($stock,'orders');
         }
         else {
             // Order
@@ -219,9 +220,22 @@ class ClientController extends Controller
             }
 
             //Matching
-            matchSearching($order,'stocks');
+            $result_data = matchSearching($order,'stocks');
         }
+//        var_dump($result_data);
+//        $redis = LRedis::connection();
+//        $redis->publish('updateSocket', $user_id);
+        $type = $result_data['type_match'];
+        $result_matching = $result_data['matching'];
+
+        foreach ($result_matching as $result_match) {
+            $user_id = $result_match->user_id;
+            $redis = LRedis::connection();
+            $redis->publish('message', json_encode(['type' => $type, 'result_match' => $result_match]));
+        }
+//        dd($result_matching);
         // After
+
         return redirect()->route('Home');
     }
 
