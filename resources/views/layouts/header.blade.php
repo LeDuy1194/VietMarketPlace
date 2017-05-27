@@ -55,7 +55,7 @@
                         <a class="nav-link" href="#">Về chúng tôi</a>
                       </li>--}}
                   </ul>
-                  <ul class="navbar-nav navbar-custom-header primary-header-logged-custom">
+                  <ul class="navbar-nav navbar-custom-header primary-header-custom">
                       @if(Auth::check())
                           {{--<li class="img-wish-header img-status-header">--}}
                               {{--<img alt="{!! Auth::user()->username !!}" src="../public/img/wish.png " class="img-circle img-status-custom">--}}

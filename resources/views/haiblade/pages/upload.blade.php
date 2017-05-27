@@ -34,7 +34,7 @@
                                     <div class="form-content">
                                         <div class="form-group">
                                             <label>
-                                                Chọn Phần Mục *
+                                                Chọn Loại Tin *
                                             </label>
                                             <select class="form-control" id="prtcate" name="prtcate" >
                                                 <option selected value="stock">Tin rao bán</option>
