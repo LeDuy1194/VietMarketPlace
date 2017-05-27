@@ -58,3 +58,42 @@
 	</div>
 </div> <br>
 @endsection()
+@section('scripts')
+<script>
+var password = document.getElementById("password")
+  , confirm_password = document.getElementById("confirm_password");
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Vui lòng điền lại mật khẩu");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+
+$(document).ready(function() {
+    $('#phone').blur(function(e) {
+        if (validatePhone('phone')) {
+            phone.setCustomValidity('');
+        }
+        else {
+            phone.setCustomValidity('Vui lòng điền đúng Số điện thoại');
+        }
+    });
+});
+
+function validatePhone(phone) {
+    var a = document.getElementById(phone).value;
+    var filter = /^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
+    if (filter.test(a)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+</script>
+@endsection()

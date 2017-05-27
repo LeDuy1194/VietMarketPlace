@@ -81,68 +81,73 @@ function compareTag($data_1,$data_2) {
 * @param $match_type: the table to search the product.
 **/
 function matchSearching($data,$match_type = 'orders') {
-	$stockTagModel = new App\Models\StockTag();
-	$orderTagModel = new App\Models\OrderTag();
-	$userModel = new App\Models\User();
-	$count = 0;
+    $stockTagModel = new App\Models\StockTag();
+    $orderTagModel = new App\Models\OrderTag();
+    $userModel = new App\Models\User();
+    $count = 0;
 
-	// Match categories
-	$result = DB::table($match_type)->where('cate_id','=',$data->cate_id)->where('finished',0)->select('id','price','user_id');
-
-	if ($match_type == 'orders') {
-		echo "matching stock with orders<br>";
-		// Match price
-		$temp_item = $result->orderBy('price','asc')->first();
-		$price = intval($data->price * 0.9);
-		$result = $result->where('price','>=',$price);
-
-		// Match tag
-		$temp_table = $result->get();
-		$stock = $data;
-		$stockTag = $stockTagModel->getTagByStockId($stock->id);
-		foreach ($temp_table as $order) {
-			$orderTag = $orderTagModel->getTagByOrderId($order->id);
-			$point = compareTag($stockTag, $orderTag);
-			// Check and save
-			if ($point >= 50) {
-				$user = $userModel->getDetailUserByUserID($order->user_id);
-				$user->notify(new App\Notifications\Matching($order, 'order'));
-				$match = new App\Models\Match();
-				$match->order_id = $order->id;
-				$match->stock_id = $stock->id;
-				$match->point = $point;
-				$match->save();
-				$count++;
-			}
-		}
-	}
-	else {
-		echo "matching order with stocks<br>";
-		// Match price
-		$price = intval($data->price * 1.1);
-		$result = $result->where('price','<=',$price);
-
-		// Match tag
-		$temp_table = $result->get();
-		$order = $data;
-		$orderTag = $orderTagModel->getTagByOrderId($order->id);
-		foreach ($temp_table as $stock) {
-			$stockTag = $stockTagModel->getTagByStockId($stock->id);
-			$point = compareTag($orderTag, $stockTag);
-			// Check and save
-			if ($point >= 50) {
-				$user = $userModel->getDetailUserByUserID($stock->user_id);
-				$user->notify(new App\Notifications\Matching($stock, 'stock'));
-				$match = new App\Models\Match();
-				$match->order_id = $order->id;
-				$match->stock_id = $stock->id;
-				$match->point = $point;
-				$match->save();
-				$count++;
-			}
-		}
-	}
-	return $count;
+    // Match categories
+    $result = DB::table($match_type)->where('cate_id','=',$data->cate_id)->where('finished',0);
+    $result_data = [];
+    $result_matching = [];
+    if ($match_type == 'orders') {
+        echo "matching stock with orders<br>";
+        // Match price
+        $temp_item = $result->orderBy('price','asc')->first();
+        $price = intval($data->price * 0.9);
+        $result = $result->where('price','>=',$price);
+        $result_data['type_match'] = 'order';
+        // Match tag
+        $temp_table = $result->get();
+        $stock = $data;
+        $stockTag = $stockTagModel->getTagByStockId($stock->id);
+        foreach ($temp_table as $order) {
+            $orderTag = $orderTagModel->getTagByOrderId($order->id);
+            $point = compareTag($stockTag, $orderTag);
+            // Check and save
+            if ($point >= 50) {
+                $user = $userModel->getDetailUserByUserID($order->user_id);
+//				$user->notify(new App\Notifications\Matching($order, 'order'));
+                $result_matching[] = $order;
+                $match = new App\Models\Match();
+                $match->order_id = $order->id;
+                $match->stock_id = $stock->id;
+                $match->point = $point;
+                $match->save();
+                $count++;
+            }
+        }
+        $result_data['matching'] = $result_matching;
+    }
+    else {
+        echo "matching order with stocks<br>";
+        // Match price
+        $price = intval($data->price * 1.1);
+        $result = $result->where('price','<=',$price);
+        $result_data['type_match'] = 'stock';
+        // Match tag
+        $temp_table = $result->get();
+        $order = $data;
+        $orderTag = $orderTagModel->getTagByOrderId($order->id);
+        foreach ($temp_table as $stock) {
+            $stockTag = $stockTagModel->getTagByStockId($stock->id);
+            $point = compareTag($orderTag, $stockTag);
+            // Check and save
+            if ($point >= 50) {
+                $user = $userModel->getDetailUserByUserID($stock->user_id);
+//				$user->notify(new App\Notifications\Matching($stock, 'stock'));
+                $result_matching[] = $stock;
+                $match = new App\Models\Match();
+                $match->order_id = $order->id;
+                $match->stock_id = $stock->id;
+                $match->point = $point;
+                $match->save();
+                $count++;
+            }
+        }
+        $result_data['matching'] = $result_matching;
+    }
+    return $result_data;
 }
 
 ?>

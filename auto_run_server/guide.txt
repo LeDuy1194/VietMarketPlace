@@ -1,0 +1,1 @@
+Install Redis enviroment, for windows: at directory packages-custom

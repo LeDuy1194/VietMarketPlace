@@ -11,6 +11,7 @@
 				<input type="hidden" name="_token" value="{!!csrf_token()!!}">
 				<h2>Đăng nhập vào VietMarketPlace</h2>
 				<h4>Kho hàng Trực tuyến Khổng lồ</h4>
+				<br>
 				<div class="form-group">
 					<input type="email" class="form-control" placeholder="Địa chỉ Email" id="email" name="email">
 				</div>

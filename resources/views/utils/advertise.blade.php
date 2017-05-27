@@ -26,7 +26,7 @@ Update: 03-05-2017 by Bi Pham
 		<div class="middle-banner-custom">
 			<div class="welcome-wish-page-custom inner-banner-custom welcome-custom">
 				<div class="name-wish-page-welcome title-page-custom name-banner-custom">
-					Danh sách quan tâm
+					Danh sách xem sau
 				</div>
 			</div>
 		</div>
@@ -84,7 +84,7 @@ Update: 03-05-2017 by Bi Pham
                 <div class="middle-banner-custom">
                     <div class="welcome-list-cate-page-custom inner-banner-custom welcome-custom">
                         <div class="name-list-cate-page-welcome title-page-custom name-banner-custom">
-                            Tất cả tin
+                            Tất cả sản phẩm
                         </div>
                     </div>
                 </div>

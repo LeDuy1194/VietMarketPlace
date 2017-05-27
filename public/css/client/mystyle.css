@@ -518,7 +518,7 @@ ul.list-tab-custom li.nav-item.nav-custom {
 }
 
 .search-bar-home form.form-search-custom {
-	max-width: 100%;
+	width: 100%;
 	margin: 0 auto;
 	display: inline;
 }

@@ -74,8 +74,8 @@ class Matching extends Notification
      */
     public function toBroadcast($notifiable) {
         return new BroadcastMessage([
-            'message' => $result,
-            'action' => route('getMatch',[$this->type, $this->data->id]),
+//            'message' => $result,
+//            'action' => route('getMatch',[$this->type, $this->data->id]),
         ]);
     }
 }
