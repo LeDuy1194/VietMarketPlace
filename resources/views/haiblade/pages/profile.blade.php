@@ -11,7 +11,7 @@
 				<br>
 				<div class="row">
 					<div class="col-md-4">
-						<div class="card">
+						<div class="card @if($data->level == 1) card-vip-avatar-user @endif">
 							<div class="card-block">
 								<center>
 									<div class="img-avatar-profile-page">

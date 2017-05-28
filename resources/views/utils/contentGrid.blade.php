@@ -46,6 +46,9 @@
 			    <sup class="currency-price">đ</sup>
         </span>
         <div class="status-tag <?php if ($item->status != 0) echo "old-tag"; ?>"><?php if ($item->status == 0) echo "HÀNG MỚI"; else echo "HÀNG CŨ";?></div>
+        @if($user->level == 1)
+        <div class="vip-tag">VIP</div>
+        @endif
     </div>
     <div class="card-footer card-footer-product">
         @if(Route::current()->getName() == 'MyStore')

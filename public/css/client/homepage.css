@@ -197,10 +197,36 @@ span.card-price-product.card-center-text {
   float: left;
 }
 
-.status-tag {
-  background: #F65656;
-  right: 0;
-  left: auto; 
+.vip-tag {
+    display: inline-block;
+    left: 0;
+    padding: 2px 20px;
+    right: auto;
+    position: absolute;
+    top: 30px;
+    color: #007b4f;
+    font-weight: 800;
+    text-transform: uppercase;
+    z-index: 99;
+    background: #FFEB3B;
+}
+
+.vip-tag:before, .vip-tag:after {
+    border-bottom: 13px solid transparent;
+    border-left: 10px solid #FFEB3B;
+    border-top: 0 solid transparent;
+    content: "";
+    right: -10px;
+    position: absolute;
+    top: 0;
+}
+
+.vip-tag:after {
+    bottom: 0;
+    border-bottom: 0 solid transparent;
+    border-left: 10px solid #FFEB3B;
+    border-top: 13px solid transparent;
+    top: auto;
 }
 
 .status-tag:before, .status-tag:after {
@@ -222,7 +248,7 @@ span.card-price-product.card-center-text {
 }
 
 .status-tag {
-display: inline-block;
+    display: inline-block;
     right: 0;
     padding: 2px 20px;
     position: absolute;
@@ -230,6 +256,8 @@ display: inline-block;
     color: #ffffff;
     text-transform: uppercase;
     z-index: 99;
+    background: #F65656;
+    left: auto;
 }
 
 .status-tag.old-tag {
