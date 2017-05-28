@@ -3,16 +3,25 @@
 	<link rel="stylesheet" href="{{asset('public/css/client/accountstyle.css')}}"/>
 @endsection
 @section('content')
+
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
+				@include('utils.message')
 				<br>
 				<div class="row">
 					<div class="col-md-4">
 						<div class="card">
 							<div class="card-block">
 								<center>
-									<img alt="{!! $data->username !!}" src="../resources/upload/user/{!! $data->avatar !!}" class="img-circle">
+									<div class="img-avatar-profile-page">
+										<img alt="{!! $data->username !!}" src="../resources/upload/user/{!! $data->avatar !!}" class="img-circle">
+									</div>
+									@if($data->level == 1)
+										<div class="img-vip-user-profile">
+											<img alt="VIP" src="../public/img/original/vip.png" class="img-vip-user">
+										</div>
+									@endif
 									<h3 class="text-center">
 										{!! $data->usernname !!}
 									</h3>
@@ -65,59 +74,93 @@
 								</div>
 
 								@if(Auth::id()==$data->id)
-									{{--<input type="hidden" name="_token" value="{!!csrf_token()!!}" action="{!!route('profile')!!}" method="POST" enctype="multipart/form-data"> --}}
-									<a href="#" class="btn btn-block btn-pf" type="button" data-toggle="modal" data-target="#editProfile">Sửa thông tin</a>
-									<!-- Modal -->
-									<div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="editProfile" aria-hidden="true">
-										<div class="modal-dialog" role="document">
-											<!-- Modal content-->
-											<div class="modal-content">
-
-												<div class="modal-header">
-													<h4 class="modal-title" id="exampleModalLabel">Thông tin của bạn</h4>
-													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-														<span aria-hidden="true">&times;</span>
-													</button>
-												</div>
-
-												<div class="modal-body">
-													<div class="input-group">
-														<span class="input-group-addon" id="addon-fullname">Họ &amp tên</span>
-														<input type="text" class="form-control" value="{!! $data->fullname !!}" placeholder="Họ tên" id="fullname" name="fullname" aria-describedby="addon-fullname">
+									@if($data->level == 0)
+									<div class="upgrade-account-custom">
+										<button class="btn btn-primary btn-show-upgrade-info" data-toggle="modal" data-target=".modal-info-vip">Nâng cấp tài khoản</button>
+										<div class="modal fade modal-info-vip" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+											<div class="modal-dialog modal-lg">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="modal-info-vip-itle">Quyền lợi VIP</h5>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
 													</div>
-													<br />
-													<div class="input-group">
-														<span class="input-group-addon" id="addon-username">Nickname</span>
-														<input type="text" class="form-control" value="{!! $data->username !!}" id="nickname" name="nickname" aria-describedby="addon-username">
+													<div class="modal-body">
+														<ul class="vip-detail-info">
+															<li>Số lượng bài đăng: 10</li>
+															<li>Bài đăng nằm trong Danh sách các tin nổi bật (Trang chủ)</li>
+															{{--<li>Tăng thời lượng tự động xóa tin lên 30 ngày</li>--}}
+															<li>Tài khoản có khung riêng biệt: Viền Avatar màu vàng,  sau tên tài khoản ở các trang có chữ VIP</li>
+														</ul>
 													</div>
-													<br />
-													<div class="input-group">
-														<span class="input-group-addon" id="addon-phone">Điện thoại</span>
-														<input type="text" class="form-control" value="{!! $data->phone !!}" id="sdt" name="sdt" aria-describedby="addon-phone">
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+														<form action="{{url('payment')}}" method="POST" role="form">
+															{{csrf_field()}}
+															<button type="submit" class="btn btn-primary btn-upgrade-vip">Nâng cấp tài khoản</button>
+														</form>
+														{{--<button type="button" class="btn btn-primary">Save changes</button>--}}
 													</div>
-													<br />
-													<div class="input-group">
-														<span class="input-group-addon" id="addon-email">Email</span>
-														<input type="text" class="form-control" value="{!! $data->email !!}" id="email" aria-describedby="addon-email" readonly>
-													</div>
-													<br />
-													<div class="input-group">
-														<span class="input-group-addon" id="addon-address">Địa chỉ</span>
-														<input type="text" class="form-control" value="{!! $data->address !!}" id="address" name="address" aria-describedby="addon-address">
-													</div>
-													<br />
-
-
-
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-success" data-dismiss="modal">Lưu &amp Thoát</button>
 												</div>
 											</div>
+										</div>
 
+									</div>
+									@endif
+									<div class="change-info-custom">
+										<a href="#" class="btn btn-block btn-pf" type="button" data-toggle="modal" data-target="#editProfile">Sửa thông tin</a>
+										<!-- Modal -->
+										<div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="editProfile" aria-hidden="true">
+											<div class="modal-dialog" role="document">
+												<!-- Modal content-->
+												<div class="modal-content">
+
+													<div class="modal-header">
+														<h4 class="modal-title" id="exampleModalLabel">Thông tin của bạn</h4>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+
+													<div class="modal-body">
+														<div class="input-group">
+															<span class="input-group-addon" id="addon-fullname">Họ &amp tên</span>
+															<input type="text" class="form-control" value="{!! $data->fullname !!}" placeholder="Họ tên" id="fullname" name="fullname" aria-describedby="addon-fullname">
+														</div>
+														<br />
+														<div class="input-group">
+															<span class="input-group-addon" id="addon-username">Nickname</span>
+															<input type="text" class="form-control" value="{!! $data->username !!}" id="nickname" name="nickname" aria-describedby="addon-username">
+														</div>
+														<br />
+														<div class="input-group">
+															<span class="input-group-addon" id="addon-phone">Điện thoại</span>
+															<input type="text" class="form-control" value="{!! $data->phone !!}" id="sdt" name="sdt" aria-describedby="addon-phone">
+														</div>
+														<br />
+														<div class="input-group">
+															<span class="input-group-addon" id="addon-email">Email</span>
+															<input type="text" class="form-control" value="{!! $data->email !!}" id="email" aria-describedby="addon-email" readonly>
+														</div>
+														<br />
+														<div class="input-group">
+															<span class="input-group-addon" id="addon-address">Địa chỉ</span>
+															<input type="text" class="form-control" value="{!! $data->address !!}" id="address" name="address" aria-describedby="addon-address">
+														</div>
+														<br />
+
+
+
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-success" data-dismiss="modal">Lưu &amp Thoát</button>
+													</div>
+												</div>
+
+											</div>
 										</div>
 									</div>
-
 									{{--<a href="#" class="btn btn-block btn-pf" type="button" data-toggle="modal" data-target="#editpw">Đổi Mật Khẩu</a>
 									<!-- Modal -->
 									<div id="editpw" class="modal fade" role="dialog">

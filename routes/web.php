@@ -87,3 +87,6 @@ Route::get('logout',['as'=>'logout','uses'=>'Auth\LoginController@getLogout'])->
 
 //Noti
 Route::get('/mark-noti-as-read/{notiId}/{state}--{id}', ['as' => 'markNotiAsRead', 'uses' => 'NotificationController@delete'])->middleware('auth');
+
+//Paypal:
+Route::resource('payment', 'PaymentController');

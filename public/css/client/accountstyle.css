@@ -110,3 +110,16 @@ body {
 ************************/
 #hearts { color: #ee8b2d;}
 #hearts-existing { color: #ee8b2d;}
+
+.upgrade-account-custom {
+    margin-bottom: 15px;
+}
+
+button.btn.btn-primary.btn-show-upgrade-info {
+    width: 100%;
+}
+
+.img-vip-user-profile {
+    margin: 10px 0;
+}
+
