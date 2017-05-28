@@ -42,7 +42,7 @@ Route::get('mapStockInfoDetail/{id}',['as'=>'mapStockInfoDetail','uses'=>'Client
 Route::get('mapOrderInfoDetail/{id}',['as'=>'mapOrderInfoDetail','uses'=>'Client\HomeController@showMapOrderInfoDetail']);
 
 
-Route::group(['prefix'=>'admin'],function () {
+Route::group(['prefix'=>'admin','middleware'=>'auth'],function () {
 	Route::group(['prefix'=>'cate'],function () {
 		Route::get('list',['as'=>'admin.cate.list','uses'=>'Admin\CateController@getList']);
 		// Route::get('add',['as'=>'admin.cate.getAdd','uses'=>'Admin\CateController@getAdd']);

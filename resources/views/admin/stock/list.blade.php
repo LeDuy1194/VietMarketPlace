@@ -9,8 +9,9 @@
         <tr align="center">
             <th>Stt</th>
             <th>Tên tin rao bán</th>
+            <th>Người đăng</th>
             <th>Ngày đăng</th>
-            <th>Bị báo cáo</th>
+            <!-- <th>Bị báo cáo</th> -->
             <th>Xóa</th>
         </tr>
     </thead>
@@ -20,12 +21,16 @@
             $stt = ($page->currentPage() - 1) * $page->perPage();
         ?>
         @foreach($data as $item)
-        <?php $stt = $stt + 1 ?>
+        <?php
+            $stt = $stt + 1;
+            $user = App\Models\User::where('id','=',$item->user_id)->value('username');
+        ?>
         <tr>
             <th>{!! $stt !!}</th>
             <td>{!! $item->name !!}</td>
+            <td>{!! $user !!}</td>
             <td>{!! $item->created_at !!}</td>
-            <td>temp</td>
+            <!-- <td>temp</td> -->
             <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a onclick="return confirmation('Có xóa stock {!! $item->name !!} không?')" href="{!! URL::route('admin.stock.getDelete',$item->id) !!}"> Xóa</a></td>
         </tr>
         @endforeach

@@ -65,6 +65,6 @@ class Stock extends Model
 
     //Get admin paginate
     public function getAdminPage($number) {
-        return $this->select('id','name','created_at')->orderBy('updated_at','desc')->paginate($number,['*'],'stock');
+        return $this->select('id','name','created_at','user_id','cate_id')->orderBy('updated_at','desc')->paginate($number,['*'],'stock');
     }
 }

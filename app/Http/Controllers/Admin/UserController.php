@@ -24,10 +24,15 @@ class UserController extends Controller
 
     public function getDelete ($id) {
         $user = User::find($id);
-        $userName = $user->username;
-        $user->delete();
-        $message = ['flash_level'=>'success','flash_message'=>'Xóa tài khoản'.$userName.' thành công.'];
-        return redirect()->route('admin.order.list')->with($message);
+        if ($user->level != 2) {
+            $userName = $user->username;
+            $user->delete();
+            $message = ['flash_level'=>'success','flash_message'=>'Xóa tài khoản '.$userName.' thành công.'];
+        }
+        else {
+            $message = ['flash_level'=>'danger','flash_message'=>'Không thể xóa quản lý '.$userName.'!'];
+        }
+        return redirect()->route('admin.user.list')->with($message);
     }
 
     public function getEdit ($id) {
