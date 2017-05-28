@@ -13,7 +13,7 @@ class OrderController extends Controller {
     public function getList () {
         $number = 6;
         $model = new Order();
-        $data = $model->getPage($number);
+        $data = $model->getAdminPage($number);
         return view('admin.order.list',compact('data'));
     }
 

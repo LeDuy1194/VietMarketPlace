@@ -13,7 +13,7 @@ class StockController extends Controller {
     public function getList () {
         $number = 6;
         $model = new Stock();
-        $data = $model->getPage($number);
+        $data = $model->getAdminPage($number);
         return view('admin.stock.list',compact('data'));
     }
 

@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin - VMP</title>
     <link rel="stylesheet" href="{{asset('public/libs/bootstrap/css/bootstrap.min.css')}}"/>
@@ -16,9 +15,9 @@
     @include('layouts.header')
 
     <div class="row m-auto mt-2">
-        <div class="col-lg-2 col-md-0 hidden-md-down">
+        <div class="col-lg-2 col-md-12">
             <div class="nav flex-column">
-                <ul class="nav flex-column" id="side-menu">
+                {{-- <ul class="nav flex-column" id="side-menu">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                             Category<span class="fa arrow"></span>
@@ -52,8 +51,22 @@
                             Người dùng<span class="fa arrow"></span>
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Danh sách Người dùng</a>
-                            <a class="dropdown-item" href="#">Thêm Người dùng</a>
+                            <a class="dropdown-item" href="{{route('admin.user.list')}}">Danh sách Người dùng</a>
+                            <a class="dropdown-item" href="{{route('admin.user.getAdd')}}">Thêm Người dùng</a>
+                        </div>
+                    </li>
+                </ul> --}}
+
+                <ul class="nav flex-column" id="side-menu">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            Danh sách<span class="fa arrow"></span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{route('admin.cate.list')}}">Category</a>
+                            <a class="dropdown-item" href="{{route('admin.stock.list')}}">Tin rao bán</a>
+                            <a class="dropdown-item" href="{{route('admin.order.list')}}">Tin tìm mua</a>
+                            <a class="dropdown-item" href="{{route('admin.user.list')}}">Người dùng</a>
                         </div>
                     </li>
                 </ul>

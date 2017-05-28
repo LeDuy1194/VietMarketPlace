@@ -64,4 +64,9 @@ class Order extends Model
         $result = $order_query->get();
         return $result;
     }
+
+    //Get admin paginate
+    public function getAdminPage($number) {
+        return $this->select('id','name','created_at')->orderBy('updated_at','desc')->paginate($number,['*'],'order');
+    }
 }
