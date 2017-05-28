@@ -1,10 +1,10 @@
 @extends('admin.master')
 @section('controller')Category
-@endsection()
+@endsection
 @section('action')Thêm
-@endsection()
+@endsection
 @section('content')
-<div class="col-lg-7 col-sm-12" style="padding-bottom:120px">
+<div class="col-lg-7 col-sm-12">
     @include('errors.input')
     <form action="{!!route('admin.cate.getAdd')!!}" method="POST">
         <input type="hidden" name="_token" value="{!!csrf_token()!!}"/>
@@ -27,4 +27,4 @@
         <button type="reset" class="btn btn-default">Reset</button>
     </form>
 </div>
-@endsection()
+@endsection
