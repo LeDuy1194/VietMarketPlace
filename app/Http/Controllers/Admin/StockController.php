@@ -4,8 +4,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Models\Cate;
-use App\Models\User;
 use App\Models\Stock;
 use Illuminate\Support\Facades\File;
 
@@ -13,7 +11,7 @@ class StockController extends Controller {
     public function getList () {
         $number = 6;
         $model = new Stock();
-        $data = $model->getPage($number);
+        $data = $model->getAdminPage($number);
         return view('admin.stock.list',compact('data'));
     }
 

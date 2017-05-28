@@ -25,10 +25,6 @@ Route::post('password/email',['as'=>'password.email','uses'=>'Auth\ForgotPasswor
 Route::get('password/reset/{token}',['as'=>'password.reset','uses'=>'Auth\ResetPasswordController@showResetForm']);
 Route::post('password/reset',['uses'=>'Auth\ResetPasswordController@reset']);
 
-// Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
-// Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-// Route::get('password/reset/{token?}', 'Auth\ResetPasswordController@showResetForm');
-
 Route::get('home',['as'=>'Home','uses'=>'Client\HomeController@showHome']);
 
 Route::get('mystore',['as'=>'MyStore','uses'=>'Client\HomeController@showMyStore'])->middleware('auth');
@@ -38,7 +34,7 @@ Route::get('stock-detail/{id}',['as'=>'stockDetail','uses'=>'Client\HomeControll
 
 Route::post('order-detail/{id}',['as'=>'postReview','uses'=>'Client\HomeController@postReview']);
 
-Route::get('profile/{user_name}', ['as'=>'profile', 'uses'=>'Client\ClientController@profileDetail']);
+Route::get('profile/{user_name}', ['as'=>'profile', 'uses'=>'Client\ClientController@profileDetail'])->middleware('auth');
 //Route::get('profile/{user_name}', ['as'=>'editprofile', 'uses'=>'Client\ClientController@postProfile']);
 
 Route::get('map',['as'=>'Map','uses'=>'Client\HomeController@showMap']);
@@ -49,11 +45,11 @@ Route::get('mapOrderInfoDetail/{id}',['as'=>'mapOrderInfoDetail','uses'=>'Client
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function () {
 	Route::group(['prefix'=>'cate'],function () {
 		Route::get('list',['as'=>'admin.cate.list','uses'=>'Admin\CateController@getList']);
-		Route::get('add',['as'=>'admin.cate.getAdd','uses'=>'Admin\CateController@getAdd']);
-		Route::post('add',['as'=>'admin.cate.postAdd','uses'=>'Admin\CateController@postAdd']);
+		// Route::get('add',['as'=>'admin.cate.getAdd','uses'=>'Admin\CateController@getAdd']);
+		// Route::post('add',['as'=>'admin.cate.postAdd','uses'=>'Admin\CateController@postAdd']);
 		Route::get('delete/{id}',['as'=>'admin.cate.getDelete','uses'=>'Admin\CateController@getDelete']);
-		Route::get('edit/{id}',['as'=>'admin.cate.getEdit','uses'=>'Admin\CateController@getEdit']);
-		Route::post('edit/{id}',['as'=>'admin.cate.postEdit','uses'=>'Admin\CateController@postEdit']);
+		// Route::get('edit/{id}',['as'=>'admin.cate.getEdit','uses'=>'Admin\CateController@getEdit']);
+		// Route::post('edit/{id}',['as'=>'admin.cate.postEdit','uses'=>'Admin\CateController@postEdit']);
 	});
 	Route::group(['prefix'=>'stock'],function () {
 		Route::get('list',['as'=>'admin.stock.list','uses'=>'Admin\StockController@getList']);
@@ -63,13 +59,21 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function () {
 		Route::get('list',['as'=>'admin.order.list','uses'=>'Admin\OrderController@getList']);
 		Route::get('delete/{id}',['as'=>'admin.order.getDelete','uses'=>'Admin\OrderController@getDelete']);
 	});
+	Route::group(['prefix'=>'user'],function () {
+		Route::get('list',['as'=>'admin.user.list','uses'=>'Admin\UserController@getList']);
+		// Route::get('add',['as'=>'admin.user.getAdd','uses'=>'Admin\UserController@getAdd']);
+		// Route::post('add',['as'=>'admin.user.postAdd','uses'=>'Admin\UserController@postAdd']);
+		Route::get('delete/{id}',['as'=>'admin.user.getDelete','uses'=>'Admin\UserController@getDelete']);
+		// Route::get('edit/{id}',['as'=>'admin.user.getEdit','uses'=>'Admin\UserController@getEdit']);
+		// Route::post('edit/{id}',['as'=>'admin.user.postEdit','uses'=>'Admin\UserController@postEdit']);
+	});
 });
 
 Route::get('listbycate/{id}',['as'=>'listByCate','uses'=>'Client\HomeController@listByCate']);
 
 //user upload
 Route::get('upload',['as'=>'getupload','uses'=>'Client\ClientController@getUpload'])->middleware('auth');
-Route::post('upload',['as'=>'postupload','uses'=>'Client\ClientController@postUpload']);
+Route::post('upload',['as'=>'postupload','uses'=>'Client\ClientController@postUpload'])->middleware('auth');
 
 //user edit, delete
 Route::get('delete/{state}--{id}',['as'=>'getDeleteProduct','uses'=>'Client\ClientController@getDeleteProduct'])->middleware('auth');

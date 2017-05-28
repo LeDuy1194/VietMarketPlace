@@ -62,4 +62,9 @@ class Stock extends Model
         $result = $stock_query->get();
         return $result;
     }
+
+    //Get admin paginate
+    public function getAdminPage($number) {
+        return $this->select('id','name','created_at','user_id','cate_id')->orderBy('updated_at','desc')->paginate($number,['*'],'stock');
+    }
 }

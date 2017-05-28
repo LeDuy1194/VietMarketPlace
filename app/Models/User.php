@@ -59,4 +59,9 @@ class User extends Authenticatable
     public function getDetailUserByUserID($user_id) {
         return $this->where('id', $user_id)->first();
     }
+
+    //Get paginate
+    public function getAdminPage($number) {
+        return $this->select('id','username','email','phone','level')->where('level','<',2)->orderBy('id','asc')->paginate($number,['*'],'user');
+    }
 }
