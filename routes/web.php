@@ -35,7 +35,7 @@ Route::get('stock-detail/{id}',['as'=>'stockDetail','uses'=>'Client\HomeControll
 Route::post('order-detail/{id}',['as'=>'postReview','uses'=>'Client\HomeController@postReview']);
 
 Route::get('profile/{user_name}', ['as'=>'profile', 'uses'=>'Client\ClientController@profileDetail'])->middleware('auth');
-//Route::get('profile/{user_name}', ['as'=>'editprofile', 'uses'=>'Client\ClientController@postProfile']);
+Route::post('update-profile/{user_id}', ['as'=>'editProfile', 'uses'=>'Client\ClientController@postProfile']);
 
 Route::get('map',['as'=>'Map','uses'=>'Client\HomeController@showMap']);
 Route::get('mapStockInfoDetail/{id}',['as'=>'mapStockInfoDetail','uses'=>'Client\HomeController@showMapStockInfoDetail']);

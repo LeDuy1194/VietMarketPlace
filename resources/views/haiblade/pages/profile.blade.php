@@ -124,37 +124,38 @@
 													</div>
 
 													<div class="modal-body">
-														<div class="input-group">
-															<span class="input-group-addon" id="addon-fullname">Họ &amp tên</span>
-															<input type="text" class="form-control" value="{!! $data->fullname !!}" placeholder="Họ tên" id="fullname" name="fullname" aria-describedby="addon-fullname">
-														</div>
-														<br />
-														<div class="input-group">
-															<span class="input-group-addon" id="addon-username">Nickname</span>
-															<input type="text" class="form-control" value="{!! $data->username !!}" id="nickname" name="nickname" aria-describedby="addon-username">
-														</div>
-														<br />
-														<div class="input-group">
-															<span class="input-group-addon" id="addon-phone">Điện thoại</span>
-															<input type="text" class="form-control" value="{!! $data->phone !!}" id="sdt" name="sdt" aria-describedby="addon-phone">
-														</div>
-														<br />
-														<div class="input-group">
-															<span class="input-group-addon" id="addon-email">Email</span>
-															<input type="text" class="form-control" value="{!! $data->email !!}" id="email" aria-describedby="addon-email" readonly>
-														</div>
-														<br />
-														<div class="input-group">
-															<span class="input-group-addon" id="addon-address">Địa chỉ</span>
-															<input type="text" class="form-control" value="{!! $data->address !!}" id="address" name="address" aria-describedby="addon-address">
-														</div>
-														<br />
-
-
-
+														<form role="form" id="update_profile_form" action="{{route('editProfile', $data->id)}}" method="POST">
+															<input type="hidden" name="_token" value="{!!csrf_token()!!}">
+															<div class="input-group">
+																<span class="input-group-addon" id="addon-fullname">Họ &amp tên</span>
+																<input type="text" class="form-control" value="{!! $data->fullname !!}" placeholder="Họ tên" id="fullname" name="fullname" aria-describedby="addon-fullname">
+															</div>
+															<br />
+															<div class="input-group">
+																<span class="input-group-addon" id="addon-username">Nickname</span>
+																<input type="text" class="form-control" value="{!! $data->username !!}" id="username" name="username" aria-describedby="addon-username">
+															</div>
+															<br />
+															<div class="input-group">
+																<span class="input-group-addon" id="addon-phone">Điện thoại</span>
+																<input type="text" class="form-control" value="{!! $data->phone !!}" id="phone" name="phone" aria-describedby="addon-phone">
+															</div>
+															<br />
+															<div class="input-group">
+																<span class="input-group-addon" id="addon-email">Email</span>
+																<input type="text" class="form-control" value="{!! $data->email !!}" id="email" aria-describedby="addon-email" readonly>
+															</div>
+															<br />
+															<div class="input-group">
+																<span class="input-group-addon" id="addon-address">Địa chỉ</span>
+																<input type="text" class="form-control" value="{!! $data->address !!}" id="address" name="address" aria-describedby="addon-address">
+															</div>
+															<br />
+														</form>
 													</div>
 													<div class="modal-footer">
-														<button type="button" class="btn btn-success" data-dismiss="modal">Lưu &amp Thoát</button>
+														<button type="submit" class="btn btn-success" form="update_profile_form">Lưu &amp Thoát</button>
+														<button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
 													</div>
 												</div>
 

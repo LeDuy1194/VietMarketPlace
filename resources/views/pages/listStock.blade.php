@@ -229,6 +229,7 @@ Date: 21/02/2017
 					<div class="card-block collapse show" id="reportProduct">
 						<form role="form" action="{!!route('postReview',[$data->id])!!}" method="POST" enctype="multipart/form-data">
 							<input type="hidden" name="_token" value="{!!csrf_token()!!}">
+							<input type="hidden" name="parentCt" value="stock">
 							<div class="form-group">
 								<textarea name="comment" id="comment" rows="4" cols="30" maxlength="100" class="form-control" placeholder="Nội dung đánh giá" style="resize: none;"></textarea>
 							</div>
