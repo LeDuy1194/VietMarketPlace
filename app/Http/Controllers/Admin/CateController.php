@@ -26,7 +26,7 @@ class CateController extends Controller
     	$cate->parent_id = $request->sltParent;
     	$cate->save();
     	return redirect()->route('admin.cate.list')
-    		->with(['flash_level'=>'success','flash_message'=>'Thành công thêm Category']);
+    		->with(['flash_level'=>'success message-custom','flash_message'=>'Thành công thêm Category']);
     }
 
     public function getDelete ($id) {
@@ -34,7 +34,7 @@ class CateController extends Controller
         if ($parent == 0) {
             $cate = Cate::find($id);
             $cate->delete();
-            return redirect()->route('admin.cate.list')->with(['flash_level'=>'warning','flash_message'=>'Thành công xóa Category']);
+            return redirect()->route('admin.cate.list')->with(['flash_level'=>'warning message-custom','flash_message'=>'Thành công xóa Category']);
         }
         else {
             echo "<script type='text/javascript'>
@@ -64,6 +64,6 @@ class CateController extends Controller
         $cate->parent_id = $request->sltParent;
         $cate->save();
         return redirect()->route('admin.cate.list')
-            ->with(['flash_level'=>'success','flash_message'=>'Thành công sửa Category']);
+            ->with(['flash_level'=>'success message-custom','flash_message'=>'Thành công sửa Category']);
     }
 }

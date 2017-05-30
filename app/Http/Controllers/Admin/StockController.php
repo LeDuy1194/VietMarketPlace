@@ -22,7 +22,7 @@ class StockController extends Controller {
         File::deleteDirectory($directory);
         $productName = $product->name;
         $product->delete();
-        $message = ['flash_level'=>'success','flash_message'=>'Xóa '.$productName.' thành công.'];
+        $message = ['flash_level'=>'success message-custom','flash_message'=>'Xóa '.$productName.' thành công.'];
         return redirect()->route('admin.stock.list')->with($message);
     }
 }

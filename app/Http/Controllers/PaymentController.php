@@ -76,14 +76,14 @@ class PaymentController extends Controller
                 $user->level = 1;
                 $user->save();
                 return redirect()->route('profile', $user_name)
-                    ->with(['flash_level'=>'success','flash_message'=>'Tài khoản của bạn đã được nâng lên VIP']);
+                    ->with(['flash_level'=>'success message-custom','flash_message'=>'Tài khoản của bạn đã được nâng lên VIP']);
             }
             return redirect()->route('profile', $user_name)
-                ->with(['flash_level'=>'danger','flash_message'=>'Nâng cấp tài khoản lỗi, bạn vui lòng kiểm tra lại thông tin chính xác!']);
+                ->with(['flash_level'=>'danger message-custom','flash_message'=>'Nâng cấp tài khoản lỗi, bạn vui lòng kiểm tra lại thông tin chính xác!']);
 //            dd($result);
         } catch (Exception $e) {
             return redirect()->route('profile', $user_name)
-                ->with(['flash_level'=>'danger','flash_message'=>'Nâng cấp tài khoản lỗi, bạn vui lòng kiểm tra lại thông tin chính xác!']);
+                ->with(['flash_level'=>'danger message-custom','flash_message'=>'Nâng cấp tài khoản lỗi, bạn vui lòng kiểm tra lại thông tin chính xác!']);
         }
     }
 

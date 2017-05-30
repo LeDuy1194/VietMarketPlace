@@ -27,10 +27,10 @@ class UserController extends Controller
         if ($user->level != 2) {
             $userName = $user->username;
             $user->delete();
-            $message = ['flash_level'=>'success','flash_message'=>'Xóa tài khoản '.$userName.' thành công.'];
+            $message = ['flash_level'=>'success message-custom','flash_message'=>'Xóa tài khoản '.$userName.' thành công.'];
         }
         else {
-            $message = ['flash_level'=>'danger','flash_message'=>'Không thể xóa quản lý '.$userName.'!'];
+            $message = ['flash_level'=>'danger message-custom','flash_message'=>'Không thể xóa quản lý '.$userName.'!'];
         }
         return redirect()->route('admin.user.list')->with($message);
     }
