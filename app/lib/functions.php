@@ -18,7 +18,8 @@ function stripUnicode($str) {
 			'u' => 'ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự',
 			'U' => 'Ú|Ù|Ủ|Ũ|Ụ|Ư|Ứ|Ừ|Ử|Ữ|Ự',
 			'y' => 'ý|ỳ|ỷ|ỹ|ỵ',
-			'Y' => 'Ý|Ỳ|Ỷ|Ỹ|Ỵ'
+			'Y' => 'Ý|Ỳ|Ỷ|Ỹ|Ỵ',
+            '_' => ' '
 		);
 		foreach($unicode as $khongdau=>$codau) {
 			$arr = explode("|",$codau);

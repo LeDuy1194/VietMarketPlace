@@ -10,12 +10,17 @@ socket.on('message', function (data) {
     var dataJSON = JSON.parse(data);
     var dataProduct = dataJSON.result_match;
     var url = 'http://vietmarket.dev/match/' + dataJSON.type + '--' + dataProduct.id;
+    var type_noti = '';
+    if (dataJSON.type == 'order') {
+        type_noti = 'Tin tìm mua của bạn!';
+    }
+    else type_noti = 'Tin rao bán của bạn!';
     console.log('url link: ' + url);
     var img_feature = '../resources/upload/' + dataJSON.type + 's/' + dataJSON.type + '-' + dataProduct.id + '/' + dataProduct.img;
     console.log('data matching: ' + dataJSON.type);
     // console.log('data user: ' + result_match.user_id);
     notify = new Notification(
-        'Bạn có một thông báo mới từ VietMarketPlace', // Tiêu đề thông báo
+        type_noti, // Tiêu đề thông báo
         {
             body: 'VietMarketPlace vừa có kết quả matching cho ' + dataProduct.name, // Nội dung thông báo
             icon: img_feature, // Hình ảnh

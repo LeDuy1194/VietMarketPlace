@@ -18,6 +18,7 @@ use App\Models\OrderTag;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\City;
+use App\Models\MatchNotification;
 use App\Models\District;
 use App\Models\Match;
 use Illuminate\Support\Facades\File;
@@ -79,6 +80,8 @@ class ClientController extends Controller
     public function postUpload(ClientUpRequest $request) {
         $user_id = Auth::id();
         $img_main = $request->file('image-main')->getClientOriginalName();
+        $img_main = stripUnicode($img_main);
+//        dd($img_main);
         $img_main = 'main-' . $img_main;
         $cate_parent = $_POST['prtcate'];
 
@@ -119,8 +122,14 @@ class ClientController extends Controller
             //Stock_image
             $img_details = [];
             $img_detail_1 = $request->file('image-detail-1')->getClientOriginalName();
+            $img_detail_1 = stripUnicode($img_detail_1);
+
             $img_detail_2 = $request->file('image-detail-2')->getClientOriginalName();
+            $img_detail_2 = stripUnicode($img_detail_2);
+
             $img_detail_3 = $request->file('image-detail-3')->getClientOriginalName();
+            $img_detail_3 = stripUnicode($img_detail_3);
+
             $img_details['image-detail-1'] =  'detail-' . $img_detail_1;
             $img_details['image-detail-2'] =  'detail-' . $img_detail_2;
             $img_details['image-detail-3'] =  'detail-' . $img_detail_3;
@@ -185,8 +194,14 @@ class ClientController extends Controller
             //Order_image
             $img_details = [];
             $img_detail_1 = $request->file('image-detail-1')->getClientOriginalName();
+            $img_detail_1 = stripUnicode($img_detail_1);
+
             $img_detail_2 = $request->file('image-detail-2')->getClientOriginalName();
+            $img_detail_2 = stripUnicode($img_detail_2);
+
             $img_detail_3 = $request->file('image-detail-3')->getClientOriginalName();
+            $img_detail_3 = stripUnicode($img_detail_3);
+
             $img_details['image-detail-1'] =  'detail-' . $img_detail_1;
             $img_details['image-detail-2'] =  'detail-' . $img_detail_2;
             $img_details['image-detail-3'] =  'detail-' . $img_detail_3;
@@ -223,16 +238,21 @@ class ClientController extends Controller
             //Matching
             $result_data = matchSearching($order,'stocks');
         }
-//        var_dump($result_data);
+
 //        $redis = LRedis::connection();
 //        $redis->publish('updateSocket', $user_id);
         $type = $result_data['type_match'];
         $result_matching = $result_data['matching'];
+//        var_dump($result_matching);
+        $matchNotification = new MatchNotification();
 
         foreach ($result_matching as $result_match) {
-            $user_id = $result_match->user_id;
+            $product_id = $result_match->id;
+//            var_dump($result_match->id);
             $redis = LRedis::connection();
             $redis->publish('message', json_encode(['type' => $type, 'result_match' => $result_match]));
+            $matchNoti = $matchNotification->createNewMatchNotification($product_id, $type);
+//            dd($matchNoti);
         }
 //        dd($result_matching);
         // After
