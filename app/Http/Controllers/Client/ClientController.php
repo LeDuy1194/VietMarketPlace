@@ -275,29 +275,22 @@ class ClientController extends Controller
         return view('haiblade.pages.profile', compact('data','review','userModel','vote'));
     }
 
-    public function postProfile($user_id, Request $request) {
+    public function postProfile($user_id, UpdateProfileRequest $request) {
         $userModel = new User();
         $data = $userModel->getDetailUserByUserId($user_id);
 
-        $this->validate($request,
-            ['username'=>'required|unique:users',
-            'phone'=>'required|unique:users',
-            'email'=>'required|email|unique:users'],
-            ['username.required'=>'Vui lòng nhập username.',
-            'username.unique'=>'Nickname đã có người sử dụng.',
-            'phone.required'=>'Vui lòng nhập số điện thoại.',
-            'phone.unique'=>'Tài khoản đã tồn tại.',
-            'email.required'=>'Vui lòng nhập email.',
-            'email.unique'=>'Tài khoản đã tồn tại.'
-            ]
-        );
-        $data->fullname = $request->fullname;
-        $data->username = $request->username;
-        $data->phone = $request->phone;
-        $data->address = $request->address;
-        $data->save();
-
-        $message = ['flash_level'=>'success','flash_message'=>'Sửa thông tin thành công.'];
+        $temp = User::where('username','=',$request->username)->value('id');
+        if (($temp == $user_id)||($temp == NULL)) {
+            $data->fullname = $request->fullname;
+            $data->phone = $request->phone;
+            $data->address = $request->address;
+            $data->username = $request->username;
+            $data->save();
+            $message = ['flash_level'=>'success','flash_message'=>'Sửa thông tin thành công.'];
+        }
+        else {
+            $message = ['flash_level'=>'danger','flash_message'=>'Nickname đã có người sử dụng.'];
+        }
         return redirect()->Route('profile', $data->username)->with($message);
     }
 }

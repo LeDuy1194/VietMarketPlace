@@ -8,6 +8,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				@include('utils.message')
+				@include('errors.input')
 				<br>
 				<div class="row">
 					<div class="col-md-4">

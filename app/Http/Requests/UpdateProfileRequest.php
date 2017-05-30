@@ -24,20 +24,18 @@ class UpdateProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'username'=>'required|unique:users',
-            'phone'=>'required|unique:users',
-            'email'=>'required|email|unique:users'
+            'username'=>'required',
+            'phone'=>'required|min:8',
+            'address'=>'required'
         ];
     }
     public function messages()
     {
         return [
             'username.required'=>'Vui lòng nhập username.',
-            'username.unique'=>'Nickname đã có người sử dụng.',
             'phone.required'=>'Vui lòng nhập số điện thoại.',
-            'phone.unique'=>'Tài khoản đã tồn tại.',
-            'email.required'=>'Vui lòng nhập email.',
-            'email.unique'=>'Tài khoản đã tồn tại.'
+            'phone.min'=>'Điện thoại sai định dạng.',
+            'address.required'=>'Vui lòng nhập địa chỉ.'
         ];
     }
 }
