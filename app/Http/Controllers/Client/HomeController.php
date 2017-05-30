@@ -86,7 +86,12 @@ class HomeController extends Controller {
     }
 
     public function postReview($id, ReviewRequest $request) {
-        $data = Stock::find($id);
+        if ($_POST['parentCt'] == 'stock') {
+            $data = Stock::find($id);
+        }
+        else {
+            $data = Order::find($id);
+        }
         $cate = Cate::find($data['cate_id']);
         $userModel = new User();
         $author = $userModel->getDetailUserByUserID($data['user_id']);

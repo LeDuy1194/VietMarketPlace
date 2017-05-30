@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientUpRequest;
+use App\Http\Requests\UpdateProfileRequest;
 use App\Models\Stock;
 use App\Models\Order;
 use App\Models\Cate;
@@ -273,15 +274,30 @@ class ClientController extends Controller
         //dd($guest);
         return view('haiblade.pages.profile', compact('data','review','userModel','vote'));
     }
-    /*public function postProfile($user_name, Request $request) {
-        $userModel = new User();
-        $data = $userModel->getDetailUserByUserName($user_name);
 
+    public function postProfile($user_id, Request $request) {
+        $userModel = new User();
+        $data = $userModel->getDetailUserByUserId($user_id);
+
+        $this->validate($request,
+            ['username'=>'required|unique:users',
+            'phone'=>'required|unique:users',
+            'email'=>'required|email|unique:users'],
+            ['username.required'=>'Vui lòng nhập username.',
+            'username.unique'=>'Nickname đã có người sử dụng.',
+            'phone.required'=>'Vui lòng nhập số điện thoại.',
+            'phone.unique'=>'Tài khoản đã tồn tại.',
+            'email.required'=>'Vui lòng nhập email.',
+            'email.unique'=>'Tài khoản đã tồn tại.'
+            ]
+        );
         $data->fullname = $request->fullname;
-        $data->username = $request->nickname;
-        $data->phone = $request->sdt;
+        $data->username = $request->username;
+        $data->phone = $request->phone;
         $data->address = $request->address;
         $data->save();
-        return redirect()->Route('profile');
-    }*/
+
+        $message = ['flash_level'=>'success','flash_message'=>'Sửa thông tin thành công.'];
+        return redirect()->Route('profile', $data->username)->with($message);
+    }
 }

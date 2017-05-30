@@ -202,7 +202,7 @@ Date: 21/02/2017
 					</div>
 				</div>
 				@if(Auth::id()!=$author->id)
-				{{--<div class="card report-product-area">
+				<div class="card report-product-area">
 					<div class="card-header header-report-product card-header-custom">
 						<a class="fontItem" data-toggle="collapse" href="#reportProduct" aria-expanded="true" aria-controls="collapseInfo">
 							<h5 class="header-info-custom">Đánh giá người đăng</h5>
@@ -211,6 +211,7 @@ Date: 21/02/2017
 					<div class="card-block collapse show" id="reportProduct">
 						<form role="form" action="{!!route('postReview',[$data->id])!!}" method="POST" enctype="multipart/form-data">
 							<input type="hidden" name="_token" value="{!!csrf_token()!!}">
+							<input type="hidden" name="parentCt" value="order">
 							<div class="form-group">
 								<textarea name="comment" id="comment" rows="4" cols="30" maxlength="100" class="form-control" placeholder="Nội dung đánh giá" style="resize: none;"></textarea>
 							</div>
@@ -224,7 +225,7 @@ Date: 21/02/2017
 							</button>
 						</form>
 					</div>
-				</div>--}}
+				</div>
 				@endif
 			</div>
 		</div>
