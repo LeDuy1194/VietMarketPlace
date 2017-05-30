@@ -570,3 +570,11 @@ h5.btn-for-my-store-custom {
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
+
+.card-vip-user {
+    border: 3px solid #DACE0E;
+}
+
+.message-custom {
+    margin: 20px 0;
+}

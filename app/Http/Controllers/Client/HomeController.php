@@ -168,18 +168,18 @@ class HomeController extends Controller {
                 $fav = $favModel->getFav(Auth::id(),$id);
                 if ($fav != NULL) {
                     $fav->delete();
-                    $message = ['flash_level'=>'danger','flash_message'=>'Unlike S '.$check->name.' .'];
+                    $message = ['flash_level'=>'danger message-custom','flash_message'=>'Unlike S '.$check->name.' .'];
                 }
                 else {
                     $fav = new Fav();
                     $fav->user_id = Auth::id();
                     $fav->stock_id = $id;
                     $fav->save();
-                    $message = ['flash_level'=>'danger','flash_message'=>'Like S '.$check->name.' .'];
+                    $message = ['flash_level'=>'danger message-custom','flash_message'=>'Like S '.$check->name.' .'];
                 }
             }
             else {
-                $message = ['flash_level'=>'danger','flash_message'=>'Sản phẩm không tồn tại.'];
+                $message = ['flash_level'=>'danger message-custom','flash_message'=>'Sản phẩm không tồn tại.'];
             }
         }
         else {
@@ -189,18 +189,18 @@ class HomeController extends Controller {
                 $fav = $favModel->getFav(Auth::id(),$id);
                 if ($fav != NULL) {
                     $fav->delete();
-                    $message = ['flash_level'=>'danger','flash_message'=>'Unlike O '.$check->name.' .'];
+                    $message = ['flash_level'=>'danger message-custom','flash_message'=>'Unlike O '.$check->name.' .'];
                 }
                 else {
                     $fav = new FavO();
                     $fav->user_id = Auth::id();
                     $fav->order_id = $id;
                     $fav->save();
-                    $message = ['flash_level'=>'danger','flash_message'=>'Like O '.$check->name.' .'];
+                    $message = ['flash_level'=>'danger message-custom','flash_message'=>'Like O '.$check->name.' .'];
                 }
             }
             else {
-                $message = ['flash_level'=>'danger','flash_message'=>'Sản phẩm không tồn tại.'];
+                $message = ['flash_level'=>'danger message-custom','flash_message'=>'Sản phẩm không tồn tại.'];
             }
         }
         return back()->with($message);

@@ -51,7 +51,7 @@ class LoginController extends Controller
             'password' => $request->password
             );
         if (!Auth::attempt($login)) {
-            $message = ['flash_level'=>'danger','flash_message'=>'Thông tin email/password sai.'];
+            $message = ['flash_level'=>'danger message-custom','flash_message'=>'Thông tin email/password sai.'];
                 return redirect()->back()->with($message);
                 //return view('pages.myStore');
             }

@@ -54,7 +54,7 @@ class ClientController extends Controller
         $userModel = new User();
         $author = $userModel->getDetailUserByUserID(Auth::id());
         if (($author->phone == NULL)||($author->fullname == NULL)) {
-            $message = ['flash_level'=>'danger','flash_message'=>'Thiếu thông tin người dùng.'];
+            $message = ['flash_level'=>'danger message-custom','flash_message'=>'Thiếu thông tin người dùng.'];
             return redirect()->route('profile',$author->username)->with($message);
         }
         else {
@@ -63,7 +63,7 @@ class ClientController extends Controller
             $totalPost = $stockNumber + $orderNumber;
             $limit = $author->level * 5 + 5;
             if ($totalPost >= $limit) {
-                $message = ['flash_level'=>'danger','flash_message'=>'Không thể đăng nhiều hơn '.$limit.' tin.'];
+                $message = ['flash_level'=>'danger message-custom','flash_message'=>'Không thể đăng nhiều hơn '.$limit.' tin.'];
                 return redirect()->route('MyStore')->with($message);
             }
             else {
@@ -87,7 +87,7 @@ class ClientController extends Controller
         $totalPost = $author->stock()->count() + $author->order()->count();
         $limit = $author->level * 5 + 5;
         if ($totalPost >= $limit) {
-            $message = ['flash_level'=>'danger','flash_message'=>'Không thể đăng nhiều hơn '.$limit.' tin.'];
+            $message = ['flash_level'=>'danger message-custom','flash_message'=>'Không thể đăng nhiều hơn '.$limit.' tin.'];
             return redirect()->route('MyStore')->with($message);
         }
 
@@ -254,10 +254,10 @@ class ClientController extends Controller
             File::deleteDirectory($directory);
             $productName = $product->name;
             $product->delete();
-            $message = ['flash_level'=>'success','flash_message'=>'Xóa '.$productName.' thành công.'];
+            $message = ['flash_level'=>'success message-custom','flash_message'=>'Xóa '.$productName.' thành công.'];
         }
         else {
-            $message = ['flash_level'=>'danger','flash_message'=>'Bạn không phải là chủ tin này.'];
+            $message = ['flash_level'=>'danger message-custom','flash_message'=>'Bạn không phải là chủ tin này.'];
         }
         return redirect()->route('MyStore')->with($message);
     }
