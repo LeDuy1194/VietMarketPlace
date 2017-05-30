@@ -286,10 +286,10 @@ class ClientController extends Controller
             $data->address = $request->address;
             $data->username = $request->username;
             $data->save();
-            $message = ['flash_level'=>'success','flash_message'=>'Sửa thông tin thành công.'];
+            $message = ['flash_level'=>'success message-custom','flash_message'=>'Sửa thông tin thành công.'];
         }
         else {
-            $message = ['flash_level'=>'danger','flash_message'=>'Nickname đã có người sử dụng.'];
+            $message = ['flash_level'=>'danger message-custom','flash_message'=>'Nickname đã có người sử dụng.'];
         }
         return redirect()->Route('profile', $data->username)->with($message);
     }
