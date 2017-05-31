@@ -262,9 +262,10 @@ class ClientController extends Controller
                     $stock_id_match = $result_match->id;
                     $user_id_stock = $result_match->user_id;
                 }
-                $redis = LRedis::connection();
-                $redis->publish('message', json_encode(['type' => $type, 'result_match' => $result_match]));
                 $matchNoti = $matchNotification->createNewMatchNotification($stock_id_match, $order_id_match, $user_id_stock, $user_id_order);
+                $totalNoti = $matchNotification->getNumberNotificationNoRead($result_match->user_id);
+                $redis = LRedis::connection();
+                $redis->publish('message', json_encode(['type' => $type, 'result_match' => $result_match, 'totalNoti' => $totalNoti]));
             }
         }
 //        dd($result_matching);

@@ -63,9 +63,11 @@
                           ?>
                           <li class="notification-status img-status-header">
                               <i class="fa fa-flag noti-status img-status-custom" aria-hidden="true"></i>
-                              @if($totalMatchNoti != 0)
-                                  <sup class="total-noti">{!! $totalMatchNoti !!}</sup>
-                              @endif
+                              <span class="print-number-noti">
+                                   @if($totalMatchNoti != 0)
+                                      <sup class="total-noti">{!! $totalMatchNoti !!}</sup>
+                                  @endif
+                              </span>
                               <div id="notifications-container-menu">
                                   <div class="notifications-header">
                                       <h3 class="title-noti-menu">Thông báo</h3>

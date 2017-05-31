@@ -3,7 +3,9 @@
  */
 Notification.requestPermission();
 var myId = $('#auth_id_socket').data('user-id-socket');
+var oldTotalNoti = $('sup.total-noti').val();
 console.log('ID: ' + myId);
+console.log('oldTotalNoti: ' + oldTotalNoti);
 var socket = io.connect('http://vietmarketplace.dev:8890');
 socket.emit('updateSocket', myId);
 socket.on('message', function (data) {
@@ -16,7 +18,16 @@ socket.on('message', function (data) {
         type_noti = 'Tin tìm mua của bạn!';
     }
     else type_noti = 'Tin rao bán của bạn!';
-    console.log('url link: ' + url);
+    var totalNoti = dataJSON.totalNoti;
+    if (typeof oldTotalNoti === "undefined") {
+        $('.print-number-noti').append('<sup class="total-noti">' + totalNoti + '</sup>');
+    }
+    else {
+        $('sup.total-noti').html(totalNoti);
+    }
+    oldTotalNoti = totalNoti;
+        console.log('url link: ' + url);
+        console.log('$totalNoti: ' + totalNoti);
     var img_feature = '../resources/upload/' + dataJSON.type + 's/' + dataJSON.type + '-' + dataProduct.id + '/' + dataProduct.img;
     console.log('data matching: ' + dataJSON.type);
     // console.log('data user: ' + result_match.user_id);
