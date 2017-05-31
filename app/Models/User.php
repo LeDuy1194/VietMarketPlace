@@ -46,6 +46,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Order');
     }
 
+    public function matchNoti() {
+        return $this->hasMany('App\Models\MatchNotification');
+    }
+
     public function fav() {
         return $this->hasMany('App\Models\Fav');
     }

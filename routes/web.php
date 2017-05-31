@@ -41,6 +41,8 @@ Route::get('map',['as'=>'Map','uses'=>'Client\HomeController@showMap']);
 Route::get('mapStockInfoDetail/{id}',['as'=>'mapStockInfoDetail','uses'=>'Client\HomeController@showMapStockInfoDetail']);
 Route::get('mapOrderInfoDetail/{id}',['as'=>'mapOrderInfoDetail','uses'=>'Client\HomeController@showMapOrderInfoDetail']);
 
+Route::get('getMatchNotification/{user_id}',['as'=>'getMatchNotification','uses'=>'Client\MatchNotificationController@getMatchNotification'])->middleware('auth');
+
 
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function () {
 	Route::group(['prefix'=>'cate'],function () {

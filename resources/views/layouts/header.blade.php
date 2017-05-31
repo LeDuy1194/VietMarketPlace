@@ -8,7 +8,7 @@
           <!-- <a class="navbar-brand" href="{{url('/')}}"><img src="../public/img/logo.png" /></a> -->
               <a class="navbar-brand" href="{{url('/')}}">Viet Marketplace</a>
               <div class="collapse navbar-collapse navbar-custom-header" id="navbarSupportedContent">
-                  <ul class="navbar-nav navbar-custom-header primary-header-custom">
+                  <ul class="navbar-nav navbar-custom-header primary-header-custom navbar-menu-custom">
                       <li class="nav-item">
                           <div class="dropdown dropdown-cate-custom">
                               <button class="btn btn-secondary dropdown-toggle dropdown-custom-cate-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -55,22 +55,72 @@
                         <a class="nav-link" href="#">Về chúng tôi</a>
                       </li>--}}
                   </ul>
-                  <ul class="navbar-nav navbar-custom-header primary-header-custom">
+                  <ul class="navbar-nav navbar-custom-header primary-header-custom navbar-info-custom">
                       @if(Auth::check())
-                          {{--<li class="img-wish-header img-status-header">--}}
-                              {{--<img alt="{!! Auth::user()->username !!}" src="../public/img/wish.png " class="img-circle img-status-custom">--}}
-                              {{--<span class="badge badge-danger">{!! $stock_author->count() !!}</span>--}}
-                          {{--</li>--}}
-                          {{--<li class="img-order-header img-status-header">--}}
-                              {{--<img alt="{!! Auth::user()->username !!}" src="../public/img/order.png " class="img-circle img-status-custom">--}}
-                          {{--</li>--}}
-                          {{--<li class="img-stock-header img-status-header">--}}
-                              {{--<img alt="{!! Auth::user()->username !!}" src="../public/img/stock.png " class="img-circle img-status-custom">--}}
-                          {{--</li>--}}
-                          <li class="img-avatar-header">
+                          <?php
+                          $matchNotiModel = new App\Models\MatchNotification();
+                          $totalMatchNoti = $matchNotiModel->getNumberNotificationNoRead(Auth::id());
+                          ?>
+                          <li class="notification-status img-status-header">
+                              <i class="fa fa-flag noti-status img-status-custom" aria-hidden="true"></i>
+                              @if($totalMatchNoti != 0)
+                                  <sup class="total-noti">{!! $totalMatchNoti !!}</sup>
+                              @endif
+                              <div id="notifications-container-menu">
+                                  <div class="notifications-header">
+                                      <h3 class="title-noti-menu">Thông báo</h3>
+                                  </div>
+                                  <div id="notifications-body">
+                                      <ul class="nav nav-pills" id="notification-tabs" role="tablist">
+                                          <li class="nav-item nav-custom nav-noti-menu nav-stock-noti">
+                                              <a class="nav-link active nav-stock-notis" href="#stockNotification" name="btnStockNotification">Tin rao bán
+                                                  <span class="badge badge-danger stock-notification-number"></span>
+                                              </a>
+                                          </li>
+                                          <li class="nav-item nav-custom nav-noti-menu nav-order-noti">
+                                              <a class="nav-link nav-order-notis" href="#orderNotification" name="btnOrderNotification">Tin tìm mua
+                                                  <span class="badge badge-danger order-notification-number"></span>
+                                              </a>
+                                          </li>
+                                      </ul>
+                                      <div class="tab-content list-noti-content">
+                                          <div class="row tab-pane active content-noti-custom" id="stockNotification" role="tabpanel">
+                                              {{--<div class="item-notification">--}}
+                                                  {{--<a href="#" class="link-to-match">--}}
+                                                      {{--<span class="img-product-noti">--}}
+                                                          {{--<img alt="{!! Auth::user()->username !!}" src="{!! asset('resources/upload/user/') !!}/{!! Auth::user()->avatar !!}" class="img-product-noti-header" />--}}
+                                                      {{--</span>--}}
+                                                      {{--<span class="item-content-noti">--}}
+                                                          {{--<div class="item-body-noti">--}}
+                                                              {{--VietMarketPlace vừa có kết quả matching mới cho--}}
+                                                          {{--</div>--}}
+                                                          {{--<div class="item-time-noti">--}}
+                                                              {{--<span class="img-time-noti">--}}
+                                                                  {{--<img alt="time-noti" src="../public/img/original/time.png" class="img-time-noti" />--}}
+                                                              {{--</span>--}}
+                                                              {{--<span class="time-ago-noti">--}}
+                                                                  {{--Cách đây 1h--}}
+                                                              {{--</span>--}}
+                                                          {{--</div>--}}
+                                                      {{--</span>--}}
+                                                      {{--<span class="check-read-noti">--}}
+                                                          {{----}}
+                                                      {{--</span>--}}
+                                                  {{--</a>--}}
+                                              {{--</div>--}}
+                                          </div>
+                                          <div class="row tab-pane content-noti-custom" id="orderNotification" role="tabpanel"></div>
+                                      </div>
+                                  </div>
+                                  <div class="notifications-footer">
+                                      <a class="show-all-notis" href="#">Xem tất cả</a>
+                                  </div>
+                              </div>
+                          </li>
+                          <li class="img-avatar-header img-status-header">
                               <img alt="{!! Auth::user()->username !!}" src="{!! asset('resources/upload/user/') !!}/{!! Auth::user()->avatar !!}" class="img-circle img-ava-header">
                           </li>
-                          <li class="dropdown dropdown-custom open">
+                          <li class="dropdown dropdown-custom open img-status-header">
                               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   {{Auth::user()->username}}
                               </button>

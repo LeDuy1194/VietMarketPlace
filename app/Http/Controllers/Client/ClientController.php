@@ -112,6 +112,8 @@ class ClientController extends Controller
             $stock->save();
 
             $stock_id = $stock->id;
+            $type_up = 'stock';
+            $info_up = $stock;
             $root_dir = base_path() . '/resources/upload/stocks/stock-' . $stock_id;
             if(!File::exists($root_dir)) {
                 // path does not exist
@@ -184,6 +186,8 @@ class ClientController extends Controller
             $order->save();
 
             $order_id = $order->id;
+            $type_up = 'order';
+            $info_up = $order;
             $root_dir = base_path() . '/resources/upload/orders/order-' . $order_id;
             if(!File::exists($root_dir)) {
                 // path does not exist
@@ -239,20 +243,29 @@ class ClientController extends Controller
             $result_data = matchSearching($order,'stocks');
         }
 
-//        $redis = LRedis::connection();
-//        $redis->publish('updateSocket', $user_id);
         $type = $result_data['type_match'];
         $result_matching = $result_data['matching'];
 //        var_dump($result_matching);
         $matchNotification = new MatchNotification();
 
-        foreach ($result_matching as $result_match) {
-            $product_id = $result_match->id;
-//            var_dump($result_match->id);
-            $redis = LRedis::connection();
-            $redis->publish('message', json_encode(['type' => $type, 'result_match' => $result_match]));
-            $matchNoti = $matchNotification->createNewMatchNotification($product_id, $type);
-//            dd($matchNoti);
+        if (sizeof($result_matching) != 0) {
+            foreach ($result_matching as $result_match) {
+                if ($type == 'order') {
+                    $order_id_match = $result_match->id;
+                    $user_id_order = $result_match->user_id;
+                    $stock_id_match = $stock_id;
+                    $user_id_stock = Auth::id();
+                }
+                else {
+                    $order_id_match = $order_id;
+                    $user_id_order = Auth::id();
+                    $stock_id_match = $result_match->id;
+                    $user_id_stock = $result_match->user_id;
+                }
+                $redis = LRedis::connection();
+                $redis->publish('message', json_encode(['type' => $type, 'result_match' => $result_match]));
+                $matchNoti = $matchNotification->createNewMatchNotification($stock_id_match, $order_id_match, $user_id_stock, $user_id_order);
+            }
         }
 //        dd($result_matching);
         // After
@@ -286,6 +299,7 @@ class ClientController extends Controller
     public function profileDetail($user_name) {
         $userModel = new User();
         $data = $userModel->getDetailUserByUserName($user_name);
+//        dd($data);
         $reviewModel = new Review();
         $review = $reviewModel->getReviewInfo($data->id);
         $vote = $reviewModel->getAverageVote($data->id);

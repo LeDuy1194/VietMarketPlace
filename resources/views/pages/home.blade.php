@@ -37,7 +37,7 @@ Update_at: 27/03/2017 by Anh Pham
 			</div>
 
 
-				<div class="row list-products-thumbnail">
+				<div class="list-products-thumbnail">
 					<h2 class="title-section-home bd-blue">Tin tìm mua</h2>
 					<div class="row list-products-thumbnail">
 					@foreach($order as $item)

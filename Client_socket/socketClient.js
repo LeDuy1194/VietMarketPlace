@@ -1,15 +1,16 @@
 /**
  * Created by nobikun1412 on 27-May-17.
  */
+Notification.requestPermission();
 var myId = $('#auth_id_socket').data('user-id-socket');
 console.log('ID: ' + myId);
-var socket = io.connect('http://vietmarket.dev:8890');
+var socket = io.connect('http://vietmarketplace.dev:8890');
 socket.emit('updateSocket', myId);
 socket.on('message', function (data) {
     console.log('data: ' + data);
     var dataJSON = JSON.parse(data);
     var dataProduct = dataJSON.result_match;
-    var url = 'http://vietmarket.dev/match/' + dataJSON.type + '--' + dataProduct.id;
+    var url = 'http://vietmarketplace.dev/match/' + dataJSON.type + '--' + dataProduct.id;
     var type_noti = '';
     if (dataJSON.type == 'order') {
         type_noti = 'Tin tìm mua của bạn!';
@@ -22,7 +23,7 @@ socket.on('message', function (data) {
     notify = new Notification(
         type_noti, // Tiêu đề thông báo
         {
-            body: 'VietMarketPlace vừa có kết quả matching cho ' + dataProduct.name, // Nội dung thông báo
+            body: 'VietMarketPlace vừa có kết quả matching mới cho ' + dataProduct.name, // Nội dung thông báo
             icon: img_feature, // Hình ảnh
             tag: url // Đường dẫn
         }
