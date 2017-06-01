@@ -58,8 +58,13 @@
                   <ul class="navbar-nav navbar-custom-header primary-header-custom navbar-info-custom">
                       @if(Auth::check())
                           <?php
-                          $matchNotiModel = new App\Models\MatchNotification();
-                          $totalMatchNoti = $matchNotiModel->getNumberNotificationNoRead(Auth::id());
+                          $stockNotiModel = new App\Models\StockNotification();
+                          $orderNotiModel = new App\Models\OrderNotification();
+                          $stockNotiNoRead = $stockNotiModel->getAllStockNotificationNoRead(Auth::id());
+                          $stockNotiNoRead = sizeof($stockNotiNoRead);
+                          $orderNotiNoRead = $orderNotiModel->getAllOrderNotificationNoRead(Auth::id());
+                          $orderNotiNoRead = sizeof($orderNotiNoRead);
+                          $totalMatchNoti = $stockNotiNoRead + $orderNotiNoRead;
                           ?>
                           <li class="notification-status img-status-header">
                               <i class="fa fa-flag noti-status img-status-custom" aria-hidden="true"></i>
@@ -87,35 +92,12 @@
                                       </ul>
                                       <div class="tab-content list-noti-content">
                                           <div class="row tab-pane active content-noti-custom" id="stockNotification" role="tabpanel">
-                                              {{--<div class="item-notification">--}}
-                                                  {{--<a href="#" class="link-to-match">--}}
-                                                      {{--<span class="img-product-noti">--}}
-                                                          {{--<img alt="{!! Auth::user()->username !!}" src="{!! asset('resources/upload/user/') !!}/{!! Auth::user()->avatar !!}" class="img-product-noti-header" />--}}
-                                                      {{--</span>--}}
-                                                      {{--<span class="item-content-noti">--}}
-                                                          {{--<div class="item-body-noti">--}}
-                                                              {{--VietMarketPlace vừa có kết quả matching mới cho--}}
-                                                          {{--</div>--}}
-                                                          {{--<div class="item-time-noti">--}}
-                                                              {{--<span class="img-time-noti">--}}
-                                                                  {{--<img alt="time-noti" src="../public/img/original/time.png" class="img-time-noti" />--}}
-                                                              {{--</span>--}}
-                                                              {{--<span class="time-ago-noti">--}}
-                                                                  {{--Cách đây 1h--}}
-                                                              {{--</span>--}}
-                                                          {{--</div>--}}
-                                                      {{--</span>--}}
-                                                      {{--<span class="check-read-noti">--}}
-                                                          {{----}}
-                                                      {{--</span>--}}
-                                                  {{--</a>--}}
-                                              {{--</div>--}}
                                           </div>
                                           <div class="row tab-pane content-noti-custom" id="orderNotification" role="tabpanel"></div>
                                       </div>
                                   </div>
                                   <div class="notifications-footer">
-                                      <a class="show-all-notis" href="#">Xem tất cả</a>
+                                      <h3 class="see-all-notis">Đánh dấu tất cả đã đọc</h3>
                                   </div>
                               </div>
                           </li>
