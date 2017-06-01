@@ -30,10 +30,12 @@ $( document ).ready(function() {
         if (!openNoti) {
             openNoti = true;
             $('#notifications-container-menu').show();
+            $('.noti-status').addClass('white-font-class');
         }
         else {
             openNoti = false;
             $('#notifications-container-menu').hide();
+            $('.noti-status').removeClass('white-font-class');
         }
         loadAllNotification();
     });

@@ -41,7 +41,8 @@ class MatchNotificationController extends Controller
             if (sizeof($orderNotis) != 0) {
                 foreach ($orderNotis as $index_order => $orderNoti) {
                     $order_notification = Order::find($orderNoti->order_id);
-                    $order_notification['noti_updated'] = $orderNoti->updated_at;
+                    $strTimeAgo = timeago($orderNoti->updated_at);
+                    $order_notification['noti_updated'] = $strTimeAgo;
                     $order_notification['read'] = $orderNoti->read;
                     array_push($result_order_notifications, $order_notification);
                 }

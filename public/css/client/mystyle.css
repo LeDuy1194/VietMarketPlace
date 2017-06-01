@@ -382,6 +382,10 @@ li.dropdown-custom .dropdown-menu.profile-dropdown-custom a.dropdown-item {
 	cursor: pointer;
 }
 
+.white-font-class {
+	color: white;
+}
+
 .img-status-header:before {    /* create a full-height inline block pseudo=element */
 	content: ' ';
 	display: inline-block;
