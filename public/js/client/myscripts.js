@@ -58,6 +58,7 @@ function loadAllNotification() {
             var numberStockNoti = data.stockNoRead;
             var numberOrderNoti = data.orderNoRead;
             $('#stockNotification').html('');
+            $('#orderNotification').html('');
             if (stockNotis.length != 0) {
                 typeNoti = 0;
                 if (numberStockNoti != 0) {
