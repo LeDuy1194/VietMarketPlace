@@ -125,7 +125,7 @@
 													</div>
 
 													<div class="modal-body">
-														<form role="form" id="update_profile_form" action="{{route('editProfile', $data->id)}}" method="POST">
+														<form role="form" id="update_profile_form" action="{{route('editProfile', $data->id)}}" method="POST" enctype="multipart/form-data">
 															<input type="hidden" name="_token" value="{!!csrf_token()!!}">
 															<div class="input-group">
 																<span class="input-group-addon" id="addon-fullname">Họ &amp tên</span>
@@ -150,6 +150,14 @@
 															<div class="input-group">
 																<span class="input-group-addon" id="addon-address">Địa chỉ</span>
 																<input type="text" class="form-control" value="{!! $data->address !!}" id="address" name="address" aria-describedby="addon-address">
+															</div>
+															<br />
+															<div class="input-group">
+																<span class="input-group-addon" id="addon-avatar">Ảnh đại diện</span>
+																<input type="file" class="form-control" id="avatar" name="avatar" value="{!! old('avatar', isset($data) ? $data->avatar : null) !!}" onchange="readURL(this);" aria-describedby="addon-avatar"/>
+															</div>
+															<div class="input-group form-upload-img-custom">
+                                    							<img id="avatar-preview" class="img-circle" src="../resources/upload/user/{!! $data->avatar !!}" alt="Ảnh đại diện" />
 															</div>
 															<br />
 														</form>
@@ -246,4 +254,21 @@
 			</div>
 		</div>
 	</div>
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+	function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $("#" + input.name + "-preview")
+                    .attr('src', e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 @endsection

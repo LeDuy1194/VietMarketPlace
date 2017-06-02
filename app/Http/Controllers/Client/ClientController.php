@@ -82,7 +82,7 @@ class ClientController extends Controller
         $img_main = $request->file('image-main')->getClientOriginalName();
         $img_main = stripUnicode($img_main);
 //        dd($img_main);
-        $img_main = 'main-' . $img_main;
+        $img_main = 'main-'.$img_main;
         $cate_parent = $_POST['prtcate'];
 
         $userModel = new User();
@@ -114,7 +114,7 @@ class ClientController extends Controller
             $stock_id = $stock->id;
             $type_up = 'stock';
             $info_up = $stock;
-            $root_dir = base_path() . '/resources/upload/stocks/stock-' . $stock_id;
+            $root_dir = base_path().'/resources/upload/stocks/stock-'.$stock_id;
             if(!File::exists($root_dir)) {
                 // path does not exist
                 File::makeDirectory($root_dir, 0777, true, true);
@@ -132,9 +132,9 @@ class ClientController extends Controller
             $img_detail_3 = $request->file('image-detail-3')->getClientOriginalName();
             $img_detail_3 = stripUnicode($img_detail_3);
 
-            $img_details['image-detail-1'] =  'detail-' . $img_detail_1;
-            $img_details['image-detail-2'] =  'detail-' . $img_detail_2;
-            $img_details['image-detail-3'] =  'detail-' . $img_detail_3;
+            $img_details['image-detail-1'] =  'detail-'.$img_detail_1;
+            $img_details['image-detail-2'] =  'detail-'.$img_detail_2;
+            $img_details['image-detail-3'] =  'detail-'.$img_detail_3;
 
             foreach ($img_details as $key => $img_detail) {
                 $stock_img = new StockImage();
@@ -188,7 +188,7 @@ class ClientController extends Controller
             $order_id = $order->id;
             $type_up = 'order';
             $info_up = $order;
-            $root_dir = base_path() . '/resources/upload/orders/order-' . $order_id;
+            $root_dir = base_path().'/resources/upload/orders/order-'.$order_id;
             if(!File::exists($root_dir)) {
                 // path does not exist
                 File::makeDirectory($root_dir, 0777, true, true);
@@ -206,9 +206,9 @@ class ClientController extends Controller
             $img_detail_3 = $request->file('image-detail-3')->getClientOriginalName();
             $img_detail_3 = stripUnicode($img_detail_3);
 
-            $img_details['image-detail-1'] =  'detail-' . $img_detail_1;
-            $img_details['image-detail-2'] =  'detail-' . $img_detail_2;
-            $img_details['image-detail-3'] =  'detail-' . $img_detail_3;
+            $img_details['image-detail-1'] =  'detail-'.$img_detail_1;
+            $img_details['image-detail-2'] =  'detail-'.$img_detail_2;
+            $img_details['image-detail-3'] =  'detail-'.$img_detail_3;
 
             foreach ($img_details as $key => $img_detail) {
                 $order_img = new OrderImage();
@@ -283,7 +283,7 @@ class ClientController extends Controller
             $product = Order::find($id);
         }
         if (Auth::id() == $product->user_id) {
-            $directory = base_path() . '/resources/upload/'.$state.'s/'.$state.'-' .$id;
+            $directory = base_path().'/resources/upload/'.$state.'s/'.$state.'-' .$id;
             File::cleanDirectory($directory);
             File::deleteDirectory($directory);
             $productName = $product->name;
@@ -316,10 +316,23 @@ class ClientController extends Controller
 
         $temp = User::where('username','=',$request->username)->value('id');
         if (($temp == $user_id)||($temp == NULL)) {
+            $data->username = $request->username;
             $data->fullname = $request->fullname;
             $data->phone = $request->phone;
             $data->address = $request->address;
-            $data->username = $request->username;
+
+            if (isset($request->avatar)) {
+                $img_name_reverse = array_reverse(explode('.',$_FILES['avatar']['name']));
+                $root_dir = base_path().'/resources/upload/user/';
+                if ($data->avatar != 'default_avatar.png') {
+                    $temp_path = $root_dir.$data->avatar;
+                    unlink($temp_path);
+                }
+                $img_avatar = $data->id.'_'.changeTitle($data->username).'.'.$img_name_reverse[0];
+                $data->avatar = $img_avatar;
+                $request->file('avatar')->move($root_dir, $img_avatar);
+            }
+
             $data->save();
             $message = ['flash_level'=>'success message-custom','flash_message'=>'Sửa thông tin thành công.'];
         }
