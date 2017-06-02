@@ -18,7 +18,8 @@ use App\Models\OrderTag;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\City;
-use App\Models\MatchNotification;
+use App\Models\StockNotification;
+use App\Models\OrderNotification;
 use App\Models\District;
 use App\Models\Match;
 use Illuminate\Support\Facades\File;
@@ -246,7 +247,8 @@ class ClientController extends Controller
         $type = $result_data['type_match'];
         $result_matching = $result_data['matching'];
 //        var_dump($result_matching);
-        $matchNotification = new MatchNotification();
+        $stockNotification = new StockNotification();
+        $orderNotification = new OrderNotification();
 
         if (sizeof($result_matching) != 0) {
             foreach ($result_matching as $result_match) {
@@ -262,13 +264,18 @@ class ClientController extends Controller
                     $stock_id_match = $result_match->id;
                     $user_id_stock = $result_match->user_id;
                 }
-                $matchNoti = $matchNotification->createNewMatchNotification($stock_id_match, $order_id_match, $user_id_stock, $user_id_order);
-                $totalNoti = $matchNotification->getNumberNotificationNoRead($result_match->user_id);
+                $stockNoti = $stockNotification->createNewStockNotification($stock_id_match, $user_id_stock);
+                $orderNoti = $orderNotification->createNewOrderNotification($order_id_match, $user_id_order);
+                $stockNotiNoRead = $stockNotification->getAllStockNotificationNoRead($result_match->user_id);
+                $stockNotiNoRead = sizeof($stockNotiNoRead);
+                $orderNotiNoRead = $orderNotification->getAllOrderNotificationNoRead($result_match->user_id);
+                $orderNotiNoRead = sizeof($orderNotiNoRead);
+                $totalNoti = $stockNotiNoRead + $orderNotiNoRead;
                 $redis = LRedis::connection();
                 $redis->publish('message', json_encode(['type' => $type, 'result_match' => $result_match, 'totalNoti' => $totalNoti]));
             }
         }
-//        dd($result_matching);
+        dd($result_matching);
         // After
 
         return redirect()->route('Home');

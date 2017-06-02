@@ -379,6 +379,11 @@ li.dropdown-custom .dropdown-menu.profile-dropdown-custom a.dropdown-item {
 
 .noti-status {
 	font-size: 25px;
+	cursor: pointer;
+}
+
+.white-font-class {
+	color: white;
 }
 
 .img-status-header:before {    /* create a full-height inline block pseudo=element */
@@ -630,7 +635,7 @@ li.notification-status {
 	border: 10px solid black;
 	border-color: transparent transparent white;
 	top: -20px;
-	right: 20px;
+	right: 5px;
 }
 
 .notifications-header {
@@ -654,12 +659,13 @@ h3.title-noti-menu {
 	border-top: 1px solid #aaa;
 }
 
-.show-all-notis {
+.see-all-notis {
 	color: #365899;
 	text-align: center;
 	margin: 0 auto;
 	font-size: 15px;
 	font-weight: 500;
+	cursor: pointer;
 }
 
 #notification-tabs {
@@ -690,6 +696,8 @@ h3.title-noti-menu {
 
 .list-noti-content {
 	/*padding: 0 10px;*/
+	overflow: auto;
+	max-height: 420px;
 }
 
 .stock-notification-number, .order-notification-number {
@@ -702,9 +710,13 @@ h3.title-noti-menu {
 
 .item-notification {
 	background: #E4E9F2;
-	border: 1px solid #DDDFE2;
+	border: 1px solid #d2d2d2;
 	padding: 5px;
 	width: 100%;
+}
+
+.item-notification.seen-noti {
+	background: white;
 }
 
 .img-product-noti {
@@ -726,6 +738,7 @@ h3.title-noti-menu {
 .img-time-noti {
 	width: 16px;
 	height: 16px;
+	margin-right: 3px;
 }
 
 .time-ago-noti {
