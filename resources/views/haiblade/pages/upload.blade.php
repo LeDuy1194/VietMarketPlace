@@ -249,15 +249,15 @@
         }
 
         function placeMarker(location) {
-  if ( marker ) {
-    marker.setPosition(location);
-  } else {
-    marker = new google.maps.Marker({
-      position: location,
-      map: map
-    });
-  }
-}
+            if ( marker ) {
+                marker.setPosition(location);
+            } else {
+                marker = new google.maps.Marker({
+                  position: location,
+                  map: map
+                });
+            }
+        }
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
             infoWindow.setPosition(pos);
             infoWindow.setContent(browserHasGeolocation ?
@@ -287,6 +287,27 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+        function addTag(str) {
+            var tags = $('#tags').val();
+            var sltTag = tags.split(',');
+            sltTag.pop();
+            var checkOrther = str.search(':');
+            str = str.slice(checkOrther + 1);
+            var tmp = sltTag.find(function(a) {
+                return a.toLowerCase() == str.toLowerCase();
+            });
+            if (!tmp) {
+                sltTag.push(str+',');
+                $('#tags').focus();
+                $('#tags').val(sltTag.toString());
+                $('#tagsHint').empty();                }
+            else {
+                $('#tags').focus();
+                $('#tags').val(sltTag.toString()+',');
+                $('#tagsHint').empty();
+                $('#tagsHint').append('<p>Trùng tag!</p>');
+            }
+        }
         function showHint(str) {
             var xhttp;
             var url = baseUrl+'/api/gethint?q='+str;
@@ -297,7 +318,15 @@
             xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("tagsHint").innerHTML = this.responseText;
+                    var str = this.responseText;
+                    var result = str.split(',');
+                    $('#tagsHint').empty();
+                    for (var i=0; i < result.length; i++) {
+                        $('#tagsHint').append(
+                            '<button role="button" class="btn btn-default" onclick="addTag(this.value)" value="'+result[i]+'">'
+                            +result[i]+'</button>'
+                        );
+                    }
                 }
             };
             xhttp.open("GET", url, true);

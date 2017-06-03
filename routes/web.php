@@ -98,3 +98,6 @@ Route::get('/mark-noti-as-read/{notiId}/{state}--{id}', ['as' => 'markNotiAsRead
 
 //Paypal:
 Route::resource('payment', 'PaymentController');
+
+//Testing function
+Route::get('test','Client\ClientController@test');

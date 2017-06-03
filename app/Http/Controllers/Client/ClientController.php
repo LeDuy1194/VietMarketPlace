@@ -28,20 +28,7 @@ use LRedis;
 class ClientController extends Controller
 {
     public function test() {
-        $stock = Stock::find(43);
-        $order = Order::find(33);
-        $stockTagModel = new StockTag();
-        $stockTag = $stockTagModel->getTagByStockId($stock->id);
-        $orderTagModel = new OrderTag();
-        $orderTag = $orderTagModel->getTagByOrderId($order->id);
-        var_dump($stockTag);
-        echo "<hr><br>";
-        var_dump($orderTag);
-        echo "<hr><br>";
-        $point = compareTag($stockTag,$orderTag);
-        var_dump($point);
-        echo "<hr><br>";
-        echo "test: ".matchSearching($order,'stocks')."<br>";
+        
     }
 
     public function getUpload() {
@@ -148,21 +135,28 @@ class ClientController extends Controller
 
             //Tag
             $tags = explode(',', $request->tags);
+            $checkTags = array_map(function ($str) {return strtolower($str);}, $tags);
             $tagModel = new Tag();
-            foreach ($tags as $tagName) {
-                if (($tagName != '')&&($tagName != ' ')) {
-                    $tempTag = $tagModel->getTagByAlias(changeTitle($tagName));
-                    if ($tempTag == NULL) {
-                        $tag = new Tag();
-                        $tag->name = $tagName;
-                        $tag->alias = changeTitle($tagName);
-                        $tag->save();
-                        $tempTag = $tag;
+            for ($i = 0; $i < count($tags); $i++) {
+                if (($tags[$i] != '')&&($tags[$i] != ' ')) {
+                    $check = array_search(strtolower($tags[$i]), $checkTags);
+                    if ($i > $check) {
+                        continue;
                     }
-                    $stockTag = new StockTag();
-                    $stockTag->stock_id = $stock_id;
-                    $stockTag->tag_id = $tempTag->id;
-                    $stockTag->save();
+                    else {
+                        $tempTag = $tagModel->getTagByAlias(changeTitle($tags[$i]));
+                        if ($tempTag == NULL) {
+                            $tag = new Tag();
+                            $tag->name = $tags[$i];
+                            $tag->alias = changeTitle($tags[$i]);
+                            $tag->save();
+                            $tempTag = $tag;
+                        }
+                        $stockTag = new StockTag();
+                        $stockTag->stock_id = $stock_id;
+                        $stockTag->tag_id = $tempTag->id;
+                        $stockTag->save();
+                    }
                 }
             }
 
@@ -222,21 +216,28 @@ class ClientController extends Controller
 
             //Tag
             $tags = explode(',', $request->tags);
+            $checkTags = array_map(function ($str) {return strtolower($str);}, $tags);
             $tagModel = new Tag();
-            foreach ($tags as $tagName) {
-                if (($tagName != '')&&($tagName != ' ')) {
-                    $tempTag = $tagModel->getTagByAlias(changeTitle($tagName));
-                    if ($tempTag == NULL) {
-                        $tag = new Tag();
-                        $tag->name = $tagName;
-                        $tag->alias = changeTitle($tagName);
-                        $tag->save();
-                        $tempTag = $tag;
+            for ($i = 0; $i < count($tags); $i++) {
+                if (($tags[$i] != '')&&($tags[$i] != ' ')) {
+                    $check = array_search(strtolower($tags[$i]), $checkTags);
+                    if ($i > $check) {
+                        continue;
                     }
-                    $orderTag = new OrderTag();
-                    $orderTag->order_id = $order_id;
-                    $orderTag->tag_id = $tempTag->id;
-                    $orderTag->save();
+                    else {
+                        $tempTag = $tagModel->getTagByAlias(changeTitle($tags[$i]));
+                        if ($tempTag == NULL) {
+                            $tag = new Tag();
+                            $tag->name = $tags[$i];
+                            $tag->alias = changeTitle($tags[$i]);
+                            $tag->save();
+                            $tempTag = $tag;
+                        }
+                        $orderTag = new OrderTag();
+                        $orderTag->order_id = $order_id;
+                        $orderTag->tag_id = $tempTag->id;
+                        $orderTag->save();
+                    }
                 }
             }
 

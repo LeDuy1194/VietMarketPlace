@@ -58,7 +58,7 @@ class SuggestController extends Controller
 						$price_max = $stock->price;
 					}
 					$price += $temp_price;
-					$count += 1.0;
+					$count += 1.0 * $review;
 				}
 			}
 
@@ -127,7 +127,8 @@ class SuggestController extends Controller
 			}
 		}
 		$str = explode(',', $str);
-		$q = $request->q;
+		$tmp_q = array_reverse(explode(',', $request->q));
+		$q = $tmp_q[0];
 		$hint = "";
 		if ($q !== "") {
 			$q = strtolower($q);
@@ -142,6 +143,6 @@ class SuggestController extends Controller
 				}
 			}
 		}
-		echo $hint === "" ? "Chưa có tag này." : $hint;
+		echo $hint === "" ? "Khác:".$q : $hint;
 	}
 }
