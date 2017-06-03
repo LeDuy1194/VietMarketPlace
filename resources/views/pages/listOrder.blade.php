@@ -109,7 +109,7 @@ Date: 21/02/2017
 					</ul>
 					<div class="tab-content detail-product-content-tab">
 						<div class="tab-pane active" id="descProduct" role="tabpanel">
-							{!! $data->description !!}
+							{!! nl2br($data->description) !!}
 						</div>
 						<div class="tab-pane" id="mapProduct" role="tabpanel">
 							<div id="map" style="height:400px; width: auto"></div>

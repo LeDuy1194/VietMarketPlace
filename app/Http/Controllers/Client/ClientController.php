@@ -276,7 +276,7 @@ class ClientController extends Controller
                 $redis->publish('message', json_encode(['type' => $type, 'result_match' => $result_match, 'totalNoti' => $totalNoti]));
             }
         }
-        dd($result_matching);
+        // dd($result_matching);
         // After
 
         return redirect()->route('Home');
