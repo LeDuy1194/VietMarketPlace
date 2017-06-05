@@ -53,6 +53,12 @@ a:hover {
 	padding: 20px;
 }
 
+.banner-error-page {
+	background-image: url("/public/img/banner-page/tumblr_static_404.png");
+	background-repeat: no-repeat;
+	height: 200px;
+}
+
 .img-banner-store-custom {
 	background-image: url("/public/img/banner-warehouse.jpg");
 	background-attachment: fixed;
@@ -564,6 +570,7 @@ h5.btn-for-my-store-custom {
 
 .hr-custom {
 	margin: 2px 0;
+	margin-bottom: 0;
 }
 
 .dropdown-custom-cate-btn:hover {
@@ -620,8 +627,7 @@ li.notification-status {
 	top: 55px;
 	right: -20px;
 	width: 450px;
-	/*min-height: 300px;*/
-	z-index: 1;
+	z-index: 10000;
 	display: none;
 }
 
@@ -761,4 +767,48 @@ h3.title-noti-menu {
 .time-ago-noti {
 	font-size: 13px;
 	color: #90949c;
+}
+
+#error-page {
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 30px;
+	background: white;
+	padding: 0 30px;
+}
+
+.number-error-page {
+	font-size: 150px;
+	font-weight: 500;
+	color: #4caf50
+}
+
+.info-error-page {
+	margin: 20px 0;
+	line-height: 2;
+}
+
+.title-error-custom {
+	line-height: 1.5;
+}
+
+.dropdown-cate-list {
+	top: 75%;
+	padding: 0;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+	color: #5cb85c;
+	text-decoration: none;
+	background-color: #0275d8;
+}
+
+.all-cate-item {
+	background: rgb(92, 184, 92);
+	color: white;
+}
+
+.all-cate-item:hover {
+	background-color: rgb(79, 165, 79) !important;
+	color: white;
 }

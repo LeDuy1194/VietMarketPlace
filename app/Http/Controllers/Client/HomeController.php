@@ -67,22 +67,28 @@ class HomeController extends Controller {
 
     public function showOrderDetail($id) {
         $data = Order::find($id);
-        $cate = Cate::find($data['cate_id']);
-        $userModel = new User();
-        $author = $userModel->getDetailUserByUserID($data['user_id']);
-        $orderImageModel = new OrderImage();
-        $orderImages = $orderImageModel->getImages($id);
-        return view('pages.listOrder',compact('data','cate','author','orderImages'));
+        if ($data) {
+            $cate = Cate::find($data['cate_id']);
+            $userModel = new User();
+            $author = $userModel->getDetailUserByUserID($data['user_id']);
+            $orderImageModel = new OrderImage();
+            $orderImages = $orderImageModel->getImages($id);
+            return view('pages.listOrder',compact('data','cate','author','orderImages'));
+        }
+        else return abort(404);
     }
 
     public function showStockDetail($id) {
         $data = Stock::find($id);
-        $cate = Cate::find($data['cate_id']);
-        $userModel = new User();
-        $author = $userModel->getDetailUserByUserID($data['user_id']);
-        $stockImageModel = new StockImage();
-        $stockImages = $stockImageModel->getImages($id);
-        return view('pages.listStock',compact('data','cate', 'author', 'stockImages'));
+        if ($data) {
+            $cate = Cate::find($data['cate_id']);
+            $userModel = new User();
+            $author = $userModel->getDetailUserByUserID($data['user_id']);
+            $stockImageModel = new StockImage();
+            $stockImages = $stockImageModel->getImages($id);
+            return view('pages.listStock',compact('data','cate', 'author', 'stockImages'));
+        }
+        else return abort(404);
     }
 
     public function postReview($id, ReviewRequest $request) {

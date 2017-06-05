@@ -18,12 +18,12 @@
                               $cateModel = new App\Models\Cate();
                               $cates = $cateModel->getAllCate();
                               ?>
-                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <div class="dropdown-menu dropdown-cate-list" aria-labelledby="dropdownMenuButton">
                                   @foreach($cates as $cate)
                                       <a class="dropdown-item" href="{{route('listByCate',[$cate->id])}}">{!! $cate->name !!}</a>
                                   @endforeach
                                   <hr class="hr-custom">
-                                  <a class="dropdown-item" href="{{route('listByCate',0)}}">Tất cả tin</a>
+                                  <a class="dropdown-item all-cate-item" href="{{route('listByCate',0)}}">Tất cả tin</a>
                               </div>
                           </div>
                       </li>
