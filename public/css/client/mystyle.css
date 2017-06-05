@@ -594,7 +594,7 @@ h5.btn-for-my-store-custom {
 }
 
 .navbar-menu-custom {
-	width: 70%;
+	max-width: 65%;
 }
 
 sup.total-noti {
@@ -618,8 +618,8 @@ li.notification-status {
 	overflow: visible;
 	position: absolute;
 	top: 55px;
-	right: 0;
-	min-width: 400px;
+	right: -20px;
+	width: 450px;
 	/*min-height: 300px;*/
 	z-index: 1;
 	display: none;
@@ -635,7 +635,7 @@ li.notification-status {
 	border: 10px solid black;
 	border-color: transparent transparent white;
 	top: -20px;
-	right: 5px;
+	right: 25px;
 }
 
 .notifications-header {
@@ -723,12 +723,29 @@ h3.title-noti-menu {
 	display: inline-block;
 	float: left;
 	margin-right: 10px;
+	height: 100%;
+	padding: 5px;
+	text-align: center;
+	overflow: hidden;
+	position: relative;
+}
+
+.img-product-noti:before {
+	height: 100%;
+	display: inline-block;
+	vertical-align: middle;
+	content: ' ';
 }
 
 .img-product-noti-header {
 	width: 70px;
 	height: 70px;
 	border: 1px solid #ccc;
+	max-width: 100%;
+	margin: 0 auto;
+	max-height: 100%;
+	display: inline-block;
+	vertical-align: middle;
 }
 
 .item-content-noti {

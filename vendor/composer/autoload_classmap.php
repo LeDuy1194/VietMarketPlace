@@ -6,10 +6,11 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'CreateAutoDelOrdersTable' => $baseDir . '/database/migrations/2017_06_04_234343_create_auto_del_orders_table.php',
+    'CreateAutoDelStocksTable' => $baseDir . '/database/migrations/2017_06_04_234328_create_auto_del_stocks_table.php',
     'CreateCatesTable' => $baseDir . '/database/migrations/2017_03_13_040246_create_cates_table.php',
     'CreateFavOsTable' => $baseDir . '/database/migrations/2017_04_10_072141_create_fav-os_table.php',
     'CreateFavsTable' => $baseDir . '/database/migrations/2017_03_28_015020_create_favs_table.php',
-    'CreateMatchNotificationsTable' => $baseDir . '/database/migrations/2017_05_30_183017_create_match_notifications_table.php',
     'CreateMatchsTable' => $baseDir . '/database/migrations/2017_03_13_090250_create_matchs_table.php',
     'CreateOrderNotificationsTable' => $baseDir . '/database/migrations/2017_06_01_110910_create_order_notifications_table.php',
     'CreateOrderimagesTable' => $baseDir . '/database/migrations/2017_03_23_030738_create_orderimages_table.php',

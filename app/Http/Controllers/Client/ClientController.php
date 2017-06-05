@@ -250,7 +250,7 @@ class ClientController extends Controller
 //        var_dump($result_matching);
         $stockNotification = new StockNotification();
         $orderNotification = new OrderNotification();
-
+        $type_noti = 'matching';
         if (sizeof($result_matching) != 0) {
             foreach ($result_matching as $result_match) {
                 if ($type == 'order') {
@@ -265,15 +265,15 @@ class ClientController extends Controller
                     $stock_id_match = $result_match->id;
                     $user_id_stock = $result_match->user_id;
                 }
-                $stockNoti = $stockNotification->createNewStockNotification($stock_id_match, $user_id_stock);
-                $orderNoti = $orderNotification->createNewOrderNotification($order_id_match, $user_id_order);
+                $stockNotification->createNewStockNotification($stock_id_match, $user_id_stock, $type_noti);
+                $orderNotification->createNewOrderNotification($order_id_match, $user_id_order, $type_noti);
                 $stockNotiNoRead = $stockNotification->getAllStockNotificationNoRead($result_match->user_id);
                 $stockNotiNoRead = sizeof($stockNotiNoRead);
                 $orderNotiNoRead = $orderNotification->getAllOrderNotificationNoRead($result_match->user_id);
                 $orderNotiNoRead = sizeof($orderNotiNoRead);
                 $totalNoti = $stockNotiNoRead + $orderNotiNoRead;
                 $redis = LRedis::connection();
-                $redis->publish('message', json_encode(['type' => $type, 'result_match' => $result_match, 'totalNoti' => $totalNoti]));
+                $redis->publish('notification', json_encode(['type' => $type, 'result_match' => $result_match, 'type_noti' => $type_noti , 'totalNoti' => $totalNoti]));
             }
         }
         // dd($result_matching);

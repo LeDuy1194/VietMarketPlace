@@ -42,7 +42,7 @@ Route::get('mapStockInfoDetail/{id}',['as'=>'mapStockInfoDetail','uses'=>'Client
 Route::get('mapOrderInfoDetail/{id}',['as'=>'mapOrderInfoDetail','uses'=>'Client\HomeController@showMapOrderInfoDetail']);
 
 Route::get('getMatchNotification/{user_id}',['as'=>'getMatchNotification','uses'=>'Client\MatchNotificationController@getMatchNotification'])->middleware('auth');
-Route::get('readNotification/{type}--{id}',['as'=>'readNotification','uses'=>'Client\MatchNotificationController@readNotification'])->middleware('auth');
+Route::get('readNotification/{type}--{type_noti}--{id}',['as'=>'readNotification','uses'=>'Client\MatchNotificationController@readNotification'])->middleware('auth');
 Route::get('markAllNotificationAsRead',['as'=>'markAllNotificationAsRead','uses'=>'Client\MatchNotificationController@markAllNotificationAsRead'])->middleware('auth');
 
 

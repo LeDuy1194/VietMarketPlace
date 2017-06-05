@@ -31,6 +31,7 @@ class MatchNotificationController extends Controller
                     $strTimeAgo = timeago($stockNoti->updated_at);
                     $stock_notification['noti_updated'] = $strTimeAgo;
                     $stock_notification['read'] = $stockNoti->read;
+                    $stock_notification['type_noti'] = $stockNoti->type_noti;
                     array_push($result_stock_notifications, $stock_notification);
                 }
             }
@@ -44,6 +45,7 @@ class MatchNotificationController extends Controller
                     $strTimeAgo = timeago($orderNoti->updated_at);
                     $order_notification['noti_updated'] = $strTimeAgo;
                     $order_notification['read'] = $orderNoti->read;
+                    $order_notification['type_noti'] = $orderNoti->type_noti;
                     array_push($result_order_notifications, $order_notification);
                 }
         }
@@ -52,14 +54,19 @@ class MatchNotificationController extends Controller
         }
     }
 
-    public function readNotification ($type, $id) {
+    public function readNotification ($type, $type_noti, $id) {
         if (Request::ajax()) {
             if ($type == 0) {
                 $readModel = new StockNotification();
             }
             else $readModel = new OrderNotification();
 
-            $readNoti = $readModel->readNotication($id);
+            if ($type_noti == 0) {
+                $type_noti = 'autoDel';
+            }
+            else $type_noti = 'matching';
+
+            $readNoti = $readModel->readNotication($id, $type_noti);
 
             return json_encode(['ok' => $readNoti]);
         }

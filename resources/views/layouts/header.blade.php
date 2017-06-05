@@ -67,7 +67,7 @@
                           $totalMatchNoti = $stockNotiNoRead + $orderNotiNoRead;
                           ?>
                           <li class="notification-status img-status-header">
-                              <i class="fa fa-flag noti-status img-status-custom" aria-hidden="true"></i>
+                              <i class="fa fa-globe noti-status img-status-custom" aria-hidden="true"></i>
                               <span class="print-number-noti">
                                    @if($totalMatchNoti != 0)
                                       <sup class="total-noti">{!! $totalMatchNoti !!}</sup>

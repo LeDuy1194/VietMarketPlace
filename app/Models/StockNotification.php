@@ -10,22 +10,26 @@ class StockNotification extends Model
 {
     protected $table = 'stock_notifications';
 
-    protected $fillable = ['stock_id', 'user_id', 'read', 'read_at'];
+    protected $fillable = ['stock_id', 'user_id', 'type_noti', 'read', 'read_at'];
 
     public $timestamps = true;
 
-    public function createNewStockNotification ($stock_id, $user_id) {
+    public function createNewStockNotification ($stock_id, $user_id, $type_noti) {
 
-        $order_query = DB::table('stock_notifications')-> where('stock_id', $stock_id)-> count();
+        $order_query = DB::table('stock_notifications') -> where('stock_id', $stock_id)
+                                                        -> where('type_noti', $type_noti)
+                                                        -> count();
 
         if ($order_query == 0) {
             $stockNoti = new StockNotification();
             $stockNoti->stock_id = $stock_id;
             $stockNoti->user_id = $user_id;
+            $stockNoti->type_noti = $type_noti;
             $stockNoti->save();
         }
         else {
             DB::table('stock_notifications')-> where('stock_id', $stock_id)
+                                            -> where('type_noti', $type_noti)
                                             -> update(['read' => 0, 'updated_at' => Carbon::now()]);
         }
         return 'success';
@@ -47,15 +51,16 @@ class StockNotification extends Model
         return $totalStockNoti;
     }
 
-    public function readNotication($stock_id) {
+    public function readNotication($stock_id, $type_noti) {
         DB::table('stock_notifications')-> where('stock_id', $stock_id)
+                                        -> where('type_noti', $type_noti)
                                         -> update(['read' => 1, 'read_at' => Carbon::now()]);
         return 'success';
     }
 
     public function markAllStockNoticationAsRead() {
         DB::table('stock_notifications')-> where('read', 0)
-            -> update(['read' => 1]);
+                                        -> update(['read' => 1, 'read_at' => Carbon::now()]);
         return 'success';
     }
 }
