@@ -18,6 +18,7 @@ class CreateOrderNotificationsTable extends Migration
             $table->integer('order_id')->unsigned();
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->integer('user_id')->unsigned();
+            $table->string('type_noti');
             $table->tinyInteger('read')->default(0);
             $table->timestamp('read_at')->nullable();
             $table->timestamps();

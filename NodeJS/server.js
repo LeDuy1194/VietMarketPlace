@@ -13,15 +13,17 @@ io.on('connection', function (socket, myID) {
     console.log("new client connected: " + socket.id);
     var redisClient = redis.createClient();
     redisClient.subscribe('message');
-    // redisClient.subscribe('notiMatching');
+    redisClient.subscribe('notification');
     redisClient.on("message", function(channel, data) {
-        console.log("new matching", channel, data);
-        var dataJSON = JSON.parse(data);
-        console.log('data new data: ' + dataJSON.type);
-        console.log('data new: ' + dataJSON.result_match.user_id);
-        var userID = dataJSON.result_match.user_id;
-        var socketID = current_sockets['user-' + userID];
-        socket.broadcast.to(socketID).emit(channel, data);
+        if (channel == 'notification') {
+            console.log("new matchNotification", channel, data);
+            var dataJSON = JSON.parse(data);
+            var userID = dataJSON.result_match.user_id;
+            var socketID = current_sockets['user-' + userID];
+            console.log('data new : ' + JSON.stringify(current_sockets));
+            console.log('user id: ' + socketID);
+            io.to(socketID).emit('notification', data);
+        }
     });
 
     socket.on('updateSocket', function (data) {

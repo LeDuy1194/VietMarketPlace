@@ -55,10 +55,7 @@ return [
     |
     */
 
-    'from' => [
-        'address' => env('csevietmarketplace@gmail.com', 'csevietmarketplace@gmail.com'),
-        'name' => env('VietmarketPlace', 'Reset Password'),
-    ],
+    'from' => ['address' => 'info.vietmarketplace@gmail.com', 'name' => 'VietMarketPlace'],
 
     /*
     |--------------------------------------------------------------------------
