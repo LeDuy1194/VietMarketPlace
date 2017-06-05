@@ -618,8 +618,8 @@ li.notification-status {
 	overflow: visible;
 	position: absolute;
 	top: 55px;
-	right: 0;
-	min-width: 400px;
+	right: -20px;
+	width: 450px;
 	/*min-height: 300px;*/
 	z-index: 1;
 	display: none;
@@ -635,7 +635,7 @@ li.notification-status {
 	border: 10px solid black;
 	border-color: transparent transparent white;
 	top: -20px;
-	right: 15px;
+	right: 25px;
 }
 
 .notifications-header {

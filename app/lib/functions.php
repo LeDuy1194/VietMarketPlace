@@ -174,9 +174,18 @@ function timeago($date) {
 function checkTimePostToSendNoti ($date) {
     $timestamp = strtotime($date);
     $diff     = time()- $timestamp;
-    if($diff >= 10 * 86400) {
+    if($diff >= 7 * 86400) {
         return 'invalid';
     }
     return 'valid';
+}
+
+function checkTimePostToDelete ($date) {
+    $timestamp = strtotime($date);
+    $diff     = time()- $timestamp;
+    if($diff >= 10 * 86400) {
+        return 'delete';
+    }
+    return 'noDel';
 }
 ?>

@@ -47,15 +47,16 @@ $( document ).ready(function() {
 
 $(document).mouseup(function(e)
 {
-    var container = $("#notifications-container-menu");
+    var container = $('.notification-status');
 
     // if the target of the click isn't the container nor a descendant of the container
     if (!container.is(e.target) && container.has(e.target).length === 0)
     {
         openNoti = false;
-        container.hide();
+        $('#notifications-container-menu').hide();
         $('.noti-status').removeClass('white-font-class');
     }
+
 });
 
 function loadAllNotification() {

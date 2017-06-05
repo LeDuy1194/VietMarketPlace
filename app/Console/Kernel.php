@@ -41,21 +41,27 @@ class Kernel extends ConsoleKernel
             Log::info("Stock check: ");
             $stocks = DB::table('stocks')->get();
             foreach ($stocks as $index_stocks => $stock) {
+                $dataType = 'stock';
                 Log::info("Stock check time valid: ");
                 $validTime = checkTimePostToSendNoti($stock->created_at);
                 if ($validTime == 'invalid') {
                     $author = $userModel->getDetailUserByUserID($stock->user_id);
                     $toEmail = $author['email'];
-                    Log::info("Auto delete stock of user: " . $author->username . " & name stock: " . $stock->name);
+                    Log::info("Auto delete stock: " . $stock->id . " & name stock: " . $stock->name);
                     $order_query = DB::table('stock_notifications') -> where('stock_id', $stock->id)
                         -> where('type_noti', $type_noti)
                         -> count();
 
                     if ($order_query == 0) {
                         $data = array(
+                            'dataType'=>$dataType,
                             'dataPost'=>$stock,
                             'dataUser'=>$author
                         );
+
+//                        Mail::send('mails.autoDelPost', $data, function($message) use ($toEmail) {
+//                            $message->to('nobikun1412@gmail.com')->subject('[Auto delete post] Bạn có 1 bài viết sắp hết hạn đăng, vui lòng kiểm tra lại!');
+//                        });
 
                         Mail::send('mails.autoDelPost', $data, function($message) use ($toEmail) {
                             $message->to($toEmail)->subject('[Auto delete post] Bạn có 1 bài viết sắp hết hạn đăng, vui lòng kiểm tra lại!');
@@ -71,26 +77,38 @@ class Kernel extends ConsoleKernel
                         $redis = LRedis::connection();
                         $redis->publish('notification', json_encode(['type' => 'stock', 'result_match' => $stock, 'type_noti' => $type_noti , 'totalNoti' => $totalNoti]));
                     }
+
+                    //Check time post to delete:
+                    $validTimeDele = checkTimePostToDelete($stock->created_at);
+                    if ($validTimeDele == 'delete') {
+                        DB::table('stocks')->where('id', $stock->id)->delete();
+                    }
                 }
             }
 
             Log::info("Order check: ");
             $orders = DB::table('orders')->get();
             foreach ($orders as $index_orders => $order) {
+                $dataType = 'order';
                 Log::info("Order check time valid: ");
                 $validTime = checkTimePostToSendNoti($order->created_at);
                 if ($validTime == 'invalid') {
                     $author = $userModel->getDetailUserByUserID($order->user_id);
                     $toEmail = $author['email'];
-                    Log::info("Auto delete order of user: " . $author->username . " & name stock: " . $order->name);
+                    Log::info("Auto delete order: " . $order->id . " & name stock: " . $order->name);
                     $order_query = DB::table('order_notifications') -> where('order_id', $order->id)
                         -> where('type_noti', $type_noti)
                         -> count();
                     if ($order_query == 0) {
                         $data = array(
+                            'dataType'=>$dataType,
                             'dataPost'=>$order,
                             'dataUser'=>$author
                         );
+
+//                        Mail::send('mails.autoDelPost', $data, function($message) use ($toEmail) {
+//                            $message->to('nobikun1412@gmail.com')->subject('[Auto delete post] Bạn có 1 bài viết sắp hết hạn đăng, vui lòng kiểm tra lại!');
+//                        });
 
                         Mail::send('mails.autoDelPost', $data, function($message) use ($toEmail) {
                             $message->to($toEmail)->subject('[Auto delete post] Bạn có 1 bài viết sắp hết hạn đăng, vui lòng kiểm tra lại!');
@@ -105,6 +123,12 @@ class Kernel extends ConsoleKernel
 
                         $redis = LRedis::connection();
                         $redis->publish('notification', json_encode(['type' => 'order', 'result_match' => $order, 'type_noti' => $type_noti , 'totalNoti' => $totalNoti]));
+                    }
+
+                    //Check time post to delete:
+                    $validTimeDele = checkTimePostToDelete($order->created_at);
+                    if ($validTimeDele == 'delete') {
+                        DB::table('orders')->where('id', $order->id)->delete();
                     }
                 }
             }
