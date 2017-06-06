@@ -51,6 +51,9 @@ class HomeController extends Controller {
         if ($id != 0) {
             $stock = $stockModel->getStockByCateId($id,$number);
             $order = $orderModel->getOrderByCateId($id,$number);
+            if ($stock->lastPage() == 0) {
+                return abort(404);
+            }
         }
         else {
             $stock = $stockModel->getPage($number);
@@ -66,7 +69,7 @@ class HomeController extends Controller {
     }
 
     public function showOrderDetail($id) {
-        $data = Order::find($id);
+        $data = Order::findOrFail($id);
         if ($data) {
             $cate = Cate::find($data['cate_id']);
             $userModel = new User();
@@ -79,7 +82,7 @@ class HomeController extends Controller {
     }
 
     public function showStockDetail($id) {
-        $data = Stock::find($id);
+        $data = Stock::findOrFail($id);
         if ($data) {
             $cate = Cate::find($data['cate_id']);
             $userModel = new User();
@@ -93,10 +96,10 @@ class HomeController extends Controller {
 
     public function postReview($id, ReviewRequest $request) {
         if ($_POST['parentCt'] == 'stock') {
-            $data = Stock::find($id);
+            $data = Stock::findOrFail($id);
         }
         else {
-            $data = Order::find($id);
+            $data = Order::findOrFail($id);
         }
         $cate = Cate::find($data['cate_id']);
         $userModel = new User();
@@ -148,7 +151,7 @@ class HomeController extends Controller {
 
     public function showMapStockInfoDetail($id) {
         if (Request::ajax()) {
-            $data = Stock::find($id);
+            $data = Stock::findOrFail($id);
             $price = number_format($data->price,0,",",".");
             $userModel = new User();
             $author = $userModel->getDetailUserByUserID($data['user_id']);
@@ -158,7 +161,7 @@ class HomeController extends Controller {
 
     public function showMapOrderInfoDetail($id) {
         if (Request::ajax()) {
-            $data = Order::find($id);
+            $data = Order::findOrFail($id);
             $price = number_format($data->price,0,",",".");
             $userModel = new User();
             $author = $userModel->getDetailUserByUserID($data['user_id']);
