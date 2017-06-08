@@ -14,7 +14,7 @@ class CreateTagListsTable extends Migration
     public function up()
     {
         Schema::create('stock_tag_lists', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unique();
             $table->integer('stock_id')->unsigned();
             $table->foreign('stock_id')->references('id')->on('stocks')->onDelete('cascade');
             $table->integer('tag_id')->unsigned();
@@ -23,7 +23,7 @@ class CreateTagListsTable extends Migration
         });
 
         Schema::create('order_tag_lists', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unique();
             $table->integer('order_id')->unsigned();
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->integer('tag_id')->unsigned();

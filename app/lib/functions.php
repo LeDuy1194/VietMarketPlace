@@ -60,18 +60,28 @@ function cateParent ($data,$parent = 0,$str="--",$select=0) {
 	}
 }
 
+/** Comparing two sorted numeric array(tag_id)
+* @param $data_1: base for the compare and calculation.
+* @param $data_2: reference array.
+**/
 function compareTag($data_1,$data_2) {
 	$count = 0;
 	$total = count($data_1);
+    asort($data_1);
+    asort($data_2);
 	foreach ($data_1 as $key_1 => $val_1) {
 		foreach ($data_2 as $key_2 => $val_2) {
+            // echo 'Val: '.$val_1.' - '.$val_2.'<br>';
 			if ($val_1 == $val_2) {
 				$count++;
 				break;
 			}
+            else if ($val_1 < $val_2){
+                break;
+            }
 		}
 	}
-	// echo $count." - ".$total."<br>";
+	// echo "Result: ".$count." - ".$total."<br>";
 	$result = round($count / $total * 100);
 	return $result;
 }
