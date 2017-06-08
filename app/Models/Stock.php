@@ -39,9 +39,14 @@ class Stock extends Model
         return $this->where('finished',0)->where('cate_id',$cate_id)->orderBy('id','desc')->paginate($number,['*'],'stock');
     }
 
+    //Get stock by user.
+    public function getStockByUserId($user_id) {
+        return $this->where('finished',0)->where('user_id',$user_id)->orderBy('id','desc')->get();
+    }
+
     //Get all Product
     public function getAllStock() {
-        return $this->get();
+        return $this->where('finished',0)->get();
     }
 
     //Search Stock --- Create by Anh Pham
@@ -65,6 +70,6 @@ class Stock extends Model
 
     //Get admin paginate
     public function getAdminPage($number) {
-        return $this->select('id','name','created_at','user_id','cate_id')->orderBy('updated_at','desc')->paginate($number,['*'],'stock');
+        return $this->select('id','name','created_at','user_id','cate_id','finished')->orderBy('updated_at','desc')->paginate($number,['*'],'stock');
     }
 }

@@ -19,6 +19,6 @@ class FavO extends Model
     }
 
     public function getFav($user_id,$order_id) {
-    	return $this->where('user_id',$user_id)->where('order_id',$order_id)->first();
+    	return $this->select('id')->where('user_id',$user_id)->where('order_id',$order_id)->first();
     }
 }

@@ -51,6 +51,7 @@ Date: 23/03/2017
 			@else
 			<a class="btn btn-warning btn-favorite" title="Xem sau." href="{{route('favorite',[$type,$item->id])}}">
 				<i class="fa fa-heart-o" aria-hidden="true"></i>
+				{{$fav}}
 				<!-- <i class="fa fa-heart" aria-hidden="true"></i> -->
 			</a>
 			@endif

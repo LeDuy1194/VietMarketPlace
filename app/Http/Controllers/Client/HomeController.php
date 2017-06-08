@@ -125,8 +125,8 @@ class HomeController extends Controller {
         $favModel = new Fav();
         $favOModel = new FavO();
         $author = $userModel->getDetailUserByUserID(Auth::id());
-        $stock = $author->stock;
-        $order = $author->order;
+        $stock = $author->unfinStock();
+        $order = $author->unfinOrder();
         return view('pages.myStore',compact('stock','order','author','cateModel','userModel','matchModel', 'favModel','favOModel', 'reviewModel'));
     }
 
@@ -238,12 +238,12 @@ class HomeController extends Controller {
         if ($state=='stock') {
             $base = Stock::findOrFail($id);
             $data = $matchModel->getOrderByStockId($id,$number);
-            $favModel = new Fav();
+            $favModel = new FavO();
         }
         else {
             $base = Order::findOrFail($id);
             $data = $matchModel->getStockByOrderId($id,$number);
-            $favModel = new FavO();
+            $favModel = new Fav();
         }
         return view('pages.match',compact('base','data','state','author','cateModel','userModel','reviewModel','favModel'));
     }

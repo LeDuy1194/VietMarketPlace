@@ -40,9 +40,14 @@ class Order extends Model
         return $this->where('finished',0)->where('cate_id',$cate_id)->orderBy('id','desc')->paginate($number,['*'],'order');
     }
 
+    //Get order by user.
+    public function getOrderByUserId($user_id) {
+        return $this->where('finished',0)->where('user_id',$user_id)->orderBy('id','desc')->get();
+    }
+
     //Get all Product
     public function getAllOrder() {
-        return $this->get();
+        return $this->where('finished',0)->get();
     }
 
     //Search Orders --- Create by Anh Pham

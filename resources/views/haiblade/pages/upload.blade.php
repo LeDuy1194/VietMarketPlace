@@ -77,7 +77,7 @@
                                             <label for="tags">
                                                 Tags*
                                             </label>
-                                            <input type="text" name="tags" class="form-control" placeholder="Điền vào đây" required id="tags" onkeyup="showHint(this.value)">
+                                            <input type="text" name="tags" class="form-control" placeholder="Điền vào đây" required id="tags" onkeyup="showHint(this.value)" autocomplete="off">
                                             <div id="tagsHint"></div>
                                         </div>
                                         <div class="form-group">

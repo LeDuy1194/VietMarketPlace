@@ -47,8 +47,8 @@ class ClientController extends Controller
             return redirect()->route('profile',$author->username)->with($message);
         }
         else {
-            $stockNumber = $author->stock()->count();
-            $orderNumber = $author->order()->count();
+            $stockNumber = $author->unfinStock()->count();
+            $orderNumber = $author->unfinOrder()->count();
             $totalPost = $stockNumber + $orderNumber;
             $limit = $author->level * 5 + 5;
             if ($totalPost >= $limit) {
@@ -75,7 +75,7 @@ class ClientController extends Controller
 
         $userModel = new User();
         $author = $userModel->getDetailUserByUserID(Auth::id());
-        $totalPost = $author->stock()->count() + $author->order()->count();
+        $totalPost = $author->unfinStock()->count() + $author->unfinOrder()->count();
         $limit = $author->level * 5 + 5;
         if ($totalPost >= $limit) {
             $message = ['flash_level'=>'danger message-custom','flash_message'=>'Không thể đăng nhiều hơn '.$limit.' tin.'];

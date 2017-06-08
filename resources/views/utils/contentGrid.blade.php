@@ -21,8 +21,11 @@
                 </span>
                 <span class="btn favorite-product btn-for-product" title="Xem sau">
                     <a class="button-fav" href="{{route('favorite',[$type,$item->id])}}">
-                        <i class="fa fa-heart-o" aria-hidden="true"></i>
-                        <!-- <i class="fa fa-heart" aria-hidden="true"></i> -->
+                        @if ($fav == true)
+                        <i class="fa fa-heart fa-lg" aria-hidden="true"></i>
+                        @else
+                        <i class="fa fa-heart-o fa-lg" aria-hidden="true"></i>
+                        @endif
                     </a>
                 </span>
             </div>

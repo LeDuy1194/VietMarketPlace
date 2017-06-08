@@ -4,6 +4,9 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\Models\Stock;
+use App\Models\Order;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -42,8 +45,20 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Stock');
     }
 
+    public function unfinStock() {
+        $stockModel = new Stock();
+        $stock = $stockModel->getStockByUserId($this->id);
+        return $stock;
+    }
+
     public function order() {
         return $this->hasMany('App\Models\Order');
+    }
+
+    public function unfinOrder() {
+        $orderModel = new Order();
+        $order = $orderModel->getOrderByUserId($this->id);
+        return $order;
     }
 
     public function matchNoti() {
