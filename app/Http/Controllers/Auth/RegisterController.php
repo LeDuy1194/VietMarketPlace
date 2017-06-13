@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 use App\Http\Requests\RegisterRequest;
 use App\User;
+use App\ActivationService;
 use Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Requests;
 
 class RegisterController extends Controller
 {
@@ -30,14 +32,16 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/home';
 
+    protected $activationService;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct(ActivationService $activationService) {
         $this->middleware('guest');
+        $this->activationService = $activationService;
     }
 
     /**
@@ -85,7 +89,10 @@ class RegisterController extends Controller
         $account->phone = $request->phone;
         $account->avatar = 'default_avatar.png';
         $account->save();
-        $message = ['flash_level'=>'success message-custom','flash_message'=>'Đăng ký thành công.'];
-        return redirect()->Route('postLogin')->with($message);
+
+        $this->activationService->sendActivationMail($account);
+
+        $message = ['flash_level'=>'success message-custom','flash_message'=>'Đăng ký thành công. Chúng tôi đã gửi thư xác nhận về email của bạn.'];
+        return redirect()->Route('getLogin')->with($message);
     }
 }

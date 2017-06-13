@@ -18,6 +18,7 @@ Route::post('login',['as'=>'postLogin','uses'=>'Auth\LoginController@postLogin']
 
 Route::get('register',['as'=>'getRegister','uses'=>'Auth\RegisterController@getRegister']);
 Route::post('register',['as'=>'postRegister','uses'=>'Auth\RegisterController@postRegister']);
+Route::get('user/activation/{token}', 'Auth\LoginController@activateUser')->name('user.activate');
 
 // Password Reset Routes
 Route::get('password/reset',['as'=>'password.request','uses'=>'Auth\ForgotPasswordController@showLinkRequestForm']);

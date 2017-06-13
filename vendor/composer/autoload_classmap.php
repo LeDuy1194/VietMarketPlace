@@ -6,8 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'CreateAutoDelOrdersTable' => $baseDir . '/database/migrations/2017_06_04_234343_create_auto_del_orders_table.php',
-    'CreateAutoDelStocksTable' => $baseDir . '/database/migrations/2017_06_04_234328_create_auto_del_stocks_table.php',
     'CreateCatesTable' => $baseDir . '/database/migrations/2017_03_13_040246_create_cates_table.php',
     'CreateFavOsTable' => $baseDir . '/database/migrations/2017_04_10_072141_create_fav-os_table.php',
     'CreateFavsTable' => $baseDir . '/database/migrations/2017_03_28_015020_create_favs_table.php',
@@ -22,6 +20,7 @@ return array(
     'CreateStocksTable' => $baseDir . '/database/migrations/2017_03_13_041217_create_stocks_table.php',
     'CreateTagListsTable' => $baseDir . '/database/migrations/2017_05_02_015506_create_tag_lists_table.php',
     'CreateTagsTable' => $baseDir . '/database/migrations/2017_05_02_015407_create_tags_table.php',
+    'CreateUserActivationsTable' => $baseDir . '/database/migrations/2017_06_13_102253_create_user_activations_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',

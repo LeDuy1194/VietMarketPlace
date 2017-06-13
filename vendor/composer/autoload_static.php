@@ -292,8 +292,6 @@ class ComposerStaticInit4bd09316556cc30a317b14bc17b6e888
     );
 
     public static $classMap = array (
-        'CreateAutoDelOrdersTable' => __DIR__ . '/../..' . '/database/migrations/2017_06_04_234343_create_auto_del_orders_table.php',
-        'CreateAutoDelStocksTable' => __DIR__ . '/../..' . '/database/migrations/2017_06_04_234328_create_auto_del_stocks_table.php',
         'CreateCatesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_13_040246_create_cates_table.php',
         'CreateFavOsTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_072141_create_fav-os_table.php',
         'CreateFavsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_28_015020_create_favs_table.php',
@@ -308,6 +306,7 @@ class ComposerStaticInit4bd09316556cc30a317b14bc17b6e888
         'CreateStocksTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_13_041217_create_stocks_table.php',
         'CreateTagListsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_02_015506_create_tag_lists_table.php',
         'CreateTagsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_02_015407_create_tags_table.php',
+        'CreateUserActivationsTable' => __DIR__ . '/../..' . '/database/migrations/2017_06_13_102253_create_user_activations_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',

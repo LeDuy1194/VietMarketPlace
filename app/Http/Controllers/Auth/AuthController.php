@@ -13,8 +13,8 @@ use Illuminate\Support\MessageBag;
 class AuthController extends Controller
 {
     public function getLogin() {
-        return view('account.pages.login');
     }
     public function postLogin() {
     }
+
 }
