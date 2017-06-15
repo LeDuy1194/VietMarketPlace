@@ -44,12 +44,12 @@ class SuggestController extends Controller
 			foreach ($stocks as $stock) {
 				$stockTag = $stockTagModel->getTagByStockId($stock->id);
 				$review = $reModel->getAverageVote($stock->user_id);
-				if ($review <= 0.5) {
-					$review = 0.5;
+				if ($review <= 0.2) {
+					$review = 0.2;
 				}
 				$point = compareTag($tags, $stockTag);
 				if ($point >= 50) {
-					//echo "stock-".$stock->id."-".$stock->price."<br>";
+					// echo "stock-".$stock->id."-".$stock->price."<br>";
 					$temp_price = $stock->price * $review;
 					if ($stock->price < $price_min) {
 						$price_min = $stock->price;
@@ -67,10 +67,12 @@ class SuggestController extends Controller
 			foreach ($orders as $order) {
 				$orderTag = $orderTagModel->getTagByOrderId($order->id);
 				$review = $reModel->getAverageVote($order->user_id);
-				$review += 0.5;
+				if ($review <= 0.2) {
+					$review = 0.2;
+				}
 				$point = compareTag($tags, $orderTag);
 				if ($point >= 50) {
-					//echo "order-".$order->id."-".$order->price."<br>";
+					// echo "order-".$order->id."-".$order->price."<br>";
 					$temp_price = $order->price * $review;
 					if (($order->price < $price_min)&&($parent_cate != 'stock')) {
 						$price_min = $order->price;
@@ -79,9 +81,12 @@ class SuggestController extends Controller
 						$price_max = $order->price;
 					}
 					$price += $temp_price;
-					$count += 1.0;
+					$count += 1.0 * $review;
 				}
 			}
+
+			if ($price_min === INF) $price_min = $price_max;
+			if ($price_max === 0.0) $price_max = $price_min;
 
 			if ($count > 0) {
 				$price = round($price / $count / 10000) * 10000;
