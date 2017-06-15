@@ -44,8 +44,8 @@ class SuggestController extends Controller
 			foreach ($stocks as $stock) {
 				$stockTag = $stockTagModel->getTagByStockId($stock->id);
 				$review = $reModel->getAverageVote($stock->user_id);
-				if ($review <= 0.1) {
-					$review = 0.1;
+				if ($review <= 0.5) {
+					$review = 0.5;
 				}
 				$point = compareTag($tags, $stockTag);
 				if ($point >= 50) {
