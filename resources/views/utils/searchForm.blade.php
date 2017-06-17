@@ -5,7 +5,7 @@ update: 03-05-2017 by Anh Pham
 
 <div class="container search-custom">
 	<div class="row search-bar-home">
-		<form class="form-inline justify-content-center form-search-custom" action="search" method="get">
+		<form class="form-inline justify-content-center form-search-custom" action="{{route('search')}}" method="get">
 			<input type="hidden" name="_token" value="{!!csrf_token()!!}"/>
 			<div class="form-group form-group-custom form-group-key">
 				<input type="text" class="form-control" id="search-keyword" name="search_key" placeholder="Từ khóa tìm kiếm..."/>
@@ -55,11 +55,11 @@ update: 03-05-2017 by Anh Pham
 				<select class="form-control" id="search-city" name="search_city">
 					<option value="" selected>Thành phố</option>
 					<option disabled>──────────</option>
-					<option value="hcm">Ho Chi Minh</option>
-					<option value="hn">Ha Noi</option>
-					<option value="hp">Hai Phong</option>
-					<option value="dn">Dong Nai</option>
-					<option value="bd">Binh Duong</option>
+					<option value="hcm">Hồ Chí Minh</option>
+					{{--<option value="hn">Hà Nội</option>
+					<option value="hp">Hải Phòng</option>
+					<option value="dn">Đồng Nai</option>
+					<option value="bd">Bình Dương</option>--}}
 				</select>
 			</div>
 
