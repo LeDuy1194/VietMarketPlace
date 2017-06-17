@@ -33,9 +33,9 @@
                               <a class="nav-link" href="{{route('getupload')}}">Đăng tin</a>
                           </li>
 
-                          <li class="nav-item">
+                          {{--<li class="nav-item">
                               <a class="nav-link" href="{{route('MyStore')}}">Cửa hàng của tôi</a>
-                          </li>
+                          </li>--}}
 
                           <li class="nav-item">
                               <a class="nav-link" href="{{route('myMark')}}">Xem sau</a>
@@ -110,6 +110,8 @@
                               </button>
                               <div class="dropdown-menu profile-dropdown-custom" aria-labelledby="dropdownMenu1">
                                   <a class="dropdown-item" href="{!! url('profile', [Auth::user()->username]) !!}">Hồ sơ</a>
+                                  <a class="dropdown-item" href="{{route('MyStore')}}">Cửa hàng của tôi</a>
+                                  <hr>
                                   <a class="dropdown-item" href="{!! url('logout') !!}">Đăng xuất</a>
                               </div>
                           </li>
