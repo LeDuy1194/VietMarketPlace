@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\Fav;
+use App\Models\Match;
 
 class Stock extends Model
 {
@@ -71,5 +73,24 @@ class Stock extends Model
     //Get admin paginate
     public function getAdminPage($number) {
         return $this->select('id','name','created_at','user_id','cate_id','finished')->orderBy('updated_at','desc')->paginate($number,['*'],'stock');
+    }
+
+    //Finish stock
+    public function getFinished() {
+        $stock_id = $this->id;
+        $favModel = new Fav();
+        $favs = $favModel->getFavByStock($stock_id);
+        $matchs = Match::select('id')->where('stock_id', $stock_id)->where('point','>=',50)->get();
+        
+        foreach ($favs as $fav) {
+            $fav->delete();
+        }
+        foreach ($matchs as $match) {
+            $match->point = 0;
+            $match->save();
+        }
+
+        $this->finished = true;
+        $this->save();
     }
 }

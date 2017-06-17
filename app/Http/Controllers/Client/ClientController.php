@@ -291,11 +291,11 @@ class ClientController extends Controller
             $product = Order::find($id);
         }
         if (Auth::id() == $product->user_id) {
-            $directory = base_path().'/resources/upload/'.$state.'s/'.$state.'-' .$id;
-            File::cleanDirectory($directory);
-            File::deleteDirectory($directory);
+            // $directory = base_path().'/resources/upload/'.$state.'s/'.$state.'-' .$id;
+            // File::cleanDirectory($directory);
+            // File::deleteDirectory($directory);
             $productName = $product->name;
-            $product->delete();
+            $product->getFinished();
             $message = ['flash_level'=>'success message-custom','flash_message'=>'Xóa '.$productName.' thành công.'];
         }
         else {

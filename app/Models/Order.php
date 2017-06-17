@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\FavO;
+use App\Models\Match;
 
 class Order extends Model
 {
@@ -73,5 +75,24 @@ class Order extends Model
     //Get admin paginate
     public function getAdminPage($number) {
         return $this->select('id','name','created_at','user_id','cate_id')->orderBy('updated_at','desc')->paginate($number,['*'],'order');
+    }
+
+    //Finish order
+    public function getFinished() {
+        $order_id = $this->id;
+        $favOModel = new FavO();
+        $favOs = $favOModel->getFavByOrder($order_id);
+        $matchs = Match::select('id')->where('order_id', $order_id)->where('point','>=',50)->get();
+        
+        foreach ($favOs as $favO) {
+            $favO->delete();
+        }
+        foreach ($matchs as $match) {
+            $match->point = 0;
+            $match->save();
+        }
+
+        $this->finished = true;
+        $this->save();
     }
 }

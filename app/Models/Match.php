@@ -10,7 +10,7 @@ class Match extends Model
     //
     protected $table = 'matchs';
 
-    protected $fillable = ['stock_id', 'order_id'];
+    protected $fillable = ['stock_id', 'order_id', 'point'];
 
     public $timestamps = true;
 
