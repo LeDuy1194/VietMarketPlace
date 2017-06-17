@@ -91,7 +91,7 @@
                                                 Giá (Tối thiểu 10.000 VNĐ)*
                                                 <button type="button" id="sugestPrice" class="btn btn-info">Giá tham khảo</button>
                                             </label>
-                                            <input type="number" id="price" name="price" min="10000" class="form-control" placeholder="Điền vào đây (Đơn vị VND)" required>
+                                            <input type="number" id="price" name="price" min="10000" class="form-control" placeholder="Điền vào đây (Đơn vị VND)" required value="10000">
                                             <div id="sugestPriceResult"></div>
                                         </div>
                                     </div>
