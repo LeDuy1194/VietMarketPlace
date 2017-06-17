@@ -68,7 +68,7 @@ class Order extends Model
             $order_query = $order_query->where('status', $status);
         }
 
-        $result = $order_query->get();
+        $result = $order_query->where('finished',0)->get();
         return $result;
     }
 

@@ -66,7 +66,7 @@ class Stock extends Model
         {
             $stock_query = $stock_query->where('status', $status);
         }
-        $result = $stock_query->get();
+        $result = $stock_query->where('finished',0)->get();
         return $result;
     }
 

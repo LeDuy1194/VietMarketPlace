@@ -21,7 +21,7 @@ class Match extends Model
     }
 
     public function getStockNumber($id) {
-        $stock = $this->select('stock_id')->where('order_id',$id)->get();
+        $stock = $this->select('stock_id')->where('order_id',$id)->where('point','>=',50)->get();
         return $stock->count();
     }
 
@@ -32,7 +32,7 @@ class Match extends Model
     }
 
     public function getOrderNumber($id) {
-        $order = $this->select('order_id')->where('stock_id',$id)->get();
+        $order = $this->select('order_id')->where('stock_id',$id)->where('point','>=',50)->get();
         return $order->count();
     }
 }
