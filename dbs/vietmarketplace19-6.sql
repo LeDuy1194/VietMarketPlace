@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2017 at 05:05 AM
+-- Generation Time: Jun 18, 2017 at 07:21 PM
 -- Server version: 10.1.19-MariaDB
--- PHP Version: 5.6.24
+-- PHP Version: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -122,6 +122,14 @@ CREATE TABLE `favos` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `favos`
+--
+
+INSERT INTO `favos` (`id`, `user_id`, `order_id`, `created_at`, `updated_at`) VALUES
+(2, 1, 27, '2017-05-14 18:49:05', '2017-05-14 18:49:05'),
+(4, 1, 29, '2017-05-15 21:17:04', '2017-05-15 21:17:04');
+
 -- --------------------------------------------------------
 
 --
@@ -135,6 +143,16 @@ CREATE TABLE `favs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `favs`
+--
+
+INSERT INTO `favs` (`id`, `user_id`, `stock_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 37, '2017-05-14 18:48:56', '2017-05-14 18:48:56'),
+(5, 1, 31, '2017-05-14 19:36:17', '2017-05-14 19:36:17'),
+(6, 1, 30, '2017-05-15 19:02:52', '2017-05-15 19:02:52'),
+(8, 10, 28, '2017-06-18 17:05:44', '2017-06-18 17:05:44');
 
 -- --------------------------------------------------------
 
@@ -157,7 +175,24 @@ CREATE TABLE `matchs` (
 
 INSERT INTO `matchs` (`id`, `stock_id`, `order_id`, `point`, `created_at`, `updated_at`) VALUES
 (1, 30, 18, 100, '2017-04-10 06:35:21', '2017-04-10 06:35:21'),
-(4, 42, 30, 100, '2017-04-29 06:52:01', '2017-04-29 06:52:01');
+(4, 42, 30, 100, '2017-04-29 06:52:01', '2017-04-29 06:52:01'),
+(5, 27, 24, 100, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(6, 28, 24, 100, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(8, 31, 18, 100, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(9, 35, 24, 100, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(12, 42, 38, 50, '2017-06-04 07:43:09', '2017-06-04 07:43:09'),
+(13, 43, 38, 100, '2017-06-04 07:43:09', '2017-06-04 07:43:09'),
+(14, 44, 38, 100, '2017-06-04 07:43:09', '2017-06-04 07:43:09'),
+(15, 45, 38, 100, '2017-06-04 07:43:09', '2017-06-04 07:43:09'),
+(16, 46, 38, 100, '2017-06-04 07:43:09', '2017-06-04 07:43:09'),
+(17, 47, 38, 100, '2017-06-04 07:43:09', '2017-06-04 07:43:09'),
+(18, 49, 20, 100, '2017-06-04 08:00:23', '2017-06-04 08:00:23'),
+(19, 52, 39, 100, '2017-06-14 15:52:34', '2017-06-14 15:52:34'),
+(20, 55, 37, 50, '2017-06-18 15:25:25', '2017-06-18 15:25:25'),
+(21, 57, 37, 50, '2017-06-18 15:30:10', '2017-06-18 15:30:10'),
+(22, 28, 42, 100, '2017-06-18 17:07:57', '2017-06-18 17:07:57'),
+(23, 35, 42, 100, '2017-06-18 17:07:57', '2017-06-18 17:07:57'),
+(24, 52, 42, 50, '2017-06-18 17:07:58', '2017-06-18 17:07:58');
 
 -- --------------------------------------------------------
 
@@ -189,7 +224,37 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (55, '2017_04_10_072141_create_fav-os_table', 3),
 (56, '2017_04_07_092904_create_city_table', 4),
 (57, '2017_05_02_015407_create_tags_table', 5),
-(58, '2017_05_02_015506_create_tag_lists_table', 5);
+(58, '2017_05_02_015506_create_tag_lists_table', 5),
+(59, '2017_05_15_042332_create_notifications_table', 6),
+(60, '2017_05_30_183017_create_match_notifications_table', 7),
+(64, '2017_06_01_110849_create_stock_notifications_table', 8),
+(65, '2017_06_01_110910_create_order_notifications_table', 8),
+(66, '2017_06_13_102253_create_user_activations_table', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` char(36) COLLATE utf8_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `notifiable_id` int(10) UNSIGNED NOT NULL,
+  `notifiable_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `data` text COLLATE utf8_unicode_ci NOT NULL,
+  `read_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `type`, `notifiable_id`, `notifiable_type`, `data`, `read_at`, `created_at`, `updated_at`) VALUES
+('024a4592-3264-41f6-b989-8c4fb64dafb5', 'App\\Notifications\\Matching', 5, 'App\\Models\\User', '{"message":"Tin rao b\\u00e1n c\\u1ee7a b\\u1ea1n \\u0111\\u00e3 c\\u00f3 k\\u1ebft qu\\u1ea3 matching.","action":"http:\\/\\/vietmarketplace.dev\\/match\\/stock--31"}', NULL, '2017-05-15 19:00:01', '2017-05-15 19:00:01'),
+('c8783ac4-6197-4947-b167-18d7f5edec02', 'App\\Notifications\\Matching', 5, 'App\\Models\\User', '{"message":"Tin rao b\\u00e1n c\\u1ee7a b\\u1ea1n \\u0111\\u00e3 c\\u00f3 k\\u1ebft qu\\u1ea3 matching.","action":"http:\\/\\/vietmarketplace.dev\\/match\\/stock--30"}', NULL, '2017-05-15 19:00:01', '2017-05-15 19:00:01');
 
 -- --------------------------------------------------------
 
@@ -222,12 +287,6 @@ INSERT INTO `orderimages` (`id`, `image`, `order_id`, `created_at`, `updated_at`
 (10, 'detail-4.jpg', 21, NULL, NULL),
 (11, 'detail-1.jpg', 21, NULL, NULL),
 (12, 'detail-2.jpg', 21, NULL, NULL),
-(13, 'detail-new-macbook-pro-15-inch-256gb-silver-touch-bar-mlw72--2017--7237503012-jpg.jpg', 22, NULL, NULL),
-(14, 'detail-new-macbook-pro-15-inch-256gb-silver-touch-bar-mlw72--2017--3280062028-jpg.jpg', 22, NULL, NULL),
-(15, 'detail-new-macbook-pro-15-inch-256gb-silver-touch-bar-mlw72--2017--4140331228-jpg.jpg', 22, NULL, NULL),
-(16, 'detail-asus-zenfone-3-ze520kl-64g-ram-4g-8294173638-jpg.jpg', 23, NULL, NULL),
-(17, 'detail-asus-zenfone-3-ze520kl-64g-ram-4g-2467624056-jpg.jpg', 23, NULL, NULL),
-(18, 'detail-asus-zenfone-3-ze520kl-64g-ram-4g-5380622130-jpg.jpg', 23, NULL, NULL),
 (19, 'detail-636183647782217960_Samsung-Galaxy-J7-Prime-Pink-1-1482370626_1200x0.jpg', 24, NULL, NULL),
 (20, 'detail-636183647784238046_Samsung-Galaxy-J7-Prime-Pink-6-1482370694_1200x0.jpg', 24, NULL, NULL),
 (21, 'detail-636183647652760462_Samsung-Galaxy-J7-Prime-Pink-2-1482370627_1200x0.jpg', 24, NULL, NULL),
@@ -240,15 +299,39 @@ INSERT INTO `orderimages` (`id`, `image`, `order_id`, `created_at`, `updated_at`
 (28, 'detail-apple-new-ipad-2017-wifi-32gb-9084827132-jpg.jpg', 27, NULL, NULL),
 (29, 'detail-apple-new-ipad-2017-wifi-32gb-9084827132-jpg.jpg', 27, NULL, NULL),
 (30, 'detail-apple-new-ipad-2017-wifi-32gb-7406326873-jpg.jpg', 27, NULL, NULL),
-(31, 'detail-sach-on-thi-ielts2-trang-tiki.jpg', 28, NULL, NULL),
-(32, 'detail-cam-nang-luyen-thi-ielts.u4972.d20170324.t161134.87504.jpg', 28, NULL, NULL),
-(33, 'detail-Official_cambridge_guide_to_IELTS.jpg', 28, NULL, NULL),
 (34, 'detail-macbook-air-13-3-inch-128gb---mmgf2----2016--1120151686-jpg.jpg', 29, NULL, NULL),
 (35, 'detail-macbook-air-13-3-inch-128gb---mmgf2----2016--3009940386-jpg.jpg', 29, NULL, NULL),
 (36, 'detail-8734.jpg', 29, NULL, NULL),
 (37, 'detail-iphone-6-32gb-gold-gold-2-org.jpg', 30, NULL, NULL),
 (38, 'detail-iphone-6-32gb-gold-gold-3-org.jpg', 30, NULL, NULL),
-(39, 'detail-iphone-6-32gb-vang-400-400x460.png', 30, NULL, NULL);
+(39, 'detail-iphone-6-32gb-vang-400-400x460.png', 30, NULL, NULL),
+(49, 'detail-14554.jpg', 34, NULL, NULL),
+(50, 'detail-14554.jpg', 34, NULL, NULL),
+(51, 'detail-14554.jpg', 34, NULL, NULL),
+(52, 'detail-14554.jpg', 35, NULL, NULL),
+(53, 'detail-14554.jpg', 35, NULL, NULL),
+(54, 'detail-14554.jpg', 35, NULL, NULL),
+(55, 'detail-201204-the-lucky-one.jpeg', 36, NULL, NULL),
+(56, 'detail-201204-the-lucky-one.jpeg', 36, NULL, NULL),
+(57, 'detail-9781455508976.jpg', 36, NULL, NULL),
+(58, 'detail-acer-es1-431-n3060-4gb-500gb-1-700x467-win10.png', 37, NULL, NULL),
+(59, 'detail-asus-e402sa-wx251t-400-400x400.png', 37, NULL, NULL),
+(60, 'detail-asus-e402sa-wx134d-2.jpg', 37, NULL, NULL),
+(61, 'detail-apple-iphone-7-plus-4.jpg', 38, NULL, NULL),
+(62, 'detail-apple-iphone-7-plus-4.jpg', 38, NULL, NULL),
+(63, 'detail-apple-iphone-7-plus-4.jpg', 38, NULL, NULL),
+(64, 'detail-image003-67.jpg', 39, NULL, NULL),
+(65, 'detail-samsung-galaxy-a7-2016--4.jpg', 39, NULL, NULL),
+(66, 'detail-Samsung-Galaxy-A7-Specifications.jpg', 39, NULL, NULL),
+(67, 'detail-image003-67.jpg', 40, NULL, NULL),
+(68, 'detail-samsung-galaxy-a7-2016--4.jpg', 40, NULL, NULL),
+(69, 'detail-Samsung-Galaxy-A7-Specifications.jpg', 40, NULL, NULL),
+(70, 'detail-samsung-galaxy-tab-s33.jpg', 41, NULL, NULL),
+(71, 'detail-samsung-galaxy-tab-s37.jpg', 41, NULL, NULL),
+(72, 'detail-samsung-galaxy-tab-s311.jpg', 41, NULL, NULL),
+(73, 'detail-detail-636183647784238046_Samsung-Galaxy-J7-Prime-Pink-6-1482370694_1200x0.jpg', 42, NULL, NULL),
+(74, 'detail-detail-636183647782217960_Samsung-Galaxy-J7-Prime-Pink-1-1482370626_1200x0.jpg', 42, NULL, NULL),
+(75, 'detail-detail-636183647652760462_Samsung-Galaxy-J7-Prime-Pink-2-1482370627_1200x0.jpg', 42, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -284,15 +367,46 @@ INSERT INTO `orders` (`id`, `name`, `price`, `status`, `description`, `place`, `
 (19, 'Asus Zenfone 3', 4000000, 1, 'Asus Zenfone 3 (5.5inch) 64GB 4GB RAM\r\nZenfone 3 chỉ sử dụng chip Snapdragon 625 tầm trung nhưng đây là dòng chip  mới dựa trên quy trình 14 nm và có 8 lõi Cortex-A53 tốc độ tối đa 2 GHz. Máy có ram 4GB và bộ nhớ trong 64GB hỗ trợ mở rộng thẻ nhớ ngoài lên đến 128GB.\r\n\r\nDòng Zenfone luôn có nhiều phiên bản có kích cỡ màn hình khác nhau cho người dùng lựa chọn và Zenfone 3 cũng có 2 kích thước màn hình với 5.5 inch và 5.2inch độ phân giải Full HD công nghệ Super IPS+. Zenfone 3 cũng là smartphone đầu tiên trong gia đình Zenfone được trang bị cổng USB Type-C với kết nối USB 2.0. ', '776 CMT8', 'Hồ Chí Minh', 'Quận Tân Bình', 10.788462, 106.661987, 'main-asus-zenfone-3-ze520kl-64g-ram-4g-8294173638-jpg.jpg', 3, 1, 0, '2017-04-10 06:27:03', '2017-04-10 06:27:03'),
 (20, 'Truyện Đôrêmon', 200000, 0, 'Cần mua trọn bộ mới', '1025/20F Cách mạng tháng 8', 'Hồ Chí Minh', 'Quận Tân Bình', 10.789915, 106.655739, 'main-1.jpg', 5, 3, 0, '2017-04-10 06:44:07', '2017-04-10 06:44:07'),
 (21, 'Doremon', 90000, 1, 'Mua trọn bộ, cũ cũng đc', '1025/20F Cách mạng tháng 8', 'Hồ Chí Minh', 'Quận Tân Bình', 10.789915, 106.655739, 'main-3.jpg', 5, 3, 0, '2017-04-10 06:45:33', '2017-04-10 06:45:33'),
-(22, 'Macbook Pro 15 inch 256GB ', 40000000, 1, 'thu mua macbook gia cao', '268 Lý Thường Kiệt', 'Hồ Chí Minh', 'Quận Tân Bình', 10.772168, 106.657883, 'main-new-macbook-pro-15-inch-256gb-silver-touch-bar-mlw72--2017--4140331228-jpg.jpg', 1, 2, 0, '2017-04-10 07:15:57', '2017-04-10 07:15:57'),
-(23, 'Zenfone 3', 5500000, 0, 'hang moi xai dc 7 ngay', '268 Lý Thường Kiệt', 'Hồ Chí Minh', 'Quận 10', 10.772168, 106.657883, 'main-tren-tay-asus-zenfone-3-4gb-ram-hnam-1.jpg', 1, 1, 0, '2017-04-10 07:18:29', '2017-04-10 07:18:29'),
 (24, 'Galaxy J7 Prime', 6000000, 0, 'Can mua moi', '261 Khánh Hội', 'Hồ Chí Minh', 'Quận 4', 10.759609, 106.698318, 'main-636183647783218002_Samsung-Galaxy-J7-Prime-Pink-5-1482370688_1200x0.jpg', 6, 1, 0, '2017-04-10 07:28:12', '2017-04-10 07:28:12'),
 (25, 'Macbook Pro', 55000000, 0, 'moi nguyen xach tay, bh 24 thang', '261 Khánh Hội', 'Hồ Chí Minh', 'Quận 4', 10.759609, 106.698318, 'main-new-macbook-pro-15-inch-256gb-silver-touch-bar-mlw72--2017--7237503012-jpg.jpg', 6, 2, 0, '2017-04-10 07:29:52', '2017-04-10 07:29:52'),
 (26, 'Cô Gái Trên Tàu', 50000, 0, 'Cô Gái Trên Tàu', '274 Lý Thường Kiệt', 'Hồ Chí Minh', 'Quận 10', 10.778472, 106.656013, 'main-766665.jpg', 4, 3, 0, '2017-04-10 07:45:02', '2017-04-10 07:45:02'),
 (27, ' iPad 2017', 5000000, 0, 'iPad 32GB wifi', '346 Bắc Hải', 'Hồ Chí Minh', 'Quận 10', 10.782456, 106.660301, 'main-apple-new-ipad-2017-wifi-32gb-7406326873-jpg.jpg', 4, 2, 0, '2017-04-10 07:48:41', '2017-04-10 07:48:41'),
-(28, 'sách ielts cambridge', 180000, 0, 'cần mua bộ đầy đủ', '255 Tô Hiến Thành', 'Hồ Chí Minh', 'Quận 10', 10.772954, 106.661011, 'main-201304225510_p1000927.jpg', 2, 3, 0, '2017-04-10 08:09:54', '2017-04-10 08:09:54'),
 (29, 'Macbook Air 2017', 35000000, 1, 'Cần gấp', '22 Cửu Long', 'Hồ Chí Minh', 'Quận 10', 10.782361, 106.661835, 'main-macbook-air-13-3-inch-128gb---mmgf2----2016--8122547143-jpg.jpg', 2, 2, 0, '2017-04-10 08:12:40', '2017-04-10 08:12:40'),
-(30, 'Iphone6 32GB', 6000000, 1, 'Cũ nhưng nhìn còn mới và xài tốt là được', '1025/20F CMT8', 'Hồ Chí Minh', 'Quận Tân Bình', 10.789915, 106.655739, 'main-iphone-6-32gb-gold-gold-1-org.jpg', 7, 1, 0, '2017-04-28 06:11:13', '2017-04-28 06:11:13');
+(30, 'Iphone6 32GB', 6000000, 1, 'Cũ nhưng nhìn còn mới và xài tốt là được', '1025/20F CMT8', 'Hồ Chí Minh', 'Quận Tân Bình', 10.789915, 106.655739, 'main-iphone-6-32gb-gold-gold-1-org.jpg', 7, 1, 0, '2017-04-28 06:11:13', '2017-04-28 06:11:13'),
+(34, 'If Tomorrow Comes', 173000, 0, 'The international bestseller from the master of suspense. A mafia conspiracy and one women against the world. Tracy Whitey is on top of the world. Young, beautiful, intelligent, she is about to marry into wealth and glamour - until, betrayed by her own innocence, she finds herself in prison, framed by a ruthless mafia gang and abandoned by the man she loves. Beaten and broken, but surviving with her dazzling ingenuity, Tracy emerges from her savage ordeal - determined to avenge those who have destroyed her life. Her thirst for revenge takes her from New Orleans to London, from Paris to Madrid and Amsterdam. Tracy is playing for the highest stakes in a deadly game. Only one man can challenge her - he''s handsome, persuasive and every bit as daring. Only one man can stop her - an evil genius whose only hope of salvation is in Tracy''s destruction...', '268 Lý Thường Kiệt, phường 14', 'Hồ Chí Minh', 'Quận 10', 10.772150, 106.657791, 'main-14554.jpg', 1, 3, 0, '2017-06-04 07:20:00', '2017-06-04 07:20:00'),
+(35, 'If Tomorrow Comes', 100000, 1, 'The international bestseller from the master of suspense. A mafia conspiracy and one women against the world. Tracy Whitey is on top of the world. Young, beautiful, intelligent, she is about to marry into wealth and glamour - until, betrayed by her own innocence, she finds herself in prison, framed by a ruthless mafia gang and abandoned by the man she loves. Beaten and broken, but surviving with her dazzling ingenuity, Tracy emerges from her savage ordeal - determined to avenge those who have destroyed her life. Her thirst for revenge takes her from New Orleans to London, from Paris to Madrid and Amsterdam. Tracy is playing for the highest stakes in a deadly game. Only one man can challenge her - he''s handsome, persuasive and every bit as daring. Only one man can stop her - an evil genius whose only hope of salvation is in Tracy''s destruction...', '268 Lý Thường Kiệt, phường 14', 'Hồ Chí Minh', 'Quận 10', 10.772139, 106.657860, 'main-14554.jpg', 1, 3, 0, '2017-06-04 07:20:57', '2017-06-04 07:20:57'),
+(36, 'The Lucky One', 135000, 0, 'In his 14th book, bestselling author Nicholas Sparks tells the unforgettable story of a man whose brushes with death lead him to the love of his life.\r\n\r\nAfter U.S. Marine Logan Thibault finds a photograph of a smiling young woman buried in the dirt during his tour of duty in Iraq, he experiences a sudden streak of luck - winning poker games and even surviving deadly combat. Only his best friend, Victor, seems to have an explanation for his good fortune: the photograph - his lucky charm.\r\n\r\nBack home in Colorado, Thibault can''t seem to get the woman in the photograph out of his mind and he sets out on a journey across the country to find her. But Thibault is caught off guard by the strong attraction he feels for the woman he encounters in North Carolina - Elizabeth, a divorced mother - and he keeps the story of the photo, and his luck, a secret. As he and Elizabeth embark upon a passionate love affair, his secret soon threatens to tear them apart - destroying not only their love, but also their lives.\r\n\r\nFilled with tender romance and terrific suspense, The Lucky One is an unforgettable story about the surprising paths our lives often take and the power of fate to guide us to true and everlasting love.', '268 Lý Thường Kiệt, phường 14', 'Hồ Chí Minh', 'Quận 10', 10.772308, 106.658043, 'main-9781455508976.jpg', 1, 3, 0, '2017-06-04 07:24:11', '2017-06-04 07:24:11'),
+(37, 'Laptop', 6500000, 1, '*Yêu cầu.\r\n - Màn hình: HD, không cảm ứng.\r\n - HĐH: Windows;\r\n - RAM: 4GB, HDD: 500GB;\r\n - DVD: Có.', '268 Lý Thường Kiệt, phường 14', 'Hồ Chí Minh', 'Quận 10', 10.772434, 106.657959, 'main-asus-e402sa-wx134d-2.jpg', 1, 2, 0, '2017-06-04 07:35:29', '2017-06-04 07:35:29'),
+(38, 'Iphone', 24000000, 0, 'Điện thoại mới, vừa mua có thể.', '1025/20F Cách mạng tháng 8', 'Hồ Chí Minh', 'Quận Tân Bình', 10.789877, 106.655716, 'main-apple-iphone-7-plus-4.jpg', 5, 1, 0, '2017-06-04 07:43:09', '2017-06-04 07:43:09'),
+(39, 'Samsung A7', 5000000, 0, 'Mình cần máy mới, còn bảo hành, không bị trầy sướt\r\nNếu được thì màu đen\r\nAi có liên hệ mình nha', '147 Chấn Hưng', 'Hồ Chí Minh', 'Quận Tân Bình', 10.785105, 106.662003, 'main-Samsung_Galaxy_A7(1)(1).jpg', 9, 1, 0, '2017-06-14 15:52:33', '2017-06-14 15:52:33'),
+(40, 'Samsung A7', 4000000, 0, 'Mình cần máy mới, còn bảo hành, không bị trầy sướt\r\nNếu được thì màu đen\r\nAi có liên hệ mình nha', '147 Chấn Hưng', 'Hồ Chí Minh', 'Quận Tân Bình', 10.785175, 106.662025, 'main-Samsung_Galaxy_A7(1)(1).jpg', 9, 1, 0, '2017-06-14 15:53:55', '2017-06-14 15:53:55'),
+(41, 'Samsung Tab S3', 13000000, 1, 'CPU: Qualcomm MSM 8996, 2 nhân 2.15 GHz & 2 nhân 1.6 GHz\r\nRAM:4 GB\r\nBộ nhớ trong:32 GB\r\nMình cần em này với giá hữu nghị, mua máy cũ giá cao', '147 Chấn Hưng', 'Hồ Chí Minh', 'Quận Tân Bình', 10.784791, 106.661758, 'main-samsung-galaxy-tab-s3-bobanhangchuan-org.jpg', 9, 2, 0, '2017-06-14 16:00:56', '2017-06-14 16:00:56'),
+(42, 'galaxy j7', 5330000, 0, 'Máy còn bảo hành chính hãng, không trầy sướt là được', '1025/22A CMT8', 'Hồ Chí Minh', 'Quận Tân Bình', 10.784266, 106.665237, 'main-main-636183647783218002_Samsung-Galaxy-J7-Prime-Pink-5-1482370688_1200x0.jpg', 10, 1, 0, '2017-06-18 17:07:57', '2017-06-18 17:07:57');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_notifications`
+--
+
+CREATE TABLE `order_notifications` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `order_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `type_noti` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `read` tinyint(4) NOT NULL DEFAULT '0',
+  `read_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `order_notifications`
+--
+
+INSERT INTO `order_notifications` (`id`, `order_id`, `user_id`, `type_noti`, `read`, `read_at`, `created_at`, `updated_at`) VALUES
+(1, 37, 1, 'matching', 0, '2017-06-18 15:29:44', '2017-06-18 15:25:25', '2017-06-18 15:30:10'),
+(2, 42, 10, 'matching', 1, '2017-06-18 17:08:07', '2017-06-18 17:07:58', '2017-06-18 17:07:58');
 
 -- --------------------------------------------------------
 
@@ -308,6 +422,49 @@ CREATE TABLE `order_tag_lists` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `order_tag_lists`
+--
+
+INSERT INTO `order_tag_lists` (`id`, `order_id`, `tag_id`, `created_at`, `updated_at`) VALUES
+(1, 30, 1, '2017-05-07 17:00:00', '2017-05-07 17:00:00'),
+(2, 30, 2, '2017-05-07 17:00:00', '2017-05-07 17:00:00'),
+(3, 30, 3, '2017-05-07 17:00:00', '2017-05-07 17:00:00'),
+(4, 18, 4, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(5, 19, 4, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(7, 24, 5, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(8, 24, 6, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(10, 25, 7, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(11, 29, 7, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(13, 27, 8, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(15, 20, 11, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(16, 21, 11, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(17, 20, 12, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(18, 21, 12, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(23, 34, 13, '2017-06-04 07:20:00', '2017-06-04 07:20:00'),
+(24, 34, 19, '2017-06-04 07:20:00', '2017-06-04 07:20:00'),
+(25, 34, 20, '2017-06-04 07:20:00', '2017-06-04 07:20:00'),
+(26, 35, 13, '2017-06-04 07:20:57', '2017-06-04 07:20:57'),
+(27, 35, 19, '2017-06-04 07:20:57', '2017-06-04 07:20:57'),
+(28, 35, 20, '2017-06-04 07:20:57', '2017-06-04 07:20:57'),
+(29, 36, 13, '2017-06-04 07:24:11', '2017-06-04 07:24:11'),
+(30, 36, 20, '2017-06-04 07:24:11', '2017-06-04 07:24:11'),
+(31, 36, 21, '2017-06-04 07:24:11', '2017-06-04 07:24:11'),
+(32, 37, 22, '2017-06-04 07:35:29', '2017-06-04 07:35:29'),
+(33, 38, 1, '2017-06-04 07:43:09', '2017-06-04 07:43:09'),
+(34, 38, 15, '2017-06-04 07:43:09', '2017-06-04 07:43:09'),
+(35, 39, 5, '2017-06-14 15:52:33', '2017-06-14 15:52:33'),
+(36, 39, 17, '2017-06-14 15:52:33', '2017-06-14 15:52:33'),
+(37, 39, 25, '2017-06-14 15:52:33', '2017-06-14 15:52:33'),
+(38, 40, 5, '2017-06-14 15:53:55', '2017-06-14 15:53:55'),
+(39, 40, 17, '2017-06-14 15:53:55', '2017-06-14 15:53:55'),
+(40, 40, 25, '2017-06-14 15:53:55', '2017-06-14 15:53:55'),
+(41, 41, 5, '2017-06-14 16:00:56', '2017-06-14 16:00:56'),
+(42, 41, 26, '2017-06-14 16:00:56', '2017-06-14 16:00:56'),
+(43, 41, 27, '2017-06-14 16:00:57', '2017-06-14 16:00:57'),
+(44, 42, 5, '2017-06-18 17:07:57', '2017-06-18 17:07:57'),
+(45, 42, 6, '2017-06-18 17:07:57', '2017-06-18 17:07:57');
+
 -- --------------------------------------------------------
 
 --
@@ -319,6 +476,14 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('test1@gmail.com', '2cea0a8aa69ce905f39fcaf304bb7ec34faec3f1b7153ddbb74fca44c688436a', '2017-06-04 07:05:43'),
+('trinhbu01@gmail.com', 'a7beb092ad4d993fe6745a7532af47e0702453254c00600b804691dd4622ffea', '2017-06-18 14:58:19');
 
 -- --------------------------------------------------------
 
@@ -347,7 +512,12 @@ INSERT INTO `reviews` (`id`, `voting_user_id`, `voted_user_id`, `vote`, `comment
 (4, 3, 1, 1, 'đẹp mà mắc quá', '2017-04-12 07:31:15', '2017-04-12 07:31:15'),
 (5, 3, 5, 1, 'giá tốt', '2017-04-12 07:35:14', '2017-04-12 07:35:14'),
 (6, 3, 4, 1, 'máy quá đắt, khó liên lạc với người đăng', '2017-04-12 21:11:27', '2017-04-12 21:11:27'),
-(7, 3, 4, 0, 'hẹn hoài không gặp', '2017-04-12 21:11:43', '2017-04-12 21:11:43');
+(7, 3, 4, 0, 'hẹn hoài không gặp', '2017-04-12 21:11:43', '2017-04-12 21:11:43'),
+(8, 1, 3, 1, 'Sản phẩm nhìn tạm ổn', '2017-05-26 07:12:02', '2017-05-26 07:12:02'),
+(9, 1, 4, 1, 'Bình thường.', '2017-05-26 07:24:41', '2017-05-26 07:24:41'),
+(10, 1, 3, 1, 'Bình thường', '2017-05-28 21:48:45', '2017-05-28 21:48:45'),
+(11, 1, 4, 1, 'testting', '2017-05-28 21:49:31', '2017-05-28 21:49:31'),
+(12, 3, 1, 1, 'Sản phẩm đẹp', '2017-06-18 16:51:13', '2017-06-18 16:51:13');
 
 -- --------------------------------------------------------
 
@@ -380,12 +550,6 @@ INSERT INTO `stockimages` (`id`, `image`, `stock_id`, `created_at`, `updated_at`
 (42, 'detail-asus-zenfone-3-ze520kl-64g-ram-4g-5380622130-jpg.jpg', 31, NULL, NULL),
 (43, 'detail-asus-zenfone-3-ze520kl-64g-ram-4g-8294173638-jpg.jpg', 31, NULL, NULL),
 (44, 'detail-tren-tay-asus-zenfone-3-4gb-ram-hnam-1.jpg', 31, NULL, NULL),
-(45, 'detail-3.jpg', 32, NULL, NULL),
-(46, 'detail-4.jpg', 32, NULL, NULL),
-(47, 'detail-2.jpg', 32, NULL, NULL),
-(48, 'detail-new-macbook-pro-15-inch-256gb-silver-touch-bar-mlw72--2017--3280062028-jpg.jpg', 33, NULL, NULL),
-(49, 'detail-new-macbook-pro-15-inch-256gb-silver-touch-bar-mlw72--2017--4140331228-jpg.jpg', 33, NULL, NULL),
-(50, 'detail-new-macbook-pro-15-inch-256gb-silver-touch-bar-mlw72--2017--7237503012-jpg.jpg', 33, NULL, NULL),
 (51, 'detail-4.jpg', 34, NULL, NULL),
 (52, 'detail-2.jpg', 34, NULL, NULL),
 (53, 'detail-1.jpg', 34, NULL, NULL),
@@ -398,15 +562,54 @@ INSERT INTO `stockimages` (`id`, `image`, `stock_id`, `created_at`, `updated_at`
 (60, 'detail-tra-hoa-nu-cover-2.png', 37, NULL, NULL),
 (61, 'detail-tra-hoa-nu.u335.d20160802.t142028.544772.png', 37, NULL, NULL),
 (62, 'detail-tra-hoa-nu-alexandre-dumas-270x410.jpg', 37, NULL, NULL),
-(63, 'detail-asus-ux510ux-i5-7200u-up-xam-94-org.jpg', 38, NULL, NULL),
-(64, 'detail-asus-ux510ux-i5-7200u-up-xam-93-org.jpg', 38, NULL, NULL),
-(65, 'detail-asus-ux510ux-i5-7200u-dp.jpg', 38, NULL, NULL),
-(66, 'detail-Official_cambridge_guide_to_IELTS.jpg', 39, NULL, NULL),
-(67, 'detail-201304225510_p1000927.jpg', 39, NULL, NULL),
-(68, 'detail-sach-on-thi-ielts2-trang-tiki.jpg', 39, NULL, NULL),
 (75, 'detail-iphone-6-32gb-gold-gold-2-org.jpg', 42, NULL, NULL),
 (76, 'detail-iphone-6-32gb-gold-gold-3-org.jpg', 42, NULL, NULL),
-(77, 'detail-iphone-6-32gb-gold-gold-1-org.jpg', 42, NULL, NULL);
+(77, 'detail-iphone-6-32gb-gold-gold-1-org.jpg', 42, NULL, NULL),
+(78, 'detail-images.jpg', 43, NULL, NULL),
+(79, 'detail-iphone-7-plus-2-400x460-400x460.png', 43, NULL, NULL),
+(80, 'detail-tai xuong.jpg', 43, NULL, NULL),
+(81, 'detail-images.jpg', 44, NULL, NULL),
+(82, 'detail-iphone-7-plus-2-400x460-400x460.png', 44, NULL, NULL),
+(83, 'detail-tai xuong.jpg', 44, NULL, NULL),
+(84, 'detail-iphone-7-plus-2-400x460-400x460.png', 45, NULL, NULL),
+(85, 'detail-tai xuong.jpg', 45, NULL, NULL),
+(86, 'detail-apple-iphone-7-plus-4.jpg', 45, NULL, NULL),
+(87, 'detail-images (1).jpg', 46, NULL, NULL),
+(88, 'detail-iphone7plus-model-select-201703_AV3.jpg', 46, NULL, NULL),
+(89, 'detail-tai xuong (1).jpg', 46, NULL, NULL),
+(90, 'detail-images (1).jpg', 47, NULL, NULL),
+(91, 'detail-iphone7plus-model-select-201703_AV3.jpg', 47, NULL, NULL),
+(92, 'detail-tai xuong (1).jpg', 47, NULL, NULL),
+(93, 'detail-comparison-phones-s8+.jpg', 48, NULL, NULL),
+(94, 'detail-samsung-galaxy-s8-plus-4-400x460.png', 48, NULL, NULL),
+(95, 'detail-images (2).jpg', 48, NULL, NULL),
+(96, 'detail-0.jpg', 49, NULL, NULL),
+(97, 'detail-8-fahasa-3-644d6.jpg', 49, NULL, NULL),
+(98, 'detail-tai xuong (3).jpg', 49, NULL, NULL),
+(99, 'detail-0.jpg', 50, NULL, NULL),
+(100, 'detail-8-fahasa-3-644d6.jpg', 50, NULL, NULL),
+(101, 'detail-tai xuong (3).jpg', 50, NULL, NULL),
+(102, 'detail-8599069_IMG_0019.jpg', 51, NULL, NULL),
+(103, 'detail-8599070_IMG_0020.jpg', 51, NULL, NULL),
+(104, 'detail-8599071_IMG_0021.jpg', 51, NULL, NULL),
+(105, 'detail-8587838_PicsArt_06-12-02.58.40.jpg', 52, NULL, NULL),
+(106, 'detail-8587842_PicsArt_06-12-03.02.09.jpg', 52, NULL, NULL),
+(107, 'detail-8587843_8587789_PicsArt_06-13-08.30.16.jpg', 52, NULL, NULL),
+(108, 'detail-samsung-galaxy-tab-s37.jpg', 53, NULL, NULL),
+(109, 'detail-samsung-galaxy-tab-s3-bobanhangchuan-org.jpg', 53, NULL, NULL),
+(110, 'detail-samsung-galaxy-tab-s311.jpg', 53, NULL, NULL),
+(111, 'detail-asus-a441ua-i3-6006u-den-94-180x125.jpg', 54, NULL, NULL),
+(112, 'detail-asus-a441ua-i3-6006u-den-95-180x125.jpg', 54, NULL, NULL),
+(113, 'detail-asus-a441ua-i3-6006u-den-6-180x125.jpg', 54, NULL, NULL),
+(114, 'detail-detail-asus-e402sa-wx251t-400-400x400.png', 55, NULL, NULL),
+(115, 'detail-main-asus-e402sa-wx134d-2.jpg', 55, NULL, NULL),
+(116, 'detail-detail-acer-es1-431-n3060-4gb-500gb-1-700x467-win10.png', 55, NULL, NULL),
+(117, 'detail-detail-asus-e402sa-wx251t-400-400x400.png', 56, NULL, NULL),
+(118, 'detail-detail-asus-e402sa-wx134d-2.jpg', 56, NULL, NULL),
+(119, 'detail-detail-acer-es1-431-n3060-4gb-500gb-1-700x467-win10.png', 56, NULL, NULL),
+(120, 'detail-detail-asus-e402sa-wx251t-400-400x400.png', 57, NULL, NULL),
+(121, 'detail-detail-asus-e402sa-wx134d-2.jpg', 57, NULL, NULL),
+(122, 'detail-detail-acer-es1-431-n3060-4gb-500gb-1-700x467-win10.png', 57, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -440,17 +643,56 @@ CREATE TABLE `stocks` (
 INSERT INTO `stocks` (`id`, `name`, `price`, `status`, `description`, `place`, `city`, `district`, `lat`, `lng`, `img`, `user_id`, `cate_id`, `finished`, `created_at`, `updated_at`) VALUES
 (27, 'Samsung Galaxy J7 Prime', 5990000, 0, '“Kẻ hủy diệt” Galaxy J7 Prime xứng đáng là 1 đối thủ đáng gòm trong phân khúc giá tầm trung. Được trang bị màn hình TFT, kích thước 5.5 inch, độ phân giải full HD. Máy sử dụng chip Exynos 7870 8 nhân tốc độ 1,6 GHz, RAM 3 GB và bộ nhớ trong 32 GB, viên pin 3.300 mAh. Máy chạy hệ điều hành Android 6.0.', '776 CMT8', 'Hồ Chí Minh', 'Quận Tân Bình', 10.788462, 106.661987, 'main-636183647652760462_Samsung-Galaxy-J7-Prime-Pink-2-1482370627_1200x0.jpg', 3, 1, 0, '2017-04-10 06:15:04', '2017-04-10 06:15:04'),
 (28, 'Samsung Galaxy J7 Prime', 4490000, 1, '“Kẻ hủy diệt” Galaxy J7 Prime xứng đáng là 1 đối thủ đáng gòm trong phân khúc giá tầm trung. Được trang bị màn hình TFT, kích thước 5.5 inch, độ phân giải full HD. Máy sử dụng chip Exynos 7870 8 nhân tốc độ 1,6 GHz, RAM 3 GB và bộ nhớ trong 32 GB, viên pin 3.300 mAh. Máy chạy hệ điều hành Android 6.0.', '776 CMT8', 'Hồ Chí Minh', 'Quận Tân Bình', 10.788462, 106.661987, 'main-636183647783218002_Samsung-Galaxy-J7-Prime-Pink-5-1482370688_1200x0.jpg', 3, 1, 0, '2017-04-10 06:17:50', '2017-04-10 06:17:50'),
-(30, 'Asus Zenfone 3', 6000000, 0, 'Asus Zenfone 3 (5.5inch) 64GB 4GB RAM', '1025/12A CMT8', 'Hồ Chí Minh', 'Quận Tân Bình', 10.790515, 106.656189, 'main-asus-zenfone-3-ze520kl-64g-ram-4g-8294173638-jpg.jpg', 5, 1, 0, '2017-04-10 06:35:21', '2017-04-10 06:35:21'),
+(30, 'Asus Zenfone 3', 6000000, 0, 'Asus Zenfone 3 (5.5inch) 64GB 4GB RAM', '1025/12A CMT8', 'Hồ Chí Minh', 'Quận Tân Bình', 10.790515, 106.656189, 'main-asus-zenfone-3-ze520kl-64g-ram-4g-2467624056-jpg.jpg', 5, 1, 0, '2017-04-10 06:35:21', '2017-04-10 06:35:21'),
 (31, 'Asus Zenfone 3', 5000000, 1, 'Asus Zenfone 3 (5.5inch) 64GB 4GB RAM', '1025/12A CMT8', 'Hồ Chí Minh', 'Quận Tân Bình', 10.790515, 106.656189, 'main-asus-zenfone-3-ze520kl-64g-ram-4g-2467624056-jpg.jpg', 5, 1, 0, '2017-04-10 06:37:49', '2017-04-10 06:37:49'),
-(32, 'Bộ doremon', 110000, 1, 'bán bộ truyện huyền thoại giá rẻ', '268 Lý Thường Kiệt', 'Hồ Chí Minh', 'Quận 10', 10.772168, 106.657883, 'main-4.jpg', 1, 3, 0, '2017-04-10 07:01:52', '2017-04-10 07:01:52'),
-(33, 'Macbook Pro 15 inch 256GB ', 48999000, 0, 'hang xach tay', '260 Lý Thường Kiệt', 'Hồ Chí Minh', 'Quận 10', 10.775114, 106.656921, 'main-macbook pro touch bar 20161 (2).jpg', 1, 2, 0, '2017-04-10 07:14:29', '2017-04-10 07:14:29'),
 (34, 'bo truyen doremon', 240000, 0, 'bo moi gia re', '261 Khánh Hội', 'Hồ Chí Minh', 'Quận 4', 10.759609, 106.698318, 'main-3.jpg', 6, 3, 0, '2017-04-10 07:25:22', '2017-04-10 07:25:22'),
 (35, 'Samsung J7 Prime', 5500000, 1, 'mua dc 1 thang', '261 Khánh Hội', 'Hồ Chí Minh', 'Quận 4', 10.759609, 106.698318, 'main-636183647784238046_Samsung-Galaxy-J7-Prime-Pink-6-1482370694_1200x0.jpg', 6, 1, 0, '2017-04-10 07:27:03', '2017-04-10 07:27:03'),
 (36, 'Macbook Air', 20000000, 0, 'Macbook Air 13.3 inch 128GB', '268 Lý Thường Kiệt', 'Hồ Chí Minh', 'Quận 10', 10.772168, 106.657883, 'main-macbook-air-13-3-inch-128gb---mmgf2----2016--3009940386-jpg.jpg', 4, 2, 0, '2017-04-10 07:34:13', '2017-04-10 07:34:13'),
 (37, 'Trà Hoa Nữ', 49000, 0, 'Nội dung Trà hoa nữ kể về mối tình bất thành của anh nhà giàu Duval với cô kỹ nữ Marguerite, một đề tài tưởng đâu là quen thuộc, nhưng bằng ngòi bút sắc sảo cộng với tình cảm bao dung mà tác giả muốn truyền tải, truyện được độc giả đón nhận không ngần ngại, dù là giới quý tộc, cái giới bị hạ thấp hơn cả cô kỹ nữ trong truyện. Mặc dù Marguerite sống bằng nghề kỹ nữ nhưng trái với nghề của mình, Marguerite là người có tâm hồn và cá tính; nàng có lòng vị tha, biết hi sinh bản thân mình cho người mình yêu. Marguerite Gautier trong truyện được viết dựa trên hình mẫu của Marie Duplessis, người yêu của chính tác giả.', '266 Lý Thường Kiệt', 'Hồ Chí Minh', 'Quận 10', 10.791725, 106.652763, 'main-tra-hoa-nu-ebook.jpg', 4, 3, 0, '2017-04-10 07:41:19', '2017-04-10 07:41:19'),
-(38, 'Asus UX510UX', 16000000, 1, 'Asus UX510UX i5 7200U/4GB/1TB/4GB 950M/Win10\r\nMới mua được 2 tháng', '230 Đường 3/2', 'Hồ Chí Minh', 'Quận 10', 10.771397, 106.674484, 'main-asus-zenbook-ux501vw-thin-1500x1000_800x450-300x200.jpg', 2, 2, 0, '0000-00-00 00:00:00', '2017-04-10 08:01:46'),
-(39, 'Cẩm Nang Luyện Thi IELTS', 290000, 0, 'Cẩm Nang Luyện Thi IELTS', '356 Đường 3/2', 'Hồ Chí Minh', 'Quận 10', 10.769611, 106.670319, 'main-cam-nang-luyen-thi-ielts.u4972.d20170324.t161134.87504.jpg', 2, 3, 0, '2017-04-10 08:07:08', '2017-04-10 08:07:08'),
-(42, 'Iphone6 32GB', 6500000, 1, 'Mới mua 4 tháng, không bị trầy xướt, nhìn còn mới', '30 Vân Côi', 'Hồ Chí Minh', 'Quận Tân Bình', 10.785773, 106.656792, 'main-iphone-6-32gb-vang-400-400x460.png', 3, 1, 0, '2017-04-29 06:52:01', '2017-04-29 06:52:01');
+(42, 'Iphone6 32GB', 6500000, 1, 'Mới mua 4 tháng, không bị trầy xướt, nhìn còn mới', '30 Vân Côi', 'Hồ Chí Minh', 'Quận Tân Bình', 10.785773, 106.656792, 'main-iphone-6-32gb-vang-400-400x460.png', 3, 1, 0, '2017-04-29 06:52:01', '2017-04-29 06:52:01'),
+(43, 'iPhone 7 Plus', 21990000, 0, 'Trong hộp có: sạc, tai nghe, sách hướng dẫn, jack chuyển tai nghe 3.5mm, cáp, cây lấy sim.\r\nBảo hành chính hãng: thân máy 12 tháng, sạc 12 tháng, tai nghe 12 tháng.', '268 Lý Thường Kiệt, phường 14', 'Hồ Chí Minh', 'Quận 10', 10.772110, 106.657753, 'main-apple-iphone-7-plus-4.jpg', 3, 1, 0, '2017-06-04 05:57:22', '2017-06-04 05:57:22'),
+(44, 'iPhone 7 Plus', 22990000, 0, '*Thông số kỹ thuật:\r\n  - Màn hình: 5.5", Retina HD;\r\n  - HĐH: iOS 10;\r\n  - CPU: Apple A10 Fushion 4 nhân;\r\n  - RAM: 3GB, ROM: 32GB;\r\n  - Camera: Hai camera 12MP, Selfie: 7MP;\r\n  - PIN: 2900mAh, SIM: 1 SIM.\r\n*Trong hộp có: sạc, tai nghe, sách hướng dẫn, jack chuyển tai nghe 3.5mm, cáp, cây lấy sim.', '268 Lý Thường Kiệt, phường 14', 'Hồ Chí Minh', 'Quận 10', 10.772350, 106.657959, 'main-apple-iphone-7-plus-4.jpg', 1, 1, 0, '2017-06-04 06:02:50', '2017-06-04 06:02:50'),
+(45, 'iPhone 7 Plus', 20990000, 0, '*Thông số kỹ thuật:\r\n  - Màn hình: 5.5", Retina HD;\r\n  - HĐH: iOS 10;\r\n  - CPU: Apple A10 Fushion 4 nhân;\r\n  - RAM: 3GB, ROM: 32GB;\r\n  - Camera: Hai camera 12MP, Selfie: 7MP;\r\n  - PIN: 2900mAh, SIM: 1 SIM.\r\n*Trong hộp có: sạc, tai nghe, sách hướng dẫn, jack chuyển tai nghe 3.5mm, cáp, cây lấy sim.', '268 Lý Thường Kiệt, phường 14', 'Hồ Chí Minh', 'Quận 10', 10.772150, 106.657799, 'main-images.jpg', 1, 1, 0, '2017-06-04 06:05:06', '2017-06-04 06:05:06'),
+(46, 'iPhone 7 Plus Red 128GB', 23990000, 0, '*Thông số kỹ thuật:\r\n  - Màn hình: 5.5", Retina HD;\r\n  - HĐH: iOS 10;\r\n  - CPU: Apple A10 Fushion 4 nhân;\r\n  - RAM: 3GB, ROM: 128GB;\r\n  - Camera: Hai camera 12MP, Selfie: 7MP;\r\n  - PIN: 2900mAh, SIM: 1 SIM.\r\n*Trong hộp có: sạc, tai nghe, sách hướng dẫn, jack chuyển tai nghe 3.5mm, cáp, cây lấy sim.', '268 Lý Thường Kiệt, phường 14', 'Hồ Chí Minh', 'Quận 10', 10.772171, 106.657822, 'main-iphone-7-plus-red-128gb-400x460.png', 1, 1, 0, '2017-06-04 06:50:57', '2017-06-04 06:50:57'),
+(47, 'iPhone 7 Plus Red 128GB', 24990000, 0, '*Thông số kỹ thuật:\r\n  - Màn hình: 5.5", Retina HD;\r\n  - HĐH: iOS 10;\r\n  - CPU: Apple A10 Fushion 4 nhân;\r\n  - RAM: 3GB, ROM: 128GB;\r\n  - Camera: Hai camera 12MP, Selfie: 7MP;\r\n  - PIN: 2900mAh, SIM: 1 SIM.\r\n*Trong hộp có: sạc, tai nghe, sách hướng dẫn, jack chuyển tai nghe 3.5mm, cáp, cây lấy sim.', '268 Lý Thường Kiệt, phường 14', 'Hồ Chí Minh', 'Quận 10', 10.772187, 106.657806, 'main-iphone-7-plus-red-128gb-400x460.png', 1, 1, 0, '2017-06-04 06:51:23', '2017-06-04 06:51:23'),
+(48, 'Samsung Galaxy S8 Plus', 20490000, 0, '*Thông số kỹ thuật:\r\n  - Màn hình: 6.2", Quad HD;\r\n  - HĐH: Android 7.0;\r\n  - CPU: Exynos 8892 8 nhân;\r\n  - RAM: 4GB, ROM: 64GB;\r\n  - Camera: 12MP, Selfie: 8MP;\r\n  - PIN: 3500mAh, SIM: 2 SIM Nano.\r\n*Trong hộp có: sạc, tai nghe, sách hướng dẫn, cáp OTG(đầu chuyển micro USB sang USB Type-C), cáp, cây lấy sim.', '268 Lý Thường Kiệt, phường 14', 'Hồ Chí Minh', 'Quận 10', 10.772160, 106.657784, 'main-tai xuong (2).jpg', 1, 1, 0, '2017-06-04 06:59:25', '2017-06-04 06:59:25'),
+(49, 'Doremon Trọn bộ 45 tập', 200000, 1, 'Doremon là bộ truyện ăn khách nhất trên thế giới được nhiều người biết đến và yêu thích kể người lớn lẫn trẻ con.\r\nBộ truyện dành cho những đọc giả có mong muốn sưu tầm.\r\nCả bộ 45 tập gồm cả truyện dài và các truyện ngắn đầy thú vị.', '268 Lý Thường Kiệt, phường 14', 'Hồ Chí Minh', 'Quận 10', 10.772160, 106.657791, 'main-full_592715056f3e0c872e680a642e43a336.jpg', 2, 3, 0, '2017-06-04 08:00:23', '2017-06-04 08:00:23'),
+(50, 'Doremon Trọn bộ 45 tập', 300000, 0, 'Doremon là bộ truyện ăn khách nhất trên thế giới được nhiều người biết đến và yêu thích kể người lớn lẫn trẻ con.\r\nBộ truyện dành cho những đọc giả có mong muốn sưu tầm.\r\nCả bộ 45 tập gồm cả truyện dài và các truyện ngắn đầy thú vị.', '268 Lý Thường Kiệt, phường 14', 'Hồ Chí Minh', 'Quận 10', 10.772153, 106.657791, 'main-full_592715056f3e0c872e680a642e43a336.jpg', 2, 3, 0, '2017-06-04 08:01:17', '2017-06-04 08:01:17'),
+(51, 'Blackberry Passport', 3500000, 1, 'Mình cần bán 1 em passport zin 100% tình trạng mới 99%\r\nGiá : 3tr5\r\nGồm : máy + sạc + cap', '336 Bắc Hải', 'Hồ Chí Minh', 'Quận Tân Bình', 10.782744, 106.660736, 'main-Passport_Black_Press_0.png', 3, 1, 0, '2017-06-14 15:26:30', '2017-06-14 15:26:30'),
+(52, 'Samsung Galaxy A7', 5000000, 0, '-Máy chính hãng Samsung VN còn bảo hành mở rộng tại Hnammobile đến 04/2018 lận nha\r\n-Máy ngoại hình đẹp như mới\r\n-Mọi chức năng hoàn hảo, vân tay nhạy\r\n-Phụ kiện đầy đủ không thiếu gì (hộp, sạc nhanh, cáp, tai nghe) tất cả zin theo máy nha. Tặng kèm ốp Ipaky xịn và 2 ốp dẻo', '23 Cửu Long, Cư xá Bắc Hải', 'Hồ Chí Minh', 'Quận 10', 10.780394, 106.662605, 'main-8587837_PicsArt_06-12-02.58.13.jpg', 3, 1, 0, '2017-06-14 15:35:00', '2017-06-14 15:35:00'),
+(53, 'Samsung Galaxy Tab S3', 15000000, 0, 'Máy mới, giá rẻ.\r\nBảo hành chính hãng: thân máy 12 tháng, pin 12 tháng, sạc 6 tháng.\r\nTrong hộp có: Adapter, Sách hướng dẫn, Bút cảm ứng, Cáp Micro USB ((Type-C)), Hộp máy.', 'CV Lê Thị Riêng, CMT8', 'Hồ Chí Minh', 'Quận Tân Bình', 10.786077, 106.665344, 'main-samsung-galaxy-tab-s33.jpg', 9, 2, 0, '2017-06-14 16:03:29', '2017-06-14 16:03:29'),
+(54, 'Laptop Asus i3', 10000000, 0, 'Đặc điểm nổi bật : i3 6006U - 4GB - 500GB - Win10\r\nBảo hành chính hãng: thân máy 24 tháng, pin 12 tháng, sạc 12 tháng', '2/18 Lữ Gia', 'Hồ Chí Minh', 'Quận 11', 10.770925, 106.657799, 'main-asus-a441ua-i3-6006u-400-400x400.png', 9, 2, 0, '2017-06-14 16:12:06', '2017-06-14 16:12:06'),
+(55, 'Laptop Asus', 6000000, 0, 'Còn mới, còn bảo hành\r\nRam >= 4GB', '285 Lý Thường Kiệt', 'Hồ Chí Minh', 'Quận 10', 10.775387, 106.656570, 'main-detail-asus-e402sa-wx134d-2.jpg', 3, 2, 0, '2017-06-18 15:25:25', '2017-06-18 15:25:25'),
+(56, 'Laptop Asus i3', 6670000, 1, 'Còn bảo hành, ram 8gb, vga 650m', '270 Lý Thường Kiệt', 'Hồ Chí Minh', 'Quận 10', 10.773679, 106.657280, 'main-main-asus-e402sa-wx134d-2.jpg', 3, 2, 1, '2017-06-18 15:28:57', '2017-06-18 16:43:57'),
+(57, 'Laptop Asus i5', 6670000, 0, 'Còn bảo hành, ram 8gb, vga 650m', '270 Lý Thường Kiệt', 'Hồ Chí Minh', 'Quận 10', 10.772458, 106.657639, 'main-main-asus-e402sa-wx134d-2.jpg', 3, 2, 0, '2017-06-18 15:30:09', '2017-06-18 15:30:09');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_notifications`
+--
+
+CREATE TABLE `stock_notifications` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `stock_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `type_noti` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `read` tinyint(4) NOT NULL DEFAULT '0',
+  `read_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `stock_notifications`
+--
+
+INSERT INTO `stock_notifications` (`id`, `stock_id`, `user_id`, `type_noti`, `read`, `read_at`, `created_at`, `updated_at`) VALUES
+(1, 55, 3, 'matching', 1, '2017-06-18 16:44:59', '2017-06-18 15:25:25', '2017-06-18 15:25:25'),
+(2, 57, 3, 'matching', 1, '2017-06-18 16:44:55', '2017-06-18 15:30:10', '2017-06-18 15:30:10'),
+(3, 28, 3, 'matching', 1, '2017-06-18 17:08:20', '2017-06-18 17:07:58', '2017-06-18 17:07:58'),
+(4, 35, 6, 'matching', 0, NULL, '2017-06-18 17:07:58', '2017-06-18 17:07:58'),
+(5, 52, 3, 'matching', 0, NULL, '2017-06-18 17:07:58', '2017-06-18 17:07:58');
 
 -- --------------------------------------------------------
 
@@ -466,6 +708,66 @@ CREATE TABLE `stock_tag_lists` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `stock_tag_lists`
+--
+
+INSERT INTO `stock_tag_lists` (`id`, `stock_id`, `tag_id`, `created_at`, `updated_at`) VALUES
+(1, 42, 1, '2017-05-07 17:00:00', '2017-05-07 17:00:00'),
+(2, 42, 2, '2017-05-07 17:00:00', '2017-05-07 17:00:00'),
+(3, 42, 3, '2017-05-07 17:00:00', '2017-05-07 17:00:00'),
+(4, 27, 5, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(5, 27, 6, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(6, 28, 5, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(7, 28, 6, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(8, 35, 5, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(9, 35, 6, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(10, 30, 4, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(11, 31, 4, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(14, 34, 11, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(15, 34, 12, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(20, 36, 7, '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(21, 43, 1, '2017-06-04 05:57:22', '2017-06-04 05:57:22'),
+(22, 43, 3, '2017-06-04 05:57:22', '2017-06-04 05:57:22'),
+(23, 43, 15, '2017-06-04 05:57:23', '2017-06-04 05:57:23'),
+(24, 44, 1, '2017-06-04 06:02:50', '2017-06-04 06:02:50'),
+(25, 44, 3, '2017-06-04 06:02:50', '2017-06-04 06:02:50'),
+(26, 44, 15, '2017-06-04 06:02:50', '2017-06-04 06:02:50'),
+(27, 45, 1, '2017-06-04 06:05:06', '2017-06-04 06:05:06'),
+(28, 45, 3, '2017-06-04 06:05:06', '2017-06-04 06:05:06'),
+(29, 45, 15, '2017-06-04 06:05:06', '2017-06-04 06:05:06'),
+(30, 46, 1, '2017-06-04 06:50:57', '2017-06-04 06:50:57'),
+(31, 46, 15, '2017-06-04 06:50:57', '2017-06-04 06:50:57'),
+(32, 46, 16, '2017-06-04 06:50:57', '2017-06-04 06:50:57'),
+(33, 47, 1, '2017-06-04 06:51:23', '2017-06-04 06:51:23'),
+(34, 47, 15, '2017-06-04 06:51:23', '2017-06-04 06:51:23'),
+(35, 47, 16, '2017-06-04 06:51:23', '2017-06-04 06:51:23'),
+(36, 48, 5, '2017-06-04 06:59:25', '2017-06-04 06:59:25'),
+(37, 48, 17, '2017-06-04 06:59:25', '2017-06-04 06:59:25'),
+(38, 48, 18, '2017-06-04 06:59:25', '2017-06-04 06:59:25'),
+(39, 49, 12, '2017-06-04 08:00:23', '2017-06-04 08:00:23'),
+(40, 49, 11, '2017-06-04 08:00:23', '2017-06-04 08:00:23'),
+(41, 50, 12, '2017-06-04 08:01:17', '2017-06-04 08:01:17'),
+(42, 50, 11, '2017-06-04 08:01:17', '2017-06-04 08:01:17'),
+(43, 51, 23, '2017-06-14 15:26:31', '2017-06-14 15:26:31'),
+(44, 51, 24, '2017-06-14 15:26:31', '2017-06-14 15:26:31'),
+(45, 52, 5, '2017-06-14 15:35:00', '2017-06-14 15:35:00'),
+(46, 52, 17, '2017-06-14 15:35:00', '2017-06-14 15:35:00'),
+(47, 52, 25, '2017-06-14 15:35:00', '2017-06-14 15:35:00'),
+(48, 53, 5, '2017-06-14 16:03:30', '2017-06-14 16:03:30'),
+(49, 53, 17, '2017-06-14 16:03:30', '2017-06-14 16:03:30'),
+(50, 53, 26, '2017-06-14 16:03:30', '2017-06-14 16:03:30'),
+(51, 54, 28, '2017-06-14 16:12:06', '2017-06-14 16:12:06'),
+(52, 54, 29, '2017-06-14 16:12:06', '2017-06-14 16:12:06'),
+(53, 54, 30, '2017-06-14 16:12:06', '2017-06-14 16:12:06'),
+(54, 55, 22, '2017-06-18 15:25:25', '2017-06-18 15:25:25'),
+(55, 55, 28, '2017-06-18 15:25:25', '2017-06-18 15:25:25'),
+(56, 56, 22, '2017-06-18 15:28:58', '2017-06-18 15:28:58'),
+(57, 56, 28, '2017-06-18 15:28:58', '2017-06-18 15:28:58'),
+(58, 56, 30, '2017-06-18 15:28:58', '2017-06-18 15:28:58'),
+(59, 57, 22, '2017-06-18 15:30:09', '2017-06-18 15:30:09'),
+(60, 57, 28, '2017-06-18 15:30:09', '2017-06-18 15:30:09');
+
 -- --------------------------------------------------------
 
 --
@@ -479,6 +781,42 @@ CREATE TABLE `tags` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tags`
+--
+
+INSERT INTO `tags` (`id`, `name`, `alias`, `created_at`, `updated_at`) VALUES
+(1, 'Iphone', 'iphone', '2017-05-07 17:00:00', '2017-05-07 17:00:00'),
+(2, 'Iphone 6', 'iphone-6', '2017-05-07 17:00:00', '2017-05-07 17:00:00'),
+(3, '32GB', '32gb', '2017-05-07 17:00:00', '2017-05-07 17:00:00'),
+(4, 'Asus Zenfone 3', 'asus-zenfone-3', '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(5, 'Samsung', 'samsung', '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(6, 'Galaxy J7', 'galaxy-j7', '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(7, 'Macbook', 'macbook', '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(8, 'iPad', 'ipad', '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(9, '256GB', '256gb', '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(10, '15 inch', '15-inch', '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(11, 'Truyen Tranh', 'truyen-tranh', '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(12, 'Doremon', 'doremon', '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(13, 'Tieu thuyet', 'tieu-thuyet', '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(14, 'IELTS', 'ielts', '2017-05-14 17:00:00', '2017-05-14 17:00:00'),
+(15, '7 plus', '7-plus', '2017-06-04 05:57:22', '2017-06-04 05:57:22'),
+(16, '128gb', '128gb', '2017-06-04 06:50:57', '2017-06-04 06:50:57'),
+(17, 'Galaxy', 'galaxy', '2017-06-04 06:59:25', '2017-06-04 06:59:25'),
+(18, 's8 plus', 's8-plus', '2017-06-04 06:59:25', '2017-06-04 06:59:25'),
+(19, 'sydney sheldon', 'sydney-sheldon', '2017-06-04 07:20:00', '2017-06-04 07:20:00'),
+(20, 'tieng anh', 'tieng-anh', '2017-06-04 07:20:00', '2017-06-04 07:20:00'),
+(21, 'nicholas sparks', 'nicholas-sparks', '2017-06-04 07:24:11', '2017-06-04 07:24:11'),
+(22, 'laptop', 'laptop', '2017-06-04 07:35:29', '2017-06-04 07:35:29'),
+(23, 'blackberry', 'blackberry', '2017-06-14 15:26:30', '2017-06-14 15:26:30'),
+(24, 'passport', 'passport', '2017-06-14 15:26:31', '2017-06-14 15:26:31'),
+(25, 'a7', 'a7', '2017-06-14 15:35:00', '2017-06-14 15:35:00'),
+(26, 'tab', 'tab', '2017-06-14 16:00:56', '2017-06-14 16:00:56'),
+(27, 's3', 's3', '2017-06-14 16:00:57', '2017-06-14 16:00:57'),
+(28, 'asus', 'asus', '2017-06-14 16:12:06', '2017-06-14 16:12:06'),
+(29, 'A441UA', 'a441ua', '2017-06-14 16:12:06', '2017-06-14 16:12:06'),
+(30, 'i3', 'i3', '2017-06-14 16:12:06', '2017-06-14 16:12:06');
 
 -- --------------------------------------------------------
 
@@ -499,6 +837,7 @@ CREATE TABLE `users` (
   `phone` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `dob` date DEFAULT NULL,
   `avatar` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `activated` tinyint(1) NOT NULL DEFAULT '0',
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -508,14 +847,29 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `level`, `fullname`, `address`, `city`, `district`, `phone`, `dob`, `avatar`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'leduy', 'leduy211194@gmail.com', '$2y$10$9rZx5aZ5Y72XFMKrOX0K3eosbeJ.QDEnw65kLr2Ewijg3pzOhBmae', 2, 'Nguyen Le Duy', '55/24/14 Thành Mỹ, quận 10, TP HCM', NULL, NULL, '0165 353 9575', '1994-11-21', 'duy.jpg', 'WltFrEdt3sER2MymJHNgwbJceOZVpxVdpIvwb8Ap', '2017-03-27 19:15:47', '2017-03-27 19:15:47'),
-(2, 'bipham', 'nobikun1412@gmail.com', '$2y$10$CmEr27d5SbV5Dlaxx6gf5OIsm0sOrU0cXiPnJ8DaYEUC0sgvu09F.', 2, 'Phạm Tuấn Anh', NULL, NULL, NULL, '01223530707', NULL, 'anh.jpg', 'snYdXP8BZQxoFPAqIa1Fp0oLSuUFKYO6TYtmPJTS', '2017-03-21 01:26:32', '2017-03-21 01:26:32'),
-(3, 'choutruong', 'choutruong@gmail.com', '$2y$10$CeakwJ6Is8SFqNCaZdKK/eETCsvOunYfjKdmdPjN/4oljqe7HWFZi', 2, 'Trương Triệu Hải', '1025/12A CMT8 p7 qTB', NULL, NULL, '0903629676', NULL, 'chou.png', 'l7UYeSt1WCPOvbCP0GDnsi72dTviswbbc7s074nC', '2017-03-22 00:51:17', '2017-03-22 00:51:17'),
-(4, 'gvhd', 'ltkt@gmai.com', '$2y$10$bEyy2u5re0sRE4zQRJjL2Ov.H0zJR7tKkAdKWGhdYnv3HNO7CdkQq', 1, NULL, NULL, NULL, NULL, NULL, NULL, 'ltkt.jpg', 'ogzhu4wx2Orv32mAs3rNVQhBeQjXRGTyUrOjvhs7', '2017-03-23 17:50:16', '2017-03-23 17:50:16'),
-(5, 'test1', 'test1@gmail.com', '$2y$10$nW52UvoL1EDVoFWVb45kvObmf5CoA.nrnPorFF.WfiG2.4s03NhPq', 0, 'hnam', NULL, NULL, NULL, '0903629666', NULL, 'tes1.jpg', 'IidjugQBSYYcxwn2KDAgGJ1xNHJcANadacGt7BSy', '2017-04-10 06:05:48', '2017-04-10 06:05:48'),
-(6, 'test2', 'test2@gmail.com', '$2y$10$bxJ3MoHiGulMS9KLSPKe5.gnG6fali63TOm7OW2Hpzx2HTgeO/iqW', 0, 'ragnarok', NULL, NULL, NULL, '0903456789', NULL, 'test2.jpg', 'IidjugQBSYYcxwn2KDAgGJ1xNHJcANadacGt7BSy', '2017-04-10 06:06:04', '2017-04-10 06:06:04'),
-(7, 'chinchin', 'trinhbu01@gmail.com', '$2y$10$FTGkW9Uz8iEt6evuSa2hPukSvp.gMCQLMCvoteOLPkOjp1eg1LCAK', 0, 'Trịnh Chin Chin', '149 Bành Văn Trân, p7, qTân Bình, Tp HCM', NULL, NULL, '0903629676', NULL, NULL, 'jloYvYdRAUsolAXcG1dHKwKhkQJndCrTFqEercRX', '2017-04-26 06:12:44', '2017-04-26 06:12:44');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `level`, `fullname`, `address`, `city`, `district`, `phone`, `dob`, `avatar`, `activated`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'leduy', 'leduy211194@gmail.com', '$2y$10$9rZx5aZ5Y72XFMKrOX0K3eosbeJ.QDEnw65kLr2Ewijg3pzOhBmae', 2, 'Nguyen Le Duy', '55/24/14 Thành Mỹ, quận 10, TP HCM', NULL, NULL, '0165 353 9575', '1994-11-21', '1_leduy.jpg', 1, 'vk5hVdmA0Y4A74t6qqLiE0GxOBxHhNV3sPMC6m33hOi3eBBtuo0mjPQeV1wm', '2017-03-27 19:15:47', '2017-06-18 16:19:27'),
+(2, 'bipham', 'nobikun1412@gmail.com', '$2y$10$CmEr27d5SbV5Dlaxx6gf5OIsm0sOrU0cXiPnJ8DaYEUC0sgvu09F.', 2, 'Phạm Tuấn Anh', NULL, NULL, NULL, '01223530707', NULL, 'anh.jpg', 1, 'Mw9BjG07HyfwEOTsw9YPx0plF4jaZuSsFTdCuwlcSKIdjUrxggcMqM4musJ6', '2017-03-21 01:26:32', '2017-06-04 09:24:53'),
+(3, 'choutruong', 'choutruong@gmail.com', '$2y$10$CeakwJ6Is8SFqNCaZdKK/eETCsvOunYfjKdmdPjN/4oljqe7HWFZi', 2, 'Trương Triệu Hải', '1025/12A CMT8 p7 qTB', NULL, NULL, '0903629676', NULL, 'chou.png', 1, 'pRVLtchTtYvlHRs9tro5d7mq23coz4gbhRLmfBd9kKd1RmLs8j0wlXeDoatR', '2017-03-22 00:51:17', '2017-06-18 15:19:59'),
+(4, 'gvhd', 'ltkt@gmail.com', '$2y$10$sZOhWoq4almHEL.dddkufeC2qd8onJoGQ47/zwVzte46vVTl3t48.', 1, 'Lê Thị Kim Tuyến', '268 Lý Thường Kiệt', 'Tp. Hồ Chí Minh', 'Q.10', '0909994990', NULL, 'ltkt.jpg', 1, 'q7KJDWDmxdlixLnYGDDy3nVNi1uK88Ne8yj8iRhHUmbkiHuBb7AWODNMJadx', '2017-03-23 17:50:16', '2017-05-18 01:29:12'),
+(5, 'test1', 'test1@gmail.com', '$2y$10$VYg5xfNdUpf/ZfKTBrC7zOO6xyrC/KqH711O7XNm77PxBJUzRjsXa', 0, 'hnam', '119 - 3 Tháng 2', NULL, NULL, '0903629666', NULL, '5_test1.jpg', 1, 'vYCzuBh5hmgb02cs0nK6WYehSV6cwFlaaZcsDvSf2pUIXD1j2JgJvi2h1qOa', '2017-04-10 06:05:48', '2017-06-06 06:03:35'),
+(6, 'test2', 'test2@gmail.com', '$2y$10$bxJ3MoHiGulMS9KLSPKe5.gnG6fali63TOm7OW2Hpzx2HTgeO/iqW', 0, 'ragnarok', '52 Út Tịch, phường 4', NULL, NULL, '0903456789', NULL, 'test2.jpg', 1, 'B3PrDqQ0GDmim9l1pGqthTlhd8VxtFuvBzApWTMqGEK59JAIh6lSokd8zGPg', '2017-04-10 06:06:04', '2017-05-30 00:20:29'),
+(7, 'chinchin', 'trinhbu1@gmail.com', '$2y$10$FTGkW9Uz8iEt6evuSa2hPukSvp.gMCQLMCvoteOLPkOjp1eg1LCAK', 0, 'Trịnh Chin Chin', '149 Bành Văn Trân, p7, qTân Bình, Tp HCM', NULL, NULL, '0903629676', NULL, 'default_avatar.png', 1, 'jloYvYdRAUsolAXcG1dHKwKhkQJndCrTFqEercRX', '2017-04-26 06:12:44', '2017-04-26 06:12:44'),
+(8, 'lehong', 'testa@gmail.com', '$2y$10$huoKZX285W.gIX9q2523feQQGCGt6Wg6aaEigu8k50z9QhsozdqFy', 0, 'lehong', '149 Bành Văn Trân', NULL, NULL, '01234567892', NULL, 'default_avatar.png', 0, 'IwIIrWJTxEF2Sx2VjuANv2ek70AnEaDIgxMBXqnvndpymmXalcACgEOJJLyy', '2017-06-14 09:38:01', '2017-06-14 09:38:47'),
+(9, 'chintrinh', 'trinhbu01@gmail.com', '$2y$10$qm5WlZQ19u/QBe2CDZLA3Ot979/jR2jKCcmKEeuDwaunZZAKRocQm', 0, 'Trịnh Chin Chin', '147 Chấn Hưng,  phường 6, Tân Bình, Hồ Chí Minh', NULL, NULL, '0903730576', NULL, 'default_avatar.png', 1, 'JmHSqrTXiMLQ4eRNm9QlD1QQNFtiq3yOYMECRL6kjDRycNDrnKFYKx0TA5r8', '2017-06-14 15:42:02', '2017-06-18 15:19:29'),
+(10, 'trieuhai', '51200978@hcmut.edu.vn', '$2y$10$XWNu8ZwVj1Gs5EMTfU4G1uKUrNbxqfACEddQEzoywjAHlO1u0DWFS', 0, 'Trương Triệu Hải', '1025/22A CMT8', NULL, NULL, '0903629678', NULL, 'default_avatar.png', 1, 'O8oeevdPYq47RGugrac6L6iced4J42QmdJSV0RrtG2PSH5CziDHsHDI0z3wP', '2017-06-18 16:24:32', '2017-06-18 16:43:25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_activations`
+--
+
+CREATE TABLE `user_activations` (
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -914,6 +1268,13 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `notifications_notifiable_id_notifiable_type_index` (`notifiable_id`,`notifiable_type`);
+
+--
 -- Indexes for table `orderimages`
 --
 ALTER TABLE `orderimages`
@@ -927,6 +1288,13 @@ ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `orders_user_id_foreign` (`user_id`),
   ADD KEY `orders_cate_id_foreign` (`cate_id`);
+
+--
+-- Indexes for table `order_notifications`
+--
+ALTER TABLE `order_notifications`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_notifications_order_id_foreign` (`order_id`);
 
 --
 -- Indexes for table `order_tag_lists`
@@ -967,6 +1335,13 @@ ALTER TABLE `stocks`
   ADD KEY `stocks_cate_id_foreign` (`cate_id`);
 
 --
+-- Indexes for table `stock_notifications`
+--
+ALTER TABLE `stock_notifications`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `stock_notifications_stock_id_foreign` (`stock_id`);
+
+--
 -- Indexes for table `stock_tag_lists`
 --
 ALTER TABLE `stock_tag_lists`
@@ -990,6 +1365,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Indexes for table `user_activations`
+--
+ALTER TABLE `user_activations`
+  ADD KEY `user_activations_token_index` (`token`);
+
+--
 -- Indexes for table `ward`
 --
 ALTER TABLE `ward`
@@ -1009,67 +1390,77 @@ ALTER TABLE `cates`
 -- AUTO_INCREMENT for table `favos`
 --
 ALTER TABLE `favos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `favs`
 --
 ALTER TABLE `favs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `matchs`
 --
 ALTER TABLE `matchs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 --
 -- AUTO_INCREMENT for table `orderimages`
 --
 ALTER TABLE `orderimages`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+--
+-- AUTO_INCREMENT for table `order_notifications`
+--
+ALTER TABLE `order_notifications`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `order_tag_lists`
 --
 ALTER TABLE `order_tag_lists`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `stockimages`
 --
 ALTER TABLE `stockimages`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 --
 -- AUTO_INCREMENT for table `stocks`
 --
 ALTER TABLE `stocks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+--
+-- AUTO_INCREMENT for table `stock_notifications`
+--
+ALTER TABLE `stock_notifications`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `stock_tag_lists`
 --
 ALTER TABLE `stock_tag_lists`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 --
 -- AUTO_INCREMENT for table `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- Constraints for dumped tables
 --
@@ -1109,6 +1500,12 @@ ALTER TABLE `orders`
   ADD CONSTRAINT `orders_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `order_notifications`
+--
+ALTER TABLE `order_notifications`
+  ADD CONSTRAINT `order_notifications_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `order_tag_lists`
 --
 ALTER TABLE `order_tag_lists`
@@ -1134,6 +1531,12 @@ ALTER TABLE `stockimages`
 ALTER TABLE `stocks`
   ADD CONSTRAINT `stocks_cate_id_foreign` FOREIGN KEY (`cate_id`) REFERENCES `cates` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `stocks_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `stock_notifications`
+--
+ALTER TABLE `stock_notifications`
+  ADD CONSTRAINT `stock_notifications_stock_id_foreign` FOREIGN KEY (`stock_id`) REFERENCES `stocks` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `stock_tag_lists`
