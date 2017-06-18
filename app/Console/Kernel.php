@@ -39,7 +39,7 @@ class Kernel extends ConsoleKernel
             $orderNotification = new OrderNotification();
 
             Log::info("Stock check: ");
-            $stocks = DB::table('stocks')->get();
+            $stocks = DB::table('stocks')->where('finished',0)->get();
             foreach ($stocks as $index_stocks => $stock) {
                 $dataType = 'stock';
                 Log::info("Stock check time valid: ");
@@ -81,13 +81,13 @@ class Kernel extends ConsoleKernel
                     //Check time post to delete:
                     $validTimeDele = checkTimePostToDelete($stock->created_at);
                     if ($validTimeDele == 'delete') {
-                        DB::table('stocks')->where('id', $stock->id)->delete();
+                        DB::table('stocks')->where('id', $stock->id)->update(['finished' => 1]);
                     }
                 }
             }
 
             Log::info("Order check: ");
-            $orders = DB::table('orders')->get();
+            $orders = DB::table('orders')->where('finished',0)->get();
             foreach ($orders as $index_orders => $order) {
                 $dataType = 'order';
                 Log::info("Order check time valid: ");
@@ -128,7 +128,7 @@ class Kernel extends ConsoleKernel
                     //Check time post to delete:
                     $validTimeDele = checkTimePostToDelete($order->created_at);
                     if ($validTimeDele == 'delete') {
-                        DB::table('orders')->where('id', $order->id)->delete();
+                        DB::table('orders')->where('id', $order->id)->update(['finished' => 1]);
                     }
                 }
             }
