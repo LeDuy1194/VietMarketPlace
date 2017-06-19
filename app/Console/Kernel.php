@@ -31,7 +31,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
-            Log::info("Start check post valid time");
+            Log::info("---------------------------------------");
+            Log::info("------Start check post valid time------");
             Log::info("---------------------------------------");
             $type_noti = 'autoDel';
             $userModel = new User();
@@ -132,7 +133,13 @@ class Kernel extends ConsoleKernel
                     }
                 }
             }
-        })->everyMinute();
+
+            Log::info("---------------------------------------");
+            Log::info("------------End task check-------------");
+            Log::info("---------------------------------------");
+            Log::info(" ");
+        });
+//        ->everyMinute()
     }
 
     /**

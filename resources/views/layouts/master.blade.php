@@ -15,6 +15,11 @@ Version: 01
 	<link rel="stylesheet" href="{{asset('public/css/client/mystyle.css')}}"/>
 	<link rel="stylesheet" href="{{asset('public/css/client/homepage.css')}}"/>
 	<link rel="stylesheet" href="{{asset('public/css/client/map.css')}}"/>
+	<link rel="icon" type="image/png" href="{{asset('public/img/original/fav.png')}}">
+	<link rel="manifest" href="/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
 	<style>
 		#map {
         height: 100%;
