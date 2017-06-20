@@ -812,3 +812,12 @@ h3.title-noti-menu {
 	background-color: rgb(79, 165, 79) !important;
 	color: white;
 }
+
+.profile-dropdown-custom hr {
+	margin: 0;
+}
+
+.profile-dropdown-custom {
+	padding-bottom: 0;
+	padding-top: 0;
+}
