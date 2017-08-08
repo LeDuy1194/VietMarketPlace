@@ -1,0 +1,102 @@
+/* --------------------------------
+
+Created by Bi Pham
+03-05-2017
+
+-------------------------------- */
+
+.img-banner-upload-custom.parallax {
+    /* The image used */
+    background-image: url("/public/img/18.jpg");
+
+    /* Full height */
+    height: 200px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+}
+
+.img-banner-upload-custom.parallax:before {
+    content: ' ';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
+
+.welcome-upload-custom {
+    margin: 0 auto;
+    display: inline-block;
+    vertical-align: middle;
+    background: rgba(41, 43, 44, 0.65);
+    padding: 10px 20px;
+    border-radius: 10px
+}
+
+.welcome-upload-custom .breadcrumb {
+    list-style: none;
+    margin-bottom: 0;
+    padding: 0;
+    background-color: rgba(236, 238, 239, 0);
+    border: none;
+}
+
+.welcome-upload-custom .breadcrumb li.breadcrumb-item {
+    color: white;
+}
+
+.welcome-upload-custom .breadcrumb .breadcrumb-item.active {
+    color: white;
+}
+
+.welcome-upload-custom .breadcrumb .breadcrumb-item+.breadcrumb-item::before {
+    color: white;
+}
+
+.welcome-upload-custom .title-page-custom {
+    color: #f0ad4e;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.upload-page-custom {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.upload-product-custom .card-header {
+    background: #5cb85c;
+}
+
+.upload-product-custom .card-header h3.text-left, .map-upload-product .card-header h3.text-left {
+    color: white;
+    margin-bottom: 0;
+}
+
+.map-upload-product .card-header {
+    background: #0c61a9;
+}
+
+.upload-page-custom label {
+    font-weight: 500;
+    color: #000000;
+}
+
+img.img-upload-product {
+    margin: 10px 0;
+}
+
+.checkbox.checkbox-upload-custom {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 13px;
+}
+
+.form-upload-img-custom {
+    margin-bottom: 0;
+}

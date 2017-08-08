@@ -29,17 +29,12 @@ Truong Trieu Hai
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 							<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">VietMarketPlace</a>
+						<a class="navbar-brand" href="{{route('Home')}}">VietMarketPlace</a>
 					</div>
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
-								<button type="" class="btn-lang">Ngôn Ngữ <span class="caret"></span></button>
-								<ul class="dropdown-menu">
-									<li>
-										<a href="#">Tiếng Việt</a>
-									</li>
-								</ul>
+								
 							</li>
 						</ul>
 					</div>
@@ -52,7 +47,7 @@ Truong Trieu Hai
 <body>
 
 	<div class="container-fluid">
-		
+
 		<div class="row">
 			<div class="col-md-12">
 				<div class="row">
@@ -83,13 +78,13 @@ Truong Trieu Hai
 					</div>
 					<div class="col-md-1">
 					</div>
-					
+
 
 					<!-- Body div class="col-md-4" -->
 					@yield('content')
 					<!-- End -->
 
-					
+
 					<div class="col-md-1">
 					</div>
 				</div>
@@ -100,12 +95,13 @@ Truong Trieu Hai
 	<script src="{{url('public/js/jquery.min.js')}}"></script>
 	<script src="{{url('public/js/bootstrap.min.js')}}"></script>
 	<script src="{{url('public/js/starscripts.js')}}"></script>
+	<script src="{{asset('public/js/register.js')}}"></script>
 </body>
 
 <footer class="navbar-fixed-bottom panel-footer navbar-account">
 	<div class="row text-center">
 		<tr>
-			<td> <a href="#">Trang chủ</a></td>
+			<td> <a href="{{route('Home')}}">Trang chủ</a></td>
 			<span>|</span>
 			<td> <a href="#">Riêng tư</a></td>
 			<span>|</span>

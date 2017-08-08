@@ -1,61 +1,65 @@
 <!--
-Created by: Nguyen Le Duy
-Date: 17/02/2017
+Author: Anh Phạm
+Create_at: 17/02/2017
+Update_at: 27/03/2017 by Anh Pham
 -->
 
 @extends('layouts.master')
-
+@section('meta-title')
+	Home
+@endsection
 @section('content')
 	@include('utils.advertise')
 	@include('utils.searchForm')
-	<div class="container-fluid">
-		<div class="row mt-2">
-			<div class="col-lg-2">
-				<div class="row">
-					<div class="col-lg-6 col-sm-6 p-0 m-0">
-						<button id="btnStock" type="button" onclick="" class="btn btn-primary btn-block active">Kho hàng</button>
+	<div class="container homepage-custom">
+				<div class="list-products-thumbnail">
+					<h2 class="title-section-home bd-green">Tin rao bán</h2>
+					<div class="row list-products-thumbnail">
+					@foreach($stock as $item)
+						<?php
+						$user = $userModel->getDetailUserByUserID($item->user_id);
+						$cate = $cateModel->getCateById($item->cate_id);
+						$vote = $reviewModel->getAverageVote($item->user_id);
+						if ($author != NULL) {
+							$fav = $favModel->getFav($author->id,$item->id);
+							$fav != NULL ? $favCheck = true : $favCheck = false;
+						}
+						else {
+							$favCheck = false;
+						}
+						?>
+						@include('utils.contentGrid',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'stock','vote' => $vote, 'fav' => $favCheck])
+					@endforeach
 					</div>
-					<div class="col-lg-6 col-sm-6 p-0 m-0">
-						<button id="btnOrder" type="button" onclick="" class="btn btn-primary btn-block">Đơn hàng</button>
+				</div>
+			<div class="show-more">
+				<button type="button" class="btn btn-success btn-show-more-custom"><a href="{{route('listByCate',[0])}}" class="text-center"><h3>Xem thêm</h3></a></button>
+			</div>
+
+
+				<div class="list-products-thumbnail">
+					<h2 class="title-section-home bd-blue">Tin tìm mua</h2>
+					<div class="row list-products-thumbnail">
+					@foreach($order as $item)
+						<?php
+						$user = $userModel->getDetailUserByUserID($item->user_id);
+						$cate = $cateModel->getCateById($item->cate_id);
+						$vote = $reviewModel->getAverageVote($item->user_id);
+						if ($author != NULL) {
+							$favO = $favOModel->getFav($author->id,$item->id);
+							$favO != NULL ? $favCheck = true : $favCheck = false;
+						}
+						else {
+							$favCheck = false;
+						}
+						?>
+						@include('utils.contentGrid',['item' => json_decode($item),'user' => json_decode($user),'cate' => json_decode($cate),'type' => 'order','vote' => $vote,'fav' => $favCheck])
+					@endforeach
 					</div>
 				</div>
-				<a class="btn btn-secondary btn-lg btn-block mt-2" data-toggle="collapse" href="#collapseSidebar" aria-expanded="true" aria-controls="collapseSidebar"><h5>Catagories</h5></a>
-				<div class="collapse show" id="collapseSidebar">
-					<ul class="nav flex-column">
-						<li class="nav-item">
-							<a class="nav-link" href="#" focus>Máy tính</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Điện thoại</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Sách</a>
-						</li>
-					</ul>
-				</div>
-				<div class="col-lg-12 col-sm-12 m-0 p-0">
-				</div>
-				
+			<div class="show-more">
+				<button type="button" class="btn btn-primary btn-show-more-custom"><a href="{{route('listByCate',[0])}}" class="text-center title-show-more"><h3>Xem thêm</h3></a></button>
 			</div>
-			<div class="col-lg-10">
-
-				<!--Updated by: Duy
-				Date: 23/02/2017
-				Chỉnh lại bảng chứa dữ liệu.
-				-->
-				@for($i = 0; $i < 10; $i++)
-				@include('utils.contentTable')
-				@endfor
-
-				<nav aria-label="Page navigation example">
-					<ul class="pagination">
-						<li class="page-item active"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
 	</div>
 @endsection
 

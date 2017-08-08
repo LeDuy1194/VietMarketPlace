@@ -14,4 +14,9 @@ class StockImage extends Model
     public function stock() {
     	return $this->belongTo('App\Models\Stock');
     }
+
+    //Get images for product by stock_id ----- Created by Anh Pham
+    public function getImages($stock_id) {
+        return $this->where('stock_id', $stock_id)->pluck('image');
+    }
 }

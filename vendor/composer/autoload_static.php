@@ -10,12 +10,13 @@ class ComposerStaticInit4bd09316556cc30a317b14bc17b6e888
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
-        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
+        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         'e4e49749301e7fa5315bc371f9cc7903' => __DIR__ . '/../..' . '/app/lib/functions.php',
     );
 
@@ -60,6 +61,7 @@ class ComposerStaticInit4bd09316556cc30a317b14bc17b6e888
         array (
             'Psy\\' => 4,
             'Psr\\Log\\' => 8,
+            'Predis\\' => 7,
             'PhpParser\\' => 10,
         ),
         'M' => 
@@ -87,6 +89,7 @@ class ComposerStaticInit4bd09316556cc30a317b14bc17b6e888
         'C' => 
         array (
             'Cron\\' => 5,
+            'Collective\\Html\\' => 16,
             'ClassPreloader\\' => 15,
             'Carbon\\' => 7,
         ),
@@ -191,6 +194,10 @@ class ComposerStaticInit4bd09316556cc30a317b14bc17b6e888
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
+        'Predis\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/predis/predis/src',
+        ),
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
@@ -227,6 +234,10 @@ class ComposerStaticInit4bd09316556cc30a317b14bc17b6e888
         array (
             0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron',
         ),
+        'Collective\\Html\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravelcollective/html/src',
+        ),
         'ClassPreloader\\' => 
         array (
             0 => __DIR__ . '/..' . '/classpreloader/classpreloader/src',
@@ -247,6 +258,10 @@ class ComposerStaticInit4bd09316556cc30a317b14bc17b6e888
             'Prophecy\\' => 
             array (
                 0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
+            ),
+            'PayPal' => 
+            array (
+                0 => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib',
             ),
         ),
         'M' => 
@@ -278,12 +293,20 @@ class ComposerStaticInit4bd09316556cc30a317b14bc17b6e888
 
     public static $classMap = array (
         'CreateCatesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_13_040246_create_cates_table.php',
+        'CreateFavOsTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_072141_create_fav-os_table.php',
+        'CreateFavsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_28_015020_create_favs_table.php',
         'CreateMatchsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_13_090250_create_matchs_table.php',
+        'CreateOrderNotificationsTable' => __DIR__ . '/../..' . '/database/migrations/2017_06_01_110910_create_order_notifications_table.php',
+        'CreateOrderimagesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_23_030738_create_orderimages_table.php',
         'CreateOrdersTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_13_085722_create_orders_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateReviewsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_13_085146_create_reviews_table.php',
+        'CreateStockNotificationsTable' => __DIR__ . '/../..' . '/database/migrations/2017_06_01_110849_create_stock_notifications_table.php',
         'CreateStockimagesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_13_043004_create_stockimages_table.php',
         'CreateStocksTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_13_041217_create_stocks_table.php',
+        'CreateTagListsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_02_015506_create_tag_lists_table.php',
+        'CreateTagsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_02_015407_create_tags_table.php',
+        'CreateUserActivationsTable' => __DIR__ . '/../..' . '/database/migrations/2017_06_13_102253_create_user_activations_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',

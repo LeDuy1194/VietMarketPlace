@@ -16,17 +16,20 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('priceMax');
-            $table->integer('priceMin')->default(0);
-            $table->string('status');
-            $table->string('desciption');
+            $table->integer('price');
+            $table->tinyint('status')->default(0);
+            $table->string('description');
             $table->string('place');
+            $table->string('city',100)->nullable();
+            $table->string('district',100)->nullable();
+            $table->string('lat');
+            $table->string('lng');
             $table->string('img');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('cate_id')->unsigned();
             $table->foreign('cate_id')->references('id')->on('cates')->onDelete('cascade');
-            $table->boolean('finished');
+            $table->boolean('finished')->default(0);
             $table->timestamps();
         });
     }
